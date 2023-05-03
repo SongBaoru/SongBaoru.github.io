@@ -112,12 +112,12 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-count">2</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -134,6 +134,134 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://songbaoru.github.io/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="SBR">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SBR Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | SBR Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">JVM底层原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2023-05-03 09:21:36 / Modified: 09:22:19" itemprop="dateCreated datePublished" datetime="2023-05-03T09:21:36+08:00">2023-05-03</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>JVM（Java Virtual Machine）用于运行Java字节码</p>
+</blockquote>
+<h2 id="JVM结构规范"><a href="#JVM结构规范" class="headerlink" title="JVM结构规范"></a>JVM结构规范</h2><p>JVM的结构及其作用包含：</p>
+<ul>
+<li>类加载子系统：将编译好的.Class文件加载到JVM中</li>
+<li>运行时数据区：存储JVM在运行过程中产生的数据<ul>
+<li>方法区<ul>
+<li>运行时常量池</li>
+</ul>
+</li>
+<li>本地方法栈</li>
+<li>Java虚拟机栈</li>
+<li>程序计数器</li>
+<li>Java堆</li>
+</ul>
+</li>
+<li>执行引擎<ul>
+<li>即时编译器</li>
+<li>垃圾回收器</li>
+</ul>
+</li>
+<li>本地接口库（通过调用本地方法库和操作系统交互）</li>
+</ul>
+<p>源文件 –&gt; JVM编译器–&gt; .class文件 –&gt; JVM解释器 –&gt; 适配操作系统的机器码 –&gt; 机器码调用操作系统的本地方法库完成具体的指令操作</p>
+<h2 id="HotSpot-JVM内存模型"><a href="#HotSpot-JVM内存模型" class="headerlink" title="HotSpot JVM内存模型"></a>HotSpot JVM内存模型</h2><p>HotSpot JVM的JVM结构（可以划分为三类）：</p>
+<p>线程私有区域：</p>
+<ul>
+<li><p>程序计数器</p>
+<p>如果该线程执行的是Native方法，则程序计数器的值为空</p>
+</li>
+<li><p>Java虚拟机栈</p>
+<p>存储了局部变量表、操作数栈、动态链接、方法出口等信息</p>
+<p>处理动态链接方法的返回值和异常处理分派</p>
+<p>记录了方法的执行过程</p>
+</li>
+<li><p>本地方法栈</p>
+<p>本地方法栈和Java虚拟机栈唯一的不同是，本地方法栈执行的是Native方法，Java虚拟机栈执行的是Java方法</p>
+<p>用以调用其他语言（如C语言）实现的指令集解释器</p>
+</li>
+</ul>
+<p>线程共享区域：</p>
+<ul>
+<li><p>Java堆</p>
+<p>JVM运行过程中创建的对象和产生的数据都会被存储在堆中</p>
+<p>是被前程共享的内存区域，也是垃圾回收期进行垃圾回收的最主要的内存区域</p>
+<p>由于JVM采用分代回收算法，Java 堆从GC（Garbage Collection）的角度还可以细分为新生代（Eden、SurvivorTo、SurvivorFrom）、老年代</p>
+</li>
+<li><p>元空间</p>
+<p>元空间就是方法区在HotSpot虚拟机中的实现</p>
+<p>存储了运行时常量、字段、方法和方法的数据、构造函数、初始化类信息</p>
+</li>
+</ul>
+<p>直接内存</p>
+<p>也叫堆外内存、并不是JVM运行时数据区的一部分，但在并发的过程中被频繁使用</p>
+<p>JDK的NIO提供的基于Channel和Buffer的I&#x2F;O操作就是基于堆外内存实现的</p>
+<p>NIO模块通过调用Native函数库在操作系统上分配堆外内存</p>
+<p>Java进程可以通过堆外内存技术避免在Java堆和Native堆中来回复制数据带来的资源浪费和性能消耗</p>
+<p>因此堆外内存在高并发场景下被广泛使用（Netty、Flink、HBase、Hadoop都有用到）</p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><h2 id="JVM参数调优"><a href="#JVM参数调优" class="headerlink" title="JVM参数调优"></a>JVM参数调优</h2><h2 id="JVM类加载机制"><a href="#JVM类加载机制" class="headerlink" title="JVM类加载机制"></a>JVM类加载机制</h2>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

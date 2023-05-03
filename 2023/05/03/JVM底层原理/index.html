@@ -19,27 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"songbaoru.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="JVM（Java Virtual Machine）用于运行Java字节码  JVM结构规范JVM的结构及其作用包含：  类加载子系统：将编译好的.Class文件加载到JVM中 运行时数据区：存储JVM在运行过程中产生的数据 方法区 运行时常量池   本地方法栈 Java虚拟机栈 程序计数器 Java堆   执行引擎 即时编译器 垃圾回收器   本地接口库（通过调用本地方法库和操作系统交互）  源">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://songbaoru.github.io/2023/05/02/hello-world/index.html">
+<meta property="og:title" content="JVM底层原理">
+<meta property="og:url" content="https://songbaoru.github.io/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="SBR Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="JVM（Java Virtual Machine）用于运行Java字节码  JVM结构规范JVM的结构及其作用包含：  类加载子系统：将编译好的.Class文件加载到JVM中 运行时数据区：存储JVM在运行过程中产生的数据 方法区 运行时常量池   本地方法栈 Java虚拟机栈 程序计数器 Java堆   执行引擎 即时编译器 垃圾回收器   本地接口库（通过调用本地方法库和操作系统交互）  源">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-05-02T11:42:56.875Z">
-<meta property="article:modified_time" content="2023-05-02T11:42:56.875Z">
+<meta property="article:published_time" content="2023-05-03T01:21:36.000Z">
+<meta property="article:modified_time" content="2023-05-03T01:22:19.264Z">
 <meta property="article:author" content="SBR">
+<meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://songbaoru.github.io/2023/05/02/hello-world/">
+<link rel="canonical" href="https://songbaoru.github.io/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://songbaoru.github.io/2023/05/02/hello-world/","path":"2023/05/02/hello-world/","title":"Hello World"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://songbaoru.github.io/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/","path":"2023/05/03/JVM底层原理/","title":"JVM底层原理"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hello World | SBR Blog</title>
+<title>JVM底层原理 | SBR Blog</title>
   
 
 
@@ -104,7 +105,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%BB%93%E6%9E%84%E8%A7%84%E8%8C%83"><span class="nav-number">1.</span> <span class="nav-text">JVM结构规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HotSpot-JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.</span> <span class="nav-text">HotSpot JVM内存模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6"><span class="nav-number">3.</span> <span class="nav-text">垃圾回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E5%8F%82%E6%95%B0%E8%B0%83%E4%BC%98"><span class="nav-number">4.</span> <span class="nav-text">JVM参数调优</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">JVM类加载机制</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -149,7 +150,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://songbaoru.github.io/2023/05/02/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://songbaoru.github.io/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -162,12 +163,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hello World | SBR Blog">
+      <meta itemprop="name" content="JVM底层原理 | SBR Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          JVM底层原理
         </h1>
 
         <div class="post-meta-container">
@@ -177,8 +178,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2023-05-02 19:42:56" itemprop="dateCreated datePublished" datetime="2023-05-02T19:42:56+08:00">2023-05-02</time>
+      <time title="Created: 2023-05-03 09:21:36 / Modified: 09:22:19" itemprop="dateCreated datePublished" datetime="2023-05-03T09:21:36+08:00">2023-05-03</time>
     </span>
 
   
@@ -190,20 +192,66 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">&quot;My New Post&quot;</span><br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p>JVM（Java Virtual Machine）用于运行Java字节码</p>
+</blockquote>
+<h2 id="JVM结构规范"><a href="#JVM结构规范" class="headerlink" title="JVM结构规范"></a>JVM结构规范</h2><p>JVM的结构及其作用包含：</p>
+<ul>
+<li>类加载子系统：将编译好的.Class文件加载到JVM中</li>
+<li>运行时数据区：存储JVM在运行过程中产生的数据<ul>
+<li>方法区<ul>
+<li>运行时常量池</li>
+</ul>
+</li>
+<li>本地方法栈</li>
+<li>Java虚拟机栈</li>
+<li>程序计数器</li>
+<li>Java堆</li>
+</ul>
+</li>
+<li>执行引擎<ul>
+<li>即时编译器</li>
+<li>垃圾回收器</li>
+</ul>
+</li>
+<li>本地接口库（通过调用本地方法库和操作系统交互）</li>
+</ul>
+<p>源文件 –&gt; JVM编译器–&gt; .class文件 –&gt; JVM解释器 –&gt; 适配操作系统的机器码 –&gt; 机器码调用操作系统的本地方法库完成具体的指令操作</p>
+<h2 id="HotSpot-JVM内存模型"><a href="#HotSpot-JVM内存模型" class="headerlink" title="HotSpot JVM内存模型"></a>HotSpot JVM内存模型</h2><p>HotSpot JVM的JVM结构（可以划分为三类）：</p>
+<p>线程私有区域：</p>
+<ul>
+<li><p>程序计数器</p>
+<p>如果该线程执行的是Native方法，则程序计数器的值为空</p>
+</li>
+<li><p>Java虚拟机栈</p>
+<p>存储了局部变量表、操作数栈、动态链接、方法出口等信息</p>
+<p>处理动态链接方法的返回值和异常处理分派</p>
+<p>记录了方法的执行过程</p>
+</li>
+<li><p>本地方法栈</p>
+<p>本地方法栈和Java虚拟机栈唯一的不同是，本地方法栈执行的是Native方法，Java虚拟机栈执行的是Java方法</p>
+<p>用以调用其他语言（如C语言）实现的指令集解释器</p>
+</li>
+</ul>
+<p>线程共享区域：</p>
+<ul>
+<li><p>Java堆</p>
+<p>JVM运行过程中创建的对象和产生的数据都会被存储在堆中</p>
+<p>是被前程共享的内存区域，也是垃圾回收期进行垃圾回收的最主要的内存区域</p>
+<p>由于JVM采用分代回收算法，Java 堆从GC（Garbage Collection）的角度还可以细分为新生代（Eden、SurvivorTo、SurvivorFrom）、老年代</p>
+</li>
+<li><p>元空间</p>
+<p>元空间就是方法区在HotSpot虚拟机中的实现</p>
+<p>存储了运行时常量、字段、方法和方法的数据、构造函数、初始化类信息</p>
+</li>
+</ul>
+<p>直接内存</p>
+<p>也叫堆外内存、并不是JVM运行时数据区的一部分，但在并发的过程中被频繁使用</p>
+<p>JDK的NIO提供的基于Channel和Buffer的I&#x2F;O操作就是基于堆外内存实现的</p>
+<p>NIO模块通过调用Native函数库在操作系统上分配堆外内存</p>
+<p>Java进程可以通过堆外内存技术避免在Java堆和Native堆中来回复制数据带来的资源浪费和性能消耗</p>
+<p>因此堆外内存在高并发场景下被广泛使用（Netty、Flink、HBase、Hadoop都有用到）</p>
+<h2 id="垃圾回收"><a href="#垃圾回收" class="headerlink" title="垃圾回收"></a>垃圾回收</h2><h2 id="JVM参数调优"><a href="#JVM参数调优" class="headerlink" title="JVM参数调优"></a>JVM参数调优</h2><h2 id="JVM类加载机制"><a href="#JVM类加载机制" class="headerlink" title="JVM类加载机制"></a>JVM类加载机制</h2>
     </div>
 
     
@@ -211,16 +259,19 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JVM/" rel="tag"># JVM</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2023/05/02/IO%E6%B5%81/" rel="prev" title="IO流">
+                  <i class="fa fa-chevron-left"></i> IO流
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/05/02/IO%E6%B5%81/" rel="next" title="IO流">
-                  IO流 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
