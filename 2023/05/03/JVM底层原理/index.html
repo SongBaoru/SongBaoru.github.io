@@ -27,7 +27,7 @@
 <meta property="og:description" content="JVM（Java Virtual Machine）用于运行Java字节码  JVM结构规范和执行流程JVM的结构及其作用JVM 主要由以下部分组成：类加载器、运行时数据区、执行引擎和本地方法接口  类加载器：类加载器负责将类文件（.class 文件）加载到 JVM 中，并生成对应的 Class 对象。类加载器是 JVM 的一个重要组成部分，它将类文件加载到 JVM 中，并根据需要进行链接、验证和">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-03T01:21:36.000Z">
-<meta property="article:modified_time" content="2023-05-08T04:18:49.169Z">
+<meta property="article:modified_time" content="2023-05-09T01:04:41.160Z">
 <meta property="article:author" content="SBR">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -105,7 +105,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM%E7%BB%93%E6%9E%84%E8%A7%84%E8%8C%83%E5%92%8C%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">JVM结构规范和执行流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%9A%84%E7%BB%93%E6%9E%84%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">JVM的结构及其作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HotSpot-JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">HotSpot JVM内存模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E6%89%A7%E8%A1%8CJava%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">JVM执行Java程序的流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%90%86%E8%AE%BA"><span class="nav-number">2.</span> <span class="nav-text">垃圾回收理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E6%B4%BB%E7%9A%84%E7%AE%97%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">判断一个对象是否存活的算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E4%BB%A3%E5%9B%9E%E6%94%B6%E7%90%86%E8%AE%BA"><span class="nav-number">2.2.</span> <span class="nav-text">分代回收理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apple%E5%BC%8F%E5%9B%9E%E6%94%B6"><span class="nav-number">2.3.</span> <span class="nav-text">Apple式回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.4.</span> <span class="nav-text">垃圾回收类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">垃圾回收算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HotSpot%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="nav-number">2.6.</span> <span class="nav-text">HotSpot垃圾回收算法实现细节</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">垃圾回收器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8B%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%B9%B6%E5%8F%91"><span class="nav-number">3.1.</span> <span class="nav-text">垃圾收集器下的并行和并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">3.2.</span> <span class="nav-text">经典垃圾回收器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E7%94%9F%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">3.2.1.</span> <span class="nav-text">新生代垃圾回收器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%80%81%E5%B9%B4%E4%BB%A3%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">3.2.2.</span> <span class="nav-text">老年代垃圾收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%8A%9F%E8%83%BD%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">3.2.3.</span> <span class="nav-text">全功能垃圾收集器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8E%E5%BB%B6%E8%BF%9F%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">3.3.</span> <span class="nav-text">低延迟垃圾回收器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E8%BF%9B%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">3.4.</span> <span class="nav-text">不进行垃圾回收的垃圾收集器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.5.</span> <span class="nav-text">Java引用类型和垃圾回收的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM%E7%9A%84%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">JVM的参数配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">4.1.</span> <span class="nav-text">JVM的参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.2.</span> <span class="nav-text">JVM参数设置示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%EF%BC%88%E8%B0%83%E4%BC%98%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">JVM性能分析工具（调优工具）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">类加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E9%98%B6%E6%AE%B5"><span class="nav-number">5.1.</span> <span class="nav-text">类加载阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%B6%E5%AD%90%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%BA%E5%BA%8F%E5%85%B3%E7%B3%BB"><span class="nav-number">5.2.</span> <span class="nav-text">父子类加载和初始化顺序关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%92%8C%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.3.</span> <span class="nav-text">类加载器和双亲委派模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSGI"><span class="nav-number">5.4.</span> <span class="nav-text">OSGI</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM%E7%BB%93%E6%9E%84%E8%A7%84%E8%8C%83%E5%92%8C%E6%89%A7%E8%A1%8C%E6%B5%81%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">JVM结构规范和执行流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%9A%84%E7%BB%93%E6%9E%84%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8"><span class="nav-number">1.1.</span> <span class="nav-text">JVM的结构及其作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HotSpot-JVM%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">HotSpot JVM内存模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E6%89%A7%E8%A1%8CJava%E7%A8%8B%E5%BA%8F%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-number">1.3.</span> <span class="nav-text">JVM执行Java程序的流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%90%86%E8%AE%BA"><span class="nav-number">2.</span> <span class="nav-text">垃圾回收理论</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%A4%E6%96%AD%E4%B8%80%E4%B8%AA%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E6%B4%BB%E7%9A%84%E7%AE%97%E6%B3%95"><span class="nav-number">2.1.</span> <span class="nav-text">判断一个对象是否存活的算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E4%BB%A3%E5%9B%9E%E6%94%B6%E7%90%86%E8%AE%BA"><span class="nav-number">2.2.</span> <span class="nav-text">分代回收理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Apple%E5%BC%8F%E5%9B%9E%E6%94%B6"><span class="nav-number">2.3.</span> <span class="nav-text">Apple式回收</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%B1%BB%E5%9E%8B"><span class="nav-number">2.4.</span> <span class="nav-text">垃圾回收类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="nav-number">2.5.</span> <span class="nav-text">垃圾回收算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HotSpot%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0%E7%BB%86%E8%8A%82"><span class="nav-number">2.6.</span> <span class="nav-text">HotSpot垃圾回收算法实现细节</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">3.</span> <span class="nav-text">垃圾回收器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8B%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%B9%B6%E5%8F%91"><span class="nav-number">3.1.</span> <span class="nav-text">垃圾收集器下的并行和并发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%8F%E5%85%B8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">3.2.</span> <span class="nav-text">经典垃圾回收器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E7%94%9F%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">3.2.1.</span> <span class="nav-text">新生代垃圾回收器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%80%81%E5%B9%B4%E4%BB%A3%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">3.2.2.</span> <span class="nav-text">老年代垃圾收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%A8%E5%8A%9F%E8%83%BD%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">3.2.3.</span> <span class="nav-text">全功能垃圾收集器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8E%E5%BB%B6%E8%BF%9F%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="nav-number">3.3.</span> <span class="nav-text">低延迟垃圾回收器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8D%E8%BF%9B%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="nav-number">3.4.</span> <span class="nav-text">不进行垃圾回收的垃圾收集器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.5.</span> <span class="nav-text">Java引用类型和垃圾回收的关系</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM%E7%9A%84%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">JVM的参数配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E7%9A%84%E5%8F%82%E6%95%B0"><span class="nav-number">4.1.</span> <span class="nav-text">JVM的参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="nav-number">4.2.</span> <span class="nav-text">JVM参数设置示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%EF%BC%88%E8%B0%83%E4%BC%98%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="nav-number">4.3.</span> <span class="nav-text">JVM性能分析工具（调优工具）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jps"><span class="nav-number">4.3.1.</span> <span class="nav-text">jps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jinfo"><span class="nav-number">4.3.2.</span> <span class="nav-text">jinfo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jstat"><span class="nav-number">4.3.3.</span> <span class="nav-text">jstat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jstack"><span class="nav-number">4.3.4.</span> <span class="nav-text">jstack</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jmap"><span class="nav-number">4.3.5.</span> <span class="nav-text">jmap</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="nav-number">5.</span> <span class="nav-text">类加载机制</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E9%98%B6%E6%AE%B5"><span class="nav-number">5.1.</span> <span class="nav-text">类加载阶段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%88%B6%E5%AD%90%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%BA%E5%BA%8F%E5%85%B3%E7%B3%BB"><span class="nav-number">5.2.</span> <span class="nav-text">父子类加载和初始化顺序关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%92%8C%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B"><span class="nav-number">5.3.</span> <span class="nav-text">类加载器和双亲委派模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#OSGI"><span class="nav-number">5.4.</span> <span class="nav-text">OSGI</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -186,7 +186,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-05-08 12:18:49" itemprop="dateModified" datetime="2023-05-08T12:18:49+08:00">2023-05-08</time>
+      <time title="Modified: 2023-05-09 09:04:41" itemprop="dateModified" datetime="2023-05-09T09:04:41+08:00">2023-05-09</time>
     </span>
 
   
@@ -250,12 +250,30 @@
 </ul>
 <p>直接内存</p>
 <p>又称“堆外内存”，NIO（New Input&#x2F;Output）类引入了一种基于通道（Channel）和缓冲区（Buffer）的I&#x2F;O方式，可以使用Native函数库直接分配堆外内存，然后通过一个存储在Java堆里面的DirectByteBuffer对象作为这块内存的引用进行操作，避免在Java堆和Native堆中来回复制数据。</p>
-<h2 id="JVM执行Java程序的流程"><a href="#JVM执行Java程序的流程" class="headerlink" title="JVM执行Java程序的流程"></a>JVM执行Java程序的流程</h2><ol>
-<li>编译源代码文件：Java源代码需要通过编译器（如Javac）编译成字节码文件，文件扩展名为.class。编译器会检查源代码文件中的语法错误，并将源代码转换为可以在Java虚拟机上运行的字节码。</li>
-<li>加载字节码文件：Java虚拟机（JVM）通过类加载器加载字节码文件。类加载器是JVM的组成部分，它的主要作用是动态地将Java类加载到内存中。</li>
-<li>验证字节码文件：字节码文件需要经过验证来确保其符合Java虚拟机规范。验证过程主要涉及字节码文件的格式和内容是否正确、是否包含非法代码等。</li>
-<li>解释字节码文件：Java虚拟机会解释字节码文件，并将其转换为机器可以理解的指令。</li>
-<li>执行程序：最后，Java虚拟机会执行字节码文件中的指令，运行程序。</li>
+<h2 id="JVM执行Java程序的流程"><a href="#JVM执行Java程序的流程" class="headerlink" title="JVM执行Java程序的流程"></a>JVM执行Java程序的流程</h2><p>运行一个Java程序时，JVM执行以下步骤：</p>
+<ol>
+<li><p>编译：首先，Java源代码（.java文件）需要被编译成字节码（.class文件）。编译过程由Java编译器（javac）完成。编译器会将Java源代码转换成与平台无关的字节码文件。</p>
+</li>
+<li><p>类加载阶段</p>
+<ol>
+<li><p>加载：在程序运行时，JVM负责加载字节码文件。这一过程由类加载器（ClassLoader）负责。类加载器首先查找并加载类文件，然后将字节码转换为JVM内部的数据结构。</p>
+</li>
+<li><p>验证：字节码文件加载后，JVM会对其进行验证，确保代码是安全和符合规范的。验证过程包括检查字节码的结构、数据类型、操作数栈等。若字节码不符合规范，JVM将拒绝执行。</p>
+</li>
+<li><p>准备：验证通过后，JVM为类中的静态变量分配内存并设置默认值。这一过程确保在初始化阶段为静态变量赋值时已有可用的内存。</p>
+</li>
+<li><p>解析：JVM对类的符号引用进行解析，将它们替换为实际的内存地址。这包括将类、字段、方法等的引用转换为具体的内存地址或偏移量。</p>
+</li>
+<li><p>初始化：在解析完成后，JVM执行类的初始化代码。这包括执行静态初始化块和为静态变量赋值。初始化阶段确保类在使用前已经被正确初始化。</p>
+</li>
+</ol>
+</li>
+<li><p>解释执行：JVM开始执行字节码。字节码由JVM的解释器逐条解释执行，或通过即时编译器（JIT）编译成本地代码后执行。JVM管理内存、线程、异常处理等，确保程序能够在一个独立的运行时环境中运行。</p>
+</li>
+<li><p>垃圾回收：在程序运行过程中，JVM负责管理内存。当对象不再被引用时，垃圾回收器（Garbage Collector）会自动回收其占用的内存，确保内存的有效利用。</p>
+</li>
+<li><p>结束：当程序执行完成或遇到异常时，JVM将执行结束操作。这包括释放内存、关闭资源、销毁线程等。最后，JVM退出并结束运行。</p>
+</li>
 </ol>
 <h1 id="垃圾回收理论"><a href="#垃圾回收理论" class="headerlink" title="垃圾回收理论"></a>垃圾回收理论</h1><h2 id="判断一个对象是否存活的算法"><a href="#判断一个对象是否存活的算法" class="headerlink" title="判断一个对象是否存活的算法"></a>判断一个对象是否存活的算法</h2><ul>
 <li>引用计数算法</li>
@@ -553,7 +571,104 @@
 <li><code>-XX:+UseG1GC</code>：使用 G1 垃圾收集器。G1 垃圾收集器是 JDK 9 及其之后版本的默认垃圾收集器，它以可预测的停顿时间和高效的内存回收著称。</li>
 </ul>
 <p>这些参数的设置应该根据具体的应用程序和系统配置进行调整，以获得最佳性能和稳定性。另外，可以使用一些诊断工具，如 jstat 和 jmap 等来监测 JVM 的运行状态和内存使用情况，以帮助优化 JVM 的性能和稳定性</p>
-<h2 id="JVM性能分析工具（调优工具）"><a href="#JVM性能分析工具（调优工具）" class="headerlink" title="JVM性能分析工具（调优工具）"></a>JVM性能分析工具（调优工具）</h2><h1 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h1><h2 id="类加载阶段"><a href="#类加载阶段" class="headerlink" title="类加载阶段"></a>类加载阶段</h2><p>Java虚拟机（JVM）的类加载机制是Java程序运行时将.class文件加载到内存的过程。类加载主要分为五个阶段：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）和初始化（Initialization）。</p>
+<h2 id="JVM性能分析工具（调优工具）"><a href="#JVM性能分析工具（调优工具）" class="headerlink" title="JVM性能分析工具（调优工具）"></a>JVM性能分析工具（调优工具）</h2><p>常用的工具有jps、jinfo、jstat、jstack、jmap等，这些工具包含在JDK（Java Development Kit）的<code>bin</code>目录中，因此需要安装JDK才能使用</p>
+<h3 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h3><p>用于查看正在运行的Java进程及其相关信息（进程id、虚拟机参数如端口号和可用内存大小、jar包名称）</p>
+<p><code>jps</code>的基本语法如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps [options] [hostid]</span><br></pre></td></tr></table></figure>
+
+<p><code>options</code>表示可选的参数，<code>hostid</code>表示远程主机的ID，如果不指定则默认为本地主机。以下是一些常用的<code>jps</code>选项：</p>
+<ul>
+<li><code>-l</code>：显示完整的包名和主类名。</li>
+<li><code>-m</code>：显示传递给Java进程的参数。</li>
+<li><code>-v</code>：显示传递给JVM的参数。</li>
+<li><code>-q</code>：仅显示Java进程的ID，不显示类名、JAR名称和传递给Java进程的参数。</li>
+</ul>
+<h3 id="jinfo"><a href="#jinfo" class="headerlink" title="jinfo"></a>jinfo</h3><p><code>jinfo</code>（Java Configuration Info Tool）是一个Java命令行工具，用于获取Java虚拟机（JVM）进程的配置信息，如系统属性和JVM参数</p>
+<p><code>jinfo</code>的基本语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jinfo [option] pid</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>option</code>：表示可选的参数，如获取系统属性、JVM参数等。</li>
+<li><code>pid</code>：表示要获取配置信息的Java虚拟机进程的ID。</li>
+</ul>
+<p>以下是一些常用的<code>jinfo</code>选项：</p>
+<ul>
+<li><code>-flag</code>：显示或修改指定的JVM参数。</li>
+<li><code>-sysprops</code>：显示Java系统属性。</li>
+<li><code>-flags</code>：显示JVM参数。</li>
+</ul>
+<p>举个例子，要获取一个Java进程（假设其进程ID为12345）的Java系统属性，可以运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jinfo -sysprops 12345</span><br></pre></td></tr></table></figure>
+
+<p>这个命令会输出Java进程的所有Java系统属性，如<code>java.version</code>、<code>java.vendor</code>、<code>java.home</code>等。您可以根据这些信息了解Java进程的运行环境和配置。</p>
+<p>另一个例子，要查看一个Java进程（假设其进程ID为12345）的JVM参数，可以运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jinfo -flags 12345</span><br></pre></td></tr></table></figure>
+
+<p>这个命令会输出Java进程的所有JVM参数，如<code>-Xmx</code>、<code>-Xms</code>、<code>-XX:+UseParallelGC</code>等。您可以根据这些信息了解和优化Java进程的JVM配置。</p>
+<h3 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h3><p>用于监控JVM内存使用情况和垃圾回收情况</p>
+<p><code>jstat</code>的基本语法如下：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat [option] [vmid] [interval] [count]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>option</code>：表示要收集的统计信息类型，如垃圾回收、类加载等。</li>
+<li><code>vmid</code>：表示要监控的Java虚拟机进程的ID。</li>
+<li><code>interval</code>：表示数据收集的时间间隔（以毫秒为单位），可选参数。</li>
+<li><code>count</code>：表示要收集的数据点数目，可选参数。</li>
+</ul>
+<p>以下是一些常用的<code>jstat</code>选项：</p>
+<ul>
+<li><code>-class</code>：显示关于类加载器的统计信息。</li>
+<li><code>-compiler</code>：显示关于即时编译的统计信息。</li>
+<li><code>-gc</code>：显示关于垃圾回收的统计信息。</li>
+<li><code>-gccapacity</code>：显示关于垃圾回收的各个内存区域的容量。</li>
+<li><code>-gcutil</code>：显示关于垃圾回收的各个内存区域的使用情况。</li>
+<li><code>-gcnew</code>：显示关于新生代垃圾回收的统计信息。</li>
+<li><code>-gcold</code>：显示关于老年代垃圾回收的统计信息。</li>
+</ul>
+<p>举个例子，要收集一个Java进程（假设其进程ID为12345）的垃圾回收统计信息，每隔1000毫秒收集一次，总共收集10次，可以运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat -gc 12345 1000 10</span><br></pre></td></tr></table></figure>
+
+<p>这个命令会输出一系列关于垃圾回收的统计信息，如内存区域的大小、已使用空间、垃圾回收次数等。</p>
+<h3 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h3><p>用于生成虚拟机当前时刻的线程快照，目的通常是定位线程出现长时间停顿的原因。对于诊断Java应用程序的线程问题、锁竞争和死锁等问题非常有用。</p>
+<p><code>jstack</code>的基本语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack [option] pid</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>option</code>：表示可选的参数，如打印锁信息等。</li>
+<li><code>pid</code>：表示要获取堆栈跟踪信息的Java虚拟机进程的ID。</li>
+</ul>
+<p>以下是一些常用的<code>jstack</code>选项：</p>
+<ul>
+<li><code>-l</code>：显示关于锁的附加信息，如已拥有的锁、等待的锁等。</li>
+<li><code>-m</code>：显示关于本地方法的堆栈跟踪信息（仅适用于部分平台）。</li>
+<li><code>-F</code>：强制执行堆栈跟踪，当正常执行失败时使用（仅适用于部分平台）。</li>
+</ul>
+<p>举个例子，要获取一个Java进程（假设其进程ID为12345）的线程堆栈跟踪信息，可以运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack 12345</span><br></pre></td></tr></table></figure>
+
+<p>这个命令会输出Java进程的所有线程的堆栈跟踪信息，包括线程ID、线程状态、调用栈等。您可以根据这些信息诊断和解决应用程序中的线程问题。</p>
+<h3 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h3><p><code>jmap</code>（Java Memory Map Tool）是一个Java命令行工具，用于获取Java虚拟机（JVM）进程的内存映射信息。它可以帮助您分析Java堆（heap）、永久代（PermGen，仅JDK 7及更早版本）或元空间（Metaspace，JDK 8及更高版本）的使用情况，从而诊断和解决内存泄漏、内存溢出等问题</p>
+<p><code>jmap</code>的基本语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap [option] pid</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>option</code>：表示要执行的操作，如获取堆信息、生成堆转储文件等。</li>
+<li><code>pid</code>：表示要获取内存映射信息的Java虚拟机进程的ID。</li>
+</ul>
+<p>以下是一些常用的<code>jmap</code>选项：</p>
+<ul>
+<li><code>-dump</code>：生成堆转储文件（heap dump），可以使用内存分析工具（如Eclipse MAT）对其进行进一步分析。</li>
+<li><code>-histo</code>：显示堆中对象的实例数量、内存占用和类名等信息的直方图。</li>
+<li><code>-heap</code>：显示堆的摘要信息，如使用的垃圾回收器、内存区域的大小和使用情况等。</li>
+<li><code>-permstat</code>：显示永久代（PermGen）的类加载器、内存占用和类名等信息的统计信息（仅适用于JDK 7及更早版本）。</li>
+<li><code>-clstats</code>：显示类加载器和系统类的统计信息。</li>
+<li><code>-finalizerinfo</code>：显示在队列中等待执行的终结器方法的对象的信息。</li>
+</ul>
+<p>举个例子，要为一个Java进程（假设其进程ID为12345）生成堆转储文件，并将其保存到当前目录下的<code>heapdump.hprof</code>文件中，可以运行以下命令：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap -dump:format=b,file=heapdump.hprof 12345</span><br></pre></td></tr></table></figure>
+
+<p>这个命令会生成一个堆转储文件，其中包含了Java进程的内存使用情况。您可以使用内存分析工具（如Eclipse MAT）对其进行进一步分析，以诊断和解决内存相关问题。</p>
+<h1 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h1><h2 id="类加载阶段"><a href="#类加载阶段" class="headerlink" title="类加载阶段"></a>类加载阶段</h2><p>Java虚拟机（JVM）的类加载机制是Java程序运行时将.class文件加载到内存的过程。类加载主要分为五个阶段：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）和初始化（Initialization）。</p>
 <ol>
 <li><p>加载（Loading）: 在这个阶段，JVM将从文件系统或网络中查找指定的.class文件，然后将其二进制数据加载到内存中，创建一个Class对象来表示这个类。类加载器主要有三个：引导类加载器（Bootstrap ClassLoader）、扩展类加载器（Extension ClassLoader）和应用类加载器（Application ClassLoader）。</p>
 </li>

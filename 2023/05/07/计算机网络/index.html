@@ -19,13 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"songbaoru.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
+    <meta name="description" content="TCP&#x2F;IP五层网络模型 应用层：负责处理应用程序的特定通信细节。常见的应用层协议有HTTP（用于Web浏览器和服务器之间的通信）、SMTP（用于发送和接收电子邮件）和FTP（用于文件传输）等。 传输层：负责在网络中传输数据。主要有两种传输协议：TCP（传输控制协议）和UDP（用户数据报协议）。TCP提供可靠的、面向连接的数据传输，确保数据完整性和顺序；UDP提供不可靠的、无连接的数据传">
+<meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络">
 <meta property="og:url" content="https://songbaoru.github.io/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
 <meta property="og:site_name" content="SBR Blog">
+<meta property="og:description" content="TCP&#x2F;IP五层网络模型 应用层：负责处理应用程序的特定通信细节。常见的应用层协议有HTTP（用于Web浏览器和服务器之间的通信）、SMTP（用于发送和接收电子邮件）和FTP（用于文件传输）等。 传输层：负责在网络中传输数据。主要有两种传输协议：TCP（传输控制协议）和UDP（用户数据报协议）。TCP提供可靠的、面向连接的数据传输，确保数据完整性和顺序；UDP提供不可靠的、无连接的数据传">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-07T13:37:05.000Z">
-<meta property="article:modified_time" content="2023-05-07T13:37:05.858Z">
+<meta property="article:modified_time" content="2023-05-09T03:41:10.374Z">
 <meta property="article:author" content="SBR">
 <meta name="twitter:card" content="summary">
 
@@ -89,7 +91,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -102,6 +104,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP-x2F-IP%E4%BA%94%E5%B1%82%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">TCP&#x2F;IP五层网络模型</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP"><span class="nav-number">2.</span> <span class="nav-text">TCP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">报文格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-number">2.2.</span> <span class="nav-text">TCP连接的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="nav-number">2.3.</span> <span class="nav-text">三次握手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">2.3.1.</span> <span class="nav-text">三次握手的过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E6%AC%A1%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">2.3.2.</span> <span class="nav-text">三次而不是两次握手的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SYN%E6%94%BB%E5%87%BB"><span class="nav-number">2.3.3.</span> <span class="nav-text">SYN攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Land%E6%94%BB%E5%87%BB"><span class="nav-number">2.3.4.</span> <span class="nav-text">Land攻击</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connection-Flood%E6%94%BB%E5%87%BB"><span class="nav-number">2.3.5.</span> <span class="nav-text">Connection Flood攻击</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="nav-number">2.4.</span> <span class="nav-text">四次挥手</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">2.4.1.</span> <span class="nav-text">四次挥手的过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A6%81%E6%9C%89TIME-WAIT%E7%8A%B6%E6%80%81%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">2.4.2.</span> <span class="nav-text">要有TIME_WAIT状态的原因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%9C%80%E8%A6%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%8C%E8%80%8C%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%8F%AA%E8%A6%81%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="nav-number">2.4.3.</span> <span class="nav-text">关闭连接的需要四次挥手，而建立连接只要三次握手的原因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">2.5.</span> <span class="nav-text">流量控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%BA%E5%88%B6"><span class="nav-number">2.5.1.</span> <span class="nav-text">滑动窗口机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AE%E8%AE%A4%E9%87%8D%E4%BC%A0%E6%9C%BA%E5%88%B6"><span class="nav-number">2.5.2.</span> <span class="nav-text">确认重传机制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-number">2.6.</span> <span class="nav-text">拥塞控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8E%9F%E7%90%86"><span class="nav-number">2.6.1.</span> <span class="nav-text">原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95"><span class="nav-number">2.6.2.</span> <span class="nav-text">拥塞控制方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%85%A2%E5%90%AF%E5%8A%A8%E7%AE%97%E6%B3%95"><span class="nav-number">2.6.2.1.</span> <span class="nav-text">慢启动算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D%E7%AE%97%E6%B3%95"><span class="nav-number">2.6.2.2.</span> <span class="nav-text">拥塞避免算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E6%81%A2%E5%A4%8D%E7%AE%97%E6%B3%95"><span class="nav-number">2.6.2.3.</span> <span class="nav-text">快速恢复算法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0%E7%AE%97%E6%B3%95"><span class="nav-number">2.6.2.4.</span> <span class="nav-text">快速重传算法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%98%E5%8C%85%E3%80%81%E6%8B%86%E5%8C%85"><span class="nav-number">2.7.</span> <span class="nav-text">粘包、拆包</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#UDP"><span class="nav-number">3.</span> <span class="nav-text">UDP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP"><span class="nav-number">4.</span> <span class="nav-text">HTTP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E7%82%B9"><span class="nav-number">4.1.</span> <span class="nav-text">特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%AD%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.2.</span> <span class="nav-text">短连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%95%BF%E8%BF%9E%E6%8E%A5"><span class="nav-number">4.3.</span> <span class="nav-text">长连接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="nav-number">4.4.</span> <span class="nav-text">多路复用</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#WebSockets"><span class="nav-number">5.</span> <span class="nav-text">WebSockets</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6"><span class="nav-number">6.</span> <span class="nav-text">密码学</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="nav-number">6.1.</span> <span class="nav-text">哈希算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A2%B0%E6%92%9E%E6%94%BB%E5%87%BB"><span class="nav-number">6.2.</span> <span class="nav-text">碰撞攻击</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="nav-number">6.3.</span> <span class="nav-text">对称加密算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E7%AE%97%E6%B3%95"><span class="nav-number">6.4.</span> <span class="nav-text">非对称密钥算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="nav-number">6.5.</span> <span class="nav-text">数字签名</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6"><span class="nav-number">6.6.</span> <span class="nav-text">数字证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SSL-x2F-TLS"><span class="nav-number">6.7.</span> <span class="nav-text">SSL&#x2F;TLS</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTPS"><span class="nav-number">7.</span> <span class="nav-text">HTTPS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTPS%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-number">7.1.</span> <span class="nav-text">HTTPS建立连接的过程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session"><span class="nav-number">8.</span> <span class="nav-text">Session</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cookie"><span class="nav-number">9.</span> <span class="nav-text">Cookie</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Token"><span class="nav-number">10.</span> <span class="nav-text">Token</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Web%E5%AE%89%E5%85%A8"><span class="nav-number">11.</span> <span class="nav-text">Web安全</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="nav-number">11.1.</span> <span class="nav-text">SQL注入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%E6%94%BB%E5%87%BB%EF%BC%88CSRF%E6%94%BB%E5%87%BB%EF%BC%89"><span class="nav-number">11.2.</span> <span class="nav-text">跨站请求伪造攻击（CSRF攻击）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB%EF%BC%88DDoS-%E6%94%BB%E5%87%BB%EF%BC%89"><span class="nav-number">11.3.</span> <span class="nav-text">拒绝服务攻击（DDoS 攻击）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%E6%94%BB%E5%87%BB%EF%BC%89"><span class="nav-number">11.4.</span> <span class="nav-text">跨站脚本攻击（XSS攻击）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BC%9A%E8%AF%9D%E5%8A%AB%E6%8C%81%E6%94%BB%E5%87%BB"><span class="nav-number">11.5.</span> <span class="nav-text">会话劫持攻击</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -177,6 +180,13 @@
 
       <time title="Created: 2023-05-07 21:37:05" itemprop="dateCreated datePublished" datetime="2023-05-07T21:37:05+08:00">2023-05-07</time>
     </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-05-09 11:41:10" itemprop="dateModified" datetime="2023-05-09T11:41:10+08:00">2023-05-09</time>
+    </span>
 
   
 </div>
@@ -187,7 +197,333 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody"><h1 id="TCP-x2F-IP五层网络模型"><a href="#TCP-x2F-IP五层网络模型" class="headerlink" title="TCP&#x2F;IP五层网络模型"></a>TCP&#x2F;IP五层网络模型</h1><ol>
+<li><strong>应用层</strong>：负责处理应用程序的特定通信细节。常见的应用层协议有HTTP（用于Web浏览器和服务器之间的通信）、SMTP（用于发送和接收电子邮件）和FTP（用于文件传输）等。</li>
+<li><strong>传输层</strong>：负责在网络中传输数据。主要有两种传输协议：TCP（传输控制协议）和UDP（用户数据报协议）。TCP提供可靠的、面向连接的数据传输，确保数据完整性和顺序；UDP提供不可靠的、无连接的数据传输，速度快但可能丢失数据。</li>
+<li><strong>网络层</strong>：负责将数据包在网络中进行路由和寻址。互联网协议（IP）是网络层的核心协议，负责将数据包传输到目标设备。此外，还有一些辅助协议，如ICMP（用于诊断网络问题）和IGMP（用于多播通信）等。</li>
+<li><strong>数据链路层</strong>：负责在同一网络中传输数据帧。数据链路层协议负责将网络层的IP数据包封装为数据帧，并通过物理介质进行传输。常见的数据链路层协议有以太网、Wi-Fi和PPP等。</li>
+<li><strong>物理层</strong>：负责在物理介质上进行数据传输。物理层定义了网络设备之间的电气、机械和时序规范，以及数据在物理介质上的编码方式。常见的物理介质有双绞线、光纤和无线电波等。</li>
+</ol>
+<h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><p>TCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的传输协议。</p>
+<h2 id="报文格式"><a href="#报文格式" class="headerlink" title="报文格式"></a>报文格式</h2><p>TCP报文（也称为TCP段或TCP数据包）是TCP协议中用于在网络中传输数据的基本单位。TCP报文包含了一个TCP首部和可选的数据部分。</p>
+<p>TCP报文的首部格式如下：</p>
+<ol>
+<li><strong>源端口（Source Port，16位）</strong>：表示报文发送方的端口号。</li>
+<li><strong>目的端口（Destination Port，16位）</strong>：表示报文接收方的端口号。</li>
+<li><strong>序列号（Sequence Number，32位）</strong>：表示报文中数据的第一个字节的序列号。是TCP报文中每个字节的唯一编号。当发送方发送一个TCP报文时，它会为报文中的第一个字节分配一个序列号。序列号的主要作用是帮助接收方对乱序、重复或丢失的报文进行排序和处理，从而确保数据的顺序和完整性。</li>
+<li><strong>确认号（Acknowledgment Number，32位）</strong>：表示期望收到对方下一个报文的序列号，只有当ACK标志位被设置时才有效。</li>
+<li><strong>数据偏移（Data Offset，4位）</strong>：表示TCP首部的长度，以32位字（4字节）为单位。</li>
+<li><strong>保留（Reserved，6位）</strong>：保留位，未使用，设置为0。</li>
+<li><strong>控制位（Control Bits，6位）</strong>：包含了一系列控制标志，如URG（紧急指针有效）、ACK（确认号有效）、PSH（推送）、RST（复位连接）、SYN（同步序列号）、FIN（结束连接）等。</li>
+<li><strong>窗口大小（Window Size，16位）</strong>：表示发送方当前可接收的数据量（以字节为单位）。</li>
+<li><strong>校验和（Checksum，16位）</strong>：用于检测报文在传输过程中是否发生错误。</li>
+<li><strong>紧急指针（Urgent Pointer，16位）</strong>：仅在URG标志位被设置时有效，表示紧急数据在报文中的偏移量。</li>
+<li><strong>选项（Options，可选，长度可变）</strong>：包含了一些可选的TCP功能，如最大报文长度（MSS）、窗口扩大因子（Window Scale）和选择性确认（SACK）等。</li>
+<li><strong>填充（Padding，可选，长度可变）</strong>：用于保证TCP首部的长度为32位字的整数倍。</li>
+</ol>
+<p>TCP报文首部后面的数据部分包含了实际要传输的数据。TCP通过将数据划分为多个报文并为每个报文分配一个唯一的序列号，实现了可靠的、面向连接的数据传输。</p>
+<h2 id="TCP连接的状态"><a href="#TCP连接的状态" class="headerlink" title="TCP连接的状态"></a>TCP连接的状态</h2><p>TCP连接的建立、数据传输和断开过程涉及多种状态。以下是TCP连接状态的详细说明：</p>
+<ol>
+<li><strong>CLOSED</strong>：初始状态，表示没有建立连接，也没有活动的连接。</li>
+<li><strong>LISTEN</strong>：服务器处于侦听状态，等待客户端发送连接请求。这是服务器主动打开的初始状态。</li>
+<li><strong>SYN_SENT</strong>：客户端发送SYN报文后，进入SYN_SENT状态。这表示客户端已发送连接请求，等待服务器的回应。</li>
+<li><strong>SYN_RECEIVED</strong>：服务器收到客户端的SYN报文后，发送自己的SYN报文和确认ACK报文，进入SYN_RECEIVED状态。这表示服务器已确认客户端的连接请求，等待客户端确认。</li>
+<li><strong>ESTABLISHED</strong>：双方都收到并确认对方的SYN报文后，连接建立成功，进入ESTABLISHED状态。此时，双方可以开始数据传输。</li>
+<li><strong>FIN_WAIT_1</strong>：当客户端完成数据传输并发送FIN报文后，进入FIN_WAIT_1状态。这表示客户端请求关闭连接，等待服务器的确认。</li>
+<li><strong>FIN_WAIT_2</strong>：客户端收到服务器对FIN报文的确认ACK报文后，进入FIN_WAIT_2状态。此时，客户端等待服务器发送自己的FIN报文，表示服务器已完成数据传输。</li>
+<li><strong>CLOSE_WAIT</strong>：服务器收到客户端的FIN报文后，进入CLOSE_WAIT状态。这表示服务器已确认客户端的关闭请求，但仍需等待服务器完成数据传输。</li>
+<li><strong>CLOSING</strong>：当双方同时发送FIN报文时，客户端会在收到服务器的FIN报文前进入CLOSING状态。这表示双方都请求关闭连接，但客户端尚未收到服务器对其FIN报文的确认。</li>
+<li><strong>LAST_ACK</strong>：服务器在发送FIN报文后，进入LAST_ACK状态。这表示服务器等待客户端对其FIN报文的确认。</li>
+<li><strong>TIME_WAIT</strong>：客户端收到服务器的FIN报文并确认后，进入TIME_WAIT状态。客户端会在这个状态持续一段时间（通常为2倍的最大分段生存时间，MSL），以确保服务器收到对其FIN报文的确认。之后，客户端进入CLOSED状态，关闭连接。</li>
+<li><strong>CLOSED</strong>：连接已完全关闭，可以释放所有相关资源。</li>
+</ol>
+<p>这些状态描述了TCP连接的整个生命周期，包括连接建立、数据传输和连接关闭</p>
+<h2 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h2><h3 id="三次握手的过程"><a href="#三次握手的过程" class="headerlink" title="三次握手的过程"></a>三次握手的过程</h3><p>TCP三次握手（Three-Way Handshake）是建立TCP连接的过程，通过三次交换控制报文来确认双方的收发能力和同步双方的初始序列号。以下是TCP三次握手的详细步骤：</p>
+<ol>
+<li><p><strong>SYN</strong>：客户端发送一个TCP报文，其中SYN（Synchronize Sequence Numbers，同步序列号）标志位被设置为1，表示这是一个连接请求。客户端还会选择一个初始序列号x，并将其放入报文的序列号字段。</p>
+</li>
+<li><p><strong>SYN-ACK</strong>：服务器收到客户端的SYN报文后，会发送一个响应报文。在这个报文中，SYN标志位和ACK（Acknowledge，确认）标志位都被设置为1。服务器也会选择一个初始序列号y，并将其放入报文的序列号字段。同时，服务器会将客户端报文序列号x加1，并将结果放入报文的确认号字段，表示期望收到客户端下一个报文的序列号。</p>
+</li>
+<li><p><strong>ACK</strong>：客户端收到服务器的SYN-ACK报文后，会发送一个ACK报文。在这个报文中，ACK标志位被设置为1。客户端会将服务器报文的序列号y加1，并将结果放入报文的确认号字段，表示期望收到服务器下一个报文的序列号。至此，TCP三次握手完成，双方建立起了连接。</p>
+</li>
+</ol>
+<p>在TCP三次握手过程中，客户端和服务器分别为自己的报文选择初始序列号。</p>
+<p>总之，TCP三次握手是建立TCP连接的过程，包括以下三个步骤：</p>
+<ol>
+<li>客户端发送SYN报文，请求连接，并设置初始序列号x。</li>
+<li>服务器回复SYN-ACK报文，确认连接请求，设置初始序列号y，确认号为x+1。</li>
+<li>客户端发送ACK报文，确认服务器的SYN-ACK，确认号为y+1。</li>
+</ol>
+<p>握手完成后，TCP连接建立，数据传输开始。</p>
+<h3 id="三次而不是两次握手的原因"><a href="#三次而不是两次握手的原因" class="headerlink" title="三次而不是两次握手的原因"></a>三次而不是两次握手的原因</h3><p>TCP三次握手的主要目的是在不可靠的网络环境中实现可靠的连接建立。三次握手的过程可以确保双方都具备收发数据的能力，并能同步双方的初始序列号。这里详细说明为什么需要三次握手：</p>
+<ol>
+<li><p><strong>确认收发能力</strong>：通过三次握手，客户端和服务器可以确认对方的收发能力。首先，客户端发送SYN报文表示其具备发送能力；其次，服务器回复SYN-ACK报文表示其具备接收和发送能力；最后，客户端发送ACK报文表示其具备接收能力。这个过程确保了双方在连接建立后都能正常地收发数据。</p>
+</li>
+<li><p><strong>同步初始序列号</strong>：在TCP协议中，每个字节都有唯一的序列号。为了实现可靠的数据传输，客户端和服务器需要在建立连接时同步各自的初始序列号。在三次握手过程中，客户端和服务器分别为自己的报文选择初始序列号，并在握手过程中交换这些序列号。这样，双方都能知道对方期望收到的第一个字节的序列号，从而为后续的数据传输做好准备。</p>
+</li>
+</ol>
+<p>如果只进行两次握手，客户端和服务器之间的连接可能不可靠。例如，客户端发送SYN报文后，服务器回复SYN-ACK报文，但无法确认客户端是否具备接收能力。这可能导致服务器发送的数据无法被客户端正确接收，从而影响通信质量。因此，为了实现可靠的连接建立，TCP协议采用了三次握手的机制。</p>
+<h3 id="SYN攻击"><a href="#SYN攻击" class="headerlink" title="SYN攻击"></a>SYN攻击</h3><p>SYN攻击（也称为TCP SYN泛洪攻击）是一种利用TCP协议三次握手机制进行的拒绝服务（DoS）攻击。攻击者向目标服务器发送大量伪造源IP地址的SYN报文，目的是消耗服务器的资源，使正常用户无法访问该服务器。以下是SYN攻击的详细过程：</p>
+<ol>
+<li>攻击者向目标服务器发送大量SYN报文，这些报文的源IP地址是伪造的。每个SYN报文都表示一个连接请求。</li>
+<li>目标服务器收到SYN报文后，会为每个报文分配一个半连接（half-open connection），并回复SYN-ACK报文。由于源IP地址是伪造的，这些SYN-ACK报文无法到达真正的发送方。</li>
+<li>目标服务器等待攻击者发送ACK报文以完成握手过程。然而，由于源IP地址是伪造的，ACK报文永远不会到达。目标服务器会在一定时间内保留这些半连接，直到超时。</li>
+<li>攻击者持续发送大量伪造的SYN报文，导致目标服务器的资源耗尽，从而无法处理正常用户的连接请求。</li>
+</ol>
+<p>SYN攻击的危害在于它可以通过较少的资源（例如，较低的带宽和较少的报文）消耗大量服务器资源，从而实现拒绝服务的目的。防御SYN攻击的方法包括：</p>
+<ol>
+<li><strong>缩短超时时间</strong>：减少服务器等待ACK报文的时间，以便更快地释放半连接资源。</li>
+<li><strong>增加半连接队列大小</strong>：增加服务器可以处理的半连接数量，以应对大量的SYN报文。</li>
+<li><strong>SYN cookies</strong>：服务器在回复SYN-ACK报文时，使用一种称为SYN cookies的技术生成确认号，而不是分配半连接。当收到有效的ACK报文时，服务器可以通过确认号重新构建连接状态，从而避免为伪造的SYN报文分配资源。</li>
+<li><strong>过滤伪造的IP地址</strong>：部署网络设备（例如防火墙和入侵检测系统）来识别并阻止伪造的IP地址，以减少SYN攻击的影响。</li>
+</ol>
+<p>尽管SYN攻击是一种比较古老的攻击方式，但它仍然具有一定的威胁。通过采用合适的防御措施，可以降低SYN攻击对服务器的影响。</p>
+<h3 id="Land攻击"><a href="#Land攻击" class="headerlink" title="Land攻击"></a>Land攻击</h3><p>Land攻击是一种DoS（拒绝服务）攻击类型，这种攻击利用TCP&#x2F;IP协议的漏洞，通过发送伪造的数据包来使目标系统无法正常工作。Land攻击的特点是发送的数据包的源IP地址和目标IP地址相同，同时源端口和目标端口也相同。</p>
+<p>Land攻击的过程如下：</p>
+<ol>
+<li>攻击者构造一个伪造的TCP数据包，将源IP地址和目标IP地址设置为目标系统的IP地址，同时将源端口和目标端口设置为相同的端口号。</li>
+<li>攻击者发送这个伪造的数据包到目标系统。</li>
+<li>目标系统在收到这个数据包后，由于源IP地址和目标IP地址相同，尝试与自身建立连接。这会导致目标系统的资源消耗，进而可能导致系统崩溃或无法响应其他合法请求。</li>
+</ol>
+<p>Land攻击在20世纪90年代是一种较为常见的攻击手段，但现在大部分操作系统和网络设备已经修复了相关漏洞，不再受此类攻击影响。然而，为了防止潜在的Land攻击，可以采取以下措施：</p>
+<ol>
+<li>更新操作系统和网络设备的软件，确保已修复相关漏洞。</li>
+<li>配置防火墙和入侵检测系统（IDS）来识别并过滤伪造的数据包。</li>
+<li>监控网络流量，以检测异常数据包和潜在的攻击行为。</li>
+</ol>
+<h3 id="Connection-Flood攻击"><a href="#Connection-Flood攻击" class="headerlink" title="Connection Flood攻击"></a>Connection Flood攻击</h3><p>Connection Flood攻击是一种拒绝服务（DoS）攻击类型，其主要目标是消耗目标服务器的连接资源，使其无法处理新的合法连接请求。这种攻击方法通常通过发送大量的连接请求或半打开的连接来实现。</p>
+<p>在Connection Flood攻击中，攻击者通常采取以下步骤：</p>
+<ol>
+<li>攻击者向目标服务器发送大量的连接请求，可能使用合法或伪造的IP地址。</li>
+<li>目标服务器在收到连接请求后，尝试为每个请求分配资源，以处理并维护这些连接。</li>
+<li>随着连接数量的增加，目标服务器的资源逐渐耗尽，导致无法处理新的合法连接请求。</li>
+</ol>
+<p>Connection Flood攻击可能针对不同的协议和服务，例如HTTP连接泛洪、TCP连接泛洪或TLS&#x2F;SSL连接泛洪。</p>
+<p>为了防御Connection Flood攻击，可以采取以下措施：</p>
+<ol>
+<li><strong>限制连接速率</strong>：为单个IP地址或子网设置连接速率限制，以防止攻击者短时间内发送大量连接请求。</li>
+<li><strong>连接队列管理</strong>：优化连接队列策略，例如缩短超时时间、增加队列大小等，以提高服务器处理连接请求的能力。</li>
+<li><strong>入侵检测和防御系统</strong>：部署入侵检测和防御系统（IDPS），以实时监测并阻止Connection Flood攻击。</li>
+<li><strong>负载均衡</strong>：通过负载均衡技术将连接请求分发到多个服务器，以减轻单个服务器的压力，并提高整体服务的抗攻击能力。</li>
+<li><strong>IP地址过滤</strong>：使用防火墙或其他安全设备过滤来自可疑或恶意IP地址的连接请求。</li>
+<li><strong>应用层防御</strong>：针对特定服务或协议的攻击，例如HTTP或TLS&#x2F;SSL连接泛洪，可以使用Web应用防火墙（WAF）或其他应用层防御技术进行防护。</li>
+</ol>
+<h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><h3 id="四次挥手的过程"><a href="#四次挥手的过程" class="headerlink" title="四次挥手的过程"></a>四次挥手的过程</h3><p>TCP四次挥手是TCP连接在传输完成后进行断开的过程。TCP（传输控制协议）是一种面向连接的协议，因此在数据传输完成后，需要通过一个四步过程来正常关闭连接。以下是TCP四次挥手的详细步骤：</p>
+<ol>
+<li><p><strong>第一次挥手</strong>：客户端向服务器发送一个FIN报文，表示客户端已经完成数据传输，请求关闭连接。此时，客户端进入FIN_WAIT_1状态。</p>
+</li>
+<li><p><strong>第二次挥手</strong>：服务器收到客户端发送的FIN报文后，会发送一个ACK报文确认客户端的FIN报文已收到。此时，服务器进入CLOSE_WAIT状态，而客户端收到ACK报文后进入FIN_WAIT_2状态。</p>
+</li>
+<li><p><strong>第三次挥手</strong>：当服务器完成数据传输后，也会向客户端发送一个FIN报文，表示服务器同意关闭连接。此时，服务器进入LAST_ACK状态。</p>
+</li>
+<li><p><strong>第四次挥手</strong>：客户端在收到服务器的 FIN 报文后，发送 ACK 报文确认并进入 TIME_WAIT 状态。服务器收到 ACK 报文后，立即关闭连接。2 倍 MSL（约 2 分钟）后，客户端关闭连接。</p>
+</li>
+</ol>
+<h3 id="要有TIME-WAIT状态的原因"><a href="#要有TIME-WAIT状态的原因" class="headerlink" title="要有TIME_WAIT状态的原因"></a>要有TIME_WAIT状态的原因</h3><p> TIME_WAIT状态存在于TCP连接关闭过程中，具有几个重要的原因：</p>
+<ol>
+<li><p><strong>确保最后一个ACK报文被对方接收</strong>：在TCP四次挥手过程中，客户端发送最后一个ACK报文确认收到服务器的FIN报文。TIME_WAIT状态确保了这个ACK报文能够被服务器正确接收。如果服务器没有收到这个确认报文，它会重发FIN报文。此时，由于客户端仍处于TIME_WAIT状态，可以再次发送ACK报文进行确认。</p>
+</li>
+<li><p><strong>处理延迟的数据包</strong>：在TIME_WAIT状态期间，客户端可以处理可能延迟到达的数据包。这有助于确保连接关闭前的所有数据包都被正确处理，防止数据丢失或错误。</p>
+</li>
+<li><p><strong>防止旧连接数据包干扰新连接</strong>：TCP连接由源IP、目标IP、源端口和目标端口四元组唯一确定。在某些情况下，相同的四元组可能在短时间内被重新用于新的连接。TIME_WAIT状态可以防止旧连接中仍在网络中传输的数据包干扰新连接。客户端在TIME_WAIT状态持续一段时间（通常为2倍的最大分段生存时间，MSL），以确保旧连接的数据包从网络中消失。</p>
+</li>
+</ol>
+<p>总之，TIME_WAIT状态在TCP连接关闭过程中发挥了重要作用，它确保了最后一个ACK报文被接收、处理延迟数据包和防止旧连接数据包干扰新连接。这有助于维护TCP连接的可靠性和数据传输的完整性。</p>
+<h3 id="关闭连接的需要四次挥手，而建立连接只要三次握手的原因"><a href="#关闭连接的需要四次挥手，而建立连接只要三次握手的原因" class="headerlink" title="关闭连接的需要四次挥手，而建立连接只要三次握手的原因"></a>关闭连接的需要四次挥手，而建立连接只要三次握手的原因</h3><p>三次握手的过程可以确保双方都具备收发数据的能力，并能同步双方的初始序列号。确认过程中间有一个合并的SYN和ACK，所以是三步。</p>
+<p>关闭连接需要四次挥手，因为 TCP 是全双工的，双方需要独立地确认对方已经完成数据发送，服务端收到SYN时可能还不能关闭连接，不能合并ACK和FIN，所以是四步。</p>
+<h2 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h2><h3 id="滑动窗口机制"><a href="#滑动窗口机制" class="headerlink" title="滑动窗口机制"></a>滑动窗口机制</h3><p>TCP协议使用以字节为单位的滑动窗口协议来控制字节流的发送</p>
+<p> 窗口是缓存的一部分，用来暂时存放字节流。发送方和接收方各有一个窗口，接收方通过 TCP 报文段中的窗口字段告诉发送方自己的窗口大小，发送方根据这个值和其它信息设置自己的窗口大小。发送窗口内的字节都允许被发送，接收窗口内的字节都允许被接收。如果发送窗口前部的字节已经发送并且收到了确认，那么就将发送窗口向后滑动一定距离，直到第一个字节不是已发送并且已确认的状态；接收窗口的滑动类似，接收窗口前部字节为已经接收到的字节，收到数据并发送确认后，就向后滑动接收窗口，直到接收窗口为0。  </p>
+<h3 id="确认重传机制"><a href="#确认重传机制" class="headerlink" title="确认重传机制"></a>确认重传机制</h3><p>在TCP中，选择性重传的实现原理主要依赖于选择性确认（Selective Acknowledgment, SACK）机制。SACK是一种TCP扩展，其目的是改进TCP在数据包丢失的情况下的性能。它允许接收方在确认报文中指定已成功接收的不连续数据段，从而使发送方可以更精确地了解哪些报文段需要重传。</p>
+<p>SACK是通过在TCP报文头部添加选项字段来实现的。以下是SACK实现的主要步骤：</p>
+<ol>
+<li>协商SACK：在TCP连接建立过程中，双方通过在SYN和SYN-ACK报文中包含SACK-permitted选项来表示支持SACK。</li>
+<li>接收数据并生成SACK块：接收方在接收数据时，记录每个已成功接收的数据段的左边界和右边界，并按照顺序排列。接收方在发送确认报文（ACK）时，会在TCP头部选项字段中加入SACK选项。SACK选项包含一个或多个SACK块，每个SACK块表示一个已成功接收的不连续数据段范围（左边界和右边界）。</li>
+<li>处理SACK报文并重传数据：发送方在收到包含SACK选项的确认报文后，会根据其中的信息判断哪些报文段需要重传。发送方只需要重传那些未被确认的报文段，而已成功接收的数据段不会被重传。</li>
+</ol>
+<h2 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>TCP维护了一个拥塞窗口（cwnd，congestion window），窗口大小是发送端可以往网络发送的不会产生网络阻塞的字节数</p>
+<h3 id="拥塞控制方法"><a href="#拥塞控制方法" class="headerlink" title="拥塞控制方法"></a>拥塞控制方法</h3><h4 id="慢启动算法"><a href="#慢启动算法" class="headerlink" title="慢启动算法"></a><strong>慢启动算法</strong></h4><p>慢启动用于在TCP连接开始时cwnd从初始值1逐渐（指数级）增加数据发送速率和传输窗口大小。发送端为连接维护了一个慢启动阈值（ssthread，slow start thread），一旦慢启动超过了慢启动阈值，TCP就从慢启动切换到拥塞避免算法（线性增加）</p>
+<ul>
+<li>当cwnd &lt; ssthread，使用慢启动算法</li>
+<li>当cwnd &gt; ssthread，使用拥塞避免算法</li>
+<li>当cwnd &#x3D; ssthread，既可以使用慢启动算法，也可以使用拥塞避免算法</li>
+</ul>
+<h4 id="拥塞避免算法"><a href="#拥塞避免算法" class="headerlink" title="拥塞避免算法"></a>拥塞避免算法</h4><p>拥塞避免算法的思路是让cwnd缓慢增大，即每经过一个往返时间RTT就把发送方的cwnd加1</p>
+<h4 id="快速恢复算法"><a href="#快速恢复算法" class="headerlink" title="快速恢复算法"></a><strong>快速恢复算法</strong></h4><p>如果发送方接收到3个或3个以上的重复确认时，就认为网络出现了拥塞，此时将启用快速恢复算法</p>
+<p>当发生超时，不是进行慢启动，而是进行快速恢复，先将ssthread设为cwnd&#x2F;2，再将cwnd设为ssthread，然后执行拥塞避免算法</p>
+<h4 id="快速重传算法"><a href="#快速重传算法" class="headerlink" title="快速重传算法"></a><strong>快速重传算法</strong></h4><p>如果发送方接收到3个或3个以上的重复确认（duplicate ACK）时，就认为前面发送的数据包已经丢失，立即重传这些数据包而不是等待超时重传，但是在重传之前会先执行快速恢复算法，以减轻网络拥塞</p>
+<h2 id="粘包、拆包"><a href="#粘包、拆包" class="headerlink" title="粘包、拆包"></a>粘包、拆包</h2><p>TCP粘包和拆包是指在TCP传输过程中，发送方发送的多个小数据包被接收方合并成一个大数据包（粘包），或者一个大数据包被接收方拆分成多个小数据包（拆包）的现象。</p>
+<p>造成TCP粘包和拆包的主要原因是TCP协议是面向流的，发送方和接收方之间没有明显的分界点，数据以字节流的形式进行传输。这就导致了发送方发送的多个小数据包可能会在接收方端被合并成一个大数据包，或者一个大数据包在传输过程中被拆分成多个小数据包。</p>
+<p>为了避免TCP粘包和拆包现象，通常需要进行数据分包和数据拆包处理。数据分包是将待发送的数据按照固定大小的数据块进行分割，以便接收方能够正确接收数据。数据拆包则是将接收到的大数据包拆分成多个小数据包，以便上层应用程序能够正确处理数据。</p>
+<p>常用的TCP粘包和拆包处理方式包括：</p>
+<ol>
+<li><p>固定长度分包：将数据按照固定长度进行分包，接收方按照相同的长度进行接收和处理。</p>
+</li>
+<li><p>在数据包头部增加数据长度信息：将数据长度信息添加到数据包头部，接收方根据长度信息进行接收和处理。</p>
+</li>
+<li><p>使用分隔符分包：将不同数据块之间加上特定的分隔符进行分包。</p>
+</li>
+<li><p>消息头+消息体：在消息头中增加消息体长度字段，接收方先接收消息头中的消息体长度字段，然后根据长度信息接收和处理数据</p>
+</li>
+</ol>
+<p>通过这些处理方式，可以有效避免TCP粘包和拆包现象，保证数据传输的正确性和完整性。</p>
+<h1 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h1><p>UDP（User Datagram Protocol）是一种无连接、不可靠的传输层协议，它以尽可能少的开销提供了一种面向事务的简单传输服务。相比于TCP协议，UDP协议不具备可靠性和流量控制机制，但是它具有传输速度快、数据包大小灵活等优势，在实时应用场景中得到广泛应用。</p>
+<p>UDP协议的主要特点如下：</p>
+<ol>
+<li>无连接：UDP协议不需要进行连接建立和释放操作，直接向目标主机发送数据包即可，因此传输效率较高。</li>
+<li>面向报文：UDP协议对应用层传递的报文既不合并也不拆分，以数据包为单位进行传输。</li>
+<li>无流量控制：UDP协议不具备流量控制机制，发送方按照自己的速度发送数据包，而不考虑接收方的接收能力。</li>
+<li>无拥塞控制：发送方可以按照自己的速度发送数据包，不会对网络拥塞状况进行检测。</li>
+<li>无重传机制：在UDP协议中，如果某个数据包在传输过程中丢失或损坏，UDP协议不会进行重传，也不会通知发送方，是不可靠的。</li>
+</ol>
+<p>UDP协议在实时应用场景中得到广泛应用，如视频、语音、游戏等实时性要求较高的应用。由于UDP协议具有传输速度快、数据包大小灵活等优势，能够满足实时应用的要求，并且由于无连接、无可靠性等特点，使得实现简单，成本低廉。但是，也由于UDP协议不具备可靠性和流量控制机制，因此在需要数据传输的可靠性和稳定性的应用场景中，如文件传输、邮件等，通常使用TCP协议来保证传输的可靠性。</p>
+<h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>HTTP是明文传输的、无状态的（关闭后客户端和服务端都不会保留任何上一次连接的信息）</p>
+<h2 id="短连接"><a href="#短连接" class="headerlink" title="短连接"></a>短连接</h2><p>短连接的特点：</p>
+<ul>
+<li>是HTTP&#x2F;1.0的默认方式，每次请求都需要重新建立连接，可能导致较高的开销。</li>
+<li>由于连接频繁建立和关闭，服务器可能需要处理大量的连接请求。</li>
+</ul>
+<p>短连接的适用场景：</p>
+<ul>
+<li>不需要长时间维持连接的场景。</li>
+<li>低频率请求</li>
+</ul>
+<h2 id="长连接"><a href="#长连接" class="headerlink" title="长连接"></a>长连接</h2><p>长连接的特点：</p>
+<ul>
+<li>是HTTP&#x2F;1.1的默认方式，允许客户端在一个连接上发送多个请求，而不必每次都重新建立连接。</li>
+<li>减少了重新建立连接的开销</li>
+<li>长连接可能会占用服务器资源，因为连接在使用完后不会立即关闭。</li>
+</ul>
+<p>长连接的适用场景：</p>
+<ul>
+<li>需要长时间维持连接的场景，如实时应用和高频通信。</li>
+<li>高频率请求</li>
+</ul>
+<h2 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h2><p>在HTTP&#x2F;1.1中，每个请求和响应都需要单独的TCP连接。虽然HTTP&#x2F;1.1引入了长连接来减少连接开销，但在每个连接上仍然只能同时处理一个请求。这可能导致队头阻塞问题，即较慢的请求阻塞后续请求的处理。HTTP&#x2F;2通过多路复用解决了这个问题。</p>
+<p>多路复用的特点：</p>
+<ul>
+<li>允许在单个TCP连接上同时发送和接收多个请求和响应</li>
+</ul>
+<h1 id="WebSockets"><a href="#WebSockets" class="headerlink" title="WebSockets"></a>WebSockets</h1><p>WebSocket是一种通信协议，它在单个TCP连接上提供了全双工通信，允许客户端和服务器同时发送和接收消息。。WebSocket协议旨在解决HTTP协议在实时通信场景中的局限性，如低延迟和服务器主动推送消息等。</p>
+<p>WebSocket协议的主要特点如下：</p>
+<ol>
+<li><p>全双工通信：WebSocket允许客户端和服务器在同一时间通过一个连接进行双向通信，而不是像HTTP那样的请求-响应模式。这使得数据传输更加高效，延迟更低。</p>
+</li>
+<li><p>低延迟：由于WebSocket建立在一个持久的TCP连接上，并减少了传输数据所需的开销，因此在实时应用中具有更低的延迟。</p>
+</li>
+<li><p>服务器推送：WebSocket允许服务器主动向客户端推送消息，而无需客户端明确请求。这对于实时通知、聊天应用、在线游戏等场景非常有用。</p>
+</li>
+<li><p>兼容性：WebSocket协议在设计时考虑了与HTTP协议的兼容性，使用HTTP升级请求将普通的HTTP连接升级为WebSocket连接。这意味着WebSocket可以利用现有的HTTP基础设施，如代理服务器和负载均衡器。</p>
+</li>
+</ol>
+<p>WebSocket的一些常见应用场景包括：</p>
+<ul>
+<li>实时消息传递和聊天应用</li>
+<li>在线游戏</li>
+<li>实时数据推送和更新，如股票行情、体育比分等</li>
+<li>即时协作工具，如在线文档编辑、共享白板等</li>
+<li>物联网（IoT）设备间的通信</li>
+</ul>
+<h1 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h1><h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><p>哈希算法（Hash algorithm）是密码学领域中的一种重要技术，它将任意长度的输入数据（通常称为消息）映射到固定长度的输出（通常称为哈希值、摘要或指纹）。哈希算法具有许多实际应用，如数据完整性验证、消息认证、数字签名以及密码存储等。</p>
+<p>一个优秀的哈希算法应具有以下特性：</p>
+<ol>
+<li>确定性：对于相同的输入，哈希算法总是产生相同的输出。</li>
+<li>高效性：哈希算法应能快速地计算出输入数据的哈希值。</li>
+<li>单向性（预映像抗性）：给定一个哈希值，计算出原始输入数据应是非常困难的。</li>
+<li>二次预映像抗性：给定一个输入数据，找到另一个不同的输入，使其具有相同的哈希值，应该是非常困难的。</li>
+<li>抗碰撞性：找到任意两个不同的输入，它们具有相同的哈希值，应该是非常困难的。</li>
+<li>随机性：哈希值的输出应该看起来是随机的，即使对于相似的输入，它们的哈希值也应该有很大差异。</li>
+</ol>
+<p>在密码学中，常用的哈希算法有：</p>
+<ol>
+<li>MD5（Message Digest Algorithm 5）：MD5是一种广泛使用的哈希算法，产生128位（16字节）的哈希值。然而，由于已知的安全漏洞，如碰撞攻击，MD5不再被认为是安全的哈希算法。</li>
+<li>SHA-1（Secure Hash Algorithm 1）：SHA-1是一种哈希算法，产生160位（20字节）的哈希值。与MD5类似，由于已知的安全漏洞，如碰撞攻击，SHA-1也不再被认为是安全的哈希算法。</li>
+<li>SHA-2（Secure Hash Algorithm 2）：SHA-2是一种哈希算法族，包括SHA-256、SHA-512等，分别产生不同长度的哈希值（256bit、512bit等），比SHA-1和MD5更安全，是目前安全的、推荐使用的Hash算法。</li>
+<li>SHA-3（Secure Hash Algorithm 3）：SHA-3是一种新的哈希算法族，包括SHA3-256、SHA3-512等。是安全的。</li>
+</ol>
+<h2 id="碰撞攻击"><a href="#碰撞攻击" class="headerlink" title="碰撞攻击"></a>碰撞攻击</h2><p>碰撞攻击（Collision attack）是一种针对哈希算法的攻击方法，其目标是找到两个不同的输入数据，它们具有相同的哈希值。理论上，一个理想的哈希函数应具有较高的抗碰撞性，即使计算能力非常强大，也应该很难找到具有相同哈希值的两个不同输入。</p>
+<p>然而，在实际中，许多哈希算法（如MD5和SHA-1）已经被证明存在碰撞攻击的漏洞。这些漏洞使攻击者能够在相对较短的时间内找到具有相同哈希值的不同输入，从而破坏哈希算法的安全性。</p>
+<p>碰撞攻击的成功可能导致以下安全问题：</p>
+<ol>
+<li>伪造数字签名：如果攻击者能够找到两个具有相同哈希值的不同文档，他们可以使一个文档的有效数字签名适用于另一个文档，从而实现伪造。</li>
+<li>证书颁发伪造：攻击者可以利用碰撞攻击创建具有相同哈希值的伪造证书，从而破坏SSL&#x2F;TLS等安全通信协议的信任基础。</li>
+<li>数据完整性损害：哈希函数通常用于检查数据的完整性，如下载文件的校验。如果攻击者能够创建具有相同哈希值的恶意文件，用户可能会在不知情的情况下下载和使用这些文件。</li>
+</ol>
+<p>为了防范碰撞攻击，密码学家和研究人员持续开发新的、更安全的哈希算法。例如，SHA-2和SHA-3系列哈希算法被认为比MD5和SHA-1更抗碰撞攻击。通过使用更安全的哈希算法，可以提高数据完整性、消息认证和数字签名等应用的安全性。</p>
+<h2 id="对称加密算法"><a href="#对称加密算法" class="headerlink" title="对称加密算法"></a>对称加密算法</h2><p>对称加密算法是密码学中的一种加密方法，它使用相同的密钥（称为秘密密钥）对数据进行加密和解密。由于加密和解密过程共享相同的密钥，这种算法被称为对称加密。对称加密算法通常比非对称加密算法更快，因为它们在计算上相对简单。然而，密钥管理和安全密钥分发可能是对称加密算法面临的挑战。</p>
+<p>以下是一些著名的对称加密算法：</p>
+<ol>
+<li>DES（Data Encryption Standard）：DES是一种曾广泛使用的对称加密算法，它使用56位密钥对数据进行加密。安全性低（曾被破解），不建议使用DES进行加密。</li>
+<li>3DES（Triple DES ）：3DES是DES的改进版本，通过对数据应用三次DES加密操作来增加安全性。尽管3DES比DES更安全，但它的加密速度较慢，并且已经有更安全、更高效的替代方案。</li>
+<li>AES（Advanced Encryption Standard）：AES是现代对称加密算法的事实标准，支持128、192和256位密钥长度，安全性高且加密速度快。AES被广泛应用于各种安全场景，如文件加密、安全通信和网络安全等。</li>
+<li>Twofish：Twofish是Blowfish算法的继任者，也是AES算法竞争过程中的一个候选算法。Twofish使用128位的块大小和可变长度的密钥（128、192或256位）。尽管它在安全性和效率方面表现良好，但它没有像AES那样被广泛采用。</li>
+</ol>
+<p>对称加密算法在许多密码学应用中都有广泛应用，如保护数据的机密性、安全通信和身份认证等。然而，它们的一个主要局限性是密钥管理和分发。在许多场景中，对称加密算法与非对称加密算法结合使用。在这种混合方法中，非对称加密算法用于安全地交换对称密钥，而对称加密算法则用于实际的数据加密和解密。这种组合利用了非对称加密算法在密钥管理和分发方面安全性高的优势，同时保留了对称加密算法在数据加密和解密方面的高效性。</p>
+<p>例如，在SSL&#x2F;TLS（安全套接层&#x2F;传输层安全）协议中，服务器和客户端之间的通信就使用了混合加密方案。在握手阶段，双方使用非对称加密算法来安全地交换对称密钥。然后，在接下来的会话期间，双方使用对称加密算法对数据进行加密和解密。这样，SSL&#x2F;TLS协议既能确保密钥的安全分发，又能高效地保护数据的机密性。</p>
+<h2 id="非对称密钥算法"><a href="#非对称密钥算法" class="headerlink" title="非对称密钥算法"></a>非对称密钥算法</h2><p>非对称密钥算法，又称公钥加密算法，是一种加密和解密过程中使用不同密钥的加密方法。在非对称加密算法中，通常有一对密钥，一个是公钥，另一个是私钥。公钥用于加密数据，而私钥用于解密数据。以下是实际中常用的非对称密钥算法：</p>
+<ol>
+<li><p>RSA（Rivest-Shamir-Adleman）算法：RSA 是一种广泛应用的非对称加密算法，由 Ron Rivest、Adi Shamir 和 Leonard Adleman 于 1978 年发明。RSA 算法基于大数因子分解问题，它的安全性依赖于大数分解的困难性。RSA 用于加密、解密和数字签名，应用领域包括网页浏览器、电子邮件、VPN 等。</p>
+</li>
+<li><p>ElGamal 算法：ElGamal 算法由 Taher ElGamal 于 1985 年提出，基于有限域上的离散对数问题。ElGamal 算法主要应用于加密和数字签名，安全性取决于离散对数问题的难度。</p>
+</li>
+<li><p>ECC（Elliptic Curve Cryptography）：椭圆曲线密码学是一种基于椭圆曲线数学理论的非对称加密算法。ECC 相较于 RSA 和 ElGamal 算法具有更高的安全性和更短的密钥长度，因此在资源受限的环境（如物联网设备、智能卡等）中具有优势。ECC 可应用于加密、解密、数字签名和密钥协商等多个场景。</p>
+</li>
+<li><p>DSA（Digital Signature Algorithm）：DSA 是一种专门用于数字签名的非对称加密算法，由美国国家安全局（NSA）和美国国家标准与技术研究院（NIST）在 1991 年共同开发。DSA 是基于离散对数问题的，与 ElGamal 算法有相似之处。DSA 的安全性取决于离散对数问题的难度。</p>
+</li>
+<li><p>Lattice-based cryptography（格基密码学）：格基密码学是一种基于格数学的非对称加密算法，它具有抵抗量子计算机攻击的潜力。NTRU 和 Learning With Errors（LWE）是目前最知名的格基密码学算法。随着量子计算机的发展，格基密码学可能在未来成为一种重要的密码学工具。</p>
+</li>
+</ol>
+<h2 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h2><p>数字签名是一种用于验证数据的完整性和来源的真实性的密码学技术。数字签名的基本原理是将数据（如文件、消息或电子文档）通过某种算法处理，生成一个唯一的签名。这个签名可以证明数据的完整性和发送方的身份。数字签名在许多场景中非常有用，如电子邮件、软件分发、电子合同、在线支付等。数字签名的实现通常依赖于非对称加密技术。</p>
+<p>以下是数字签名的基本过程：</p>
+<ol>
+<li><p>数据散列（Hashing）：首先，将要签名的数据通过哈希算法即散列函数（如 SHA-256）处理，生成一个固定长度的散列值。</p>
+</li>
+<li><p>签名生成：使用发送方的私钥对散列值进行加密，生成数字签名。这一过程确保了只有发送方才能生成有效的签名，因为私钥是唯一的且不能被推导出来。</p>
+</li>
+<li><p>附加签名：将数字签名附加到原始数据上，然后将数据和签名一起发送给接收方。</p>
+</li>
+<li><p>签名验证：接收方首先使用相同的散列函数对收到的数据进行散列处理，得到一个散列值。然后，使用发送方的公钥对附加的数字签名进行解密，得到另一个散列值。接收方比较这两个散列值，如果它们完全相同，则说明数据未被篡改，且发送方的身份得到验证。</p>
+</li>
+</ol>
+<p>数字签名的安全性取决于所使用的哈希算法（散列函数）和非对称加密算法的安全性。</p>
+<h2 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h2><p>数字证书通常由一个受信任的第三方证书颁发机构（CA，Certificate Authority）颁发，CA会对证书持有人进行身份验证，并为其颁发数字证书。数字证书中包含了证书持有人的公钥，而私钥通常由证书持有人自己保存，用于进行数字签名和加密通信。</p>
+<p>在数字证书的使用中，客户端和服务器之间的通信过程如下：</p>
+<ol>
+<li><p>服务器将自己的数字证书发送给客户端。</p>
+</li>
+<li><p>客户端验证证书的真实性和有效性，如果证书是由一个受信任的CA签发的，并且证书中的信息与服务器身份相符，则客户端会信任该证书。</p>
+</li>
+<li><p>客户端使用证书中包含的公钥对通信数据进行加密，以确保数据的保密性。</p>
+</li>
+<li><p>服务器使用自己的私钥对加密数据进行解密，并使用自己的私钥对数字签名进行验证，以确保通信数据的完整性和真实性。</p>
+</li>
+</ol>
+<p>数字证书在互联网安全中发挥了重要的作用，可以用于保护网站的安全，防止中间人攻击、数据篡改等恶意行为。同时，数字证书也可以用于身份认证、数字签名等场景，确保数字数据的安全性和可信性。</p>
+<h2 id="SSL-x2F-TLS"><a href="#SSL-x2F-TLS" class="headerlink" title="SSL&#x2F;TLS"></a>SSL&#x2F;TLS</h2><h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><h2 id="HTTPS建立连接的过程"><a href="#HTTPS建立连接的过程" class="headerlink" title="HTTPS建立连接的过程"></a>HTTPS建立连接的过程</h2><h1 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h1><h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><h1 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h1><p>Token的引入目的：为了减少服务端频繁的去数据库查询用户名和密码的操作。</p>
+<p>Token的定义：又称“令牌”，Token是服务端生成的一串字符串，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。</p>
+<p>Token常用的实现方式：JWT</p>
+<ul>
+<li><p>JSON Web Token（JWT）是一种轻量级的身份验证和授权机制，它使用JSON格式对信息进行编码，以实现安全传输和存储。JWT通常用于Web应用程序中，用于在客户端和服务器之间传递安全的身份认证信息和其他数据。</p>
+</li>
+<li><p>JWT由三部分组成：头部（Header）、载荷（Payload）和签名（Signature）。头部包含有关令牌类型和加密算法的信息；载荷包含有关用户和其他授权信息的信息；签名用于验证令牌的真实性和完整性。</p>
+</li>
+<li><p>在使用JWT进行身份验证时，服务器通常会在成功验证用户凭据后生成JWT，然后将其发送给客户端。客户端可以在每次请求时将JWT发送回服务器进行身份验证。服务器会验证JWT的签名，并解码载荷中的信息，以确认用户的身份和其他授权信息。</p>
+</li>
+<li><p>JWT具有以下优点：</p>
+<ul>
+<li><p>轻量级：JWT使用JSON格式进行编码，可以在客户端和服务器之间轻松传输和存储，而不需要使用复杂的数据格式和协议。</p>
+</li>
+<li><p>自包含性：JWT包含了所有必要的信息，例如用户身份和其他授权信息，使得在客户端和服务器之间进行身份验证和授权变得非常简单。</p>
+</li>
+<li><p>可扩展性：JWT的载荷可以包含任意的信息，例如用户ID、角色、权限等信息，以满足不同的应用需求。</p>
+</li>
+<li><p>安全性：JWT使用签名对令牌进行验证和保护，防止令牌被篡改和伪造。</p>
+</li>
+</ul>
+</li>
+<li><p>总之，JWT是一种简单而安全的身份验证和授权机制，可以用于Web应用程序中，以确保用户身份的安全性和可信性。</p>
+</li>
+</ul>
+<h1 id="Web安全"><a href="#Web安全" class="headerlink" title="Web安全"></a>Web安全</h1><h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h2 id="跨站请求伪造攻击（CSRF攻击）"><a href="#跨站请求伪造攻击（CSRF攻击）" class="headerlink" title="跨站请求伪造攻击（CSRF攻击）"></a>跨站请求伪造攻击（CSRF攻击）</h2><h2 id="拒绝服务攻击（DDoS-攻击）"><a href="#拒绝服务攻击（DDoS-攻击）" class="headerlink" title="拒绝服务攻击（DDoS 攻击）"></a>拒绝服务攻击（DDoS 攻击）</h2><h2 id="跨站脚本攻击（XSS攻击）"><a href="#跨站脚本攻击（XSS攻击）" class="headerlink" title="跨站脚本攻击（XSS攻击）"></a>跨站脚本攻击（XSS攻击）</h2><h2 id="会话劫持攻击"><a href="#会话劫持攻击" class="headerlink" title="会话劫持攻击"></a>会话劫持攻击</h2>
     </div>
 
     
