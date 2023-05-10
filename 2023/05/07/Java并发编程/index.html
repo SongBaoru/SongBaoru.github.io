@@ -19,14 +19,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"songbaoru.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="article">
+    <meta name="description" content="Java 并发编程是 Java 面试中的一个重要部分，因为在现代多核处理器和高并发应用程序中，充分理解并发编程及其挑战非常关键。以下是一些 Java 并发编程的常见面试考点：  Java 中的线程创建和管理：了解如何创建和管理线程，包括使用 Thread 类、Runnable 接口和 Java 8 中的 CompletableFuture 类。  线程同步：了解如何使用 synchronized">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Java并发编程">
 <meta property="og:url" content="https://songbaoru.github.io/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/index.html">
 <meta property="og:site_name" content="SBR Blog">
+<meta property="og:description" content="Java 并发编程是 Java 面试中的一个重要部分，因为在现代多核处理器和高并发应用程序中，充分理解并发编程及其挑战非常关键。以下是一些 Java 并发编程的常见面试考点：  Java 中的线程创建和管理：了解如何创建和管理线程，包括使用 Thread 类、Runnable 接口和 Java 8 中的 CompletableFuture 类。  线程同步：了解如何使用 synchronized">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-07T13:39:13.000Z">
-<meta property="article:modified_time" content="2023-05-07T13:39:13.733Z">
+<meta property="article:modified_time" content="2023-05-10T12:52:41.870Z">
 <meta property="article:author" content="SBR">
+<meta property="article:tag" content="并发">
 <meta name="twitter:card" content="summary">
 
 
@@ -89,7 +92,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -102,6 +105,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.1.</span> <span class="nav-text">创建线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="nav-number">1.2.</span> <span class="nav-text">线程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-number">1.3.</span> <span class="nav-text">线程局部变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E7%BA%BF%E7%A8%8B"><span class="nav-number">1.4.</span> <span class="nav-text">超线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CAS"><span class="nav-number">2.</span> <span class="nav-text">CAS</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAS%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">2.1.</span> <span class="nav-text">CAS底层实现</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.</span> <span class="nav-text">Java内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%B9%E8%B1%A1%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-number">3.1.</span> <span class="nav-text">对象内存模型</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#synchronized"><span class="nav-number">4.</span> <span class="nav-text">synchronized</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">4.1.</span> <span class="nav-text">synchronized底层实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BA%92%E6%96%A5%E9%87%8F"><span class="nav-number">4.2.</span> <span class="nav-text">操作系统的互斥量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%80%81%E3%80%81%E5%86%85%E6%A0%B8%E6%80%81"><span class="nav-number">4.3.</span> <span class="nav-text">用户态、内核态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%81%E6%B6%88%E9%99%A4"><span class="nav-number">4.4.</span> <span class="nav-text">锁消除</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%81%E7%B2%97%E5%8C%96"><span class="nav-number">4.5.</span> <span class="nav-text">锁粗化</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#volatile"><span class="nav-number">5.</span> <span class="nav-text">volatile</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E6%80%A7"><span class="nav-number">5.1.</span> <span class="nav-text">特性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#volatile%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-number">5.2.</span> <span class="nav-text">volatile底层实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DCL%E5%8D%95%E4%BE%8B"><span class="nav-number">5.3.</span> <span class="nav-text">DCL单例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ThreadLocal"><span class="nav-number">6.</span> <span class="nav-text">ThreadLocal</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ThreadPool"><span class="nav-number">7.</span> <span class="nav-text">ThreadPool</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AQS"><span class="nav-number">8.</span> <span class="nav-text">AQS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E9%9B%86%E5%90%88"><span class="nav-number">9.</span> <span class="nav-text">并发集合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E5%AE%B9%E5%99%A8"><span class="nav-number">10.</span> <span class="nav-text">同步容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">11.</span> <span class="nav-text">线程池</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E3%80%81%E9%A5%A5%E9%A5%BF%E3%80%81%E6%B4%BB%E9%94%81"><span class="nav-number">12.</span> <span class="nav-text">死锁、饥饿、活锁</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JUC%E5%90%8C%E6%AD%A5%E5%B7%A5%E5%85%B7"><span class="nav-number">13.</span> <span class="nav-text">JUC同步工具</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JMH"><span class="nav-number">14.</span> <span class="nav-text">JMH</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -119,7 +123,7 @@
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -177,6 +181,13 @@
 
       <time title="Created: 2023-05-07 21:39:13" itemprop="dateCreated datePublished" datetime="2023-05-07T21:39:13+08:00">2023-05-07</time>
     </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-05-10 20:52:41" itemprop="dateModified" datetime="2023-05-10T20:52:41+08:00">2023-05-10</time>
+    </span>
 
   
 </div>
@@ -187,7 +198,134 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
+    <div class="post-body" itemprop="articleBody"><p>Java 并发编程是 Java 面试中的一个重要部分，因为在现代多核处理器和高并发应用程序中，充分理解并发编程及其挑战非常关键。以下是一些 Java 并发编程的常见面试考点：</p>
+<ol>
+<li><p>Java 中的线程创建和管理：了解如何创建和管理线程，包括使用 <code>Thread</code> 类、<code>Runnable</code> 接口和 Java 8 中的 <code>CompletableFuture</code> 类。</p>
+</li>
+<li><p>线程同步：了解如何使用 <code>synchronized</code> 关键字、<code>ReentrantLock</code>、<code>Semaphore</code> 等同步原语来保证线程安全。</p>
+</li>
+<li><p>线程间通信：了解如何使用 <code>wait()</code>、<code>notify()</code> 和 <code>notifyAll()</code> 方法以及 <code>BlockingQueue</code>、<code>CountDownLatch</code>、<code>CyclicBarrier</code> 等机制进行线程间通信。</p>
+</li>
+<li><p>线程局部变量：了解 <code>ThreadLocal</code> 类的使用，它允许在不同线程中存储和访问线程独立的变量。</p>
+</li>
+<li><p>Java 内存模型：理解 Java 内存模型中的关键概念，如原子性、可见性和有序性，以及如何使用 <code>volatile</code> 关键字和原子操作类（如 <code>AtomicInteger</code>、<code>AtomicLong</code> 等）来确保并发安全。</p>
+</li>
+<li><p>线程池：了解 Java 中线程池的概念和用法，包括 <code>Executor</code>、<code>ExecutorService</code> 和 <code>ScheduledExecutorService</code> 接口，以及 <code>ThreadPoolExecutor</code> 和 <code>ForkJoinPool</code> 等具体实现。</p>
+</li>
+<li><p>并发集合：了解 Java 并发包中提供的线程安全集合类，如 <code>ConcurrentHashMap</code>、<code>CopyOnWriteArrayList</code>、<code>CopyOnWriteArraySet</code> 等。</p>
+</li>
+<li><p>并行流：了解 Java 8 中引入的并行流（Parallel Streams）概念，以及如何利用它进行数据并行处理。</p>
+</li>
+<li><p>CompletableFuture：了解 Java 8 引入的 <code>CompletableFuture</code> 类，它提供了异步编程、组合和转换操作的强大功能。</p>
+</li>
+<li><p>死锁、饥饿和活锁：理解死锁、饥饿和活锁的概念，以及如何检测和解决这些问题。</p>
+</li>
+</ol>
+<p>这些是 Java 并发编程的一些关键考点，掌握它们将有助于面试过程中回答相关问题。同时，在实际项目中应用这些知识，能够更好地解决并发编程中可能遇到的问题。</p>
+<p>以下是一些关于 Java 并发的面试常见问题：</p>
+<ol>
+<li><p>如何在 Java 中创建线程？</p>
+</li>
+<li><p>描述 <code>Runnable</code> 和 <code>Callable</code> 接口之间的区别。</p>
+</li>
+<li><p>什么是线程同步？解释 <code>synchronized</code> 关键字和 <code>ReentrantLock</code>。</p>
+</li>
+<li><p>什么是死锁？如何预防和解决死锁？</p>
+</li>
+<li><p>解释线程间通信的方法，例如 <code>wait()</code>、<code>notify()</code> 和 <code>notifyAll()</code>。</p>
+</li>
+<li><p>什么是线程池？如何在 Java 中创建和使用线程池？</p>
+</li>
+<li><p>描述 Java 中的 <code>Executor</code>、<code>ExecutorService</code> 和 <code>ScheduledExecutorService</code> 接口。</p>
+</li>
+<li><p>什么是 Java 内存模型？解释原子性、可见性和有序性。</p>
+</li>
+<li><p>什么是 <code>volatile</code> 关键字？它如何确保可见性和有序性？</p>
+</li>
+<li><p>解释 Java 中的原子操作类，如 <code>AtomicInteger</code>、<code>AtomicLong</code> 和 <code>AtomicReference</code>。</p>
+</li>
+<li><p>描述 Java 并发包中的线程安全集合类，如 <code>ConcurrentHashMap</code>、<code>CopyOnWriteArrayList</code> 和 <code>CopyOnWriteArraySet</code>。</p>
+</li>
+<li><p>什么是 Java 8 中的并行流（Parallel Streams）？如何使用它们？</p>
+</li>
+<li><p>解释 Java 8 中的 <code>CompletableFuture</code> 类及其用法。</p>
+</li>
+<li><p>描述线程饥饿和活锁问题，以及如何解决它们。</p>
+</li>
+<li><p>什么是 <code>ThreadLocal</code> 类？它如何在 Java 中使用？</p>
+</li>
+</ol>
+<p>这些问题涵盖了 Java 并发编程的各个方面。为了在面试中表现出色，请确保熟悉这些问题并准备好清晰、简洁的答案。同时，在实际项目中应用这些知识，能够更好地解决并发编程中可能遇到的问题。</p>
+<h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>线程可以通俗的理解为程序不同的执行路径</p>
+<h2 id="创建线程"><a href="#创建线程" class="headerlink" title="创建线程"></a>创建线程</h2><ul>
+<li>继承Thread类</li>
+<li>定义一个类实现Runnable接口</li>
+<li>使用Callable和Future创建线程</li>
+<li>通过线程池创建线程</li>
+</ul>
+<p>线程状态</p>
+<p>线程同步</p>
+<h2 id="线程间通信"><a href="#线程间通信" class="headerlink" title="线程间通信"></a>线程间通信</h2><h2 id="线程局部变量"><a href="#线程局部变量" class="headerlink" title="线程局部变量"></a>线程局部变量</h2><p>线程池</p>
+<p>线程顺序执行控制<br>高频面试加分项<br>JDK13&#x2F;14的改变<br>纤程<br>Quasar类库的使用</p>
+<p>在Java和许多其他编程语言中，线程的<code>sleep()</code>方法并不会导致线程释放锁，但是不会阻塞其他线程。</p>
+<p>当一个线程调用<code>sleep()</code>方法时，它会使线程进入阻塞状态一段时间，但该线程仍然保有它已经获得的所有锁。这意味着如果一个线程在进入<code>sleep()</code>之前获得了一个锁，那么它在<code>sleep()</code>期间仍然会保持这个锁，其他线程无法获得这个锁。</p>
+<p>这与线程的<code>wait()</code>方法不同。当一个线程调用<code>wait()</code>方法时，它会释放它在相应对象上的锁，允许其他线程获得这个锁。</p>
+<p>这是因为<code>sleep()</code>和<code>wait()</code>方法的设计目标不同：<code>sleep()</code>方法主要用于让线程暂停一段时间，而<code>wait()</code>方法主要用于实现线程间的同步。所以，在编写多线程程序时，需要根据实际的需求和情况选择合适的方法。</p>
+<h2 id="超线程"><a href="#超线程" class="headerlink" title="超线程"></a>超线程</h2><p>超线程（Hyper-Threading）是Intel公司引入的一种处理器（CPU）技术。这项技术的主要目标是提高处理器核心的效率和性能。超线程通过使单个处理器核心模拟出两个“逻辑”核心，以便同时处理两个线程，从而提高了处理器的并行处理能力。</p>
+<p>传统的单核心处理器在任何时刻只能处理一个线程。但是，由于各种原因（例如，等待数据从内存中加载），处理器可能无法始终保持忙碌状态。在这些情况下，处理器的一部分（例如，算术逻辑单元或浮点单元）可能会闲置，从而造成资源浪费。</p>
+<p>超线程技术试图解决这个问题，通过在单个核心上同时运行两个线程，使得当一个线程在等待时，另一个线程可以使用处理器的资源进行计算。因此，超线程可以使处理器在相同的时间内完成更多的工作，从而提高处理器的整体效率和性能。</p>
+<p>然而，超线程并不总是能提供显著的性能提升。在某些情况下，如果两个线程需要使用相同的处理器资源，那么它们可能会相互竞争，从而导致性能下降。此外，超线程对于多线程程序或多任务环境最有效，对于单线程程序或单任务环境的效果可能不明显。</p>
+<p>请注意，虽然超线程可以提高处理器的并行处理能力，但它并不能取代多核处理器。多核处理器具有多个独立的物理核心，每个核心都可以处理自己的线程，因此它们通常可以提供比超线程更好的并行性和性能。</p>
+<h1 id="CAS"><a href="#CAS" class="headerlink" title="CAS"></a>CAS</h1><h2 id="CAS底层实现"><a href="#CAS底层实现" class="headerlink" title="CAS底层实现"></a>CAS底层实现</h2><p>使用的操作系统原语是lock cmpxchg</p>
+<h1 id="Java内存模型"><a href="#Java内存模型" class="headerlink" title="Java内存模型"></a>Java内存模型</h1><p>原子性</p>
+<p>可见性</p>
+<p>有序性</p>
+<p>进程：CPU分配资源的基本单位</p>
+<p>线程：CPU执行的基本单位</p>
+<p>缓存行对齐 – Disruptor就应用了缓存行对齐技术提高了数据修改效率</p>
+<h2 id="对象内存模型"><a href="#对象内存模型" class="headerlink" title="对象内存模型"></a>对象内存模型</h2><h1 id="synchronized"><a href="#synchronized" class="headerlink" title="synchronized"></a>synchronized</h1><h2 id="synchronized底层实现"><a href="#synchronized底层实现" class="headerlink" title="synchronized底层实现"></a>synchronized底层实现</h2><ol>
+<li>Java代码层面：使用synchronized关键字</li>
+<li>字节码层面：monitorenter、monitorexit</li>
+<li>执行层面：锁升级（偏向锁、自旋锁、重量级锁）</li>
+<li>操作系统层面：使用的操作系统原语是lock cmpxchg</li>
+</ol>
+<h2 id="操作系统的互斥量"><a href="#操作系统的互斥量" class="headerlink" title="操作系统的互斥量"></a>操作系统的互斥量</h2><h2 id="用户态、内核态"><a href="#用户态、内核态" class="headerlink" title="用户态、内核态"></a>用户态、内核态</h2><h2 id="锁消除"><a href="#锁消除" class="headerlink" title="锁消除"></a>锁消除</h2><h2 id="锁粗化"><a href="#锁粗化" class="headerlink" title="锁粗化"></a>锁粗化</h2><h1 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h1><h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
+<li>保证线程数据一致性（保证可见性）</li>
+<li>禁止指令重排序（保证有序性）</li>
+</ul>
+<h2 id="volatile底层实现"><a href="#volatile底层实现" class="headerlink" title="volatile底层实现"></a>volatile底层实现</h2><p>系统底层实现数据一致性可采用的两种方法：</p>
+<ol>
+<li>缓存一致性协议（MESI）</li>
+<li>锁总线</li>
+</ol>
+<p>系统底层实现数据一致性可采用的两种方法：</p>
+<ol>
+<li>使用内存屏障：JVM层级是给volatile语句前后分别加两个内存屏障，内存屏障前后的指令不能重排序</li>
+<li>锁总线：HotSpot虚拟机使用的操作系统层级的指令是Lock指令（锁总线），而不是内存屏障的系统原语</li>
+</ol>
+<p>volatile在HotSpot的底层实现中之所以不使用内存屏障，是因为内存屏障不能保证一致性，而锁总线既能实现数据一致性，又能实现禁止指令重排序</p>
+<h2 id="DCL单例"><a href="#DCL单例" class="headerlink" title="DCL单例"></a>DCL单例</h2><p>DCL（Double Check Lock）单例为什么需要加volatile？</p>
+<p>如果不加volatile，不能避免指令重排序，初始化指令和堆栈建立连接的指令可能会倒换，即可能出现堆栈建立连接发生在初始化指令之前，即</p>
+<ul>
+<li>加volatile，没有被重排序的指令执行过程如下<ol>
+<li>初始化指令</li>
+<li>堆栈建立连接的指令</li>
+</ol>
+</li>
+<li>不加volatile，可能出现的重排序的指令执行过程如下<ul>
+<li>堆栈建立连接的指令</li>
+<li>初始化指令</li>
+</ul>
+</li>
+</ul>
+<p>这就导致在多线程环境下，如果没有使用volatile，假如一个线程正在使用创建对象，并且发生了指令重排序，使得堆栈建立连接的指令发生在初始化指令之前，那么当这条线程恰好执行完堆栈建立连接的指令，还没有执行初始化指令时，有一个新的线程线程执行DCL单例的函数，判断得到栈中已经指向堆中已有的对象，就会执行返回此对象，而此时对象还没有被初始化，此时获取的对象的值仅仅是默认值而不是初始化的值。</p>
+<h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><p><code>ThreadLocal</code>由一个线程的类型为<code>ThreadLocal.ThreadLocalMap</code>的对象threadlocals来保存。具体来说，在<code>ThreadLocalMap</code>中，set到<code>ThreadLocal</code>对象的值作为值（value），<code>ThreadLocal</code>对象作为键（key），并且key是一个弱引用。</p>
+<h1 id="ThreadPool"><a href="#ThreadPool" class="headerlink" title="ThreadPool"></a>ThreadPool</h1><h1 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h1><p>是volatile和CAS和队列的组合应用</p>
+<h1 id="并发集合"><a href="#并发集合" class="headerlink" title="并发集合"></a>并发集合</h1><h1 id="同步容器"><a href="#同步容器" class="headerlink" title="同步容器"></a>同步容器</h1><p>同步容器类的演变<br>Map&#x2F;Set从无锁到同步<br>ArrayList<br>LinkedList<br>Collections.synchronizedXXX<br>CopyOnWriteList<br>队列<br>ConcurrentLinkedQueue<br>ConcurrentArrayQueue<br>LinkedBlockingQueue<br>Queue<br>ArrayBlockingQueue<br>TransferQueue<br>SynchronousQueue<br>DelayQueue</p>
+<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p>ThreadPool与Executor<br>ExecuteService<br>Excecutors<br>Callable-带返回值的Runnable<br>异步调用Future<br>fixed<br>cached<br>single<br>常用线程池<br>scheduled<br>workstealing<br>forkjoin<br>ParallelStreamAPI</p>
+<h1 id="死锁、饥饿、活锁"><a href="#死锁、饥饿、活锁" class="headerlink" title="死锁、饥饿、活锁"></a>死锁、饥饿、活锁</h1><h1 id="JUC同步工具"><a href="#JUC同步工具" class="headerlink" title="JUC同步工具"></a>JUC同步工具</h1><p>cas自旋原理<br>ReentrantLock可重入锁<br>Condition条件等待与通知<br>Latch<br>cyclicBarrier线程栅栏<br>Semaphore信号量<br>Semaphore与Lock的区别(高频面试)<br>ThreadLocal线程本地变量（高频面试)<br>phaser<br>Exchanger</p>
+<h1 id="JMH"><a href="#JMH" class="headerlink" title="JMH"></a>JMH</h1><p>JMH解决什么问题<br>JMH插件安装<br>JMH吞吐量测试<br>JMH QPS&#x2F;TPS测试</p>
+
     </div>
 
     
@@ -195,6 +333,9 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%B9%B6%E5%8F%91/" rel="tag"># 并发</a>
+          </div>
 
         
 
