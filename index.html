@@ -179,7 +179,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-05-10 20:52:41" itemprop="dateModified" datetime="2023-05-10T20:52:41+08:00">2023-05-10</time>
+      <time title="Modified: 2023-05-11 22:30:37" itemprop="dateModified" datetime="2023-05-11T22:30:37+08:00">2023-05-11</time>
     </span>
 
   
@@ -283,21 +283,37 @@
 <li>执行层面：锁升级（偏向锁、自旋锁、重量级锁）</li>
 <li>操作系统层面：使用的操作系统原语是lock cmpxchg</li>
 </ol>
+<p>synchronized是可重入的，一个原因是，如果synchronized是不可重入的，那么当一个方法调用另一个需要同一把锁的方法（被调用方法）时，被调用方法等待发起调用的方法释放锁，发起调用的方法等待被调用方法的执行，会产生死锁。</p>
+<p>程序中如果出现异常，默认情况下锁会被释放，可能会导致数据不一致的情况发生，如果不想释放，可以加catch捕获异常</p>
+<h2 id="锁升级"><a href="#锁升级" class="headerlink" title="锁升级"></a>锁升级</h2><ol>
+<li><p>无锁</p>
+</li>
+<li><p>偏向锁</p>
+</li>
+<li><p>自旋锁（如果发生线程争用，就由偏向锁升级为自旋锁，如果超过默认自旋次数上限，默认是10次，就会升级为重量级锁）</p>
+</li>
+<li><p>重量级锁（重量级锁下线程等待不占用CPU）</p>
+</li>
+</ol>
+<p>自旋锁效率比重量级锁高的条件：同步代码块执行时间短、等待线程数少</p>
 <h2 id="操作系统的互斥量"><a href="#操作系统的互斥量" class="headerlink" title="操作系统的互斥量"></a>操作系统的互斥量</h2><h2 id="用户态、内核态"><a href="#用户态、内核态" class="headerlink" title="用户态、内核态"></a>用户态、内核态</h2><h2 id="锁消除"><a href="#锁消除" class="headerlink" title="锁消除"></a>锁消除</h2><h2 id="锁粗化"><a href="#锁粗化" class="headerlink" title="锁粗化"></a>锁粗化</h2><h1 id="volatile"><a href="#volatile" class="headerlink" title="volatile"></a>volatile</h1><h2 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h2><ul>
-<li>保证线程数据一致性（保证可见性）</li>
-<li>禁止指令重排序（保证有序性）</li>
+<li>保证可见性：Volatile变量在线程内存中被修改之后要立即同步回主内存中，以保证其他线程使用该volatile关键字修饰的变量时获取到的是最新的变量值。Volatile可以保证每次线程从主内存中刷新到最新的变量值。</li>
+<li>禁止指令重排序优化（内存屏障，也会牺牲掉一些性能）</li>
 </ul>
-<h2 id="volatile底层实现"><a href="#volatile底层实现" class="headerlink" title="volatile底层实现"></a>volatile底层实现</h2><p>系统底层实现数据一致性可采用的两种方法：</p>
-<ol>
-<li>缓存一致性协议（MESI）</li>
-<li>锁总线</li>
+<p>不支持原子性，非线程安全：对一个volatile修饰的变量的读写操作不是原子性的。因为如果在第一个线程加载某个volatile修饰的变量值到工作内存之后有其他线程修改了这个变量值，那么第一个线程是感知不到这个值的变化的。这个时候就会出现线程安全的问题，所以为了保证线程安全问题还是需要synchronized关键字。</p>
+<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><ol>
+<li>运算结果不依赖于变量的当前值或者能够确保只有一个线程修改这个变量的值；</li>
+<li>变量不需要与其他的状态变量共同参与不变约束。</li>
 </ol>
-<p>系统底层实现数据一致性可采用的两种方法：</p>
-<ol>
-<li>使用内存屏障：JVM层级是给volatile语句前后分别加两个内存屏障，内存屏障前后的指令不能重排序</li>
-<li>锁总线：HotSpot虚拟机使用的操作系统层级的指令是Lock指令（锁总线），而不是内存屏障的系统原语</li>
-</ol>
-<p>volatile在HotSpot的底层实现中之所以不使用内存屏障，是因为内存屏障不能保证一致性，而锁总线既能实现数据一致性，又能实现禁止指令重排序</p>
+<h2 id="Java内存模型对volatile变量定义的特殊规则"><a href="#Java内存模型对volatile变量定义的特殊规则" class="headerlink" title="Java内存模型对volatile变量定义的特殊规则"></a>Java内存模型对volatile变量定义的特殊规则</h2><ul>
+<li>在工作内存中每次使用变量前都需要从主内存中刷新最新值；</li>
+<li>每次修改变量的值之后都必须立刻同步到主内存中；</li>
+<li>要求volatile修饰的变量不会被指令重新排序。</li>
+</ul>
+<h2 id="volatile底层实现"><a href="#volatile底层实现" class="headerlink" title="volatile底层实现"></a>volatile底层实现</h2><ul>
+<li>保证可见性：缓存一致性</li>
+<li>禁止指令重排序优化：内存屏障</li>
+</ul>
 <h2 id="DCL单例"><a href="#DCL单例" class="headerlink" title="DCL单例"></a>DCL单例</h2><p>DCL（Double Check Lock）单例为什么需要加volatile？</p>
 <p>如果不加volatile，不能避免指令重排序，初始化指令和堆栈建立连接的指令可能会倒换，即可能出现堆栈建立连接发生在初始化指令之前，即</p>
 <ul>
@@ -314,11 +330,152 @@
 </ul>
 <p>这就导致在多线程环境下，如果没有使用volatile，假如一个线程正在使用创建对象，并且发生了指令重排序，使得堆栈建立连接的指令发生在初始化指令之前，那么当这条线程恰好执行完堆栈建立连接的指令，还没有执行初始化指令时，有一个新的线程线程执行DCL单例的函数，判断得到栈中已经指向堆中已有的对象，就会执行返回此对象，而此时对象还没有被初始化，此时获取的对象的值仅仅是默认值而不是初始化的值。</p>
 <h1 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h1><p><code>ThreadLocal</code>由一个线程的类型为<code>ThreadLocal.ThreadLocalMap</code>的对象threadlocals来保存。具体来说，在<code>ThreadLocalMap</code>中，set到<code>ThreadLocal</code>对象的值作为值（value），<code>ThreadLocal</code>对象作为键（key），并且key是一个弱引用。</p>
-<h1 id="ThreadPool"><a href="#ThreadPool" class="headerlink" title="ThreadPool"></a>ThreadPool</h1><h1 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h1><p>是volatile和CAS和队列的组合应用</p>
+<h1 id="ThreadPool"><a href="#ThreadPool" class="headerlink" title="ThreadPool"></a>ThreadPool</h1><h1 id="FutureTask"><a href="#FutureTask" class="headerlink" title="FutureTask"></a>FutureTask</h1><p><code>FutureTask</code>是Java并发包<code>java.util.concurrent</code>中的一个类，它实现了<code>RunnableFuture</code>接口，<code>RunnableFuture</code>接口同时继承了<code>Runnable</code>接口和<code>Future</code>接口。</p>
+<p><code>FutureTask</code>类的主要作用是用来表示一个可以产生结果的计算任务。你可以将这个任务提交给<code>ExecutorService</code>去执行，也可以直接在你的线程中执行它。当任务执行完毕后，你可以通过调用<code>FutureTask.get()</code>方法来获取计算的结果。</p>
+<p>以下是使用<code>FutureTask</code>的一个简单示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">Callable&lt;Integer&gt; task = <span class="keyword">new</span> <span class="title class_">Callable</span>&lt;Integer&gt;() &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> Integer <span class="title function_">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="comment">// 这里是你的计算任务</span></span><br><span class="line">        <span class="keyword">return</span> doSomeLongTimeComputation();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">FutureTask&lt;Integer&gt; futureTask = <span class="keyword">new</span> <span class="title class_">FutureTask</span>&lt;&gt;(task);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将任务提交给线程池</span></span><br><span class="line"><span class="type">ExecutorService</span> <span class="variable">executor</span> <span class="operator">=</span> Executors.newFixedThreadPool(<span class="number">1</span>);</span><br><span class="line">executor.execute(futureTask);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在你需要结果的时候调用get()方法获取</span></span><br><span class="line"><span class="comment">// 注意：如果任务还没有完成，get()方法会阻塞，直到任务完成为止</span></span><br><span class="line"><span class="type">Integer</span> <span class="variable">result</span> <span class="operator">=</span> futureTask.get();</span><br></pre></td></tr></table></figure>
+
+<p>这里的关键是<code>Callable</code>接口和<code>Future</code>接口。<code>Callable</code>接口表示一个可以返回结果的任务，而<code>Future</code>接口表示一个异步计算的结果。<code>FutureTask</code>就是这两个接口的一个实现，它既可以作为一个任务（<code>Runnable</code>）被线程执行，也可以作为一个结果（<code>Future</code>）被线程获取。</p>
 <h1 id="并发集合"><a href="#并发集合" class="headerlink" title="并发集合"></a>并发集合</h1><h1 id="同步容器"><a href="#同步容器" class="headerlink" title="同步容器"></a>同步容器</h1><p>同步容器类的演变<br>Map&#x2F;Set从无锁到同步<br>ArrayList<br>LinkedList<br>Collections.synchronizedXXX<br>CopyOnWriteList<br>队列<br>ConcurrentLinkedQueue<br>ConcurrentArrayQueue<br>LinkedBlockingQueue<br>Queue<br>ArrayBlockingQueue<br>TransferQueue<br>SynchronousQueue<br>DelayQueue</p>
-<h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p>ThreadPool与Executor<br>ExecuteService<br>Excecutors<br>Callable-带返回值的Runnable<br>异步调用Future<br>fixed<br>cached<br>single<br>常用线程池<br>scheduled<br>workstealing<br>forkjoin<br>ParallelStreamAPI</p>
+<h1 id="并发工具类"><a href="#并发工具类" class="headerlink" title="并发工具类"></a>并发工具类</h1><h2 id="AQS"><a href="#AQS" class="headerlink" title="AQS"></a>AQS</h2><p>AQS（AbstractQueuedSynchronizer）是volatile和CAS和队列的组合应用</p>
+<p>java中哪些同步锁是基于AQS实现的：</p>
+<p>Java 并发包 <code>java.util.concurrent</code> 中的许多同步工具类都是基于 <code>AbstractQueuedSynchronizer</code> (简称 AQS) 来实现的。AQS 是一个用于构建锁和同步器的框架，它使用一个 int 成员变量来表示同步状态，并提供了一种使用 CAS（Compare-and-Swap）设置同步状态的方式。以下是一些基于 AQS 实现的同步类：</p>
+<ol>
+<li><p><strong>ReentrantLock</strong>：重入锁，是一种互斥锁，它的特点是支持重入功能，也就是说，一个线程能够对已经获取到的锁再次获取，而不会发生死锁。</p>
+</li>
+<li><p><strong>ReentrantReadWriteLock</strong>：读写锁，它分为两个锁，一个是读锁，一个是写锁。多个读锁之间不会互斥，读锁与写锁互斥，写锁与写锁互斥。这是由jvm自己控制的，你只要上好相应的锁即可。</p>
+</li>
+<li><p><strong>Semaphore</strong>：信号量，内部维护了一组”许可”，线程可以申请许可（如果无可用许可则阻塞），也可以释放许可。信号量可用于实现资源池，或者对某个操作的并发线程数进行限制。</p>
+</li>
+<li><p><strong>CountDownLatch</strong>：倒计时门栓，它可以让一个或多个线程等待其他线程完成各自的工作后再执行。</p>
+</li>
+<li><p><strong>CyclicBarrier</strong>：循环栅栏，它允许一组线程互相等待，直到所有的线程都准备就绪后，所有的线程才能继续执行。</p>
+</li>
+<li><p><strong>FutureTask</strong>：一个实现了 <code>Future</code> 和 <code>Runnable</code> 接口的类，可以用来执行 <code>Callable</code> 任务，并且可以获取任务执行后的结果。</p>
+</li>
+</ol>
+<p>这些类都通过自定义 AQS 来实现它们自己的同步语义。</p>
+<h2 id="LockSupport"><a href="#LockSupport" class="headerlink" title="LockSupport"></a>LockSupport</h2><p><code>LockSupport</code>是Java并发编程中一个非常有用的工具类，它位于<code>java.util.concurrent.locks</code>包中。<code>LockSupport</code>提供了一种基于线程的，低层次的线程阻塞和唤醒机制。</p>
+<p>AQS 底层使用了<code>LockSupport</code>来实现线程的阻塞和唤醒</p>
+<p>在底层实现上，<code>LockSupport</code>使用了一种名为”许可（Permit）”的概念来控制阻塞和唤醒。许可的数量最多为1，如果线程已经拿到了许可，则调用<code>LockSupport.park()</code>会立即返回；如果没有拿到许可，<code>park()</code>方法会阻塞线程。调用<code>LockSupport.unpark(Thread)</code>方法会给指定的线程发放许可。</p>
+<p>下面是一个简单的<code>LockSupport</code>使用例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LockSupportExample</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">thread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">            System.out.println(<span class="string">&quot;Child thread begin park!&quot;</span>);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 调用park方法，挂起自己</span></span><br><span class="line">            LockSupport.park();</span><br><span class="line"></span><br><span class="line">            System.out.println(<span class="string">&quot;Child thread end park!&quot;</span>);</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        thread.start();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 主线程延迟2s</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">2000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;Main thread begin unpark!&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 调用unpark方法让thread线程持有许可证，然后park方法返回</span></span><br><span class="line">        LockSupport.unpark(thread);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，子线程通过调用<code>LockSupport.park()</code>方法阻塞自己，主线程在延迟2秒后调用<code>LockSupport.unpark(thread)</code>方法唤醒子线程。</p>
+<p>需要注意的是，<code>LockSupport.park()</code>方法不会响应中断，并且不会抛出<code>InterruptedException</code>。如果线程在调用<code>park()</code>方法时被中断，或者在调用<code>park()</code>方法之前已经被中断，那么调用<code>park()</code>方法会立即返回，但是不会清除线程的中断标记。你可以通过<code>Thread.interrupted()</code>方法来检查和清除线程的中断标记。</p>
+<p>unpark()可以先于park()调用：</p>
+<p><code>LockSupport.unpark(thread)</code> 可以在 <code>LockSupport.park()</code> 之前调用。实际上，这是 <code>LockSupport</code> 的一个特性，即“许可”机制。</p>
+<p><code>LockSupport</code> 的工作原理是，每个线程都有一个许可（permit），许可的数量最多为1。如果线程已经拿到了许可，那么调用 <code>LockSupport.park()</code> 会立即返回；如果没有许可，那么 <code>park()</code> 方法会阻塞线程。调用 <code>LockSupport.unpark(Thread)</code> 方法会给指定的线程发放许可。</p>
+<p>因此，如果 <code>unpark(thread)</code> 在 <code>park()</code> 之前被调用，那么线程会获得一个许可，当后续 <code>park()</code> 被调用时，线程可以立即消费掉这个许可并继续执行，而不会阻塞。</p>
+<p>这种机制使得 <code>unpark</code> 方法可以在 <code>park</code> 方法之前调用，线程仍然能够正确地阻塞和唤醒。</p>
+<p>java中哪些同步锁是基于LockSupport实现的：</p>
+<p>Java中许多的同步类底层使用了<code>LockSupport</code>来实现线程的阻塞和唤醒。最主要的类就是<code>AbstractQueuedSynchronizer</code>（简称AQS），它是许多同步类的基础框架。以下是一些基于AQS，从而间接使用<code>LockSupport</code>实现的同步类：</p>
+<ol>
+<li><p><strong>ReentrantLock</strong>：重入锁，是一个互斥锁，支持重入功能，也就是说，一个线程能够对已经获取到的锁再次获取，而不会发生死锁。</p>
+</li>
+<li><p><strong>ReentrantReadWriteLock</strong>：读写锁，它分为两个锁，一个是读锁，一个是写锁。多个读锁之间不会互斥，读锁与写锁互斥，写锁与写锁互斥。</p>
+</li>
+<li><p><strong>Semaphore</strong>：信号量，内部维护了一组”许可”，线程可以申请许可（如果无可用许可则阻塞），也可以释放许可。</p>
+</li>
+<li><p><strong>CountDownLatch</strong>：倒计时门栓，它可以让一个或多个线程等待其他线程完成各自的工作后再执行。</p>
+</li>
+<li><p><strong>CyclicBarrier</strong>：循环栅栏，它允许一组线程互相等待，直到所有的线程都准备就绪后，所有的线程才能继续执行。</p>
+</li>
+<li><p><strong>FutureTask</strong>：实现了<code>Future</code>和<code>Runnable</code>接口的类，可以用来执行<code>Callable</code>任务，并且可以获取任务执行后的结果。</p>
+</li>
+</ol>
+<p>所有这些类都通过使用<code>LockSupport.park()</code>和<code>LockSupport.unpark(Thread)</code>方法来阻塞和唤醒线程。</p>
+<h1 id="JUC同步锁"><a href="#JUC同步锁" class="headerlink" title="JUC同步锁"></a>JUC同步锁</h1><p>以下的锁当中除了LockSupport之外，其他的都是基于AQS实现的</p>
+<h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2><p>ReentrantLock是Java并发包<code>java.util.concurrent.locks</code>中的一个类，ReentrantLock是可重入锁，每获取一次，重入的计数就会增加1。当线程释放锁时，重入的计数就会减少1。只有当重入的计数变为0时，锁才会真正被释放。</p>
+<p><code>ReentrantLock</code>是基于Java的<code>AbstractQueuedSynchronizer</code>(AQS)框架实现的。AQS使用一个整数值来表示锁的状态，并使用一个FIFO队列来管理等待的线程。ReentrantLock底层使用的是锁的park()和unpark()</p>
+<p>要使用<code>ReentrantLock</code>，需要创建一个<code>ReentrantLock</code>的实例，然后在需要互斥访问的代码前调用<code>lock()</code>方法，代码后调用<code>unlock()</code>方法。为了确保锁可以被正确释放，通常需要将<code>unlock()</code>方法放在<code>finally</code>块中。下面是一个例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.locks.ReentrantLock;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ReentrantLockExample</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">ReentrantLock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">doSomething</span><span class="params">()</span> &#123;</span><br><span class="line">        lock.lock();</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">// critical section</span></span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            lock.unlock();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>doSomething</code>方法中的代码是互斥的，也就是说，在任何时刻，最多只有一个线程可以执行这段代码。</p>
+<p>ReentrantLock提供了比内置<code>synchronized</code>关键字更强大更灵活的锁机制。</p>
+<p>ReentrantLock比synchronized增加的功能：</p>
+<ol>
+<li>ReentrantLock可以设置等待时间，如果超时未得到锁，可以进入finally里面解除获取锁的操作</li>
+<li>ReentrantLock可以使用可打断的等待lock.lockInterruptibly()，其他线程打断可打断的等待线程之后，等待线程就可以进入被打断的catch</li>
+<li>ReentrantLock还支持公平锁，synchronized只支持非公平锁。公平锁模式可以防止线程饥饿，但是在性能上通常不如非公平锁模式。ReentrantLock使用公平锁的方式是往够早函数里面传一个true参数，即new ReentrantLock(true)。</li>
+</ol>
+<p><strong>lock.lock();是写在try里面还是外面</strong></p>
+<p>在使用 <code>Lock</code> 的时候，通常建议将 <code>lock.lock();</code> 写在 <code>try</code> 块的外面，然后在 <code>finally</code> 块中释放锁。例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Lock</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ReentrantLock</span>();</span><br><span class="line"></span><br><span class="line">lock.lock();</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// access shared resources</span></span><br><span class="line">&#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    lock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这样做的原因是，如果获取锁（<code>lock.lock()</code>）失败抛出了异常，那么在 <code>finally</code> 块中就无需（也不能）去释放这个锁。如果将 <code>lock.lock();</code> 写在 <code>try</code> 块内部，当获取锁抛出异常时，<code>finally</code> 块仍然会执行，这可能会导致尝试释放一个实际上并未被当前线程持有的锁，从而引发 <code>IllegalMonitorStateException</code>。</p>
+<p>然而，需要注意的是，这种模式主要适用于 <code>lock.lock()</code> 不会抛出受检异常的情况。在 <code>java.util.concurrent.locks.Lock</code> 接口中，<code>lock()</code> 方法是不会抛出受检异常的。但如果你使用的锁实现可能会在 <code>lock()</code> 方法中抛出受检异常，那么你可能需要将 <code>lock()</code> 调用放入 <code>try</code> 块中，并在 <code>catch</code> 块中适当地处理异常。</p>
+<h2 id="CountDownLatch"><a href="#CountDownLatch" class="headerlink" title="CountDownLatch"></a>CountDownLatch</h2><p>概念：</p>
+<p><code>CountDownLatch</code>是Java并发编程中的一个重要工具，它位于<code>java.util.concurrent</code>包中。<code>CountDownLatch</code>允许一个或多个线程等待其他线程完成一组操作。</p>
+<p><code>CountDownLatch</code>是不能重用的，一旦计数器的值变为0，就不能再次将它重置回一个非零的值。</p>
+<p>使用场景：</p>
+<p>这种机制在某些场景下非常有用。例如，假设我们有一个并发程序，主线程需要等待其他几个工作线程完成一组操作后才能继续执行。在这种情况下，我们可以使用<code>CountDownLatch</code>。</p>
+<p>用法：</p>
+<p>我们可以创建一个<code>CountDownLatch</code>的实例，将计数器的初始值设为工作线程的数量。每个工作线程完成任务后调用<code>countDown()</code>方法。主线程在开始任务前调用<code>await()</code>方法，然后等待所有的工作线程都完成任务。这里有一个简单的例子来说明<code>CountDownLatch</code>的使用：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.CountDownLatch;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CountDownLatchDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> InterruptedException &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">workerNum</span> <span class="operator">=</span> <span class="number">5</span>;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">CountDownLatch</span> <span class="variable">latch</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CountDownLatch</span>(workerNum);</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; workerNum; i++) &#123;</span><br><span class="line">            <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">                <span class="comment">// do some work</span></span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot; finished work.&quot;</span>);</span><br><span class="line">                latch.countDown();</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        latch.await();</span><br><span class="line">        System.out.println(<span class="string">&quot;All workers have finished their jobs.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，创建一个了<code>CountDownLatch</code>的实例时，传递给它的构造函数的整数就是计数器的初始值。每个工作线程在完成任务后调用<code>countDown()</code>方法，每次调用这个方法都会将计数器的值减1。主线程在开始任务前调用<code>await()</code>方法，使主线程等待，然后等待计数器的值变为0，主线程继续执行，并输出一条消息。</p>
+<h2 id="CyclicBarrier"><a href="#CyclicBarrier" class="headerlink" title="CyclicBarrier"></a>CyclicBarrier</h2><p><code>CyclicBarrier</code> 是 Java 并发编程中一种同步辅助工具，它允许一组线程互相等待，直到所有线程都到达某个公共的屏障点（Barrier Point）。</p>
+<p>“Cyclic” 的含义是这个屏障点是可以重复利用的，也就是说，一旦所有等待线程都达到了屏障点，这个屏障就可以为下一轮的等待线程使用。</p>
+<p>使用示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.concurrent.CyclicBarrier;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">CyclicBarrierDemo</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="comment">// 创建一个新的CyclicBarrier，当有3个线程达到时触发</span></span><br><span class="line">        <span class="type">CyclicBarrier</span> <span class="variable">barrier</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">CyclicBarrier</span>(<span class="number">3</span>, <span class="keyword">new</span> <span class="title class_">Runnable</span>() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">                <span class="comment">// 所有线程到达屏障后执行此任务</span></span><br><span class="line">                System.out.println(<span class="string">&quot;所有线程都到达了屏障点&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 启动三个将在屏障处等待的线程</span></span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t1</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Task</span>(barrier), <span class="string">&quot;线程 1&quot;</span>);</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t2</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Task</span>(barrier), <span class="string">&quot;线程 2&quot;</span>);</span><br><span class="line">        <span class="type">Thread</span> <span class="variable">t3</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(<span class="keyword">new</span> <span class="title class_">Task</span>(barrier), <span class="string">&quot;线程 3&quot;</span>);</span><br><span class="line"></span><br><span class="line">        t1.start();</span><br><span class="line">        t2.start();</span><br><span class="line">        t3.start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">Task</span> <span class="keyword">implements</span> <span class="title class_">Runnable</span> &#123;</span><br><span class="line">        <span class="keyword">private</span> CyclicBarrier barrier;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Task</span><span class="params">(CyclicBarrier barrier)</span> &#123;</span><br><span class="line">            <span class="built_in">this</span>.barrier = barrier;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">run</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot; 在屏障处等待&quot;</span>);</span><br><span class="line">                barrier.await();</span><br><span class="line">                System.out.println(Thread.currentThread().getName() + <span class="string">&quot; 已经通过了屏障&quot;</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException ex) &#123;</span><br><span class="line">                ex.printStackTrace();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (BrokenBarrierException ex) &#123;</span><br><span class="line">                ex.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Phaser"><a href="#Phaser" class="headerlink" title="Phaser"></a>Phaser</h2><h2 id="ReadWriteLock"><a href="#ReadWriteLock" class="headerlink" title="ReadWriteLock"></a>ReadWriteLock</h2><p>ReadWriteLock，读写锁，</p>
+<p>读写锁：</p>
+<ul>
+<li>共享锁（读锁）：读共享</li>
+<li>排他锁（写锁）：写互斥</li>
+</ul>
+<p>由ReadWriteLock对象可以得到读锁和写锁</p>
+<h2 id="StampedLock"><a href="#StampedLock" class="headerlink" title="StampedLock"></a>StampedLock</h2><p><code>StampedLock</code> 是 Java 在 JDK 8 中引入的一个新的同步工具类，用来解决某些场景下的并发问题。它设计的初衷是为了优化读多写少的场景，因此在读线程非常多，写线程非常少的情况下，<code>StampedLock</code> 提供了一种乐观读锁，可以使得多个线程同时读，大大提高了并发性能。</p>
+<p><code>StampedLock</code> 提供的锁包括写锁、悲观读锁以及乐观读，这三种锁的释放和获取都是通过一个 <code>stamp</code>（邮票）变量来控制的，这个 <code>stamp</code> 变量类似于版本号，每次写锁的获取和释放都会导致 <code>stamp</code> 变化。</p>
+<p>下面是一个使用 <code>StampedLock</code> 的例子：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Point</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">double</span> x, y;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">StampedLock</span> <span class="variable">sl</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StampedLock</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">move</span><span class="params">(<span class="type">double</span> deltaX, <span class="type">double</span> deltaY)</span> &#123; <span class="comment">// 移动点的位置</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">stamp</span> <span class="operator">=</span> sl.writeLock(); <span class="comment">// 获取写锁</span></span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            x += deltaX;</span><br><span class="line">            y += deltaY;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            sl.unlockWrite(stamp); <span class="comment">// 释放写锁</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">double</span> <span class="title function_">distanceFromOrigin</span><span class="params">()</span> &#123; <span class="comment">// 计算从原点到现在位置的距离</span></span><br><span class="line">        <span class="type">long</span> <span class="variable">stamp</span> <span class="operator">=</span> sl.tryOptimisticRead(); <span class="comment">// 尝试获取乐观读锁</span></span><br><span class="line">        <span class="type">double</span> <span class="variable">currentX</span> <span class="operator">=</span> x, currentY = y;</span><br><span class="line">        <span class="keyword">if</span> (!sl.validate(stamp)) &#123; <span class="comment">// 如果乐观读锁验证失败，改用悲观读锁</span></span><br><span class="line">            stamp = sl.readLock();</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                currentX = x;</span><br><span class="line">                currentY = y;</span><br><span class="line">            &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">                sl.unlockRead(stamp); <span class="comment">// 释放悲观读锁</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Math.sqrt(currentX * currentX + currentY * currentY);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>move</code> 方法使用写锁，保证了数据的完整性，而 <code>distanceFromOrigin</code> 方法首先尝试获取乐观读锁，如果验证成功，则直接计算结果，否则改用悲观读锁。</p>
+<p>需要注意的是，<code>StampedLock</code> 不支持重入和条件变量，使用时也要注意避免锁升级导致的死锁问题。此外，<code>StampedLock</code> 的锁方法不响应中断，如果需要支持中断，可以使用相应的 <code>xxxLockInterruptibly</code> 方法。</p>
+<h2 id="Semaphore"><a href="#Semaphore" class="headerlink" title="Semaphore"></a>Semaphore</h2><p>信号量</p>
+<p>用途：限流</p>
+<h2 id="Exchanger"><a href="#Exchanger" class="headerlink" title="Exchanger"></a>Exchanger</h2><h1 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a>线程池</h1><p>ThreadPool与Executor<br>ExecuteService<br>Excecutors<br>Callable-带返回值的Runnable<br>异步调用Future<br>fixed<br>cached<br>single<br>常用线程池<br>scheduled<br>workstealing<br>forkjoin<br>ParallelStreamAPI</p>
 <h1 id="死锁、饥饿、活锁"><a href="#死锁、饥饿、活锁" class="headerlink" title="死锁、饥饿、活锁"></a>死锁、饥饿、活锁</h1><h1 id="JUC同步工具"><a href="#JUC同步工具" class="headerlink" title="JUC同步工具"></a>JUC同步工具</h1><p>cas自旋原理<br>ReentrantLock可重入锁<br>Condition条件等待与通知<br>Latch<br>cyclicBarrier线程栅栏<br>Semaphore信号量<br>Semaphore与Lock的区别(高频面试)<br>ThreadLocal线程本地变量（高频面试)<br>phaser<br>Exchanger</p>
 <h1 id="JMH"><a href="#JMH" class="headerlink" title="JMH"></a>JMH</h1><p>JMH解决什么问题<br>JMH插件安装<br>JMH吞吐量测试<br>JMH QPS&#x2F;TPS测试</p>
+<p><strong>对象锁</strong>：适用于同步非static方法和同步代码块。当一个线程获取了对象锁，其他线程必须等待这个锁被释放才能执行被该对象锁保护的非static同步方法或者被该对象锁保护的同步代码块。</p>
+<p><strong>类锁</strong>：适用于同步static方法和同步class对象的代码块。当一个线程获取了类锁，其他线程必须等待这个锁被释放才能执行被该类锁保护的static同步方法或者被该类锁保护的同步class对象的代码块。</p>
+<h1 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h1><p>秒杀性能比较：</p>
+<p>synchronized</p>
+<p>AtomicInteger</p>
+<p>实现原理：基于CAS，使用了<code>Unsafe</code>类的一些函数来进行底层的原子性操作。虽然<code>Unsafe</code>类可以进行一些不安全的操作，但在<code>AtomicInteger</code>中，它被用来实现线程安全的原子性操作。这是一个很好的例子，说明了工具本身并不决定结果，关键在于如何使用工具。</p>
+<p>LongAdder</p>
+<p>实现原理：分段锁，每个线程对应数组中的一个值，最后将值加和</p>
+<h1 id="分工问题的实现方式"><a href="#分工问题的实现方式" class="headerlink" title="分工问题的实现方式"></a>分工问题的实现方式</h1><p>Guarded Suspension模式</p>
+<p>Thread-Pre-Message模式</p>
+<p>生产者-消费者模式</p>
+<p>两阶段终止模式</p>
+<p>Worker-Thread模式</p>
+<p>Balking模式</p>
+<h1 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h1><p>分布式锁是一种在分布式系统环境下的锁，用于控制跨多个节点的共享资源的访问。这对于需要在多个节点之间同步或序列化操作的应用来说是非常重要的。</p>
+<p>实现分布式锁的方式有多种，例如基于数据库的锁、基于Redis的锁、基于Zookeeper的锁等。</p>
+<p>以下是一些常见的分布式锁实现方式：</p>
+<ol>
+<li><p>基于数据库的锁：这种方式通常是在数据库中创建一张锁表，需要获取锁的时候在这张表中插入一条记录，释放锁的时候则删除这条记录。这种方式实现简单，但是性能可能会受到影响。</p>
+</li>
+<li><p>基于Redis的锁：Redis提供了一些原子性的操作，比如<code>SETNX</code>，可以利用这些特性来实现分布式锁。<code>SETNX</code>命令可以在键不存在的情况下设置键值对，如果键已经存在，则不做任何操作。这种方式性能较好，但是需要处理好锁的超时和续期问题。</p>
+</li>
+<li><p>基于Zookeeper的锁：Zookeeper提供了一种叫做顺序临时节点的机制，可以利用这个机制来实现分布式锁。要获取锁的线程创建一个临时节点，如果这个节点是所有节点中序号最小的，那么就认为这个线程获取了锁。这种方式性能较差，但是更加可靠，适合对一致性要求更高的场景。</p>
+</li>
+</ol>
+<p>使用分布式锁需要注意一些问题，比如避免死锁、处理好锁的超时问题，以及在某些情况下可能需要考虑公平性问题。</p>
+<h1 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h1><p>乐观锁和悲观锁是数据库并发控制中的两种主要技术，它们各自对系统中的并发冲突有不同的预期和处理方式。</p>
+<ol>
+<li><p>悲观锁（Pessimistic Locking）：<br> 悲观锁假设数据在并发处理中很可能会引发冲突，因此在数据处理前会先加锁，以保证数据处理的独占性。例如，在读数据时加读锁，防止数据被其他事务修改；在写数据时加写锁，防止数据被其他事务读或写。悲观锁的主要优点是可以有效地避免数据的并发冲突，但缺点是锁的开销较大，且可能降低并发性能。</p>
+</li>
+<li><p>乐观锁（Optimistic Locking）：<br> 乐观锁相对于悲观锁来说，更“乐观”，它假设数据在大部分情况下并不会引发冲突，因此并不会在数据处理前加锁，而是在数据处理后（通常是在数据提交更新时）检查是否存在冲突。如果存在冲突（例如数据已经被其他事务修改），那么本次处理会失败，这时可以选择重试处理或者回滚操作。乐观锁的主要优点是并发性能较高，但缺点是需要处理因并发冲突导致的处理失败。</p>
+</li>
+</ol>
+<p>乐观锁和悲观锁的选择通常取决于数据的并发冲突概率和对并发性能的要求。如果并发冲突概率较高，或者对数据一致性要求较严格，那么可以使用悲观锁；如果并发冲突概率较低，或者对并发性能要求较高，那么可以使用乐观锁。</p>
+<p>monitorenter monitorexit AQS。里八尿埋: entry<br>count, state<br>2锁的四种状态及升级过程3.CMS和G1的异同<br>4.G1什么时候引发Full GC<br>5.除了CAS，原子类，syn,Lock还有什么线程安全的方式<br>final<br>6.HashMap和Hashtable的异同<br>7.允许null键的map你知道哪些<br>HashMap，LinkedHashMap, WeakHashMap<br>8.null键放在HashMap的哪里<br>底层数组的0号位置<br>9.为什么hashtable的扩容是2倍+1<br>从除留余数法，hashtable初始容量方面回答<br>10.红黑树的插入时间复杂度<br>11.解决哈希冲突的方式<br>12.现有1T的数据，内存只有1G，该怎么对他们排序<br>外部排序(多路归并)<br>13.Tomcat为什么要重写类加载器<br>14.tcp握手挥手过程及其状态转换15.mysql隔离级别<br>16.B树和B+树的区别<br>17.你知道哪些设计模式，它们在JDK源码中是怎么体现的18.Java运行时数据区<br>19.说一个最熟悉的垃圾回收算法<br>20.吞吐量优先和响应时间优先的回收器是哪些<br>parallel scavenge和CMS<br>21.类加载全过程</p>
+<p>22.线程池7个参数<br>23.CAS的ABA问题怎么解决<br>AtomicStampedReference，还可月<br>24.Java内存模型<br>JMM共享内存模型以及8个原子操作指令<br>25.什么叫做阻塞队列的有界和无界<br>26.cookie和session介绍一下<br>27.说一下反射，反射会影响性能吗28.谈一下AQS吧<br>29.为什么你说AQS的底层是CAS+volatile<br>state是volatile修饰的，<br>:ompareAndSetState<br>30.JUC包里的同步组件主要实现了AQS的哪些主要方法<br>tryA<br>ryReleaseShared, isHeldExclusivelycoding: leetcode+剑指offer原题<br>美团(3轮技术面):<br>.ConcurrentHashMap底层原理?.手写一个LRU<br>用LinkedHashMap<br>3.HashMap底层数据结构<br>4.为什么用红黑树不用普通的AVL树5.为什么在8的时候链表变成树5.为什么在6的时候从树退回链表7.线程池7个参数，该怎么配置最好3.说一下volatile</p>
+<p>19.具体讲一下CMS流程20.锁的四种状态<br>21.Object obj &#x3D; new Object()这句话在内存里占用了多少内存<br>引用<br>填充增值16Byte，共20Byte<br>22.synchronized和reentrantLock的异同<br>京东（2轮技术面):<br>1.总体说一下集合框架Ⅰ2.你怎么看待接口和抽象类3.索引的分类<br>4.主键索引的设计应该采用B-tree索引还是hash索引5.设计模式说5，6个<br>5.谈一谈DDD面向领域编程<br>7.说一下hibernate—级缓存和二级缓存3.说一下你了解的MQ<br>9.谈一谈你对高并发的理解，你会从什么角度设计高并发程序10.JUC包里的限流该怎么做到<br>Semaphore &#x2F; guava ratelimiter<br>11.索引不适用的条件<br>12.说一下NIO和AIO<br>13.AIO里用到什么设计模式<br>观察者<br>14.说一下select,poll, epoll<br>15.谈一下TCP的拥塞控制</p>
+<p>Tomcat为什么要重写类加载器tcp握手挥手过程及其状态转换mysql隔离级别<br>B树和B+树的区别<br>你知道哪些设计模式，它们在JDK源码中是怎么体现的Java运行时数据区<br>说一个最熟悉的垃圾回收算法<br>吞吐量优先和响应时间优先的回收器是哪些<br>parallel scavenge和C<br>MS<br>类加载全过程<br>线程池7个参数<br>CAS的ABA问题怎么解决<br>AtomicStampedReference，还可用带boolean版本戳的AtomicMarkableReference<br>Java内存模型<br>JMM共享内存模型以及8个原子操作指令<br>什么叫做阻塞队列的有界和无界<br>cookie和session介绍一下<br>说一下反射，反射会影响性能吗谈一下AQS吧<br>为什么你说AQS的底层是CAS+volatile<br>state是volatile修饰的，并且设置state的方法除了有setState，还有<br>npareAndSetState<br>JUC包里的同步组件主要实现了AQS的哪些主要方法<br>tryAcquire,<br>tryRelease, tryAcquireShared,<br>ReleaseShared, isHeldExclusivelycoding: leetcode+剑指offer原题共5题</p>
 
       
     </div>
@@ -1268,9 +1425,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-05-06 11:02:46 / Modified: 11:04:49" itemprop="dateCreated datePublished" datetime="2023-05-06T11:02:46+08:00">2023-05-06</time>
+      <time title="Created: 2023-05-06 11:02:46" itemprop="dateCreated datePublished" datetime="2023-05-06T11:02:46+08:00">2023-05-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-05-12 20:52:49" itemprop="dateModified" datetime="2023-05-12T20:52:49+08:00">2023-05-12</time>
     </span>
 
   
@@ -1283,7 +1446,639 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <p>索引不适用的条件<br>索引列上有函数，不满足最左前缀，使用了不等号，使用了范围查询等等<br>索引的分类<br>B-Tree索引， Hash索引，全文索引，单值索引、唯一索引、复合索引<br>聚簇索引、非聚簇索引等等，</p>
+<h1 id="监视器"><a href="#监视器" class="headerlink" title="监视器"></a>监视器</h1><h2 id="打开MySQL监视器"><a href="#打开MySQL监视器" class="headerlink" title="打开MySQL监视器"></a>打开MySQL监视器</h2><p>打开MySQL监视器的命令格式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u 用户名 -p密码</span><br></pre></td></tr></table></figure>
+
+<p>或者使用命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u 用户名 -p</span><br></pre></td></tr></table></figure>
+
+<p>然后输入密码即可</p>
+<h2 id="查看字符编码"><a href="#查看字符编码" class="headerlink" title="查看字符编码"></a>查看字符编码</h2><p>在监视器中查看MySQL中字符编码等的设置情况的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">status</span><br></pre></td></tr></table></figure>
+
+<p>或者使用命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW VARIABLES LIKE &#x27;char%&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改密码"><a href="#修改密码" class="headerlink" title="修改密码"></a>修改密码</h2><p>修改密码的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SET PASSWORD FOR root@localhost=PASSWORD(&#x27;新密码&#x27;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="创建用户"><a href="#创建用户" class="headerlink" title="创建用户"></a>创建用户</h2><p>创建用户的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE USER 新用户名 IDENTIFIED BY ‘密码’</span><br></pre></td></tr></table></figure>
+
+<p>用户名需要按照“用户名@主机名”的方式写</p>
+<h2 id="设置用户权限"><a href="#设置用户权限" class="headerlink" title="设置用户权限"></a>设置用户权限</h2><p>设置用户权限的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CRANT 赋予的权限 ON 数据库名.表名 TO 用户名</span><br></pre></td></tr></table></figure>
+
+<p>“赋予的权限”如果是所有权限就设为“ALL”，如果仅允许SELECL和UPDATE就设置为“SELECT,UPDATE”</p>
+<p>如果是所有数据库的所有数据表，就设置为“*.*”</p>
+<h2 id="退出监视器"><a href="#退出监视器" class="headerlink" title="退出监视器"></a>退出监视器</h2><p>退出监视器的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+<p>或者使用命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">quit</span><br></pre></td></tr></table></figure>
+
+<h1 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h1><p>MySQL的SQL语句后面需要加分号。</p>
+<h2 id="创建数据库"><a href="#创建数据库" class="headerlink" title="创建数据库"></a>创建数据库</h2><p>创建数据库的命令格式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE DATABASE 数据库名;</span><br></pre></td></tr></table></figure>
+
+<h2 id="指定使用的数据库"><a href="#指定使用的数据库" class="headerlink" title="指定使用的数据库"></a>指定使用的数据库</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use 数据库名</span><br></pre></td></tr></table></figure>
+
+<p>use不是SQL语句，所以不需要输入“;”</p>
+<p>在使用use选择数据库的状态下也能够操作其他数据库的表，如</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM db2.table;</span><br></pre></td></tr></table></figure>
+
+<p>在没有use db2的情况下也可以执行</p>
+<h2 id="显示数据库"><a href="#显示数据库" class="headerlink" title="显示数据库"></a>显示数据库</h2><h3 id="显示当前已有的数据库"><a href="#显示当前已有的数据库" class="headerlink" title="显示当前已有的数据库"></a>显示当前已有的数据库</h3><p>显示当前已有的数据库的命令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW DATABASE;</span><br></pre></td></tr></table></figure>
+
+<h3 id="显示当前使用的数据库"><a href="#显示当前使用的数据库" class="headerlink" title="显示当前使用的数据库"></a>显示当前使用的数据库</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT DATABASE();</span><br></pre></td></tr></table></figure>
+
+<h2 id="删除数据库"><a href="#删除数据库" class="headerlink" title="删除数据库"></a>删除数据库</h2><p>在MySQL中，你可以使用<code>DROP DATABASE</code>语句来删除已经存在的数据库。以下是其基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> DATABASE database_name;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>database_name</code>是你想要删除的数据库的名称。例如，如果你想删除名为<code>my_database</code>的数据库，你可以这样做：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> DATABASE my_database;</span><br></pre></td></tr></table></figure>
+
+<p>这将删除<code>my_database</code>数据库以及其中的所有表和数据。</p>
+<p>请注意，<code>DROP DATABASE</code>语句会永久删除数据库以及其中的所有表和数据，因此在使用之前请确保你真的想要删除该数据库。</p>
+<p>类似地，你也可以使用<code>IF EXISTS</code>子句来避免在尝试删除不存在的数据库时出现错误，语法如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> DATABASE IF <span class="keyword">EXISTS</span> database_name;</span><br></pre></td></tr></table></figure>
+
+<p>如果<code>database_name</code>存在，那么它将被删除。如果它不存在，MySQL将发出一条警告，而不是一个错误，并允许查询继续。这对于自动化脚本或者你不确定数据库是否存在时非常有用，因为它可以防止因尝试删除不存在的数据库而导致的错误。</p>
+<h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><p>数据库表列中的数据的种类成为数据类型</p>
+<h2 id="数值型数据类型"><a href="#数值型数据类型" class="headerlink" title="数值型数据类型"></a>数值型数据类型</h2><table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">含义</th>
+<th align="center">对应范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">TINYINT</td>
+<td align="center">极小整数值</td>
+<td align="center">-128 到 127（有符号），0 到 255（无符号）</td>
+</tr>
+<tr>
+<td align="center">SMALLINT</td>
+<td align="center">小整数值</td>
+<td align="center">-32768 到 32767（有符号），0 到 65535（无符号）</td>
+</tr>
+<tr>
+<td align="center">MEDIUMINT</td>
+<td align="center">中等大小的整数值</td>
+<td align="center">-8388608 到 8388607（有符号），0 到 16777215（无符号）</td>
+</tr>
+<tr>
+<td align="center">INT</td>
+<td align="center">常规大小的整数值</td>
+<td align="center">-2147483648 到 2147483647（有符号），0 到 4294967295（无符号）</td>
+</tr>
+<tr>
+<td align="center">BIGINT</td>
+<td align="center">非常大的整数值</td>
+<td align="center">-9223372036854775808 到 9223372036854775807（有符号），0 到 18446744073709551615（无符号）</td>
+</tr>
+<tr>
+<td align="center">FLOAT</td>
+<td align="center">单精度浮点数</td>
+<td align="center">精度大约为 7 位小数</td>
+</tr>
+<tr>
+<td align="center">DOUBLE</td>
+<td align="center">双精度浮点数</td>
+<td align="center">精度大约为 15 位小数</td>
+</tr>
+<tr>
+<td align="center">DECIMAL</td>
+<td align="center">精确的小数值，用于存储精确的数值，如货币</td>
+<td align="center">精度可达 65 位，小数部分最多 30 位</td>
+</tr>
+</tbody></table>
+<p>输入的数值型数据可以采用指数表示法输入，在指数表示法输入的情况下，“AE+B”表示“A乘以10的B次方”，例如“6.02*10的23次方”可以表示为“6.02E+23”。</p>
+<h2 id="字符串型数据类型"><a href="#字符串型数据类型" class="headerlink" title="字符串型数据类型"></a>字符串型数据类型</h2><table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">含义</th>
+<th align="center">对应范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CHAR</td>
+<td align="center">定长字符串，长度固定</td>
+<td align="center">0 到 255 字节</td>
+</tr>
+<tr>
+<td align="center">VARCHAR</td>
+<td align="center">变长字符串，长度可变</td>
+<td align="center">0 到 65535 字节</td>
+</tr>
+<tr>
+<td align="center">TINYTEXT</td>
+<td align="center">很小的文本字符串</td>
+<td align="center">0 到 255 字节</td>
+</tr>
+<tr>
+<td align="center">TEXT</td>
+<td align="center">小到中等大小的文本字符串</td>
+<td align="center">0 到 65535 字节</td>
+</tr>
+<tr>
+<td align="center">MEDIUMTEXT</td>
+<td align="center">中等大小的文本字符串</td>
+<td align="center">0 到 16777215 字节</td>
+</tr>
+<tr>
+<td align="center">LONGTEXT</td>
+<td align="center">大文本字符串</td>
+<td align="center">0 到 4294967295 字节</td>
+</tr>
+<tr>
+<td align="center">ENUM</td>
+<td align="center">字符串对象，只能有一组预定义的值，并且值的数量不能超过 65535</td>
+<td align="center">1 或 2 字节，根据枚举值的数量</td>
+</tr>
+<tr>
+<td align="center">SET</td>
+<td align="center">字符串对象，可以有多个值，值的数量不能超过 64</td>
+<td align="center">1、2、3、4 或 8 字节，根据集合值的数量</td>
+</tr>
+</tbody></table>
+<p>输入的字符串如果有“’”，需要转义处理，改为“\‘”</p>
+<p>MySQL4.1版本之后，VARCHAR和CHAR的()中指定的位数单位变为“字符”，以VARCHAR(10)为例，不管输入的是中文还是英文还是数字，最多只能保留10个字符</p>
+<p><strong>VARCHAR的字符范围：</strong></p>
+<p>在MySQL 5.0.3及更高版本中，<code>VARCHAR</code>可以存储最多65535字节的数据，这包括存储长度的1到2个字节。实际的最大字符串长度由最大行大小（默认为65535字节）和使用的字符集决定。</p>
+<p>例如，如果使用utf8字符集（最多需要3字节来存储一个字符），则<code>VARCHAR</code>可以存储最多21845个字符（65535&#x2F;3，舍去小数）。如果使用utf8mb4字符集（最多需要4字节来存储一个字符），则<code>VARCHAR</code>可以存储最多16383个字符（65535&#x2F;4，舍去小数）。</p>
+<p>在MySQL 5.0.2及更低版本中，<code>VARCHAR</code>可以存储最多255个字符。</p>
+<h2 id="日期和时间型数据类型"><a href="#日期和时间型数据类型" class="headerlink" title="日期和时间型数据类型"></a>日期和时间型数据类型</h2><table>
+<thead>
+<tr>
+<th align="center">数据类型</th>
+<th align="center">含义</th>
+<th align="center">对应范围</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">YEAR</td>
+<td align="center">年份</td>
+<td align="center">1901 到 2155（4位时），以及1970<del>2069（2位时，70</del>69）</td>
+</tr>
+<tr>
+<td align="center">DATE</td>
+<td align="center">日期</td>
+<td align="center">‘1000-01-01’ 到 ‘9999-12-31’</td>
+</tr>
+<tr>
+<td align="center">TIME</td>
+<td align="center">时间</td>
+<td align="center">‘-838:59:59’ 到 ‘838:59:59’</td>
+</tr>
+<tr>
+<td align="center">DATETIME</td>
+<td align="center">日期和时间组合</td>
+<td align="center">‘1000-01-01 00:00:00’ 到 ‘9999-12-31 23:59:59’</td>
+</tr>
+<tr>
+<td align="center">TIMESTAMP</td>
+<td align="center">时间戳</td>
+<td align="center">‘1970-01-01 00:00:01’ UTC 到 ‘2038-01-19 03:14:07’ UTC</td>
+</tr>
+</tbody></table>
+<p>MySQL中的时间类型还支持小数秒，例如 <code>DATETIME(3)</code>、<code>TIME(3)</code> 或 <code>TIMESTAMP(3)</code> 可以存储精确到毫秒的时间。在括号中的数字表示小数秒的精度。</p>
+<h1 id="表操作"><a href="#表操作" class="headerlink" title="表操作"></a>表操作</h1><h2 id="创建表及其字段"><a href="#创建表及其字段" class="headerlink" title="创建表及其字段"></a>创建表及其字段</h2><p>在MySQL中，你可以使用<code>CREATE TABLE</code>语句来创建一个新的表。在<code>CREATE TABLE</code>语句中，你可以指定表名，列名，列的数据类型以及任何附加的约束。</p>
+<p>以下是一个创建新表的基本示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">    column1 datatype <span class="keyword">constraint</span>,</span><br><span class="line">    column2 datatype <span class="keyword">constraint</span>,</span><br><span class="line">    column3 datatype <span class="keyword">constraint</span>,</span><br><span class="line">    ....</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>table_name</code>是你要创建的表的名称，<code>column1</code>、<code>column2</code>和<code>column3</code>是列的名称，<code>datatype</code>是列的数据类型，<code>constraint</code>是任何你想在列上应用的约束。</p>
+<p>例如，假设你想创建一个名为<code>students</code>的表，其中有<code>id</code>、<code>name</code>、<code>age</code>和<code>email</code>四个字段。你可以这样做：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> students (</span><br><span class="line">    id <span class="type">INT</span> AUTO_INCREMENT <span class="keyword">PRIMARY</span> KEY,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">100</span>),</span><br><span class="line">    age <span class="type">INT</span>,</span><br><span class="line">    email <span class="type">VARCHAR</span>(<span class="number">100</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中：</p>
+<ul>
+<li><code>id</code>是一个整数类型的列，它自动递增并且是表的主键。</li>
+<li><code>name</code>和<code>email</code>都是变长字符类型的列，最大长度为100。</li>
+<li><code>age</code>是一个整数类型的列。</li>
+</ul>
+<p>注意，每一行都需要以逗号结束，但是最后一行除外。最后，整个语句需要以分号结束。</p>
+<p>数据库名、表名、列名可以使用&#96;&#96;（反引号）括起来</p>
+<p>输入到列中字符串的值需要用’’（单引号）或者””（双引号）括起来</p>
+<p>创建表时指定字符编码：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名 (列名1 数据类型1, 列名2 数据库类型2...) CHARSET=utf8;</span><br></pre></td></tr></table></figure>
+
+<h2 id="字段设置"><a href="#字段设置" class="headerlink" title="字段设置"></a>字段设置</h2><h3 id="设置主键"><a href="#设置主键" class="headerlink" title="设置主键"></a>设置主键</h3><p>主键的特点：</p>
+<ul>
+<li>没有重复的值</li>
+<li>不允许输入空值（NULL）</li>
+</ul>
+<p>命令格式：</p>
+<p>在创建表时给主键字段后添加PRIMARY KEY</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE 表名 (列名1 数据类型1 PRIMARY KEY, 列名2 数据库类型2...);</span><br></pre></td></tr></table></figure>
+
+<h3 id="设置唯一键"><a href="#设置唯一键" class="headerlink" title="设置唯一键"></a>设置唯一键</h3><p>唯一键（unique key）的特点</p>
+<ul>
+<li><p>不允许重复</p>
+</li>
+<li><p>允许输入NULL</p>
+</li>
+<li><p>在创建表时定义唯一键：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">  column1 data_type,</span><br><span class="line">  column2 data_type,</span><br><span class="line">  <span class="keyword">UNIQUE</span> (column1)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在已存在的表上添加唯一键：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> (column1);</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="设置列可以自动递增"><a href="#设置列可以自动递增" class="headerlink" title="设置列可以自动递增"></a>设置列可以自动递增</h3><p>自动递增（AUTO_INCREMENT）可以应用于任何整数类型的列。<code>AUTO_INCREMENT</code>属性允许数据库自动为新记录生成一个唯一的数字。通常用于主键。</p>
+<p>使用<code>AUTO_INCREMENT</code>属性，需要满足以下几个条件：</p>
+<ul>
+<li>列必须被定义为<code>NOT NULL</code>，因为它必须有值。</li>
+<li>列必须被定义为整数类型（例如，<code>INT</code>，<code>SMALLINT</code>，<code>MEDIUMINT</code>，<code>BIGINT</code>）。</li>
+<li>每个表只能有一个<code>AUTO_INCREMENT</code>列。</li>
+</ul>
+<p>示例，将<code>id</code>列定义为<code>AUTO_INCREMENT</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE employees (</span><br><span class="line">    id INT AUTO_INCREMENT,</span><br><span class="line">    name VARCHAR(100),</span><br><span class="line">    PRIMARY KEY(id)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>MySQL如何设置连续递增字段的初始值：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tablename (</span><br><span class="line">    id <span class="type">INT</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> AUTO_INCREMENT,</span><br><span class="line">    name <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    <span class="keyword">PRIMARY</span> KEY (id)</span><br><span class="line">) AUTO_INCREMENT<span class="operator">=</span><span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果已经创建了表，并且想改变AUTO_INCREMENT的值，可以使用ALTER TABLE命令：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename AUTO_INCREMENT <span class="operator">=</span> <span class="number">1000</span>;</span><br></pre></td></tr></table></figure>
+
+<p>注意，不能将AUTO_INCREMENT的值设置为比当前最大值小的数，因如果这样做，MySQL将忽略此次设置并保持当前最大值。</p>
+<h3 id="设置列的默认值"><a href="#设置列的默认值" class="headerlink" title="设置列的默认值"></a>设置列的默认值</h3><p>在MySQL中，可以在创建表或修改表的时候设置字段的默认值。这个默认值将被用于任何未指定该列值的新行。</p>
+<ol>
+<li>在创建表的时候设置默认值：</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> tablename (</span><br><span class="line">    columnname1 <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">1</span>,</span><br><span class="line">    columnname2 <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;default_value&#x27;</span></span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们创建了一个名为”tablename”的表，它有两个字段，”columnname1”和”columnname2”。对于”columnname1”，如果在插入新的行时没有指定它的值，那么它的值将默认为1。对于”columnname2”，如果在插入新的行时没有指定它的值，那么它的值将默认为’default_value’。</p>
+<ol start="2">
+<li>修改已经存在的表，为字段设置默认值：</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename </span><br><span class="line">MODIFY columnname1 <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="number">1</span>,</span><br><span class="line">MODIFY columnname2 <span class="type">VARCHAR</span>(<span class="number">255</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;default_value&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们更改了”tablename”表中”columnname1”和”columnname2”字段的默认值。</p>
+<p>注意，不能为NOT NULL的字段设置默认值为NULL。对于字符串类型的字段，默认值需要用引号引起来。对于日期和时间类型的字段，可以将默认值设置为CURRENT_TIMESTAMP。</p>
+<h3 id="索引（创建、删除、查看、主键索引、唯一索引、全局索引）"><a href="#索引（创建、删除、查看、主键索引、唯一索引、全局索引）" class="headerlink" title="索引（创建、删除、查看、主键索引、唯一索引、全局索引）"></a>索引（创建、删除、查看、主键索引、唯一索引、全局索引）</h3><p>在MySQL中，索引是用来加速查询操作的一种数据结构。它们可以让数据库引擎快速找到表中的特定记录。如果事先在表上创建了索引，查找时就不需要对全表进行扫描，而是利用索引进行扫描。</p>
+<p>下面是一些关于MySQL索引的基础知识：</p>
+<ol>
+<li><p><strong>创建索引：</strong> 创建索引可以使用 <code>CREATE INDEX</code> 命令。例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX index_name</span><br><span class="line"><span class="keyword">ON</span> table_name (column1, column2);</span><br></pre></td></tr></table></figure>
+
+<p>在上面的命令中，<code>index_name</code> 是索引的名称，<code>table_name</code> 是你要在其上创建索引的表的名称，<code>column1</code> 和 <code>column2</code> 是你想在其中创建索引的列。</p>
+</li>
+<li><p><strong>删除索引：</strong> 删除索引可以使用 <code>DROP INDEX</code> 命令。例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> INDEX index_name <span class="keyword">ON</span> table_name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>查看索引：</strong> 如果你想看一个表的所有索引，可以使用 <code>SHOW INDEX</code> 命令。例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> INDEX <span class="keyword">FROM</span> table_name;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>主键索引：</strong> 主键（PRIMARY KEY）自动创建唯一索引。每个MySQL表只能有一个主键。</p>
+</li>
+<li><p><strong>唯一索引：</strong> 唯一索引（UNIQUE INDEX）不允许任何重复值。它们可以是主键，也可以不是。</p>
+<p>唯一索引（Unique Index）的设置：</p>
+<ul>
+<li><p>在创建表时定义唯一索引：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">  column1 data_type,</span><br><span class="line">  column2 data_type,</span><br><span class="line">  <span class="keyword">UNIQUE</span> INDEX index_name (column1)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在已存在的表上添加唯一索引：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> INDEX index_name (column1);</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p><strong>全文索引：</strong> 全文索引（FULLTEXT INDEX）用于全文搜索。只有CHAR、VARCHAR和TEXT列可以创建全文索引。</p>
+</li>
+</ol>
+<p>使用索引的缺点：</p>
+<ol>
+<li>会占用额外的磁盘空间</li>
+<li>在执行插入、更新或删除操作时，索引也需要被更新，有耗时</li>
+<li>如果被创建索引的列中重复值较多，即使在该列上创建索引也不会提高处理速度</li>
+</ol>
+<h2 id="显示所有表"><a href="#显示所有表" class="headerlink" title="显示所有表"></a>显示所有表</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SHOW TABLES;</span><br></pre></td></tr></table></figure>
+
+<h2 id="显示表的列结构"><a href="#显示表的列结构" class="headerlink" title="显示表的列结构"></a>显示表的列结构</h2><p>ESC或者DESCRIBE，用于显示指定表的列结构，包括列名、数据类型、是否允许NULL，以及其他关于列的信息。</p>
+<p>运行这个命令会返回以下信息：</p>
+<ul>
+<li><strong>Field</strong>：列的名称。</li>
+<li><strong>Type</strong>：列的数据类型和长度。</li>
+<li><strong>Null</strong>：如果列可以包含NULL值，这个字段会显示”YES”，否则显示”NO”。</li>
+<li><strong>Key</strong>：如果列是某种键，这个字段会显示键的类型。”PRI”表示主键，”UNI”表示唯一键，”MUL”表示这个列是一个非唯一索引，或者这个列是多个列的一部分，这些列作为复合主键或复合索引，也可能是外键。</li>
+<li><strong>Default</strong>：列的默认值。如果没有指定默认值，这个字段会显示NULL。</li>
+<li><strong>Extra</strong>：其他的额外信息，例如，如果列被定义为AUTO_INCREMENT，这个字段就会显示”AUTO_INCREMENT”。</li>
+</ul>
+<p>，命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DESC 表名;</span><br></pre></td></tr></table></figure>
+
+<p>输出示例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">+</span><span class="comment">-------+--------------+------+-----+---------+----------------+</span></span><br><span class="line"><span class="operator">|</span> Field <span class="operator">|</span> Type         <span class="operator">|</span> <span class="keyword">Null</span> <span class="operator">|</span> Key <span class="operator">|</span> <span class="keyword">Default</span> <span class="operator">|</span> Extra          <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+--------------+------+-----+---------+----------------+</span></span><br><span class="line"><span class="operator">|</span> id    <span class="operator">|</span> <span class="type">int</span>(<span class="number">11</span>)      <span class="operator">|</span> <span class="keyword">NO</span>   <span class="operator">|</span> PRI <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span> auto_increment <span class="operator">|</span></span><br><span class="line"><span class="operator">|</span> name  <span class="operator">|</span> <span class="type">varchar</span>(<span class="number">100</span>) <span class="operator">|</span> YES  <span class="operator">|</span>     <span class="operator">|</span> <span class="keyword">NULL</span>    <span class="operator">|</span>                <span class="operator">|</span></span><br><span class="line"><span class="operator">+</span><span class="comment">-------+--------------+------+-----+---------+----------------+</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="修改表"><a href="#修改表" class="headerlink" title="修改表"></a>修改表</h2><p>在MySQL中，你可以使用<code>ALTER TABLE</code>语句来修改已经存在的表。使用ALTER TABLE命令修改列的结构，根据修改类型，可以使用带有CHANGE、MODIFY、ADD、DROP的语句。</p>
+<p>以下是一些常见的表修改操作：</p>
+<ol>
+<li><p><strong>添加列：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> column_name datatype;</span><br></pre></td></tr></table></figure>
+
+<p> 例如，如果你想在<code>students</code>表中添加一个名为<code>address</code>的新列，你可以这样做：</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students</span><br><span class="line"><span class="keyword">ADD</span> address <span class="type">VARCHAR</span>(<span class="number">255</span>);</span><br></pre></td></tr></table></figure>
+
+<p> 把列添加到指定位置的命令格式：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE 表名 ADD 列名 数据类型 AFTER 放在这个列之后;</span><br></pre></td></tr></table></figure>
+
+<p> 示例：</p>
+ <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ALTER TABLE tb1 ADD birth DATETIME AFTER employeeId;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>删除列：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">COLUMN</span> column_name;</span><br></pre></td></tr></table></figure>
+
+<p> 例如，如果你想从<code>students</code>表中删除<code>address</code>列，你可以这样做：</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students</span><br><span class="line"><span class="keyword">DROP</span> <span class="keyword">COLUMN</span> address;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>修改列的数据类型：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line">MODIFY <span class="keyword">COLUMN</span> column_name datatype;</span><br></pre></td></tr></table></figure>
+
+<p> 即使数据类型不变，也依然需要指定修改后的数据类型</p>
+<p> 例如，如果你想修改<code>students</code>表中<code>age</code>列的数据类型为<code>SMALLINT</code>，你可以这样做：</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students</span><br><span class="line">MODIFY <span class="keyword">COLUMN</span> age <span class="type">SMALLINT</span>;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>重命名列：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line">CHANGE <span class="keyword">COLUMN</span> old_column_name new_column_name datatype;</span><br></pre></td></tr></table></figure>
+
+<p> 例如，如果你想将<code>students</code>表中的<code>email</code>列重命名为<code>email_address</code>，你可以这样做：</p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> students</span><br><span class="line">CHANGE <span class="keyword">COLUMN</span> email email_address <span class="type">VARCHAR</span>(<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+
+<p> 即使数据类型不变，也依然需要指定修改后的数据类型</p>
+</li>
+<li><p><strong>添加唯一键、主键或索引：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">UNIQUE</span> (column_name);</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> <span class="keyword">PRIMARY</span> KEY (column_name);</span><br><span class="line"></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line"><span class="keyword">ADD</span> INDEX index_name (column_name);</span><br></pre></td></tr></table></figure>
+
+<p> <code>ALTER TABLE</code>语句会锁定表，直到操作完成。</p>
+</li>
+</ol>
+<h2 id="复制表"><a href="#复制表" class="headerlink" title="复制表"></a>复制表</h2><p>在MySQL中，你可以通过创建新表并从现有表中复制数据来复制表。下面是一种方法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> new_table <span class="keyword">AS</span> <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> existing_table;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>new_table</code>是你想要创建的新表的名称，<code>existing_table</code>是你想要复制数据的现有表的名称。这个操作将创建一个新表，并将现有表中的所有数据复制到新表中。</p>
+<p>需要注意的是，使用这种方法创建的新表不会包含现有表的索引、主键、唯一键和其他约束。如果你需要复制这些属性，你需要使用其他方法，例如先使用<code>CREATE TABLE</code>语句创建表和相应的约束，然后使用<code>INSERT INTO ... SELECT</code>语句复制数据：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> new_table <span class="keyword">LIKE</span> existing_table; </span><br><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> new_table <span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> existing_table;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>CREATE TABLE new_table LIKE existing_table;</code>语句创建一个与现有表结构（包括索引和约束）完全相同的新表，但不包含任何数据。然后，<code>INSERT INTO new_table SELECT * FROM existing_table;</code>语句将现有表中的所有数据复制到新表中。</p>
+<h2 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h2><p>在MySQL中，你可以使用 <code>DROP TABLE</code> 语句来删除已经存在的表。以下是其基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> table_name;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>table_name</code> 是你想要删除的表的名称。例如，如果你想删除名为 <code>students</code> 的表，你可以这样做：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> students;</span><br></pre></td></tr></table></figure>
+
+<p>此外，在目标表不存在的情况下执行DROP命令会发生错误，如果和<code>IF EXISTS</code>子句一起使用，就可以避免在试图删除不存在的表时出现错误。下面是如何使用它的语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> table_name;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>table_name</code>是你想要删除的表的名称。例如，如果你想删除名为<code>students</code>的表，你可以这样做：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> IF <span class="keyword">EXISTS</span> students;</span><br></pre></td></tr></table></figure>
+
+<p>如果<code>students</code>表存在，上述语句将删除它。如果<code>students</code>表不存在，MySQL将发出一条警告，而不是一个错误，并允许查询继续。</p>
+<h2 id="删除所有记录"><a href="#删除所有记录" class="headerlink" title="删除所有记录"></a>删除所有记录</h2><p>请注意，<code>DROP TABLE</code> 语句会永久删除表以及表中的所有数据，因此在使用之前请确保你真的想要删除该表。如果你只是想删除表中的所有数据，但是想保留表的结构（例如列的定义和约束），你应该使用 <code>TRUNCATE TABLE</code> 语句，在MySQL中，<code>TRUNCATE</code>是一个DDL（数据定义语言）语句，用于删除表中的所有记录如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">TRUNCATE</span> <span class="keyword">TABLE</span> table_name;</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>TRUNCATE TABLE students;</code> 会删除 <code>students</code> 表中的所有数据，但是表本身和其结构仍然存在。</p>
+<p>或者使用如下命令也可以达到同样的效果：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP FROM table_name;</span><br></pre></td></tr></table></figure>
+
+<h2 id="插入记录"><a href="#插入记录" class="headerlink" title="插入记录"></a>插入记录</h2><p>在MySQL中，可以使用<code>INSERT INTO</code>语句向表中插入数据。以下是几个例子：</p>
+<ol>
+<li><p><strong>插入完整的行数据：</strong></p>
+<p>在这种情况下，你需要提供表中每个列的值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (column1, column2, column3, ...)</span><br><span class="line"><span class="keyword">VALUES</span> (value1, value2, value3, ...);</span><br></pre></td></tr></table></figure>
+
+<p>例如，如果你有一个名为<code>students</code>的表，它有<code>id</code>, <code>name</code>, <code>age</code>, <code>email</code>四个列，你可以这样插入数据：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> students (id, name, age, email)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="number">1</span>, <span class="string">&#x27;John Doe&#x27;</span>, <span class="number">20</span>, <span class="string">&#x27;johndoe@example.com&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>注意：如果你的表有一个设置了<code>AUTO_INCREMENT</code>的列（如<code>id</code>列），你可以在插入数据时省略该列，MySQL会自动为它分配一个值。</p>
+</li>
+<li><p><strong>插入特定列的数据：</strong></p>
+<p>在这种情况下，你只需要提供你想插入的列的值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (column1, column2, ...)</span><br><span class="line"><span class="keyword">VALUES</span> (value1, value2, ...);</span><br></pre></td></tr></table></figure>
+
+<p>例如，如果你只想插入<code>students</code>表中的<code>name</code>和<code>email</code>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> students (name, email)</span><br><span class="line"><span class="keyword">VALUES</span> (<span class="string">&#x27;John Doe&#x27;</span>, <span class="string">&#x27;johndoe@example.com&#x27;</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>插入多行数据：</strong></p>
+<p>你可以一次插入多行数据，只需在<code>VALUES</code>关键字后面列出所有的值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name (column1, column2, ...)</span><br><span class="line"><span class="keyword">VALUES</span> </span><br><span class="line">(value1, value2, ...),</span><br><span class="line">(value1, value2, ...),</span><br><span class="line">...</span><br><span class="line">;</span><br></pre></td></tr></table></figure>
+
+<p>例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> students (name, email)</span><br><span class="line"><span class="keyword">VALUES</span> </span><br><span class="line">(<span class="string">&#x27;John Doe&#x27;</span>, <span class="string">&#x27;johndoe@example.com&#x27;</span>),</span><br><span class="line">(<span class="string">&#x27;Jane Doe&#x27;</span>, <span class="string">&#x27;janedoe@example.com&#x27;</span>);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h2><p>在MySQL中，你可以使用<code>UPDATE</code>语句来更新已经存在的记录。以下是其基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table_name</span><br><span class="line"><span class="keyword">SET</span> column1 <span class="operator">=</span> value1, column2 <span class="operator">=</span> value2, ...</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">condition</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>table_name</code>是你想要更新记录的表的名称，<code>column1</code>, <code>column2</code>, … 是你想要更新的列的名称，<code>value1</code>, <code>value2</code>, … 是你想设置的新值，<code>condition</code>是用于确定哪些记录应该被更新的条件。</p>
+<p>以下是一个例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> students</span><br><span class="line"><span class="keyword">SET</span> age <span class="operator">=</span> <span class="number">21</span>, email <span class="operator">=</span> <span class="string">&#x27;newemail@example.com&#x27;</span></span><br><span class="line"><span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;John Doe&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个语句会在<code>students</code>表中找到所有名字为<code>John Doe</code>的记录，并将它们的<code>age</code>列设置为21，<code>email</code>列设置为<code>newemail@example.com</code>。</p>
+<p>请注意，如果你省略了<code>WHERE</code>子句，<code>UPDATE</code>语句将更新表中的所有记录。因此，除非你真的想更新所有记录，否则应始终在使用<code>UPDATE</code>语句时包含<code>WHERE</code>子句。</p>
+<p>另外，你应该谨慎使用<code>UPDATE</code>语句，因为一旦记录被更新，你就不能撤销更改。在更新重要的表之前，你应该考虑备份数据。</p>
+<h2 id="复制记录"><a href="#复制记录" class="headerlink" title="复制记录"></a>复制记录</h2><h2 id="删除记录"><a href="#删除记录" class="headerlink" title="删除记录"></a>删除记录</h2><h1 id="关键字"><a href="#关键字" class="headerlink" title="关键字"></a>关键字</h1><h2 id="WHERE"><a href="#WHERE" class="headerlink" title="WHERE"></a>WHERE</h2><p>在MySQL中，<code>WHERE</code>子句用于在查询中指定条件，以过滤出满足特定条件的记录。以下是<code>WHERE</code>子句的基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, ...</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">condition</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>column1</code>, <code>column2</code>, … 是你想要从表中选择的列的名称，<code>table_name</code> 是你想要查询的表的名称，<code>condition</code> 是用于确定哪些记录应该被返回的条件。</p>
+<p>以下是一些使用<code>WHERE</code>子句的例子：</p>
+<ol>
+<li><p><strong>基于单个条件的查询：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> age <span class="operator">&gt;</span> <span class="number">20</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这个查询将返回年龄大于 20 的所有学生记录。</p>
+</li>
+<li><p><strong>基于多个条件的查询：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> age <span class="operator">&gt;</span> <span class="number">20</span> <span class="keyword">AND</span> gender <span class="operator">=</span> <span class="string">&#x27;Female&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这个查询将返回年龄大于 20 并且性别为女性的学生记录。</p>
+</li>
+<li><p><strong>使用比较运算符的查询：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> age <span class="keyword">BETWEEN</span> <span class="number">18</span> <span class="keyword">AND</span> <span class="number">25</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这个查询将返回年龄在 18 到 25 之间的学生记录。</p>
+</li>
+<li><p><strong>使用逻辑运算符的查询：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> age <span class="operator">&gt;</span> <span class="number">20</span> <span class="keyword">OR</span> gender <span class="operator">=</span> <span class="string">&#x27;Female&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这个查询将返回年龄大于 20 或性别为女性的学生记录。</p>
+</li>
+</ol>
+<p>请注意，<code>WHERE</code>子句可以使用比较运算符（如 <code>=</code>, <code>&lt;&gt;</code>, <code>&lt;</code>, <code>&gt;</code>, <code>&lt;=</code>, <code>&gt;=</code>），逻辑运算符（如 <code>AND</code>, <code>OR</code>, <code>NOT</code>），以及其他条件表达式（如 <code>IN</code>, <code>LIKE</code>, <code>IS NULL</code> 等）来构建复杂的条件。</p>
+<h2 id="HAVING"><a href="#HAVING" class="headerlink" title="HAVING"></a>HAVING</h2><p>在MySQL中，<code>HAVING</code>子句用于在<code>GROUP BY</code>子句后对分组结果进行筛选。它允许你使用聚合函数和条件来过滤分组后的结果集。</p>
+<p>以下是<code>HAVING</code>的基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, ..., aggregate_function(<span class="keyword">column</span>)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> column1, column2, ...</span><br><span class="line"><span class="keyword">HAVING</span> <span class="keyword">condition</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>column1</code>, <code>column2</code>, … 是你想要从表中选择的列的名称，<code>table_name</code> 是你想要查询的表的名称，<code>aggregate_function</code> 是一个聚合函数（如 <code>SUM</code>, <code>COUNT</code>, <code>AVG</code> 等），<code>column</code> 是你想要按照其进行分组的列，<code>condition</code> 是用于筛选结果的条件。</p>
+<p>以下是一个例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> department, <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">as</span> total_students</span><br><span class="line"><span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> department</span><br><span class="line"><span class="keyword">HAVING</span> <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="operator">&gt;</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个查询将根据学生表中的<code>department</code>列对记录进行分组，并计算每个部门的学生人数。然后，<code>HAVING</code>子句筛选出具有超过 10 名学生的部门。</p>
+<p>请注意，<code>HAVING</code>子句在查询中的位置很重要，它通常出现在<code>GROUP BY</code>子句之后，<code>ORDER BY</code>子句之前。与<code>WHERE</code>子句不同，<code>HAVING</code>子句可以使用聚合函数和列的别名来指定条件。</p>
+<p>另外，如果你只想筛选单个表中的数据而不进行分组，你可以使用<code>WHERE</code>子句。<code>HAVING</code>子句主要用于筛选分组后的结果。</p>
+<h2 id="IN"><a href="#IN" class="headerlink" title="IN"></a>IN</h2><p>在MySQL中，<code>IN</code>是一个逻辑运算符，它允许你在<code>WHERE</code>或<code>HAVING</code>子句中指定多个值。以下是其基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, ...</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">IN</span> (value1, value2, ...);</span><br></pre></td></tr></table></figure>
+
+<p>在这个语句中，<code>column1</code>, <code>column2</code>, … 是你想从表中选择的列的名称，<code>table_name</code>是你想从中选择数据的表的名称，<code>column_name</code>是你想要应用条件的列的名称，<code>value1</code>, <code>value2</code>, … 是你想在列中查找的值。</p>
+<p>例如，如果你想从<code>students</code>表中选择名字为’John Doe’或’Jane Doe’的学生，你可以这样做：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> name <span class="keyword">IN</span> (<span class="string">&#x27;John Doe&#x27;</span>, <span class="string">&#x27;Jane Doe&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p><code>IN</code>运算符等价于多个<code>OR</code>条件。上面的查询等价于以下查询：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> name <span class="operator">=</span> <span class="string">&#x27;John Doe&#x27;</span> <span class="keyword">OR</span> name <span class="operator">=</span> <span class="string">&#x27;Jane Doe&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>你还可以在<code>IN</code>子句中使用子查询来动态生成值的列表。例如，以下查询会选择所有在<code>courses</code>表中有记录的学生：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> id <span class="keyword">IN</span> (<span class="keyword">SELECT</span> student_id <span class="keyword">FROM</span> courses);</span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，子查询<code>SELECT student_id FROM courses</code>会返回所有在<code>courses</code>表中有记录的学生的ID，然后主查询会从<code>students</code>表中选择这些ID对应的学生。</p>
+<h2 id="EXIST"><a href="#EXIST" class="headerlink" title="EXIST"></a>EXIST</h2><p>在MySQL中，<code>EXISTS</code>是一个条件运算符，用于检查一个子查询是否返回了任何行。它通常与<code>SELECT</code>语句的<code>WHERE</code>子句一起使用。</p>
+<p>以下是<code>EXISTS</code>的基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, ...</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (subquery);</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>column1</code>, <code>column2</code>, … 是你想要从表中选择的列的名称，<code>table_name</code> 是你想要查询的表的名称，<code>subquery</code> 是一个子查询，它可以是一个完整的<code>SELECT</code>语句。</p>
+<p>以下是一个例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name</span><br><span class="line"><span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">    <span class="keyword">FROM</span> courses</span><br><span class="line">    <span class="keyword">WHERE</span> courses.student_id <span class="operator">=</span> students.id</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>这个查询将返回在<code>students</code>表中存在对应课程的学生的姓名。子查询检查是否存在与<code>students</code>表中的学生关联的记录在<code>courses</code>表中。</p>
+<p><code>EXISTS</code>运算符返回布尔值（<code>TRUE</code>或<code>FALSE</code>），如果子查询返回至少一行，则为<code>TRUE</code>，否则为<code>FALSE</code>。它通常用于<code>WHERE</code>子句中作为一个条件来过滤查询结果。</p>
+<p>请注意，<code>EXISTS</code>子查询可以是任意复杂的查询，它可以包含聚合函数、子查询、连接等。在使用<code>EXISTS</code>时，关联子查询通常使用相关列来建立条件，以与外部查询进行关联。</p>
+<h2 id="LIKE"><a href="#LIKE" class="headerlink" title="LIKE"></a>LIKE</h2><p>在MySQL中，<code>LIKE</code>是一个用于模式匹配的操作符，通常用于<code>WHERE</code>子句中以过滤符合特定模式的数据。</p>
+<p>以下是<code>LIKE</code>的基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, ...</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">LIKE</span> <span class="keyword">pattern</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>column1</code>, <code>column2</code>, … 是你想要从表中选择的列的名称，<code>table_name</code> 是你想要查询的表的名称，<code>column_name</code> 是你想要应用模式匹配的列的名称，<code>pattern</code> 是匹配模式。</p>
+<p><code>LIKE</code>操作符使用通配符来匹配模式，常用的通配符有：</p>
+<ul>
+<li><code>%</code>：匹配任意字符（包括零个字符）。</li>
+<li><code>_</code>：匹配任意单个字符。</li>
+<li><code>[characters]</code>：匹配指定字符集中的任意单个字符。</li>
+<li><code>[^characters]</code>：匹配不在指定字符集中的任意单个字符。</li>
+</ul>
+<p>以下是一些使用<code>LIKE</code>的例子：</p>
+<ol>
+<li><p><strong>以特定字符开头的匹配：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> name <span class="keyword">LIKE</span> <span class="string">&#x27;J%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这个查询将返回名字以字母 ‘J’ 开头的所有学生记录。</p>
+</li>
+<li><p><strong>以特定字符结尾的匹配：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> email <span class="keyword">LIKE</span> <span class="string">&#x27;%example.com&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这个查询将返回邮箱以 ‘@example.com’ 结尾的所有学生记录。</p>
+</li>
+<li><p><strong>包含特定字符的匹配：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> name <span class="keyword">LIKE</span> <span class="string">&#x27;%Doe%&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这个查询将返回名字中包含 ‘Doe’ 的所有学生记录。</p>
+</li>
+<li><p><strong>指定单个字符的匹配：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">WHERE</span> name <span class="keyword">LIKE</span> <span class="string">&#x27;_ohn&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这个查询将返回名字为四个字符并以 ‘ohn’ 结尾的所有学生记录，其中第二个字符可以是任意字符。</p>
+</li>
+</ol>
+<p>请注意，<code>LIKE</code>匹配区分大小写，如果需要不区分大小写的匹配，可以使用<code>COLLATE</code>关键字指定不区分大小写的字符集，如 <code>WHERE column_name COLLATE utf8_general_ci LIKE pattern;</code>。</p>
+<h2 id="ORDER-BY和ACS或DESC"><a href="#ORDER-BY和ACS或DESC" class="headerlink" title="ORDER BY和ACS或DESC"></a>ORDER BY和ACS或DESC</h2><p>在MySQL中，你可以使用<code>ORDER BY</code>子句对查询结果进行排序。<code>ORDER BY</code>子句可以指定按照一个或多个列进行升序（默认）或降序排序。</p>
+<p>以下是<code>ORDER BY</code>子句的基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, ...</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> column1 [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>], column2 [<span class="keyword">ASC</span><span class="operator">|</span><span class="keyword">DESC</span>], ...;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>column1</code>, <code>column2</code>, … 是你想要排序的列的名称，<code>ASC</code>表示升序（默认），<code>DESC</code>表示降序。</p>
+<p>以下是一些例子：</p>
+<ol>
+<li><p><strong>按照单个列进行升序排序：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> name <span class="keyword">ASC</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这将按照<code>name</code>列的字母顺序对<code>students</code>表中的记录进行升序排序。</p>
+</li>
+<li><p><strong>按照单个列进行降序排序：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这将按照<code>age</code>列的逆序（从高到低）对<code>students</code>表中的记录进行降序排序。</p>
+</li>
+<li><p><strong>按照多个列进行排序：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">ASC</span>, name <span class="keyword">ASC</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这将首先按照<code>age</code>列进行升序排序，然后对于具有相同<code>age</code>值的记录，按照<code>name</code>列的字母顺序进行升序排序。</p>
+</li>
+</ol>
+<p>请注意，<code>ORDER BY</code>子句应该在<code>SELECT</code>语句的最后使用。如果你想在查询结果中以相反的顺序排序，只需在列名后使用<code>DESC</code>关键字。默认情况下，排序是升序的（ASC）。</p>
+<h2 id="LIMIT"><a href="#LIMIT" class="headerlink" title="LIMIT"></a>LIMIT</h2><p>在MySQL中，<code>LIMIT</code>用于限制查询结果的数量。它可以在<code>SELECT</code>语句中用于指定返回的行数。</p>
+<p>以下是<code>LIMIT</code>的基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, ...</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line">LIMIT number_of_rows;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>column1</code>, <code>column2</code>, … 是你想要从表中选择的列的名称，<code>table_name</code> 是你想要查询的表的名称，<code>number_of_rows</code> 是你希望返回的行数。</p>
+<p>以下是一些使用<code>LIMIT</code>的例子：</p>
+<ol>
+<li><p><strong>限制结果集的行数：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students LIMIT <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这个查询将返回 <code>students</code> 表中的前 10 行记录。</p>
+</li>
+<li><p><strong>指定起始位置和行数：</strong></p>
+ <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students LIMIT <span class="number">5</span>, <span class="number">10</span>;</span><br></pre></td></tr></table></figure>
+
+<p> 这个查询将从 <code>students</code> 表中的第 6 行开始（偏移量为 5），返回后续的 10 行记录。这是通过使用两个参数来实现的，第一个参数是起始位置的偏移量，第二个参数是要返回的行数。</p>
+</li>
+</ol>
+<p><code>LIMIT</code>语句还可以与<code>ORDER BY</code>子句一起使用，以在指定排序顺序的基础上限制结果集的行数。例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> students <span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">DESC</span> LIMIT <span class="number">5</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这个查询将按照年龄降序排序，并返回年龄最大的前 5 条学生记录。</p>
+<p>请注意，<code>LIMIT</code>子句在查询中的位置很重要，它通常出现在<code>SELECT</code>语句的末尾。</p>
+<h2 id="GROUP-BY"><a href="#GROUP-BY" class="headerlink" title="GROUP BY"></a>GROUP BY</h2><p>在MySQL中，<code>GROUP BY</code>子句用于将查询结果按照一个或多个列进行分组。它常与聚合函数（如<code>SUM</code>、<code>COUNT</code>、<code>AVG</code>等）一起使用，以对每个组应用聚合函数并生成汇总结果。</p>
+<p>以下是<code>GROUP BY</code>的基本语法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, ..., aggregate_function(<span class="keyword">column</span>)</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> column1, column2, ...;</span><br></pre></td></tr></table></figure>
+
+<p>在这里，<code>column1</code>, <code>column2</code>, … 是你想要从表中选择的列的名称，<code>table_name</code> 是你想要查询的表的名称，<code>aggregate_function</code> 是一个聚合函数（如 <code>SUM</code>, <code>COUNT</code>, <code>AVG</code> 等），<code>column</code> 是你想要按照其进行分组的列。</p>
+<p>以下是一个例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> department, <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">as</span> total_students</span><br><span class="line"><span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> department;</span><br></pre></td></tr></table></figure>
+
+<p>这个查询将根据学生表中的<code>department</code>列对记录进行分组，并计算每个部门的学生人数。</p>
+<p>请注意，<code>GROUP BY</code>子句通常与聚合函数一起使用。在<code>SELECT</code>语句中，你可以选择其他非聚合列，但这些列必须出现在<code>GROUP BY</code>子句中或作为聚合函数的参数。否则，将出现错误。</p>
+<p>此外，你还可以在<code>GROUP BY</code>子句中使用多个列，以按照多个列进行分组。例如：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> department, gender, <span class="built_in">COUNT</span>(<span class="operator">*</span>) <span class="keyword">as</span> total_students</span><br><span class="line"><span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> department, gender;</span><br></pre></td></tr></table></figure>
+
+<p>这个查询将根据<code>department</code>和<code>gender</code>两个列对记录进行分组，并计算每个部门和性别的学生人数。</p>
+<h1 id="IN和EXIST的区别与联系"><a href="#IN和EXIST的区别与联系" class="headerlink" title="IN和EXIST的区别与联系"></a>IN和EXIST的区别与联系</h1><p>在MySQL中，<code>EXISTS</code>和<code>IN</code>是两个用于条件判断和子查询的关键字。</p>
+<p><code>EXISTS</code>用于检查子查询是否返回任何行，它返回一个布尔值。如果子查询返回至少一行，<code>EXISTS</code>条件为真（true），否则为假（false）。</p>
+<p><code>IN</code>用于判断一个值是否存在于子查询的结果集中，它也返回一个布尔值。如果值存在于子查询的结果集中，<code>IN</code>条件为真（true），否则为假（false）。</p>
+<p>以下是使用<code>EXISTS</code>和<code>IN</code>的基本语法示例：</p>
+<ol>
+<li><p>使用<code>EXISTS</code>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, ...</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (subquery);</span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name</span><br><span class="line"><span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">WHERE</span> <span class="keyword">EXISTS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line">    <span class="keyword">FROM</span> courses</span><br><span class="line">    <span class="keyword">WHERE</span> courses.student_id <span class="operator">=</span> students.id</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>使用<code>IN</code>：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, ...</span><br><span class="line"><span class="keyword">FROM</span> table_name</span><br><span class="line"><span class="keyword">WHERE</span> column_name <span class="keyword">IN</span> (subquery);</span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> name</span><br><span class="line"><span class="keyword">FROM</span> students</span><br><span class="line"><span class="keyword">WHERE</span> id <span class="keyword">IN</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> student_id</span><br><span class="line">    <span class="keyword">FROM</span> courses</span><br><span class="line">);</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>需要注意的是，<code>EXISTS</code>通常用于检查子查询的存在性，而<code>IN</code>通常用于检查一个值是否存在于另一个查询结果集中。在某些情况下，<code>EXISTS</code>和<code>IN</code>可以互相替代，但根据具体情况选择合适的关键字会更有效。此外，<code>EXISTS</code>通常在子查询的结果集很大时具有更好的性能，而<code>IN</code>适用于较小的结果集。</p>
+<h1 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h1><h2 id="SUM"><a href="#SUM" class="headerlink" title="SUM"></a>SUM</h2><h2 id="COUNT"><a href="#COUNT" class="headerlink" title="COUNT"></a>COUNT</h2><h2 id="AVG"><a href="#AVG" class="headerlink" title="AVG"></a>AVG</h2><h2 id="MIN"><a href="#MIN" class="headerlink" title="MIN"></a><strong>MIN</strong></h2><h2 id="MAX"><a href="#MAX" class="headerlink" title="MAX"></a>MAX</h2><h2 id="GROUP-CONCAT"><a href="#GROUP-CONCAT" class="headerlink" title="GROUP_CONCAT"></a><strong>GROUP_CONCAT</strong></h2><h1 id="基于条件的查询"><a href="#基于条件的查询" class="headerlink" title="基于条件的查询"></a>基于条件的查询</h1><p>用于创建条件的关键字：</p>
+<ul>
+<li>WHERE</li>
+<li>HAVING</li>
+</ul>
+<p>用于创建条件的关键字：</p>
+<ul>
+<li>比较运算符（如<code>=</code>，<code>!=</code>，<code>&lt;</code>，<code>&gt;</code>，<code>&lt;=</code>，<code>&gt;=</code>）</li>
+<li>逻辑运算符（如<code>AND</code>，<code>OR</code>，<code>NOT</code>），<code>IN</code>，<code>EXISTS</code>，<code>BETWEEN</code>，<code>LIKE</code>，<code>IS NULL</code>等</li>
+</ul>
+<h2 id="查询数据"><a href="#查询数据" class="headerlink" title="查询数据"></a>查询数据</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 列名1, 列名2... FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM 表名;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT &#x27;会将这段文字输出&#x27;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT (1+2)*3;</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用多个表"><a href="#使用多个表" class="headerlink" title="使用多个表"></a>使用多个表</h1><h2 id="显示多表记录"><a href="#显示多表记录" class="headerlink" title="显示多表记录"></a>显示多表记录</h2><h2 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h2><h2 id="外连接"><a href="#外连接" class="headerlink" title="外连接"></a>外连接</h2><h2 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h2><h2 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h2><h1 id="基于条件的输出"><a href="#基于条件的输出" class="headerlink" title="基于条件的输出"></a>基于条件的输出</h1><p><code>GROUP BY</code></p>
+<p><code>ORDER BY</code>搭配<code>ASC</code>或<code>DESC</code></p>
+<p><code>LIMIT</code></p>
+<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><h3 id="创建视图"><a href="#创建视图" class="headerlink" title="创建视图"></a>创建视图</h3><h3 id="设置条件创建视图"><a href="#设置条件创建视图" class="headerlink" title="设置条件创建视图"></a>设置条件创建视图</h3><h3 id="限制通过视图写入"><a href="#限制通过视图写入" class="headerlink" title="限制通过视图写入"></a>限制通过视图写入</h3><h3 id="替换视图"><a href="#替换视图" class="headerlink" title="替换视图"></a>替换视图</h3><h3 id="修改视图"><a href="#修改视图" class="headerlink" title="修改视图"></a>修改视图</h3><h3 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h3><h1 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h1><h2 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h2><h2 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h2><h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><h1 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h1><h1 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h1><h1 id="备份和恢复数据库"><a href="#备份和恢复数据库" class="headerlink" title="备份和恢复数据库"></a>备份和恢复数据库</h1><h1 id="调优"><a href="#调优" class="headerlink" title="调优"></a>调优</h1><blockquote>
+<p>调优的目的是提高数据库的处理效率</p>
+</blockquote>
+
       
     </div>
 
