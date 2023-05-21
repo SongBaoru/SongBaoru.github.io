@@ -117,7 +117,7 @@
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span>
       </div>
   </nav>
@@ -179,7 +179,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-05-21 15:33:20" itemprop="dateModified" datetime="2023-05-21T15:33:20+08:00">2023-05-21</time>
+      <time title="Modified: 2023-05-21 19:04:09" itemprop="dateModified" datetime="2023-05-21T19:04:09+08:00">2023-05-21</time>
     </span>
 
   
@@ -1320,7 +1320,31 @@
 <p>分库分表的实现可以分为两种方式：垂直切分和水平切分。垂直切分是将数据库中的表按照业务划分，将功能相近的业务表独立出来，分开部署；水平切分是将单张数据表中的数据进行划分，分散成多张表存储到多台服务器。</p>
 <h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>通常情况下，数据库的读操作远远多于写操作。通过读写分离，可以利用这一特点，将读操作分发给多个只负责读取数据的从服务器（读库），而将写操作发送给主服务器（写库）。这样一来，主服务器专注于处理写操作，而从服务器处理读操作，从而提高系统的整体性能和并发处理能力。</p>
 <h2 id="秒杀系统的特点"><a href="#秒杀系统的特点" class="headerlink" title="秒杀系统的特点"></a>秒杀系统的特点</h2><p>秒杀系统的并发量存在瞬时凸峰，也叫做流量突刺现象。</p>
-<h2 id="秒杀系统的方法"><a href="#秒杀系统的方法" class="headerlink" title="秒杀系统的方法"></a>秒杀系统的方法</h2><h2 id="秒杀系统设计"><a href="#秒杀系统设计" class="headerlink" title="秒杀系统设计"></a>秒杀系统设计</h2><h2 id="扣减库存设计"><a href="#扣减库存设计" class="headerlink" title="扣减库存设计"></a>扣减库存设计</h2><h2 id="Redis助力秒杀系统"><a href="#Redis助力秒杀系统" class="headerlink" title="Redis助力秒杀系统"></a>Redis助力秒杀系统</h2><h2 id="服务器性能优化"><a href="#服务器性能优化" class="headerlink" title="服务器性能优化"></a>服务器性能优化</h2><h1 id="同步容器"><a href="#同步容器" class="headerlink" title="同步容器"></a>同步容器</h1><p>Java 同步容器是指线程安全的集合类，一般用于多线程并发场景下对数据进行存取、读写等操作。它们通常是在普通容器的基础上实现了同步化措施，可以防止出现并发访问引起的数据异常或不一致性问题。</p>
+<p>秒杀系统的技术特点是：瞬时高并发、读多写少、流程简单。</p>
+<p>秒杀系统的三个阶段是：</p>
+<ol>
+<li><p>预热阶段</p>
+<p>用户会刷新秒杀页面，查看秒杀活动，用户的刷新操作可以使部分数据存储到Redis缓存中，所以称为预热。</p>
+</li>
+<li><p>秒杀阶段</p>
+<p>秒杀阶段会产生瞬时的高并发流量，在这一阶段，要确保已经做好了服务的限流、熔断和降级等。</p>
+</li>
+<li><p>结算阶段</p>
+</li>
+</ol>
+<p>秒杀系统的性能优化方案：</p>
+<ol>
+<li><p>异步解耦</p>
+<p>将秒杀系统的整体流程进行拆分，通过队列的方式控制核心部分，实现异步解耦。</p>
+</li>
+<li><p>限流防刷</p>
+<p>对秒杀系统的部分业务进行限流、熔断和降级处理。</p>
+</li>
+<li><p>资源控制</p>
+<p>由于应用层能够承受的并发量比缓存的并发量少很多，所以在高并发系统中，可以使用OpenResty，由负载均衡层访问缓存。</p>
+</li>
+</ol>
+<h1 id="同步容器"><a href="#同步容器" class="headerlink" title="同步容器"></a>同步容器</h1><p>Java 同步容器是指线程安全的集合类，一般用于多线程并发场景下对数据进行存取、读写等操作。它们通常是在普通容器的基础上实现了同步化措施，可以防止出现并发访问引起的数据异常或不一致性问题。</p>
 <p>Java 同步容器主要有以下几种：</p>
 <ol>
 <li>Vector</li>
@@ -2246,6 +2270,13 @@
 
       <time title="Created: 2023-05-06 11:03:01" itemprop="dateCreated datePublished" datetime="2023-05-06T11:03:01+08:00">2023-05-06</time>
     </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-05-21 20:31:52" itemprop="dateModified" datetime="2023-05-21T20:31:52+08:00">2023-05-21</time>
+    </span>
 
   
 </div>
@@ -2257,7 +2288,39 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="5种基础数据结构"><a href="#5种基础数据结构" class="headerlink" title="5种基础数据结构"></a>5种基础数据结构</h3><h4 id="string（字符串）"><a href="#string（字符串）" class="headerlink" title="string（字符串）"></a>string（字符串）</h4><p>Redis的string是动态字符串，可以被修改，内部实现结构类似于Java的ArrayList，采用预分配冗余空间的方式来减少内存的频繁分配，如果字符串长度小于1MB，扩容方式是加倍现有的空间，如果字符串长度超过1MB，扩容方式是只多扩1MB的空间。</p>
+<p>Redis所有数据结构都以唯一的key字符串作为名称</p>
+<p>一个常见的用途是缓存用户信息，将用户信息序列化成字符串，存入Redis缓存，取出用户信息的时候会经过一次反序列化的过程</p>
+<p>mset、mget命令可以实现对多个字符串进行批量读写</p>
+<p>ex后缀可以在set的时候指定过期时间</p>
+<p>nx后缀可以在set的时候设置条件，如果key不存在才set</p>
+<h4 id="list（列表）"><a href="#list（列表）" class="headerlink" title="list（列表）"></a>list（列表）</h4><p>Redis的列表相当于Java的LinkedList，是双向链表，不是数组。</p>
+<p>当 List 中的元素数量较少且元素都比较短时，Redis 通常会采用 ziplist 来存储。ziplist 是一个特殊的双向链表（本质上是一个字节数组），特殊之处在于：没有维护双向指针，prev、next，而是存储了上一个 entry 的长度和当前 entry 的长度，通过长度推算下一个元素。多个ziplist之间使用指针串联起来，这种结构叫做quicklist（快速链表）。</p>
+<p>底层使用的是ziplist，即压缩列表</p>
+<p>list常用来做异步队列使用，将需要延后处理的任务序列化成字符串放入列表</p>
+<p>支持的命令有：rpush、rpop、lpush、lpop、lindex、lrange、ltrim</p>
+<h4 id="hash（字典）"><a href="#hash（字典）" class="headerlink" title="hash（字典）"></a>hash（字典）</h4><p>相当于Java中的HashMap，跟HashMap一样，底层也是数组+链表的实现方式，不同的是Redis的hash的值只能是字符串，且rehash的方式也不一样，rehash 是指在哈希表发生扩容时进行的重新哈希操作。扩容过程包括创建新的哈希表、将旧哈希表的元素 rehash 到新哈希表中，redis采用了渐进式哈希扩容的策略，通过分多次操作逐步完成整个扩容过程，避免服务阻塞的问题。</p>
+<p>具体来说，Redis 的哈希表扩容过程如下：</p>
+<ol>
+<li><p>创建新哈希表：系统会根据当前数据库的元素数量和设置的负载因子计算出扩容所需的最小桶数，然后创建一个新的哈希表，将其指针保存在旧哈希表的 rehashidx 属性中。</p>
+</li>
+<li><p>逐步 rehash 元素：从旧哈希表中取出一个桶（或一个链表），并将其中的元素 rehash 到新哈希表中，如果新哈希表中的相应桶为空，则直接插入元素；如果不为空，则使用链表结构将其作为链表头插入。这个过程需要遍历旧哈希表中所有的非空桶，每次操作都只处理一个桶中的元素，避免一次性处理过多数据。</p>
+</li>
+<li><p>完成 rehash：当旧哈希表中的所有元素都被 rehash 到新哈希表后，会释放旧哈希表占用的内存。</p>
+</li>
+</ol>
+<p>支持的命令有：hset、hget、hlen、hgetall等</p>
+<h4 id="set（集合）"><a href="#set（集合）" class="headerlink" title="set（集合）"></a>set（集合）</h4><p>Redis的集合set相当于Java的HashSet，是无序的，内部实现相当于一个特殊的字典，字典中所有的value都是NULL。</p>
+<h4 id="zset（有序集合）"><a href="#zset（有序集合）" class="headerlink" title="zset（有序集合）"></a>zset（有序集合）</h4><p>类似于Java中的SortedSet和HashMap的结合体，存储单位是value-score，value是不重复的（set），按照value对应的score进行排序。底层实现使用的是跳表。</p>
+<p>zset可以用来存储粉丝列表，value是粉丝的用户id，score是关注时间，按照关注时间排序，类似的，还可以用来存储学生的成绩。</p>
+<h3 id="容器型数据结构的两条规则"><a href="#容器型数据结构的两条规则" class="headerlink" title="容器型数据结构的两条规则"></a>容器型数据结构的两条规则</h3><p>list、set、hash、zset这四种数据结构都是容器型数据结构，容器型数据结构遵从两条规则：</p>
+<ol>
+<li>create if not exists：如果添加元素时容器不存在，就创建。</li>
+<li>drop if no elements：如果容器里没有元素，那么立即删除容器释放内存。</li>
+</ol>
+<h3 id="过期时间"><a href="#过期时间" class="headerlink" title="过期时间"></a>过期时间</h3><p>Redis中所有对象都可以设置过期时间。例如，可以对一个hash对象设置过期时间，但是不能对齐某一个key-value设置过期时间。</p>
+<p>需要注意的是，如果一个对象已经设置了过期时间，然后调用set修改了这个对象，那么之前设置是过期时间就会失效。</p>
+<h2 id="位图"><a href="#位图" class="headerlink" title="位图"></a>位图</h2><h2 id="GeoHash"><a href="#GeoHash" class="headerlink" title="GeoHash"></a>GeoHash</h2><h2 id="scan"><a href="#scan" class="headerlink" title="scan"></a>scan</h2><h2 id="布隆过滤器"><a href="#布隆过滤器" class="headerlink" title="布隆过滤器"></a>布隆过滤器</h2><h2 id="延时队列"><a href="#延时队列" class="headerlink" title="延时队列"></a>延时队列</h2><h2 id="漏斗限流"><a href="#漏斗限流" class="headerlink" title="漏斗限流"></a>漏斗限流</h2><h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><h1 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h1><h2 id="单线程"><a href="#单线程" class="headerlink" title="单线程"></a>单线程</h2><h2 id="I-x2F-O线程模型"><a href="#I-x2F-O线程模型" class="headerlink" title="I&#x2F;O线程模型"></a>I&#x2F;O线程模型</h2><h2 id="RDB"><a href="#RDB" class="headerlink" title="RDB"></a>RDB</h2><h2 id="AOF"><a href="#AOF" class="headerlink" title="AOF"></a>AOF</h2><h1 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h1><h2 id="主从同步"><a href="#主从同步" class="headerlink" title="主从同步"></a>主从同步</h2><h2 id="Raft算法"><a href="#Raft算法" class="headerlink" title="Raft算法"></a>Raft算法</h2><h2 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h2><h2 id="Codis"><a href="#Codis" class="headerlink" title="Codis"></a>Codis</h2><h2 id="cluster"><a href="#cluster" class="headerlink" title="cluster"></a>cluster</h2><h1 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h1>
       
     </div>
 
