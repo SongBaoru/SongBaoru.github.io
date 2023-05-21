@@ -179,7 +179,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-05-20 08:59:05" itemprop="dateModified" datetime="2023-05-20T08:59:05+08:00">2023-05-20</time>
+      <time title="Modified: 2023-05-21 15:33:20" itemprop="dateModified" datetime="2023-05-21T15:33:20+08:00">2023-05-21</time>
     </span>
 
   
@@ -279,7 +279,20 @@
 <ol start="4">
 <li>通过线程池创建线程</li>
 </ol>
-<h2 id="线程局部变量（ThreadLocal）"><a href="#线程局部变量（ThreadLocal）" class="headerlink" title="线程局部变量（ThreadLocal）"></a>线程局部变量（ThreadLocal）</h2><p><code>ThreadLocal</code>由一个线程的类型为<code>ThreadLocal.ThreadLocalMap</code>的对象threadlocals来保存。具体来说，在<code>ThreadLocalMap</code>中，set到<code>ThreadLocal</code>对象的值作为值（value），<code>ThreadLocal</code>对象作为键（key），并且key是一个弱引用。</p>
+<h2 id="线程局部变量"><a href="#线程局部变量" class="headerlink" title="线程局部变量"></a>线程局部变量</h2><p>线程局部变量有两种，ThreadLocal和InheritableThreadLocal，其中ThreadLocal在主线程和子线程之间不具备可继承性，而InheritableThreadLocal具备可继承。</p>
+<h3 id="ThreadLocal"><a href="#ThreadLocal" class="headerlink" title="ThreadLocal"></a>ThreadLocal</h3><p><code>ThreadLocal</code>由一个线程的类型为<code>ThreadLocal.ThreadLocalMap</code>的对象<code>threadlocals</code>来保存，<code>ThreadLocalMap</code>是<code>ThreadLocal</code>类的内部类。具体来说，在<code>ThreadLocalMap</code>中，set到<code>ThreadLocal</code>对象的值作为值（value），<code>ThreadLocal</code>对象作为键（key），并且key是一个弱引用。</p>
+<p>因为ThreadLocal对象（key）是一个弱引用，所以当线程销毁后，由于ThreadLocal对象不再被强引用，所以ThreadLocal对象可以被垃圾回收。但是threadlocals中依然存在键值对，所以为了避免内存溢出，还是需要手动移除（remove）ThreadLocal对象。</p>
+<p>ThreadLocal的使用方法示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ThreadLocal&lt;String&gt; threadLocal = <span class="keyword">new</span> <span class="title class_">ThreadLocal</span>&lt;&gt;(); <span class="comment">//创建一个用于存储String类型的ThreadLocal变量</span></span><br><span class="line">threadLocal.set(<span class="string">&quot;Hello, ThreadLocal!&quot;</span>); <span class="comment">//设置当前线程的ThreadLocal变量值</span></span><br><span class="line"><span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> threadLocal.get(); <span class="comment">//返回当前线程的ThreadLocal变量值</span></span><br><span class="line">threadLocal.remove(); <span class="comment">//清除当前线程的ThreadLocal变量值</span></span><br></pre></td></tr></table></figure>
+
+<p>可以创建多个ThreadLocal实例，每个ThreadLocal实例可以用来存储一个特定的值，例如，可以创建两个ThreadLocal实例来存储不同类型的值：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ThreadLocal&lt;String&gt; threadLocal1 = <span class="keyword">new</span> <span class="title class_">ThreadLocal</span>&lt;&gt;(); <span class="comment">//创建一个用于存储String类型的ThreadLocal变量</span></span><br><span class="line">ThreadLocal&lt;Integer&gt; threadLocal2 = <span class="keyword">new</span> <span class="title class_">ThreadLocal</span>&lt;&gt;(); <span class="comment">//创建一个用于存储Integer类型的ThreadLocal变量</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="InheritableThreadLocal"><a href="#InheritableThreadLocal" class="headerlink" title="InheritableThreadLocal"></a>InheritableThreadLocal</h3><p>使用InheritableThreadLocal创建对象保存的变量具有继承性，子线程调用该对象的get方法可以获取到父线程set到该对象中的值。父线程是创建和启动子线程的线程。</p>
+<p>InheritableThreadLocal的使用方法示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> InheritableThreadLocal&lt;String&gt; INHERITABLE_THREAD_LOCAL = <span class="keyword">new</span> <span class="title class_">InheritableThreadLocal</span>&lt;&gt;();</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    INHERITABLE_THREAD_LOCAL.set(<span class="string">&quot;主线程保存的值&quot;</span>);</span><br><span class="line">    <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> INHERITABLE_THREAD_LOCAL.get();</span><br><span class="line">    System.out.println(<span class="string">&quot;子线程中访问主线程中保存的局部变量值：&quot;</span> + value);</span><br><span class="line">    &#125;).start();</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">输出结果：</span></span><br><span class="line"><span class="comment">	子线程中访问主线程中保存的局部变量值：主线程保存的值</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+
+<p>通过InheritableThreadLocal对象之所以能够访问到父（parent）线程的inheritableThreadLocals，是因为在创建线程的时候，会将parent线程的inheritableThreadLocals复制一份到子线程的inheritableThreadLocals中。</p>
 <h2 id="线程状态"><a href="#线程状态" class="headerlink" title="线程状态"></a>线程状态</h2><h2 id="线程方法"><a href="#线程方法" class="headerlink" title="线程方法"></a>线程方法</h2><h3 id="sleep"><a href="#sleep" class="headerlink" title="sleep"></a>sleep</h3><p>在Java和许多其他编程语言中，线程的<code>sleep()</code>方法并不会导致线程释放锁，但是不会阻塞其他线程。</p>
 <p>当一个线程调用<code>sleep()</code>方法时，它会使线程进入阻塞状态一段时间，但该线程仍然保有它已经获得的所有锁。这意味着如果一个线程在进入<code>sleep()</code>之前获得了一个锁，那么它在<code>sleep()</code>期间仍然会保持这个锁，其他线程无法获得这个锁。</p>
 <p>这与线程的<code>wait()</code>方法不同。当一个线程调用<code>wait()</code>方法时，它会释放它在相应对象上的锁，允许其他线程获得这个锁。</p>
@@ -1191,25 +1204,123 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">method</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (<span class="built_in">this</span>)&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i= <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) &#123;</span><br><span class="line">      		...      </span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>虽然JVM内部会进行优化，但是最好还是在代码里就优化了。</p>
-<h1 id="分工问题的实现方式"><a href="#分工问题的实现方式" class="headerlink" title="分工问题的实现方式"></a>分工问题的实现方式</h1><p>Guarded Suspension模式</p>
-<p>Thread-Pre-Message模式</p>
-<p>生产者-消费者模式</p>
-<p>两阶段终止模式</p>
-<p>Worker-Thread模式</p>
-<p>Balking模式</p>
-<h1 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h1><p>分布式锁是一种在分布式系统环境下的锁，用于控制跨多个节点的共享资源的访问。这对于需要在多个节点之间同步或序列化操作的应用来说是非常重要的。</p>
-<p>实现分布式锁的方式有多种，例如基于数据库的锁、基于Redis的锁、基于Zookeeper的锁等。</p>
-<p>以下是一些常见的分布式锁实现方式：</p>
+<h1 id="分布式锁架构"><a href="#分布式锁架构" class="headerlink" title="分布式锁架构"></a>分布式锁架构</h1><h2 id="超卖问题"><a href="#超卖问题" class="headerlink" title="超卖问题"></a>超卖问题</h2><p>超卖问题的意思是系统售出的商品数量超出库存量，产生原因是多个线程同时拿到了同一商品的相同库存量，对同一商品的相同库存量进行了多次扣减。</p>
+<p>下面给出模拟超卖问题的示例。</p>
+<ol>
+<li>使用SpringBoot和Redis搭建的会产生超卖问题的程序：</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/order/v1&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OverSoldV1</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">PRODUCT_ID</span> <span class="operator">=</span> <span class="string">&quot;1001&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">STOCK_COUNT</span> <span class="operator">=</span> <span class="string">&quot;100&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(String.valueOf(OverSold.class));</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">OverSold</span><span class="params">(StringRedisTemplate stringRedisTemplate)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.stringRedisTemplate = stringRedisTemplate;</span><br><span class="line">        stringRedisTemplate.opsForValue().set(PRODUCT_ID, STOCK_COUNT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/submitOrder&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">submitOrder</span><span class="params">()</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="type">String</span> <span class="variable">stockString</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(PRODUCT_ID);</span><br><span class="line">        <span class="keyword">if</span> (stockString == <span class="literal">null</span> || <span class="string">&quot;&quot;</span>.equals(stockString.trim())) &#123;</span><br><span class="line">            logger.info(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">stock</span> <span class="operator">=</span> Integer.parseInt(stockString);</span><br><span class="line">        <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            stock -= <span class="number">1</span>;</span><br><span class="line">            stringRedisTemplate.opsForValue().set(PRODUCT_ID, String.valueOf(stock));</span><br><span class="line">            <span class="type">String</span> <span class="variable">info</span> <span class="operator">=</span> <span class="string">&quot;库存扣减成功，当前库存为：&quot;</span> + stock;</span><br><span class="line">            logger.info(info);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            logger.info(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>使用JMeter对接口进行并发测试，设置线程数为5，Ramp-up period是0，即5个线程会同时访问</p>
+</li>
+<li><p>运行JMeter测试任务，得到输出结果，可以看到存在对同一商品的相同库存进行了多次扣减的问题，即超卖问题。</p>
+<p><img src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521092117804.png" alt="image-20230521092117804"></p>
+</li>
+</ol>
+<h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><h3 id="分布式锁的实现方式"><a href="#分布式锁的实现方式" class="headerlink" title="分布式锁的实现方式"></a>分布式锁的实现方式</h3><p>Java提供的锁机制都是JVM级别的，只在JVM进程内部有效。但是不能解决分布式场景下的高并发问题，要解决分布式环境下的高并发问题，需要使用分布式锁。</p>
+<p>实现分布式锁可以参照JVM锁的实现方式，JVM中多个线程在访问临界区资源时，会到统一的地方检查程序的临界区是否已经加锁，JVM在统一的地方使用加锁状态来标记是否进行了加锁操作，这个统一的地方可以是保存加锁状态的服务。</p>
+<p>分布式锁的实现方法和JVM锁的实现方法类似，只是在实现JVM锁时，是将锁的状态保存在Java对象头中，而实现分布式锁时，是将锁的状态保存在一个外部服务中，这个外部服务可以使用数据库（如MySQL）、Redis、Zookeeper等数据存储服务实现。</p>
+<p>具体实现方式：</p>
 <ol>
 <li><p>基于数据库的锁：这种方式通常是在数据库中创建一张锁表，需要获取锁的时候在这张表中插入一条记录，释放锁的时候则删除这条记录。这种方式实现简单，但是性能可能会受到影响。</p>
 </li>
-<li><p>基于Redis的锁：Redis提供了一些原子性的操作，比如<code>SETNX</code>，可以利用这些特性来实现分布式锁。<code>SETNX</code>命令可以在键不存在的情况下设置键值对，如果键已经存在，则不做任何操作。这种方式性能较好，但是需要处理好锁的超时和续期问题。</p>
+<li><p>基于Redis的锁：Redis提供了一些原子性的操作，比如<code>SETNX</code>，set if not exist， 可以利用这些特性来实现分布式锁。<code>SETNX</code>命令可以在键不存在的情况下设置键值对，如果键已经存在，则不做任何操作。这种方式性能较好，但是需要处理好锁的超时和续期问题。</p>
 </li>
 <li><p>基于Zookeeper的锁：Zookeeper提供了一种叫做顺序临时节点的机制，可以利用这个机制来实现分布式锁。要获取锁的线程创建一个临时节点，如果这个节点是所有节点中序号最小的，那么就认为这个线程获取了锁。这种方式性能较差，但是更加可靠，适合对一致性要求更高的场景。</p>
 </li>
 </ol>
-<p>使用分布式锁需要注意一些问题，比如避免死锁、处理好锁的超时问题，以及在某些情况下可能需要考虑公平性问题。</p>
-<h1 id="同步容器"><a href="#同步容器" class="headerlink" title="同步容器"></a>同步容器</h1><p>Java 同步容器是指线程安全的集合类，一般用于多线程并发场景下对数据进行存取、读写等操作。它们通常是在普通容器的基础上实现了同步化措施，可以防止出现并发访问引起的数据异常或不一致性问题。</p>
+<h3 id="分布式锁的基本要求"><a href="#分布式锁的基本要求" class="headerlink" title="分布式锁的基本要求"></a>分布式锁的基本要求</h3><p>要实现一个分布式锁，需要满足以下要求：</p>
+<ol>
+<li>支持互斥性：支持多个线程操作同一共享变量的互斥性。</li>
+<li>支持阻塞与非阻塞：当线程获取分布式锁失败，分布式锁能够支持当前线程是阻塞或者非阻塞的特性。</li>
+<li>支持可重入性：分布式锁能够支持同一线程同时多次获取同一个分布式锁的特性。</li>
+<li>支持锁超时：为避免获取到分布式锁的线程意外退出，进而无法正常释放锁，导致其它线程无法正常获取到锁的情况，分布式锁需要支持超时机制，若加锁时长超过一定时间，锁就会自动释放。</li>
+</ol>
+<h3 id="CAP理论与分布式锁模型"><a href="#CAP理论与分布式锁模型" class="headerlink" title="CAP理论与分布式锁模型"></a>CAP理论与分布式锁模型</h3><p>CAP理论是分布式领域非常著名的理论，CAP理论由C、A、P三部分组成，每个字母的含义如下：</p>
+<ol>
+<li>C（Consistency）：一致性，表示在分布式环境下，所有节点在任意时刻都具有相同的数据。</li>
+<li>A（Availability）：可用性，表示在分布式环境下，每个请求都能得到响应，但是不能保证能够获取到最新的数据。</li>
+<li>P（Partition Tolerance）：分区容错性，表示在分布式环境下，当系统中的某个分区发生故障或通信中断时，其他分区可以继续运行，保持整个系统的正常工作。</li>
+</ol>
+<p>同时，CAP理论指出，在分布式环境下，不可能同时保证一致性、可用性和分区容错性，最多只能保证其中的两个特性。</p>
+<p>在分布式系统中，必须保证分区容错性。</p>
+<p>基于CAP理论可以进行分布式锁模型的设计，例如：</p>
+<ol>
+<li><p>基于Redis的AP架构模型</p>
+<p>Redis先返回请求结果，再以异步的方式同步数据</p>
+</li>
+<li><p>基于Zookeeper的CP架构模型</p>
+<p>当数据在大多数Zookeeper节点间同步完成后，才返回请求结果</p>
+</li>
+</ol>
+<h3 id="基于Redis实现分布式锁"><a href="#基于Redis实现分布式锁" class="headerlink" title="基于Redis实现分布式锁"></a>基于Redis实现分布式锁</h3><p>在超卖问题的示例代码的基础上，进行优化得到可以确保如下条件的分布式锁：</p>
+<ol>
+<li><p>不会出现超卖</p>
+<p>使用Redis的SETNX命令，该命令的返回结果是：</p>
+<ul>
+<li>1：Redis中不存在当前key，设置键值对成功</li>
+<li>0：Redis中存在当前key，设置键值对失败</li>
+</ul>
+<p>使用该命令对应的函数存储当前获取锁的线程id，以是否返回1作为是否获取到锁的判断条件，可以确保每次只有一个线程获取到锁</p>
+<p>同时为了保证可重入性，在每次获取锁之前先判断是否是自己持有的锁</p>
+</li>
+<li><p>不会因为线程异常退出导致锁无法释放</p>
+<p>解决方法是</p>
+<ol>
+<li>引入try finally块</li>
+<li>引入超时机制，为避免获取到锁之后没有执行设置超时机制，需要和SETNX命令共同以原子化的方式使用</li>
+</ol>
+</li>
+</ol>
+<p>修改后的代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/order/v2&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OverSoldV2</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">PRODUCT_ID</span> <span class="operator">=</span> <span class="string">&quot;1001&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">THREAD_ID</span> <span class="operator">=</span> <span class="string">&quot;THREAD_ID&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">STOCK_COUNT</span> <span class="operator">=</span> <span class="string">&quot;100&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(String.valueOf(OverSoldV2.class));</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">OverSoldV2</span><span class="params">(StringRedisTemplate stringRedisTemplate)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.stringRedisTemplate = stringRedisTemplate;</span><br><span class="line">        stringRedisTemplate.opsForValue().set(PRODUCT_ID, STOCK_COUNT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/submitOrder&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">submitOrder</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">threadId</span> <span class="operator">=</span> String.valueOf(Thread.currentThread().getId());</span><br><span class="line">        <span class="type">Boolean</span> <span class="variable">isLocked</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().setIfAbsent(THREAD_ID, threadId, <span class="number">30</span>, TimeUnit.SECONDS);</span><br><span class="line">        <span class="keyword">if</span> (Boolean.FALSE.equals(isLocked)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;failure&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">stockString</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(PRODUCT_ID);</span><br><span class="line">            <span class="keyword">if</span> (stockString == <span class="literal">null</span> || <span class="string">&quot;&quot;</span>.equals(stockString.trim())) &#123;</span><br><span class="line">                logger.info(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> <span class="variable">stock</span> <span class="operator">=</span> Integer.parseInt(stockString);</span><br><span class="line">            <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                stock -= <span class="number">1</span>;</span><br><span class="line">                stringRedisTemplate.opsForValue().set(PRODUCT_ID, String.valueOf(stock));</span><br><span class="line">                <span class="type">String</span> <span class="variable">info</span> <span class="operator">=</span> <span class="string">&quot;库存扣减成功，当前库存为：&quot;</span> + stock;</span><br><span class="line">                logger.info(info);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                logger.info(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            stringRedisTemplate.delete(THREAD_ID);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>运行JMeter测试任务，得到输出结果，可以看到不再发生对库存重复扣减，超卖问题被解决。</p>
+<p><img src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521143353323.png" alt="image-20230521143353323"></p>
+<p>虽然超卖问题已经解决，但是每次获取锁失败就直接返回，没有实现锁的阻塞性，要实现锁的阻塞性，一种简单的实现方式是使用自旋：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="meta">@RequestMapping(&quot;/order/v3&quot;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">OverSoldV3</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">PRODUCT_ID</span> <span class="operator">=</span> <span class="string">&quot;1001&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">THREAD_ID</span> <span class="operator">=</span> <span class="string">&quot;THREAD_ID&quot;</span>;</span><br><span class="line">    <span class="type">String</span> <span class="variable">STOCK_COUNT</span> <span class="operator">=</span> <span class="string">&quot;100&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="type">Logger</span> <span class="variable">logger</span> <span class="operator">=</span> Logger.getLogger(String.valueOf(OverSoldV3.class));</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> StringRedisTemplate stringRedisTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">OverSoldV3</span><span class="params">(StringRedisTemplate stringRedisTemplate)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.stringRedisTemplate = stringRedisTemplate;</span><br><span class="line">        stringRedisTemplate.opsForValue().set(PRODUCT_ID, STOCK_COUNT);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping(&quot;/submitOrder&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">submitOrder</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">String</span> <span class="variable">threadId</span> <span class="operator">=</span> String.valueOf(Thread.currentThread().getId());</span><br><span class="line">        <span class="type">Boolean</span> <span class="variable">isLocked</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().setIfAbsent(THREAD_ID, threadId, <span class="number">30</span>, TimeUnit.SECONDS);</span><br><span class="line">        <span class="keyword">if</span> (Boolean.FALSE.equals(isLocked)) &#123;</span><br><span class="line">            <span class="keyword">do</span> &#123;</span><br><span class="line">                isLocked = stringRedisTemplate.opsForValue().setIfAbsent(THREAD_ID, threadId, <span class="number">30</span>, TimeUnit.SECONDS);</span><br><span class="line">            &#125; <span class="keyword">while</span> (Boolean.FALSE.equals(isLocked));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">stockString</span> <span class="operator">=</span> stringRedisTemplate.opsForValue().get(PRODUCT_ID);</span><br><span class="line">            <span class="keyword">if</span> (stockString == <span class="literal">null</span> || <span class="string">&quot;&quot;</span>.equals(stockString.trim())) &#123;</span><br><span class="line">                logger.info(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="type">int</span> <span class="variable">stock</span> <span class="operator">=</span> Integer.parseInt(stockString);</span><br><span class="line">            <span class="keyword">if</span> (stock &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                stock -= <span class="number">1</span>;</span><br><span class="line">                stringRedisTemplate.opsForValue().set(PRODUCT_ID, String.valueOf(stock));</span><br><span class="line">                <span class="type">String</span> <span class="variable">info</span> <span class="operator">=</span> <span class="string">&quot;库存扣减成功，当前库存为：&quot;</span> + stock;</span><br><span class="line">                logger.info(info);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                logger.info(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">RuntimeException</span>(<span class="string">&quot;库存不足，扣减失败&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            stringRedisTemplate.delete(THREAD_ID);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;success&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用阻塞等待后，调整JMeter的请求数等于商品数（100），如果恰好消费完，说明锁的阻塞等待是有效的。</p>
+<p>JMeter的线程参数配置如下图，开启了5个线程，每个线程循环20次，请求次数总共100次：</p>
+<p><img src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521144244517.png" alt="image-20230521144244517"></p>
+<p>运行JMeter测试任务，输出结果显示如下图：</p>
+<p><img src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521144440514.png" alt="image-20230521144440514"></p>
+<p>输出结果显示，确实是恰好消费完，说明锁的阻塞等待是有效的。</p>
+<h1 id="秒杀系统架构"><a href="#秒杀系统架构" class="headerlink" title="秒杀系统架构"></a>秒杀系统架构</h1><h2 id="电商系统架构"><a href="#电商系统架构" class="headerlink" title="电商系统架构"></a>电商系统架构</h2><p>一个简化的电商系统架构由上到下分为客户端、网关层、负载均衡层、应用层和存储层。各层包含的应用和服务举例如下：</p>
+<ol>
+<li>客户端：PC网页端、APP、H5网页端、小程序。</li>
+<li>网关层：系统网关，包括硬件网关和软件网关。</li>
+<li>负载均衡层：Nginx等负载均衡服务器</li>
+<li>应用层：涵盖接入服务和基础服务等<ol>
+<li>接入服务：商品接入服务、会员接入服务、订单接入服务、收银接入服务、物流接入服务等</li>
+<li>基础服务：商品服务、用户服务、订单服务、库存服务、价格服务、物流服务等</li>
+</ol>
+</li>
+<li>存储层：数据库集群、缓存集群、ElastichSearch集群等</li>
+</ol>
+<p>各层的并发度估计：</p>
+<ol>
+<li>假设负载均衡层使用的是Nginx，Nginx的最大并发度大于10万，数量级是万</li>
+<li>假设应用层使用的是Tomcat，Tomcat的最大并发度8百左右，数量级是百</li>
+<li>假设存储层的缓存使用的是Redis，Redis的最大并发度5万左右，数量级是万</li>
+<li>假设存储层的数据库使用的是MySQL，MySQL的最大并发度1千左右，数量级是千</li>
+</ol>
+<p>在设计系统架构时需要综合考虑系统各层的最大并发度和数量级。</p>
+<p>其中，</p>
+<p>在 Redis 缓存层面可以采用主从复制、集群模式等技术来提高数据读写的并发度和可靠性，同时合理选择缓存策略，避免缓存雪崩和缓存穿透等问题。</p>
+<p>在 MySQL 数据库层面可以采用水平分库分表、索引优化、SQL 语句优化等方式来提高并发度和性能。</p>
+<p>需要注意的是，在实际应用中，系统性能还受到其它多种因素的影响，例如硬件配置、网络带宽、业务规模和复杂度等。</p>
+<h3 id="系统扩容"><a href="#系统扩容" class="headerlink" title="系统扩容"></a>系统扩容</h3><p>系统扩容包括垂直扩容和水平扩容。</p>
+<p>从应用层的角度来看，垂直扩容是提升服务器的配置，水平扩容是增加服务器的数据。</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>缓存包括本地缓存和集中式缓存。</p>
+<p>本地缓存可以使用Guava Cache实现，集中式缓存可以使用Redis实现。</p>
+<p>在实现中，读取数据的步骤是，先读取本地缓存，如果本地缓存中没有要读取的数据，就从集中式缓存中读取，如果集中式缓存中依然没有，则从数据库中读取，然后将数据依次存入集中式缓存和本地缓存。</p>
+<h3 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h3><p>分库分表，顾名思义，就是将原本存储于单个数据库上的数据拆分到多个数据库，把原来存储在单张数据表的数据拆分到多张数据表中，实现数据切分。</p>
+<p>分库分表的实现可以分为两种方式：垂直切分和水平切分。垂直切分是将数据库中的表按照业务划分，将功能相近的业务表独立出来，分开部署；水平切分是将单张数据表中的数据进行划分，分散成多张表存储到多台服务器。</p>
+<h3 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h3><p>通常情况下，数据库的读操作远远多于写操作。通过读写分离，可以利用这一特点，将读操作分发给多个只负责读取数据的从服务器（读库），而将写操作发送给主服务器（写库）。这样一来，主服务器专注于处理写操作，而从服务器处理读操作，从而提高系统的整体性能和并发处理能力。</p>
+<h2 id="秒杀系统的特点"><a href="#秒杀系统的特点" class="headerlink" title="秒杀系统的特点"></a>秒杀系统的特点</h2><p>秒杀系统的并发量存在瞬时凸峰，也叫做流量突刺现象。</p>
+<h2 id="秒杀系统的方法"><a href="#秒杀系统的方法" class="headerlink" title="秒杀系统的方法"></a>秒杀系统的方法</h2><h2 id="秒杀系统设计"><a href="#秒杀系统设计" class="headerlink" title="秒杀系统设计"></a>秒杀系统设计</h2><h2 id="扣减库存设计"><a href="#扣减库存设计" class="headerlink" title="扣减库存设计"></a>扣减库存设计</h2><h2 id="Redis助力秒杀系统"><a href="#Redis助力秒杀系统" class="headerlink" title="Redis助力秒杀系统"></a>Redis助力秒杀系统</h2><h2 id="服务器性能优化"><a href="#服务器性能优化" class="headerlink" title="服务器性能优化"></a>服务器性能优化</h2><h1 id="同步容器"><a href="#同步容器" class="headerlink" title="同步容器"></a>同步容器</h1><p>Java 同步容器是指线程安全的集合类，一般用于多线程并发场景下对数据进行存取、读写等操作。它们通常是在普通容器的基础上实现了同步化措施，可以防止出现并发访问引起的数据异常或不一致性问题。</p>
 <p>Java 同步容器主要有以下几种：</p>
 <ol>
 <li>Vector</li>
@@ -1233,6 +1344,12 @@
 <p>CopyOnWriteArrayList&#x2F;CopyOnWriteArraySet 是两个线程安全的集合类，它们通过复制源数据来实现并发读写。在有大量读操作但少量写操作的场景下，它们可以提供更好的性能和可靠性。</p>
 <p>需要注意的是，在使用同步容器时，由于涉及到线程安全问题，需要仔细考虑同步措施、锁的粒度、并发处理能力等因素，以确保数据的正确性和稳定性。同时，也应该根据具体场景选择合适的容器类型和 API 接口。</p>
 <p>同步容器类的演变<br>Map&#x2F;Set从无锁到同步<br>ArrayList<br>LinkedList<br>Collections.synchronizedXXX<br>CopyOnWriteList<br>队列<br>ConcurrentLinkedQueue<br>ConcurrentArrayQueue<br>LinkedBlockingQueue<br>Queue<br>ArrayBlockingQueue<br>TransferQueue<br>SynchronousQueue<br>DelayQueue</p>
+<h1 id="分工问题的实现方式"><a href="#分工问题的实现方式" class="headerlink" title="分工问题的实现方式"></a>分工问题的实现方式</h1><p>Guarded Suspension模式</p>
+<p>Thread-Pre-Message模式</p>
+<p>生产者-消费者模式</p>
+<p>两阶段终止模式</p>
+<p>Worker-Thread模式</p>
+<p>Balking模式</p>
 <h1 id="ParallelStream"><a href="#ParallelStream" class="headerlink" title="ParallelStream"></a>ParallelStream</h1><p>ParallelStream 是 JDK 8 中新增的流式 API，它继承自 Java.util.stream.Stream 接口，并提供了并行流（Parallel Stream）处理能力。</p>
 <p>与普通流不同的是，ParallelStream 可以利用多个线程（默认情况下是 ForkJoinPool 中的线程）来并行执行部分或全部流处理操作，以加速大容量数据的处理和分析。在并行流执行流处理操作时，它会将数据划分成多个小块，并分别交给不同的线程进行处理，在处理完成后再将结果合并返回。</p>
 <p>ParallelStream 支持大部分 Stream 的 API 操作，例如 filter、map、reduce、sorted 等，只需要调用 parallel() 方法即可将一个普通流转换为并行流。需要注意的是，由于并行流涉及到多线程的协作，因此在使用 ParallelStream 时需要考虑线程安全和共享变量等问题，避免出现并发问题和数据异常。</p>
