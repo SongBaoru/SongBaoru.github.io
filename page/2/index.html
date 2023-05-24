@@ -19,30 +19,23 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"songbaoru.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决 参考出处：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38367575&#x2F;article&#x2F;details&#x2F;120420633  Scanner类用于扫描从控制台输入的数据，可以接收字符串和基本数据类型的数据。位于java.util.Scanner包中。 Scanner常用方法 String  next();">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Java基础">
-<meta property="og:url" content="https://songbaoru.github.io/2023/05/02/Java%E5%9F%BA%E7%A1%80/index.html">
+    <meta property="og:type" content="website">
+<meta property="og:title" content="SBR Blog">
+<meta property="og:url" content="https://songbaoru.github.io/page/2/index.html">
 <meta property="og:site_name" content="SBR Blog">
-<meta property="og:description" content="JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决 参考出处：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38367575&#x2F;article&#x2F;details&#x2F;120420633  Scanner类用于扫描从控制台输入的数据，可以接收字符串和基本数据类型的数据。位于java.util.Scanner包中。 Scanner常用方法 String  next();">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://songbaoru.github.io/2023/05/02/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80/image-20230517204729870.png">
-<meta property="article:published_time" content="2023-05-02T13:23:04.000Z">
-<meta property="article:modified_time" content="2023-05-17T13:59:57.535Z">
 <meta property="article:author" content="SBR">
-<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://songbaoru.github.io/2023/05/02/Java%E5%9F%BA%E7%A1%80/Java%E5%9F%BA%E7%A1%80/image-20230517204729870.png">
 
 
-<link rel="canonical" href="https://songbaoru.github.io/2023/05/02/Java%E5%9F%BA%E7%A1%80/">
+<link rel="canonical" href="https://songbaoru.github.io/page/2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://songbaoru.github.io/2023/05/02/Java%E5%9F%BA%E7%A1%80/","path":"2023/05/02/Java基础/","title":"Java基础"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"page/2/index.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Java基础 | SBR Blog</title>
+<title>SBR Blog</title>
   
 
 
@@ -72,7 +65,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <p class="site-title">SBR Blog</p>
+      <h1 class="site-title">SBR Blog</h1>
       <i class="logo-line"></i>
     </a>
   </div>
@@ -94,7 +87,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -107,7 +100,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVA%E4%B8%ADScanner%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8AnextLine%E5%92%8CnextInt%E7%AD%89%E6%B7%B7%E7%94%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="nav-number">1.</span> <span class="nav-text">JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Scanner%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">1.1.</span> <span class="nav-text">Scanner常用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="nav-number">1.2.</span> <span class="nav-text">常见问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">1.3.</span> <span class="nav-text">解决方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IO%E6%B5%81"><span class="nav-number">2.</span> <span class="nav-text">IO流</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AD%97%E8%8A%82%E6%B5%81%E5%92%8C%E5%AD%97%E7%AC%A6%E6%B5%81"><span class="nav-number">2.1.</span> <span class="nav-text">字节流和字符流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E6%B5%81%E5%92%8C%E5%A4%84%E7%90%86%E6%B5%81"><span class="nav-number">2.2.</span> <span class="nav-text">节点流和处理流</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%E6%8A%80%E6%9C%AF"><span class="nav-number">2.3.</span> <span class="nav-text">内存映射文件技术</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -141,17 +133,16 @@
 
     </div>
 
-    <div class="main-inner post posts-expand">
+    <div class="main-inner index posts-expand">
 
-
-  
+    
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://songbaoru.github.io/2023/05/02/Java%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -165,13 +156,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Java基础 | SBR Blog">
+      <meta itemprop="name" content="undefined | SBR Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Java基础
-        </h1>
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/05/02/Java%E5%9F%BA%E7%A1%80/" class="post-title-link" itemprop="url">Java基础</a>
+        </h2>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -200,7 +191,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决"><a href="#JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决" class="headerlink" title="JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决"></a>JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决</h1><blockquote>
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决"><a href="#JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决" class="headerlink" title="JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决"></a>JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决</h1><blockquote>
 <p>参考出处：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38367575/article/details/120420633">https://blog.csdn.net/qq_38367575/article/details/120420633</a></p>
 </blockquote>
 <p>Scanner类用于扫描从控制台输入的数据，可以接收字符串和基本数据类型的数据。位于java.util.Scanner包中。</p>
@@ -258,6 +250,7 @@
 </ul>
 <p>Java的NIO包支持内存映射技术，实现方式是通过<strong>MapperdBytyBuffer</strong>读写内存</p>
 
+      
     </div>
 
     
@@ -265,21 +258,8 @@
     
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/java/" rel="tag"># java</a>
-          </div>
-
-        
-
-          <div class="post-nav">
-            <div class="post-nav-item">
-            </div>
-            <div class="post-nav-item">
-                <a href="/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" rel="next" title="JVM底层原理">
-                  JVM底层原理 <i class="fa fa-chevron-right"></i>
-                </a>
-            </div>
-          </div>
+        <div class="post-eof"></div>
+      
     </footer>
   </article>
 </div>
@@ -287,7 +267,9 @@
 
 
 
-
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" title="Previous page" aria-label="Previous page" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 </div>
   </main>

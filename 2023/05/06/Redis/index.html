@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://songbaoru.github.io/2023/05/06/Redis/Redis/image-20230522110209728.png">
 <meta property="og:image" content="https://songbaoru.github.io/2023/05/06/Redis/Redis/image-20230522172919614.png">
 <meta property="article:published_time" content="2023-05-06T03:03:01.000Z">
-<meta property="article:modified_time" content="2023-05-24T07:53:36.876Z">
+<meta property="article:modified_time" content="2023-05-24T08:04:13.441Z">
 <meta property="article:author" content="SBR">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
@@ -121,7 +121,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -189,7 +189,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-05-24 15:53:36" itemprop="dateModified" datetime="2023-05-24T15:53:36+08:00">2023-05-24</time>
+      <time title="Modified: 2023-05-24 16:04:13" itemprop="dateModified" datetime="2023-05-24T16:04:13+08:00">2023-05-24</time>
     </span>
 
   
@@ -534,6 +534,7 @@
 </ul>
 <h3 id="LRU"><a href="#LRU" class="headerlink" title="LRU"></a>LRU</h3><p>LRU（Least Recently Used）：如果一个数据在最近一段时间内没有被访问，那么可以认为它未来被访问的概率很小。当空间满时，最久没有访问的数据会最先被淘汰。</p>
 <p>LRU记录的是时间戳。</p>
+<p>Redis的LRU算法是一种近似LRU算法，没有维护key的被访问时间顺序，而是采用随机采样出N个（比如5个，可以设置），然后淘汰掉最旧的key，为能够识别出key的访问时间，Redis给每个key增加了一个额外的字段，最后一次被访问的时间戳。</p>
 <h3 id="LFU"><a href="#LFU" class="headerlink" title="LFU"></a>LFU</h3><p>LFU（Least Frequently Used）：如果一个数据在最近一段时间内很少被访问，那么认为将来它被访问的可能性很小。当空间满时，最小频率访问的数据最先被淘汰。</p>
 <p>LFU记录的是使用次数。</p>
 <p>Redis会根据键的空闲事件对LFU计数进行衰减。</p>
