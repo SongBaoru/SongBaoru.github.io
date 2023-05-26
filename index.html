@@ -254,9 +254,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-05-24 16:08:42 / Modified: 21:08:03" itemprop="dateCreated datePublished" datetime="2023-05-24T16:08:42+08:00">2023-05-24</time>
+      <time title="Created: 2023-05-24 16:08:42" itemprop="dateCreated datePublished" datetime="2023-05-24T16:08:42+08:00">2023-05-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-05-26 10:58:10" itemprop="dateModified" datetime="2023-05-26T10:58:10+08:00">2023-05-26</time>
     </span>
 
   
@@ -271,18 +277,311 @@
     <div class="post-body" itemprop="articleBody">
           <h1 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h1><p>微服务架构是一种一个单一应用程序开发为一组小型服务的代码结构，每个服务运行在自己的进程中，服务间采用轻量级通信机制（如HTTP）进行通信。这些服务可以独立部署，不同服务可以使用不同语言开发，使用不同的数据存储技术。</p>
 <h2 id="微服务与Spring-Cloud"><a href="#微服务与Spring-Cloud" class="headerlink" title="微服务与Spring Cloud"></a>微服务与Spring Cloud</h2><p>为了降低构建和维护分布式系统的难度，加快微服务的落地，Spring Cloud提供了快速构建分布式微服务系统的一些常用功能，如配置管理、服务发现、断路器、路由、服务代理、控制总线等工具。使用这些工具可以快速构建分布式微服务架构的系统。</p>
-<h2 id="Spring-Cloud-Netfix和Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Netfix和Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Netfix和Spring Cloud Alibaba"></a>Spring Cloud Netfix和Spring Cloud Alibaba</h2><p>Spring Cloud Netfix和Spring Cloud Alibaba是Spring Cloud的两套技术架构。</p>
-<h3 id="Spring-Cloud-Netfix"><a href="#Spring-Cloud-Netfix" class="headerlink" title="Spring Cloud Netfix"></a>Spring Cloud Netfix</h3><p><a target="_blank" rel="noopener" href="https://www.springcloud.cc/spring-cloud-netflix.html">Spring Cloud Netfix在官方文档</a>中介绍：该项目通过自动配置和绑定到Spring环境和其他Spring编程模型的习惯方式来为Spring Boot应用程序提供Netflix OSS集成。通过几个简单的注释，您可以快速启用和配置应用程序中的常见模式，并通过经过测试的Netflix组件构建大型分布式系统。提供的组件包括服务发现（Eureka），断路器（Hystrix），智能路由（Zuul）和客户端负载平衡（Ribbon）。可以从<a target="_blank" rel="noopener" href="https://github.com/Netflix">Netfix的GitHub</a>中找到这些组件。</p>
-<h3 id="Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Alibaba"></a>Spring Cloud Alibaba</h3><p>Spring Cloud Alibaba的相关文档：<a target="_blank" rel="noopener" href="https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html">Spring Cloud Alibaba参考文档</a>、<a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/blob/2022.x/README-zh.md">Spring Cloud Alibaba中文版README.md</a>。其提供的组件有Sentinel(分布式流控：流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性)、Nacos（注册中心）、RocketMQ（分布式消息组件）、Seata（分布式事务组件）等。</p>
 <h2 id="Spring-Cloud与Dubbo"><a href="#Spring-Cloud与Dubbo" class="headerlink" title="Spring Cloud与Dubbo"></a>Spring Cloud与Dubbo</h2><h3 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h3><p>Apache Dubbo 是一款 RPC 服务开发框架，用于解决微服务架构下的服务治理与通信问题。利用 Dubbo 提供的丰富服务治理特性，可以实现诸如服务发现、负载均衡、流量调度等服务治理诉求。</p>
 <p><a target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/registry/">Dubbo支持的注册中心</a>的官网介绍。</p>
 <h3 id="Spring-Cloud与Dubbo的区别"><a href="#Spring-Cloud与Dubbo的区别" class="headerlink" title="Spring Cloud与Dubbo的区别"></a>Spring Cloud与Dubbo的区别</h3><p>Dubbo主要用来实现服务治理，而Spring Cloud的各个组件实现了微服务架构下的所需的各种功能，服务治理只是其中的一个方面。</p>
 <p>Dubbo的在Spring Cloud Netfix技术架构中的替代方案可以是，通过Consul或Eureka Server等实现服务注册中心（对应Dubbo中的注册中心），通过Ribbon实现软负载均衡。 </p>
-<h1 id="服务注册中心和配置中心"><a href="#服务注册中心和配置中心" class="headerlink" title="服务注册中心和配置中心"></a>服务注册中心和配置中心</h1><p>服务发现就是查找服务实例。</p>
-<h2 id="Eureka"><a href="#Eureka" class="headerlink" title="Eureka"></a>Eureka</h2><p>服务提供方</p>
-<p>服务调用方</p>
-<h2 id="Consul"><a href="#Consul" class="headerlink" title="Consul"></a>Consul</h2><h2 id="Zookeeper"><a href="#Zookeeper" class="headerlink" title="Zookeeper"></a>Zookeeper</h2><h2 id="Config（只能作配置中心）"><a href="#Config（只能作配置中心）" class="headerlink" title="Config（只能作配置中心）"></a>Config（只能作配置中心）</h2><h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><h1 id="RESTful客户端"><a href="#RESTful客户端" class="headerlink" title="RESTful客户端"></a>RESTful客户端</h1><h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><h1 id="熔断器（断路器）"><a href="#熔断器（断路器）" class="headerlink" title="熔断器（断路器）"></a>熔断器（断路器）</h1><p>熔断器（Circuit Breaker）</p>
-<h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><h1 id="路由网关"><a href="#路由网关" class="headerlink" title="路由网关"></a>路由网关</h1><h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><h2 id="GateWay"><a href="#GateWay" class="headerlink" title="GateWay"></a>GateWay</h2><h1 id="消息驱动"><a href="#消息驱动" class="headerlink" title="消息驱动"></a>消息驱动</h1><h2 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h2><h1 id="调用链追踪"><a href="#调用链追踪" class="headerlink" title="调用链追踪"></a>调用链追踪</h1><h2 id="Zipkin"><a href="#Zipkin" class="headerlink" title="Zipkin"></a>Zipkin</h2><h2 id="Sleuth"><a href="#Sleuth" class="headerlink" title="Sleuth"></a>Sleuth</h2>
+<h2 id="Spring-Cloud-Netfix和Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Netfix和Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Netfix和Spring Cloud Alibaba"></a>Spring Cloud Netfix和Spring Cloud Alibaba</h2><p>Spring Cloud Netfix和Spring Cloud Alibaba是Spring Cloud的两套技术架构。</p>
+<h3 id="Spring-Cloud-Netfix"><a href="#Spring-Cloud-Netfix" class="headerlink" title="Spring Cloud Netfix"></a>Spring Cloud Netfix</h3><p><a target="_blank" rel="noopener" href="https://www.springcloud.cc/spring-cloud-netflix.html">Spring Cloud Netfix在官方文档</a>中介绍：该项目通过自动配置和绑定到Spring环境和其他Spring编程模型的习惯方式来为Spring Boot应用程序提供Netflix OSS集成。通过几个简单的注释，您可以快速启用和配置应用程序中的常见模式，并通过经过测试的Netflix组件构建大型分布式系统。提供的组件包括服务发现（Eureka），断路器（Hystrix），智能路由（Zuul）和客户端负载平衡（Ribbon）。可以从<a target="_blank" rel="noopener" href="https://github.com/Netflix">Netfix的GitHub</a>中找到这些组件。</p>
+<h3 id="Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Alibaba"></a>Spring Cloud Alibaba</h3><p>Spring Cloud Alibaba的相关文档：<a target="_blank" rel="noopener" href="https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html">Spring Cloud Alibaba参考文档</a>、<a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/blob/2022.x/README-zh.md">Spring Cloud Alibaba中文版README.md</a>。其提供的组件有Sentinel(分布式流控：流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性)、Nacos（注册中心）、RocketMQ（分布式消息组件）、Seata（分布式事务组件）等。</p>
+<h1 id="服务注册中心和配置中心"><a href="#服务注册中心和配置中心" class="headerlink" title="服务注册中心和配置中心"></a>服务注册中心和配置中心</h1><p>服务注册中心提供了服务注册和服务发现功能</p>
+<ol>
+<li>服务注册：所有服务的提供方启动时向注册中心发送自己的信息，包括地址、端口、提供的服务等。</li>
+<li>服务发现：当服务调用方需要调用服务时，只需要向注册中心查询谁提供了自己需要的服务。</li>
+</ol>
+<h2 id="Eureka（注册中心）"><a href="#Eureka（注册中心）" class="headerlink" title="Eureka（注册中心）"></a>Eureka（注册中心）</h2><h3 id="功能和组成"><a href="#功能和组成" class="headerlink" title="功能和组成"></a>功能和组成</h3><p>Eureka提供了完整的服务注册和服务发现功能，以及负载均衡、故障转移的功能。</p>
+<p>主要包含两个部分：Eureka Client、Eureka Server：</p>
+<ul>
+<li><p>Eureka Server: 服务注册中心，用于管理各种微服务实例的注册与发现。Eureka Server提供了一种能力，让各个微服务之间彼此连接并互相感知。每当有新的微服务被启动时，它会向Eureka Server节点发送一个REST请求，并且在该服务器上进行注册。同时，对于已经注册的微服务，Eureka Server会接收并存储它们发送的心跳信息，以便为客户端提供最新可用的服务列表。</p>
+</li>
+<li><p>Eureka Client: （微）服务实例，用于与Eureka Server注册中心进行交互。Eureka Client会向Eureka Server注册自己，并定期发送心跳消息来更新它的状态。同时，它还可以查询Eureka Server上已注册的其他微服务实例的信息，并通过负载均衡算法从可用的微服务列表中选择合适的服务来处理请求。服务提供方和服务消费方都是Eureka Client。</p>
+</li>
+</ul>
+<p>Eureka Server和Eureka Client之间的协作使得微服务可以快速地、灵活地进行部署和扩展，并且可以轻松地进行服务监控和故障排除。</p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<li>在Eureka Server中，添加pom依赖（spring-cloud-strater-eureka-server），在启动类上添加@EnableEurekaServer注解表示该服务是一个EurekaServer。</li>
+<li>在Eureka Client中，添加pom依赖（spring-cloud-strater-eureka），在application.yml中添加配置（配置注册中心的地址defaultZone和自身的名字name），在启动类上添加@EnableEurekaClient注解表示该服务是一个EurekaClient。</li>
+</ol>
+<h3 id="健康检查"><a href="#健康检查" class="headerlink" title="健康检查"></a>健康检查</h3><p>Eureka通过客户端（Eureka Client）的心跳包来检测客户端状态，但是这种方式只能检测客户端是否在线，不能保证客户端可以对外提供服务，这是因为客户端可能依赖了其它的资源，如数据库、缓存等，如果其依赖的服务无法正常使用，那么即使客户端在线，也不能对外提供服务，这时就需要客户端自己向Eureka Server提供自身的状态。</p>
+<p>开启Eureka的健康检查，客户端就能将自身状态就可以传送给Eureka Server了。在application.yml中添加配置即可开启Eureka的健康检查。</p>
+<p>Eureka Client有如下状态：UP、DOWN、STARTING、OUT_OF_SERVICE、UNKNOWN</p>
+<h3 id="自我保护模式"><a href="#自我保护模式" class="headerlink" title="自我保护模式"></a>自我保护模式</h3><p>自我保护模式是一种应对网络异常的安全保护机制，它的理念是宁可同时保留所有实例（健康的实例和不健康的实例），也不盲目注销任何健康的实例。</p>
+<h3 id="就近原则"><a href="#就近原则" class="headerlink" title="就近原则"></a>就近原则</h3><p>Eureka有Region和Zone的概念，Region可以理解为区、Zone可以理解为机房。Eureka Serve启动时需要指定自己所在的Zone。Eureka Client启动时也需要指定Zone，Eureka Client会优先请求自己的Zone下的Eureka Serve列表中的Eureka Serve；如果没有指定，会默认使用defaultZone作为自己的Zone。</p>
+<h2 id="Consul（注册中心和配置中心）"><a href="#Consul（注册中心和配置中心）" class="headerlink" title="Consul（注册中心和配置中心）"></a>Consul（注册中心和配置中心）</h2><h2 id="Zookeeper（注册中心和配置中心）"><a href="#Zookeeper（注册中心和配置中心）" class="headerlink" title="Zookeeper（注册中心和配置中心）"></a>Zookeeper（注册中心和配置中心）</h2><h2 id="Config（配置中心）"><a href="#Config（配置中心）" class="headerlink" title="Config（配置中心）"></a>Config（配置中心）</h2><h3 id="功能、特点和组成"><a href="#功能、特点和组成" class="headerlink" title="功能、特点和组成"></a>功能、特点和组成</h3><p>在研发流程中有测试环境、UAT（User Acceptance Testing，用户验收测试）环境、生产环境等，每个微服务对应多个不同环境的配置文件，修改配置文件十分繁琐。这就需要引入配置中心组件。</p>
+<p>Spring Cloud Config提供了分布式配置管理功能。特点如下：</p>
+<ol>
+<li>服务器存储后端的默认实现使用git。</li>
+<li>支持丰富的文件格式，包括yml、json、properities等，还可以自定义文件格式。</li>
+<li>配合Spring Cloud Bus可实现配置推送。</li>
+<li>Spring Boot项目中不需要改动代码，加入一个启动配置文件指明使用Config Server中哪个配置文件即可。</li>
+</ol>
+<p>主要包含两个部分：Config Client、Config Server。</p>
+<h3 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<li>Config的配置必须放在bootstrap.properities中，才能被正确加载，因为放在bootstrap.properities中才能确保config相关的配置先于application.properities加载（bootstrap.properities的加载先于application.properities）。</li>
+<li>在Config Server中，添加pom依赖，在启动类上添加@EnableConfigServer注解表示允许该服务以HTTP形式对外提供配置管理服务。</li>
+<li>在Config Client中，添加pom依赖，在启动类上添加@EnableAutoConfiguration注解表示自动向Config Server获取项目的配置。</li>
+</ol>
+<h3 id="热生效"><a href="#热生效" class="headerlink" title="热生效"></a>热生效</h3><p>热生效是指，让修改后的配置动态生效。</p>
+<p>用法是在Config Client的启动类上添加@RefreshScope注解。此外，还需要搭配Spring Cloud Bus，通知Config Client进行本地配置更新。</p>
+<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><p>通过将所有Config Server实例以服务提供方的形式注册到Eureka上，Config Client以服务消费方的形式区Eureka获取Config Server的实例。由Eureka提供故障转移、服务注册和发现等功能。</p>
+<p>使用方法：</p>
+<ol>
+<li><p>在Config Server（作为Eureka Client）添加pom依赖，在配置文件application.yml中添加对Eureka注册中心的配置，在启动类上添加注解（具体方法见Eureka的使用方法之Eureka Client的配置方法）。</p>
+</li>
+<li><p>在Config Client（也是作为Eureka Client）添加pom依赖，在启动类上添加注解（具体方法见Eureka的使用方法之Eureka Client的配置方法）。</p>
+<p>不同的是添加配置的位置是bootstrap.yml，在bootstrap.yml中添加对Eureka注册中心的配置，并在原Config Client配置的基础上删除spring.cloud.config.uri的静态的指定，改为将spring.cloud.config.discovery.enabled设为true， 并通过spring.cloud.config.discovery.serviceId指定在注册中心配置的serviceId。</p>
+</li>
+</ol>
+<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>Ribbon最主要的功能是提供了客户端的负载均衡算法，还提供了一系列完整的服务调用配置项，如连接超时、失败重试、访问权重、调用优先级等。</p>
+<h3 id="使用方法-2"><a href="#使用方法-2" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<li><p>在Eureka的客户端代码的基础上进行改造</p>
+<p>将DiscoveryClient改为LoadBalancerClient，并调用其choose方法，会使原先得到的ServiceInstance集合变为得到单个ServiceInstance实例。</p>
+</li>
+<li><p>使用@LoadBalanced注解</p>
+<p>在启动类上（通常，有时也用在配置类上、组件类上等）使用@RibbonClient注解设置需要调用的服务名，在RestTemplate的bean对象上使用@LoadBalanced注解。</p>
+<p>如果想要自定义参数和策略，就需要使用自定义配置：</p>
+<ol>
+<li>使用@RibbonClient注解时，可以设置configuration的值来自定义配置类。</li>
+<li>也可以使用配置文件，在配置文件中指定使用的配置类</li>
+</ol>
+</li>
+</ol>
+<h1 id="熔断器（断路器）"><a href="#熔断器（断路器）" class="headerlink" title="熔断器（断路器）"></a>熔断器（断路器）</h1><h2 id="Hystrix"><a href="#Hystrix" class="headerlink" title="Hystrix"></a>Hystrix</h2><p>微服务架构中一般存在较多的服务单元，这样就出现某个单元因为网络原因等问题出现延迟，如果此时请求方的请求不断增多，时间一长就会形成调用方的任务积压，阻塞请求占用大量的系统的线程、IO等资源，导致调用方的服务瘫痪。进一步的会影响调用方的上游，从而产生“雪崩效应”。</p>
+<blockquote>
+<p>雪崩效应（Avalanche Effect）是指在分布式系统中，由于某个服务的故障或不可用，从而导致整个系统的连锁反应，最终导致整个系统无法正常工作的现象。</p>
+<p>具体来说，当一个服务出现故障时，其它依赖该服务的服务都会请求该服务，并等待响应。如果这些请求全部被堵塞住或响应时间过长，则会消耗掉资源，进而阻塞或延迟其它请求，造成一系列连锁反应。这可能会导致更多的请求堆积，使整个系统变得异常缓慢或直接崩溃。</p>
+<p>为了避免雪崩效应，需要考虑以下几种解决方案：</p>
+<ol>
+<li>限流：限制对服务的访问量和频率，避免过多的请求排队等待。</li>
+<li>降级：在一定条件下降低服务的质量和功能，如缩短超时时间、返回默认值等，以保证系统的稳定性。</li>
+<li>熔断：在服务发生故障时快速断开与该服务的连接，并通过降级方式替代该服务响应请求，以避免因故障而导致其它服务出现雪崩效应。</li>
+</ol>
+<p>综上所述，为了保证分布式系统的健壮性和可用性，在设计和实现中需要充分考虑服务之间的依赖和关系，并采取一些必要的措施来避免或应对雪崩问题。</p>
+</blockquote>
+<p>为解决这一问题，可以使用熔断器（Circuit Breaker）。</p>
+<p>熔断器的原理是：当某个服务单元发生故障，通过熔断器的故障监控，向调用方返回一个错误请求，而不是长时间的等待响应，避免故障在分布式系统中蔓延。</p>
+<h3 id="熔断原理"><a href="#熔断原理" class="headerlink" title="熔断原理"></a>熔断原理</h3><p>Hystrix提供了熔断模式和隔离模式来缓解雪崩效应。这两种方案都属于阻塞发生之后的应对策略，而非预防性策略（如限流）。</p>
+<ol>
+<li><p>熔断模式（服务熔断）</p>
+<p>如果某个服务响应调用太慢，则熔断对该服务的调用，即后续请求不再调用该服务，直接返回并快速释放资源。</p>
+<p>熔断恢复：被熔断的请求不是永久被切断，而是暂停一段时间（默认是5秒）之后允许部分请求通过，若请求都是健康的（ResponseTime&lt;250ms），则取消熔断。</p>
+</li>
+<li><p>隔离模式（服务降级）</p>
+<p>为每个依赖调用分配一个线程池，如果线程池已满，调用将立即被拒绝，加速失败时间。</p>
+</li>
+</ol>
+<p>服务调用的各种结果（成功、异常、超时、拒绝）都会上报给熔断器，加入bucket计算发生的总数。</p>
+<h3 id="使用方法-3"><a href="#使用方法-3" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<li><p>引入Hystrix的maven依赖，spring-cloud-starter-hystrix</p>
+</li>
+<li><p>在启动类中添加@EnableCircutBreaker注解或@EnableHystrix注解</p>
+</li>
+<li><p>在controller方法上添加@HystrixCommand，表示开启对该方法的熔断检测功能。</p>
+</li>
+<li><p>配置方法：</p>
+<ol>
+<li>直接对@HystrixCommand注解的commandProperities设置@HystirxProperities注解的参数进行配置。</li>
+<li>使用配置文件进行配置，Hystrix的大部分配置都以hystrix.command开头</li>
+</ol>
+<p>可以配置的参数包括：</p>
+<ul>
+<li>隔离策略的超时时间</li>
+<li>最大请求数</li>
+<li>进行短路的失败请求的次数阈值</li>
+<li>短路后多长时间之后进行重试</li>
+<li>出错百分比阈值</li>
+<li>……</li>
+</ul>
+</li>
+</ol>
+<h3 id="监测工具"><a href="#监测工具" class="headerlink" title="监测工具"></a>监测工具</h3><p>熔断的监测工具有两个：</p>
+<ol>
+<li>Hystrix Dashboard：针对Hystrix进行实时监控的工具，通过Hystrix Dashboard可以直观的看到各个Hystrix命令的请求响应时间、请求成功率等数据。</li>
+<li>Turbine：只使用Hystrix Dashboard只能看到单个应用内的服务信息，而Turbine能够汇总系统内多个服务的数据并显示到Hystrix Dashboard上。</li>
+</ol>
+<p>Hystrix Dashboard和Turbine监测工具使用方法：</p>
+<ol>
+<li>在需要被监测的项目中，引入依赖spring-boot-starter-actuator</li>
+<li>在仪表盘应用中，引入依赖spring-cloud-starter-hystrix-dashboard，主类中添加@EnableHystrixDashboard注解开启仪表板</li>
+<li>在上面创建的仪表盘应用中，继续添加Turbine的依赖spring-cloud-starter-turbine，在配置文件application.yml中添加配置信息，除了要配置Turbine，还需要指定Eureka的地址，使Turbine能够到注册中心查找需要监测的服务实例。</li>
+<li>在被监测的服务项目中，也需要进行配置，保证配置中的eureka.instance.metadata-map.cluster和Turbine中的clusterConfig的配置名称一致。</li>
+<li>请求Turbine的聚合监测面板地址就能看到聚合后的图形化监测信息。</li>
+</ol>
+<h1 id="声明式RESTful客户端"><a href="#声明式RESTful客户端" class="headerlink" title="声明式RESTful客户端"></a>声明式RESTful客户端</h1><h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><p>使用Ribbon的缺点是需要对请求拼接参数，而<a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-openfeign/reference/html/#spring-cloud-feign">Feign</a>解决了这个问题。使用Feign，可以通过定义接口的方式来描述服务间的交互，而无需手动编写HTTP请求代码。</p>
+<h3 id="使用方法-4"><a href="#使用方法-4" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<li><p>添加依赖：spring-cloud-starter-feign</p>
+</li>
+<li><p>在启动类上添加注解：@EnableFeignClients，该注解的defaultConfiguration属性可以指定所有Feign接口的配置类。</p>
+</li>
+<li><p>定义Feign接口：使用@FeignClient(name&#x3D;”xxx”)注解定义Feign接口。</p>
+<p>该注解除了name属性还有，可以指定用户自定义的配置类的configuration属性，可以在使用了Hystrix的服务中指定熔断的FallBack类的fallback属性。</p>
+</li>
+</ol>
+<h1 id="路由网关"><a href="#路由网关" class="headerlink" title="路由网关"></a>路由网关</h1><p>API 网关是一个搭建在客户端和微服务之间的服务，我们可以在 API 网关中处理一些非业务功能的逻辑，例如权限验证、监控、缓存、请求路由等。</p>
+<p>API 网关就像整个微服务系统的门面一样，是系统对外的唯一入口。有了它，客户端会先将请求发送到 API 网关，然后由 API 网关根据请求的标识信息将请求转发到微服务实例。</p>
+<h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><h3 id="功能-1"><a href="#功能-1" class="headerlink" title="功能"></a>功能</h3><p>Zuul的具体作用就是服务转发，Zuul可以作为为资源的统一访问入口。</p>
+<p>此外Zuul还提供了过滤器的功能，可以用来进行接口权限校验、限流、统计等。</p>
+<h3 id="使用方法-5"><a href="#使用方法-5" class="headerlink" title="使用方法"></a>使用方法</h3><p>Zuul用做服务转发的使用方法：</p>
+<ol>
+<li><p>添加pom依赖，spring-cloud-starter-zuul</p>
+</li>
+<li><p>在启动类上添加@EnableZuulProxy注解</p>
+</li>
+<li><p>在application.yml文件中添加配置，zuul.routes的配置格式如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#第一种</span></span><br><span class="line">[<span class="string">serviceId</span>]<span class="string">:</span>					<span class="comment">#对应Eureka中的serviceId，规则名与serviceId相同</span></span><br><span class="line">	<span class="attr">path:</span> <span class="string">/providerURL/**</span>		<span class="comment">#转发哪些path（URL的path部分，见下文的补充）</span></span><br><span class="line"><span class="comment">#第二种</span></span><br><span class="line"><span class="attr">customName1:</span>					<span class="comment">#自定义的转发规则名称</span></span><br><span class="line">	<span class="attr">path:</span> <span class="string">/fromURL1/**</span>			<span class="comment">#转发哪些path</span></span><br><span class="line">	<span class="attr">url:</span> <span class="string">http://localhost:8081</span>	<span class="comment">#转发到哪个scheme://domain:port</span></span><br><span class="line"><span class="attr">customName2:</span>					</span><br><span class="line">	<span class="attr">path:</span> <span class="string">/fromURL2/**</span>			</span><br><span class="line">	<span class="attr">url:</span> <span class="string">http://localhost:8082</span>	</span><br></pre></td></tr></table></figure>
+
+<p>示例：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">zuul:</span></span><br><span class="line">  <span class="attr">host:</span></span><br><span class="line">    <span class="attr">socket-timeout-millis:</span> <span class="number">60000</span></span><br><span class="line">    <span class="attr">connect-timeout-millis:</span> <span class="number">60000</span></span><br><span class="line">  <span class="attr">routes:</span></span><br><span class="line">    <span class="attr">frameFronted:</span></span><br><span class="line">      <span class="attr">path:</span> <span class="string">/fronted/frame/**</span></span><br><span class="line">      <span class="attr">url:</span> <span class="string">http://localhost:8111</span></span><br><span class="line">    <span class="attr">loginFronted:</span></span><br><span class="line">      <span class="attr">path:</span> <span class="string">/fronted/login/**</span></span><br><span class="line">      <span class="attr">url:</span> <span class="string">http://localhost:8222</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>其它配置参数：</p>
+<ol>
+<li>忽略匹配：ingoredPatterns参数可以配置忽略URL</li>
+<li>敏感Header过滤：在请求的转发中默认会转发HTTP的Header信息，然而可能有些敏感信息不能被转发给下游系统，如Cookie。可以通过sensitiveHeaders参数进行配置，各项之间使用逗号分隔。</li>
+</ol>
+<p>匹配顺序：如果想按配置的顺序进行路由规则控制，则需要使用YMAL，如果使用的是properities文件，则会丢失顺序。</p>
+<p>补充：</p>
+<p>URL结构：</p>
+<img src="./Spring-Cloud/image-20230525183105335.png" alt="image-20230525183105335" style="zoom:80%;" />
+
+<h2 id="Gateway"><a href="#Gateway" class="headerlink" title="Gateway"></a>Gateway</h2><h3 id="功能和特点"><a href="#功能和特点" class="headerlink" title="功能和特点"></a>功能和特点</h3><p>Spring Cloud Gateway 是 Spring Cloud 团队基于 Spring 5.0、Spring Boot 2.0 和 Project Reactor 等技术开发的高性能 API 网关组件。</p>
+<p>Spring Cloud Gateway 旨在提供一种简单而有效的途径来发送 API，并为它们提供横切关注点，例如：安全性，监控&#x2F;指标和弹性。 </p>
+<blockquote>
+<p>Spring Cloud Gateway 是基于 WebFlux 框架实现的，而 WebFlux 框架底层则使用了高性能的 Reactor 模式通信框架 Netty。</p>
+</blockquote>
+<p>Spring Cloud Gateway 具有以下特性：</p>
+<ul>
+<li>基于 Spring Framework 5、Project Reactor 和 Spring Boot 2.0 构建。</li>
+<li>能够在任意请求属性上匹配路由。</li>
+<li>predicates（断言） 和 filters（过滤器）是特定于路由的。</li>
+<li>集成了 Hystrix 熔断器。</li>
+<li>集成了 Spring Cloud DiscoveryClient（服务发现客户端）。</li>
+<li>易于编写断言和过滤器。</li>
+<li>能够限制请求频率。</li>
+<li>能够重写请求路径。</li>
+</ul>
+<p>可以通过配置使Gateway兼容HTTPS请求，</p>
+<p>核心概念（<a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-gateway/reference/html/#glossary">Glossary</a>）</p>
+<p>Spring Cloud GateWay 最主要的功能就是路由转发，而在定义转发规则时主要涉及了以下三个核心概念，如下表。</p>
+<table>
+<thead>
+<tr>
+<th>核心概念</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Route（路由）</td>
+<td>网关最基本的模块。它由一个 ID、一个目标 URI、一组断言（Predicate）和一组过滤器（Filter）组成。</td>
+</tr>
+<tr>
+<td>Predicate（断言）</td>
+<td>路由转发的判断条件，我们可以通过 Predicate 对 HTTP 请求进行匹配，例如请求方式、请求路径、请求头、参数等，如果请求与断言匹配成功，则将请求转发到相应的服务。</td>
+</tr>
+<tr>
+<td>Filter（过滤器）</td>
+<td>过滤器，我们可以使用它对请求进行拦截和修改，还可以使用它对上文的响应进行再处理。</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>注意：其中 Route 和 Predicate 必须同时声明（路由断言）。</p>
+</blockquote>
+<h3 id="断言的类型"><a href="#断言的类型" class="headerlink" title="断言的类型"></a>断言的类型</h3><ol>
+<li>After</li>
+<li>Before</li>
+<li>Between</li>
+<li>Cookie</li>
+<li>Headers</li>
+<li>Host</li>
+<li>Method</li>
+<li>Path</li>
+<li>Query</li>
+<li>RemoteAddr</li>
+</ol>
+<p>多个路由断言可以通过与或非等逻辑连接。</p>
+<h3 id="过滤器的类型"><a href="#过滤器的类型" class="headerlink" title="过滤器的类型"></a>过滤器的类型</h3><ol>
+<li>AddRequestHeader</li>
+<li>AddRequestParameter</li>
+<li>AddResponseHeader</li>
+<li>Hystrix</li>
+<li>PrefixPath</li>
+<li>RedictTo</li>
+<li>RemoteNonProxyHeaders</li>
+<li>RemoveRequestHeader</li>
+<li>RemoveResponseHeader</li>
+<li>RewritePath</li>
+<li>SaveSession</li>
+<li>SetPath</li>
+<li>SetResponseHeader</li>
+<li>SetStatus</li>
+<li>StripPrefix</li>
+<li>Retry</li>
+</ol>
+<h3 id="工作流程如下图"><a href="#工作流程如下图" class="headerlink" title="工作流程如下图"></a>工作流程如下图</h3><img src="./Spring-Cloud/image-20230525221748527.png" alt="image-20230525221748527" style="zoom: 80%;" />
+
+<h1 id="消息驱动"><a href="#消息驱动" class="headerlink" title="消息驱动"></a>消息驱动</h1><h2 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h2><h1 id="调用链跟踪"><a href="#调用链跟踪" class="headerlink" title="调用链跟踪"></a>调用链跟踪</h1><h2 id="Sleuth"><a href="#Sleuth" class="headerlink" title="Sleuth"></a>Sleuth</h2><h3 id="功能-2"><a href="#功能-2" class="headerlink" title="功能"></a>功能</h3><p>要实现准确快速地定位到线上故障，比较成熟的方案是使用调用链跟踪。调用链跟踪监测系统可以实现如下的功能：</p>
+<ol>
+<li>快速定位故障</li>
+<li>各个调用环节的性能分析</li>
+<li>数据分析</li>
+</ol>
+<p>Spring Cloud Sleuth是Spring Cloud生态中实现调用链跟踪的子项目，Spring Cloud Sleuth可以结合Zipkin，将消息发送到Zipkin，利用Zipkin存储信息，利用Zipkin UI展示数据，也可以只是简单的把数据存储在日记中。</p>
+<h3 id="术语（Terminology）"><a href="#术语（Terminology）" class="headerlink" title="术语（Terminology）"></a>术语（<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-sleuth/docs/3.1.8/reference/htmlsingle/spring-cloud-sleuth.html#getting-started-terminology">Terminology</a>）</h3><p>Spring Cloud Sleuth borrows <a target="_blank" rel="noopener" href="https://research.google.com/pubs/pub36356.html">Dapper’s</a> terminology.7</p>
+<p><strong>Span</strong>: The basic unit of work. For example, sending an RPC is a new span, as is sending a response to an RPC. Spans also have other data, such as descriptions, timestamped events, key-value annotations (tags), the ID of the span that caused them, and process IDs (normally IP addresses).</p>
+<p>Spans can be started and stopped, and they keep track of their timing information. Once you create a span, you must stop it at some point in the future.</p>
+<p><strong>Trace:</strong> A set of spans forming a tree-like structure. For example, if you run a distributed big-data store, a trace might be formed by a <code>PUT</code> request.</p>
+<p><strong>Annotation&#x2F;Event:</strong> Used to record the existence of an event in time.</p>
+<p>Conceptually in a typical RPC scenario we mark these events to highlight what kind of an action took place (it doesn’t mean that physically such an event will be set on a span).</p>
+<ul>
+<li><strong>cs</strong>: Client Sent. The client has made a request. This annotation indicates the start of the span.</li>
+<li><strong>sr</strong>: Server Received: The server side got the request and started processing it. Subtracting the <code>cs</code> timestamp from this timestamp reveals the network latency.</li>
+<li><strong>ss</strong>: Server Sent. Annotated upon completion of request processing (when the response got sent back to the client). Subtracting the <code>sr</code> timestamp from this timestamp reveals the time needed by the server side to process the request.</li>
+<li><strong>cr</strong>: Client Received. Signifies the end of the span. The client has successfully received the response from the server side. Subtracting the <code>cs</code> timestamp from this timestamp reveals the whole time needed by the client to receive the response from the server.</li>
+</ul>
+<h2 id="Zipkin"><a href="#Zipkin" class="headerlink" title="Zipkin"></a>Zipkin</h2><h3 id="功能-3"><a href="#功能-3" class="headerlink" title="功能"></a>功能</h3><p>Zipkin是分布式实时数据追踪系统，由Twitter公司开发。主要功能是聚集来自各系统的实时监控数据。</p>
+<p>主要由四部分组成：</p>
+<ol>
+<li>收集器：收集追踪数据。</li>
+<li>数据存储：数据存储默认使用内存存储，也可以替换成MySQL、Cassandra等。</li>
+<li>查询：向其它服务服务提供数据查询功能</li>
+<li>Web页面</li>
+</ol>
+<h3 id="使用方法-6"><a href="#使用方法-6" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<li>创建Zipkin Server、<ol>
+<li>添加pom依赖zipkin-autoconfigure-ui和zipkin-server；</li>
+<li>在启动类中添加@EnableZipkinServer，表示启动Zipkin服务端。</li>
+</ol>
+</li>
+<li>在服务中添加依赖和配置：<ol>
+<li>添加对Sleuth的依赖spring-cloud-starter-sleuth（生成带有spanId和traceId的日志）和spring-cloud-sleuth-zipkin（将日志以HTTP协议传输到Zipkin Server）</li>
+<li>配置zipkin的base-url（Zipkin Server的地址）、sleuth的samper.percentage（创建并传输日志的传输比例）</li>
+</ol>
+</li>
+</ol>
+<h3 id="与Spring-Cloud-Stream整合"><a href="#与Spring-Cloud-Stream整合" class="headerlink" title="与Spring Cloud Stream整合"></a>与Spring Cloud Stream整合</h3><p>由于将日志传输到Zipkin Server的方式是HTTP请求，请求量太大时会给系统带来很大压力，如果改为使用Stream消息机制传输监控日志就可以减轻压力。</p>
+<p>Zipkin与Spring Cloud Stream整合的方法是：</p>
+<ol>
+<li>在Zipkin Server端<ol>
+<li>添加对Stream消息中间件的依赖（以RabbitMQ为例）：spring-cloud-sleuth-zipkin-stream；spring-cloud-sleuth-stream；spring-cloud-stream-binder-rabbit。</li>
+<li>在配置文件中添加对Stream的配置信息和RabbitMQ的连接信息。</li>
+<li>将Zipkin Server的启动类注解@EnableZipkinServer改为@EnableZipkinStreamServer。</li>
+</ol>
+</li>
+<li>在服务端<ol>
+<li>将spring-cloud-sleuth-zipkin依赖注掉，在此基础上添加spring-cloud-sleuth-stream和spring-cloud-stream-binder-rabbit依赖。</li>
+<li>和在Zipkin Server端一样，配置文件中添加对Stream的配置信息和RabbitMQ的连接信息。</li>
+</ol>
+</li>
+</ol>
+<h3 id="与MySQL整合"><a href="#与MySQL整合" class="headerlink" title="与MySQL整合"></a>与MySQL整合</h3><p>Zipkin默认将数据存储在内存中，如果要持久化这些数据可以整合MySQL.</p>
+<p>Zipkin与MySQL整合的方法是：</p>
+<ol>
+<li>添加对JDBC和MySQL驱动的依赖，spring-boot-starter-jdbc和mysql-connector-java</li>
+<li>在配置文件中配置MySQL的连接信息，设置initialize参数为true（在启动时创建表结构  ）</li>
+</ol>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li>胡劲寒. 极简Spring Cloud实战. 北京: 机械工业出版社, 2019.</li>
+</ul>
+
       
     </div>
 
@@ -2378,7 +2677,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-05-24 16:04:13" itemprop="dateModified" datetime="2023-05-24T16:04:13+08:00">2023-05-24</time>
+      <time title="Modified: 2023-05-26 10:02:29" itemprop="dateModified" datetime="2023-05-26T10:02:29+08:00">2023-05-26</time>
     </span>
 
   
@@ -2748,8 +3047,7 @@
 <li><p>主从切换后，为使客户端“知道”地址变更了，Sentinel会关闭所有的客户端连接，在重连时使客户端使用新的地址。</p>
 </li>
 </ul>
-<p>Redis集群方案</p>
-<h3 id="Codis"><a href="#Codis" class="headerlink" title="Codis"></a>Codis</h3><p>Codis是Redis的集群代理中间件，当客户端向Codis发送指令时，Codis负责将指令转发到后面的Redis实例执行，并将返回结构转回给客户端。Code上挂接的所有Redis实例构成一个Redis集群，当集群空间不足时，可以通过动态增加Redis实例来实现扩容。</p>
+<h2 id="Redis集群方案"><a href="#Redis集群方案" class="headerlink" title="Redis集群方案"></a>Redis集群方案</h2><h3 id="Codis"><a href="#Codis" class="headerlink" title="Codis"></a>Codis</h3><p>Codis是Redis的集群代理中间件，当客户端向Codis发送指令时，Codis负责将指令转发到后面的Redis实例执行，并将返回结构转回给客户端。Code上挂接的所有Redis实例构成一个Redis集群，当集群空间不足时，可以通过动态增加Redis实例来实现扩容。</p>
 <p>因为单个Codis代理能支撑的QPS有限，可以启动多个Codis代理增加QPS，还可以起到容灾的功能。</p>
 <p><strong>Codis的槽位定位算法：</strong></p>
 <p>Codis将key转发到对应Redis实例的定位机制是通过划分槽位实现的。Codis默认将所有的key划分为1024个槽位（slot），对客户端传入的key进行crc32运算计算hash值，然后用这个hash值对1024取余，这个余数就是key所属的槽位。</p>
