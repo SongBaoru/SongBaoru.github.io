@@ -29,7 +29,7 @@
 <meta property="og:image" content="https://songbaoru.github.io/2023/05/24/Spring-Cloud/Spring-Cloud/image-20230525183105335.png">
 <meta property="og:image" content="https://songbaoru.github.io/2023/05/24/Spring-Cloud/Spring-Cloud/image-20230525221748527.png">
 <meta property="article:published_time" content="2023-05-24T08:08:42.000Z">
-<meta property="article:modified_time" content="2023-05-26T02:58:10.086Z">
+<meta property="article:modified_time" content="2023-05-26T15:01:22.520Z">
 <meta property="article:author" content="SBR">
 <meta property="article:tag" content="Spring Cloud">
 <meta name="twitter:card" content="summary">
@@ -108,7 +108,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">微服务架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%8ESpring-Cloud"><span class="nav-number">1.1.</span> <span class="nav-text">微服务与Spring Cloud</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud%E4%B8%8EDubbo"><span class="nav-number">1.2.</span> <span class="nav-text">Spring Cloud与Dubbo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dubbo"><span class="nav-number">1.2.1.</span> <span class="nav-text">Dubbo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud%E4%B8%8EDubbo%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.2.</span> <span class="nav-text">Spring Cloud与Dubbo的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-Netfix%E5%92%8CSpring-Cloud-Alibaba"><span class="nav-number">1.3.</span> <span class="nav-text">Spring Cloud Netfix和Spring Cloud Alibaba</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-Netfix"><span class="nav-number">1.3.1.</span> <span class="nav-text">Spring Cloud Netfix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-Alibaba"><span class="nav-number">1.3.2.</span> <span class="nav-text">Spring Cloud Alibaba</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="nav-number">2.</span> <span class="nav-text">服务注册中心和配置中心</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">Eureka（注册中心）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E7%BB%84%E6%88%90"><span class="nav-number">2.1.1.</span> <span class="nav-text">功能和组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5"><span class="nav-number">2.1.3.</span> <span class="nav-text">健康检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E6%88%91%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.4.</span> <span class="nav-text">自我保护模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%B1%E8%BF%91%E5%8E%9F%E5%88%99"><span class="nav-number">2.1.5.</span> <span class="nav-text">就近原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Consul%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">Consul（注册中心和配置中心）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">Zookeeper（注册中心和配置中心）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config%EF%BC%88%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">Config（配置中心）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E3%80%81%E7%89%B9%E7%82%B9%E5%92%8C%E7%BB%84%E6%88%90"><span class="nav-number">2.4.1.</span> <span class="nav-text">功能、特点和组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="nav-number">2.4.2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E7%94%9F%E6%95%88"><span class="nav-number">2.4.3.</span> <span class="nav-text">热生效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="nav-number">2.4.4.</span> <span class="nav-text">高可用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="nav-number">3.</span> <span class="nav-text">负载均衡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ribbon"><span class="nav-number">3.1.</span> <span class="nav-text">Ribbon</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">3.1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-2"><span class="nav-number">3.1.2.</span> <span class="nav-text">使用方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%86%94%E6%96%AD%E5%99%A8%EF%BC%88%E6%96%AD%E8%B7%AF%E5%99%A8%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">熔断器（断路器）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hystrix"><span class="nav-number">4.1.</span> <span class="nav-text">Hystrix</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%86%94%E6%96%AD%E5%8E%9F%E7%90%86"><span class="nav-number">4.1.1.</span> <span class="nav-text">熔断原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-3"><span class="nav-number">4.1.2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%91%E6%B5%8B%E5%B7%A5%E5%85%B7"><span class="nav-number">4.1.3.</span> <span class="nav-text">监测工具</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8FRESTful%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">5.</span> <span class="nav-text">声明式RESTful客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Feign"><span class="nav-number">5.1.</span> <span class="nav-text">Feign</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-4"><span class="nav-number">5.1.1.</span> <span class="nav-text">使用方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E7%BD%91%E5%85%B3"><span class="nav-number">6.</span> <span class="nav-text">路由网关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Zuul"><span class="nav-number">6.1.</span> <span class="nav-text">Zuul</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-1"><span class="nav-number">6.1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-5"><span class="nav-number">6.1.2.</span> <span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gateway"><span class="nav-number">6.2.</span> <span class="nav-text">Gateway</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E7%89%B9%E7%82%B9"><span class="nav-number">6.2.1.</span> <span class="nav-text">功能和特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%AD%E8%A8%80%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.2.2.</span> <span class="nav-text">断言的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.2.3.</span> <span class="nav-text">过滤器的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E5%A6%82%E4%B8%8B%E5%9B%BE"><span class="nav-number">6.2.4.</span> <span class="nav-text">工作流程如下图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8"><span class="nav-number">7.</span> <span class="nav-text">消息驱动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stream"><span class="nav-number">7.1.</span> <span class="nav-text">Stream</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E9%93%BE%E8%B7%9F%E8%B8%AA"><span class="nav-number">8.</span> <span class="nav-text">调用链跟踪</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sleuth"><span class="nav-number">8.1.</span> <span class="nav-text">Sleuth</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-2"><span class="nav-number">8.1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AF%E8%AF%AD%EF%BC%88Terminology%EF%BC%89"><span class="nav-number">8.1.2.</span> <span class="nav-text">术语（Terminology）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zipkin"><span class="nav-number">8.2.</span> <span class="nav-text">Zipkin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-3"><span class="nav-number">8.2.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-6"><span class="nav-number">8.2.2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8ESpring-Cloud-Stream%E6%95%B4%E5%90%88"><span class="nav-number">8.2.3.</span> <span class="nav-text">与Spring Cloud Stream整合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8EMySQL%E6%95%B4%E5%90%88"><span class="nav-number">8.2.4.</span> <span class="nav-text">与MySQL整合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">9.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">微服务架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%8ESpring-Cloud"><span class="nav-number">1.1.</span> <span class="nav-text">微服务与Spring Cloud</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud%E4%B8%8EDubbo"><span class="nav-number">1.2.</span> <span class="nav-text">Spring Cloud与Dubbo</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dubbo"><span class="nav-number">1.2.1.</span> <span class="nav-text">Dubbo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud%E4%B8%8EDubbo%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.2.2.</span> <span class="nav-text">Spring Cloud与Dubbo的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-Netfix%E5%92%8CSpring-Cloud-Alibaba"><span class="nav-number">1.3.</span> <span class="nav-text">Spring Cloud Netfix和Spring Cloud Alibaba</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-Netfix"><span class="nav-number">1.3.1.</span> <span class="nav-text">Spring Cloud Netfix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-Alibaba"><span class="nav-number">1.3.2.</span> <span class="nav-text">Spring Cloud Alibaba</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="nav-number">2.</span> <span class="nav-text">服务注册中心和配置中心</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Zookeeper%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="nav-number">2.1.</span> <span class="nav-text">Zookeeper（注册中心和配置中心）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD"><span class="nav-number">2.1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">2.1.2.</span> <span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nacos%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="nav-number">2.2.</span> <span class="nav-text">Nacos（注册中心和配置中心）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Consul%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="nav-number">2.3.</span> <span class="nav-text">Consul（注册中心和配置中心）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-1"><span class="nav-number">2.3.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="nav-number">2.3.2.</span> <span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Eureka%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="nav-number">2.4.</span> <span class="nav-text">Eureka（注册中心）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E7%BB%84%E6%88%90"><span class="nav-number">2.4.1.</span> <span class="nav-text">功能和组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-2"><span class="nav-number">2.4.2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5"><span class="nav-number">2.4.3.</span> <span class="nav-text">健康检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E6%88%91%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.4.4.</span> <span class="nav-text">自我保护模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%B1%E8%BF%91%E5%8E%9F%E5%88%99"><span class="nav-number">2.4.5.</span> <span class="nav-text">就近原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Config%EF%BC%88%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="nav-number">2.5.</span> <span class="nav-text">Config（配置中心）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E3%80%81%E7%89%B9%E7%82%B9%E5%92%8C%E7%BB%84%E6%88%90"><span class="nav-number">2.5.1.</span> <span class="nav-text">功能、特点和组成</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-3"><span class="nav-number">2.5.2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%83%AD%E7%94%9F%E6%95%88"><span class="nav-number">2.5.3.</span> <span class="nav-text">热生效</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="nav-number">2.5.4.</span> <span class="nav-text">高可用</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="nav-number">3.</span> <span class="nav-text">负载均衡</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ribbon"><span class="nav-number">3.1.</span> <span class="nav-text">Ribbon</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-2"><span class="nav-number">3.1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-4"><span class="nav-number">3.1.2.</span> <span class="nav-text">使用方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%86%94%E6%96%AD%E5%99%A8%EF%BC%88%E6%96%AD%E8%B7%AF%E5%99%A8%EF%BC%89"><span class="nav-number">4.</span> <span class="nav-text">熔断器（断路器）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Hystrix"><span class="nav-number">4.1.</span> <span class="nav-text">Hystrix</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%86%94%E6%96%AD%E5%8E%9F%E7%90%86"><span class="nav-number">4.1.1.</span> <span class="nav-text">熔断原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-5"><span class="nav-number">4.1.2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%91%E6%B5%8B%E5%B7%A5%E5%85%B7"><span class="nav-number">4.1.3.</span> <span class="nav-text">监测工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentinel"><span class="nav-number">4.2.</span> <span class="nav-text">Sentinel</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8FRESTful%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="nav-number">5.</span> <span class="nav-text">声明式RESTful客户端</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Feign"><span class="nav-number">5.1.</span> <span class="nav-text">Feign</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-6"><span class="nav-number">5.1.1.</span> <span class="nav-text">使用方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B7%AF%E7%94%B1%E7%BD%91%E5%85%B3"><span class="nav-number">6.</span> <span class="nav-text">路由网关</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Zuul"><span class="nav-number">6.1.</span> <span class="nav-text">Zuul</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-3"><span class="nav-number">6.1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-7"><span class="nav-number">6.1.2.</span> <span class="nav-text">使用方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gateway"><span class="nav-number">6.2.</span> <span class="nav-text">Gateway</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E7%89%B9%E7%82%B9"><span class="nav-number">6.2.1.</span> <span class="nav-text">功能和特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%AD%E8%A8%80%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.2.2.</span> <span class="nav-text">断言的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="nav-number">6.2.3.</span> <span class="nav-text">过滤器的类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E5%A6%82%E4%B8%8B%E5%9B%BE"><span class="nav-number">6.2.4.</span> <span class="nav-text">工作流程如下图</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%B0%83%E7%94%A8%E9%93%BE%E8%B7%9F%E8%B8%AA"><span class="nav-number">7.</span> <span class="nav-text">调用链跟踪</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Sleuth"><span class="nav-number">7.1.</span> <span class="nav-text">Sleuth</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-4"><span class="nav-number">7.1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AF%E8%AF%AD%EF%BC%88Terminology%EF%BC%89"><span class="nav-number">7.1.2.</span> <span class="nav-text">术语（Terminology）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Zipkin"><span class="nav-number">7.2.</span> <span class="nav-text">Zipkin</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-5"><span class="nav-number">7.2.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-8"><span class="nav-number">7.2.2.</span> <span class="nav-text">使用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%90%88Stream"><span class="nav-number">7.2.3.</span> <span class="nav-text">整合Stream</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B4%E5%90%88MySQL"><span class="nav-number">7.2.4.</span> <span class="nav-text">整合MySQL</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8"><span class="nav-number">8.</span> <span class="nav-text">消息驱动</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Stream"><span class="nav-number">8.1.</span> <span class="nav-text">Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E6%A6%82%E5%BF%B5"><span class="nav-number">8.1.1.</span> <span class="nav-text">功能和概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%88%E4%BB%A5RabbitMQ%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="nav-number">8.1.2.</span> <span class="nav-text">使用方法（以RabbitMQ为例）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E6%80%BB%E7%BA%BF"><span class="nav-number">9.</span> <span class="nav-text">消息总线</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Bus"><span class="nav-number">9.1.</span> <span class="nav-text">Bus</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-6"><span class="nav-number">9.1.1.</span> <span class="nav-text">功能</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%AD%E7%94%9F%E5%91%BD%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="nav-number">10.</span> <span class="nav-text">短生命微服务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Task"><span class="nav-number">10.1.</span> <span class="nav-text">Task</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD-7"><span class="nav-number">10.1.1.</span> <span class="nav-text">功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-9"><span class="nav-number">10.1.2.</span> <span class="nav-text">使用方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="nav-number">11.</span> <span class="nav-text">分布式事务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Seata"><span class="nav-number">11.1.</span> <span class="nav-text">Seata</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">12.</span> <span class="nav-text">Reference</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -189,7 +189,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-05-26 10:58:10" itemprop="dateModified" datetime="2023-05-26T10:58:10+08:00">2023-05-26</time>
+      <time title="Modified: 2023-05-26 23:01:22" itemprop="dateModified" datetime="2023-05-26T23:01:22+08:00">2023-05-26</time>
     </span>
 
   
@@ -209,11 +209,31 @@
 <p>Dubbo的在Spring Cloud Netfix技术架构中的替代方案可以是，通过Consul或Eureka Server等实现服务注册中心（对应Dubbo中的注册中心），通过Ribbon实现软负载均衡。 </p>
 <h2 id="Spring-Cloud-Netfix和Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Netfix和Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Netfix和Spring Cloud Alibaba"></a>Spring Cloud Netfix和Spring Cloud Alibaba</h2><p>Spring Cloud Netfix和Spring Cloud Alibaba是Spring Cloud的两套技术架构。</p>
 <h3 id="Spring-Cloud-Netfix"><a href="#Spring-Cloud-Netfix" class="headerlink" title="Spring Cloud Netfix"></a>Spring Cloud Netfix</h3><p><a target="_blank" rel="noopener" href="https://www.springcloud.cc/spring-cloud-netflix.html">Spring Cloud Netfix在官方文档</a>中介绍：该项目通过自动配置和绑定到Spring环境和其他Spring编程模型的习惯方式来为Spring Boot应用程序提供Netflix OSS集成。通过几个简单的注释，您可以快速启用和配置应用程序中的常见模式，并通过经过测试的Netflix组件构建大型分布式系统。提供的组件包括服务发现（Eureka），断路器（Hystrix），智能路由（Zuul）和客户端负载平衡（Ribbon）。可以从<a target="_blank" rel="noopener" href="https://github.com/Netflix">Netfix的GitHub</a>中找到这些组件。</p>
-<h3 id="Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Alibaba"></a>Spring Cloud Alibaba</h3><p>Spring Cloud Alibaba的相关文档：<a target="_blank" rel="noopener" href="https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html">Spring Cloud Alibaba参考文档</a>、<a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/blob/2022.x/README-zh.md">Spring Cloud Alibaba中文版README.md</a>。其提供的组件有Sentinel(分布式流控：流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性)、Nacos（注册中心）、RocketMQ（分布式消息组件）、Seata（分布式事务组件）等。</p>
+<h3 id="Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Alibaba"></a>Spring Cloud Alibaba</h3><p>Spring Cloud Alibaba的相关文档：<a target="_blank" rel="noopener" href="https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html">Spring Cloud Alibaba参考文档</a>、<a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/blob/2022.x/README-zh.md">Spring Cloud Alibaba中文版README.md</a>。其提供的组件有：Sentinel(分布式流控：流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性)、Nacos（注册中心）、RocketMQ（分布式消息组件）、Seata（分布式事务组件）等。</p>
 <h1 id="服务注册中心和配置中心"><a href="#服务注册中心和配置中心" class="headerlink" title="服务注册中心和配置中心"></a>服务注册中心和配置中心</h1><p>服务注册中心提供了服务注册和服务发现功能</p>
 <ol>
 <li>服务注册：所有服务的提供方启动时向注册中心发送自己的信息，包括地址、端口、提供的服务等。</li>
 <li>服务发现：当服务调用方需要调用服务时，只需要向注册中心查询谁提供了自己需要的服务。</li>
+</ol>
+<h2 id="Zookeeper（注册中心和配置中心）"><a href="#Zookeeper（注册中心和配置中心）" class="headerlink" title="Zookeeper（注册中心和配置中心）"></a>Zookeeper（注册中心和配置中心）</h2><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>Zookeeper可以解决分布式应用中的服务的注册和发现、统一命名服务、状态同步服务、集群管理、分布式应用配置管理等问题。可以替代Eureka、Spring Cloud Config。不能替代路由网关（Zuul）、负载均衡（Ribbon）、断路器（Hystricx）等。</p>
+<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<li>启动Zookeeper的服务，可以使用Docker等方法启动Zookeeper。</li>
+<li>在Zookeeper服务提供方：<ol>
+<li>添加依赖spring-cloud0zookeeper-discovery和org.apache.curator。注：Zookeeper通过Curator（Curator 是一个 Apache ZooKeeper 客户端框架）实现了服务注册和发现功能，实现了和Eureka相同的功能。</li>
+<li>在配置文件中添加对Zookeeper的配置，指定Zookeeper服务暴露的的连接ip和端口。</li>
+<li>在启动类添加@EnableDiscoveryClient注解。</li>
+</ol>
+</li>
+<li>在服务消费方：<ol>
+<li>添加依赖</li>
+<li>添加配置信息</li>
+</ol>
+</li>
+</ol>
+<h2 id="Nacos（注册中心和配置中心）"><a href="#Nacos（注册中心和配置中心）" class="headerlink" title="Nacos（注册中心和配置中心）"></a>Nacos（注册中心和配置中心）</h2><h2 id="Consul（注册中心和配置中心）"><a href="#Consul（注册中心和配置中心）" class="headerlink" title="Consul（注册中心和配置中心）"></a>Consul（注册中心和配置中心）</h2><h3 id="功能-1"><a href="#功能-1" class="headerlink" title="功能"></a>功能</h3><p>Consul是HashiCrop公司推出的开源工具，提供了服务注册和发现、分布式一致性协议实现、健康检查、Key&#x2F;Value存储、多数据中心方案等。</p>
+<h3 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<li>启动Consul服务，可以使用Docker等方法启动Consul。</li>
+<li>其它步骤参加Zookeeper的使用方法，不同的是依赖是spring-cloud-consul-discovery</li>
 </ol>
 <h2 id="Eureka（注册中心）"><a href="#Eureka（注册中心）" class="headerlink" title="Eureka（注册中心）"></a>Eureka（注册中心）</h2><h3 id="功能和组成"><a href="#功能和组成" class="headerlink" title="功能和组成"></a>功能和组成</h3><p>Eureka提供了完整的服务注册和服务发现功能，以及负载均衡、故障转移的功能。</p>
 <p>主要包含两个部分：Eureka Client、Eureka Server：</p>
@@ -224,7 +244,7 @@
 </li>
 </ul>
 <p>Eureka Server和Eureka Client之间的协作使得微服务可以快速地、灵活地进行部署和扩展，并且可以轻松地进行服务监控和故障排除。</p>
-<h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h3 id="使用方法-2"><a href="#使用方法-2" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li>在Eureka Server中，添加pom依赖（spring-cloud-strater-eureka-server），在启动类上添加@EnableEurekaServer注解表示该服务是一个EurekaServer。</li>
 <li>在Eureka Client中，添加pom依赖（spring-cloud-strater-eureka），在application.yml中添加配置（配置注册中心的地址defaultZone和自身的名字name），在启动类上添加@EnableEurekaClient注解表示该服务是一个EurekaClient。</li>
 </ol>
@@ -233,7 +253,7 @@
 <p>Eureka Client有如下状态：UP、DOWN、STARTING、OUT_OF_SERVICE、UNKNOWN</p>
 <h3 id="自我保护模式"><a href="#自我保护模式" class="headerlink" title="自我保护模式"></a>自我保护模式</h3><p>自我保护模式是一种应对网络异常的安全保护机制，它的理念是宁可同时保留所有实例（健康的实例和不健康的实例），也不盲目注销任何健康的实例。</p>
 <h3 id="就近原则"><a href="#就近原则" class="headerlink" title="就近原则"></a>就近原则</h3><p>Eureka有Region和Zone的概念，Region可以理解为区、Zone可以理解为机房。Eureka Serve启动时需要指定自己所在的Zone。Eureka Client启动时也需要指定Zone，Eureka Client会优先请求自己的Zone下的Eureka Serve列表中的Eureka Serve；如果没有指定，会默认使用defaultZone作为自己的Zone。</p>
-<h2 id="Consul（注册中心和配置中心）"><a href="#Consul（注册中心和配置中心）" class="headerlink" title="Consul（注册中心和配置中心）"></a>Consul（注册中心和配置中心）</h2><h2 id="Zookeeper（注册中心和配置中心）"><a href="#Zookeeper（注册中心和配置中心）" class="headerlink" title="Zookeeper（注册中心和配置中心）"></a>Zookeeper（注册中心和配置中心）</h2><h2 id="Config（配置中心）"><a href="#Config（配置中心）" class="headerlink" title="Config（配置中心）"></a>Config（配置中心）</h2><h3 id="功能、特点和组成"><a href="#功能、特点和组成" class="headerlink" title="功能、特点和组成"></a>功能、特点和组成</h3><p>在研发流程中有测试环境、UAT（User Acceptance Testing，用户验收测试）环境、生产环境等，每个微服务对应多个不同环境的配置文件，修改配置文件十分繁琐。这就需要引入配置中心组件。</p>
+<h2 id="Config（配置中心）"><a href="#Config（配置中心）" class="headerlink" title="Config（配置中心）"></a>Config（配置中心）</h2><h3 id="功能、特点和组成"><a href="#功能、特点和组成" class="headerlink" title="功能、特点和组成"></a>功能、特点和组成</h3><p>在研发流程中有测试环境、UAT（User Acceptance Testing，用户验收测试）环境、生产环境等，每个微服务对应多个不同环境的配置文件，修改配置文件十分繁琐。这就需要引入配置中心组件。</p>
 <p>Spring Cloud Config提供了分布式配置管理功能。特点如下：</p>
 <ol>
 <li>服务器存储后端的默认实现使用git。</li>
@@ -242,7 +262,7 @@
 <li>Spring Boot项目中不需要改动代码，加入一个启动配置文件指明使用Config Server中哪个配置文件即可。</li>
 </ol>
 <p>主要包含两个部分：Config Client、Config Server。</p>
-<h3 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h3 id="使用方法-3"><a href="#使用方法-3" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li>Config的配置必须放在bootstrap.properities中，才能被正确加载，因为放在bootstrap.properities中才能确保config相关的配置先于application.properities加载（bootstrap.properities的加载先于application.properities）。</li>
 <li>在Config Server中，添加pom依赖，在启动类上添加@EnableConfigServer注解表示允许该服务以HTTP形式对外提供配置管理服务。</li>
 <li>在Config Client中，添加pom依赖，在启动类上添加@EnableAutoConfiguration注解表示自动向Config Server获取项目的配置。</li>
@@ -258,8 +278,8 @@
 <p>不同的是添加配置的位置是bootstrap.yml，在bootstrap.yml中添加对Eureka注册中心的配置，并在原Config Client配置的基础上删除spring.cloud.config.uri的静态的指定，改为将spring.cloud.config.discovery.enabled设为true， 并通过spring.cloud.config.discovery.serviceId指定在注册中心配置的serviceId。</p>
 </li>
 </ol>
-<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>Ribbon最主要的功能是提供了客户端的负载均衡算法，还提供了一系列完整的服务调用配置项，如连接超时、失败重试、访问权重、调用优先级等。</p>
-<h3 id="使用方法-2"><a href="#使用方法-2" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><h3 id="功能-2"><a href="#功能-2" class="headerlink" title="功能"></a>功能</h3><p>Ribbon最主要的功能是提供了客户端的负载均衡算法，还提供了一系列完整的服务调用配置项，如连接超时、失败重试、访问权重、调用优先级等。</p>
+<h3 id="使用方法-4"><a href="#使用方法-4" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li><p>在Eureka的客户端代码的基础上进行改造</p>
 <p>将DiscoveryClient改为LoadBalancerClient，并调用其choose方法，会使原先得到的ServiceInstance集合变为得到单个ServiceInstance实例。</p>
 </li>
@@ -297,7 +317,7 @@
 </li>
 </ol>
 <p>服务调用的各种结果（成功、异常、超时、拒绝）都会上报给熔断器，加入bucket计算发生的总数。</p>
-<h3 id="使用方法-3"><a href="#使用方法-3" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h3 id="使用方法-5"><a href="#使用方法-5" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li><p>引入Hystrix的maven依赖，spring-cloud-starter-hystrix</p>
 </li>
 <li><p>在启动类中添加@EnableCircutBreaker注解或@EnableHystrix注解</p>
@@ -333,8 +353,8 @@
 <li>在被监测的服务项目中，也需要进行配置，保证配置中的eureka.instance.metadata-map.cluster和Turbine中的clusterConfig的配置名称一致。</li>
 <li>请求Turbine的聚合监测面板地址就能看到聚合后的图形化监测信息。</li>
 </ol>
-<h1 id="声明式RESTful客户端"><a href="#声明式RESTful客户端" class="headerlink" title="声明式RESTful客户端"></a>声明式RESTful客户端</h1><h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><p>使用Ribbon的缺点是需要对请求拼接参数，而<a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-openfeign/reference/html/#spring-cloud-feign">Feign</a>解决了这个问题。使用Feign，可以通过定义接口的方式来描述服务间的交互，而无需手动编写HTTP请求代码。</p>
-<h3 id="使用方法-4"><a href="#使用方法-4" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h2 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h2><h1 id="声明式RESTful客户端"><a href="#声明式RESTful客户端" class="headerlink" title="声明式RESTful客户端"></a>声明式RESTful客户端</h1><h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><p>使用Ribbon的缺点是需要对请求拼接参数，而<a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-openfeign/reference/html/#spring-cloud-feign">Feign</a>解决了这个问题。使用Feign，可以通过定义接口的方式来描述服务间的交互，而无需手动编写HTTP请求代码。</p>
+<h3 id="使用方法-6"><a href="#使用方法-6" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li><p>添加依赖：spring-cloud-starter-feign</p>
 </li>
 <li><p>在启动类上添加注解：@EnableFeignClients，该注解的defaultConfiguration属性可以指定所有Feign接口的配置类。</p>
@@ -345,9 +365,9 @@
 </ol>
 <h1 id="路由网关"><a href="#路由网关" class="headerlink" title="路由网关"></a>路由网关</h1><p>API 网关是一个搭建在客户端和微服务之间的服务，我们可以在 API 网关中处理一些非业务功能的逻辑，例如权限验证、监控、缓存、请求路由等。</p>
 <p>API 网关就像整个微服务系统的门面一样，是系统对外的唯一入口。有了它，客户端会先将请求发送到 API 网关，然后由 API 网关根据请求的标识信息将请求转发到微服务实例。</p>
-<h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><h3 id="功能-1"><a href="#功能-1" class="headerlink" title="功能"></a>功能</h3><p>Zuul的具体作用就是服务转发，Zuul可以作为为资源的统一访问入口。</p>
+<h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><h3 id="功能-3"><a href="#功能-3" class="headerlink" title="功能"></a>功能</h3><p>Zuul的具体作用就是服务转发，Zuul可以作为为资源的统一访问入口。</p>
 <p>此外Zuul还提供了过滤器的功能，可以用来进行接口权限校验、限流、统计等。</p>
-<h3 id="使用方法-5"><a href="#使用方法-5" class="headerlink" title="使用方法"></a>使用方法</h3><p>Zuul用做服务转发的使用方法：</p>
+<h3 id="使用方法-7"><a href="#使用方法-7" class="headerlink" title="使用方法"></a>使用方法</h3><p>Zuul用做服务转发的使用方法：</p>
 <ol>
 <li><p>添加pom依赖，spring-cloud-starter-zuul</p>
 </li>
@@ -442,16 +462,21 @@
 <li>StripPrefix</li>
 <li>Retry</li>
 </ol>
-<h3 id="工作流程如下图"><a href="#工作流程如下图" class="headerlink" title="工作流程如下图"></a>工作流程如下图</h3><img src="./Spring-Cloud/image-20230525221748527.png" alt="image-20230525221748527" style="zoom: 80%;" />
+<h3 id="工作流程如下图"><a href="#工作流程如下图" class="headerlink" title="工作流程如下图"></a>工作流程如下图</h3><img src="./Spring-Cloud/image-20230525221748527.png" alt="image-20230525221748527" style="zoom: 80%;" />                                                                                                                                                                                                                                                                                                                       
 
-<h1 id="消息驱动"><a href="#消息驱动" class="headerlink" title="消息驱动"></a>消息驱动</h1><h2 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h2><h1 id="调用链跟踪"><a href="#调用链跟踪" class="headerlink" title="调用链跟踪"></a>调用链跟踪</h1><h2 id="Sleuth"><a href="#Sleuth" class="headerlink" title="Sleuth"></a>Sleuth</h2><h3 id="功能-2"><a href="#功能-2" class="headerlink" title="功能"></a>功能</h3><p>要实现准确快速地定位到线上故障，比较成熟的方案是使用调用链跟踪。调用链跟踪监测系统可以实现如下的功能：</p>
+<h1 id="调用链跟踪"><a href="#调用链跟踪" class="headerlink" title="调用链跟踪"></a>调用链跟踪</h1><h2 id="Sleuth"><a href="#Sleuth" class="headerlink" title="Sleuth"></a>Sleuth</h2><blockquote>
+<p>Sleuth</p>
+<p> &#x2F; sluːθ</p>
+<p>侦查；侦察；警犬</p>
+</blockquote>
+<h3 id="功能-4"><a href="#功能-4" class="headerlink" title="功能"></a>功能</h3><p>要实现准确快速地定位到线上故障，比较成熟的方案是使用调用链跟踪。调用链跟踪监测系统可以实现如下的功能：</p>
 <ol>
 <li>快速定位故障</li>
 <li>各个调用环节的性能分析</li>
 <li>数据分析</li>
 </ol>
 <p>Spring Cloud Sleuth是Spring Cloud生态中实现调用链跟踪的子项目，Spring Cloud Sleuth可以结合Zipkin，将消息发送到Zipkin，利用Zipkin存储信息，利用Zipkin UI展示数据，也可以只是简单的把数据存储在日记中。</p>
-<h3 id="术语（Terminology）"><a href="#术语（Terminology）" class="headerlink" title="术语（Terminology）"></a>术语（<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-sleuth/docs/3.1.8/reference/htmlsingle/spring-cloud-sleuth.html#getting-started-terminology">Terminology</a>）</h3><p>Spring Cloud Sleuth borrows <a target="_blank" rel="noopener" href="https://research.google.com/pubs/pub36356.html">Dapper’s</a> terminology.7</p>
+<h3 id="术语（Terminology）"><a href="#术语（Terminology）" class="headerlink" title="术语（Terminology）"></a>术语（<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-sleuth/docs/3.1.8/reference/htmlsingle/spring-cloud-sleuth.html#getting-started-terminology">Terminology</a>）</h3><p>Spring Cloud Sleuth borrows <a target="_blank" rel="noopener" href="https://research.google.com/pubs/pub36356.html">Dapper’s</a> terminology.</p>
 <p><strong>Span</strong>: The basic unit of work. For example, sending an RPC is a new span, as is sending a response to an RPC. Spans also have other data, such as descriptions, timestamped events, key-value annotations (tags), the ID of the span that caused them, and process IDs (normally IP addresses).</p>
 <p>Spans can be started and stopped, and they keep track of their timing information. Once you create a span, you must stop it at some point in the future.</p>
 <p><strong>Trace:</strong> A set of spans forming a tree-like structure. For example, if you run a distributed big-data store, a trace might be formed by a <code>PUT</code> request.</p>
@@ -463,7 +488,7 @@
 <li><strong>ss</strong>: Server Sent. Annotated upon completion of request processing (when the response got sent back to the client). Subtracting the <code>sr</code> timestamp from this timestamp reveals the time needed by the server side to process the request.</li>
 <li><strong>cr</strong>: Client Received. Signifies the end of the span. The client has successfully received the response from the server side. Subtracting the <code>cs</code> timestamp from this timestamp reveals the whole time needed by the client to receive the response from the server.</li>
 </ul>
-<h2 id="Zipkin"><a href="#Zipkin" class="headerlink" title="Zipkin"></a>Zipkin</h2><h3 id="功能-3"><a href="#功能-3" class="headerlink" title="功能"></a>功能</h3><p>Zipkin是分布式实时数据追踪系统，由Twitter公司开发。主要功能是聚集来自各系统的实时监控数据。</p>
+<h2 id="Zipkin"><a href="#Zipkin" class="headerlink" title="Zipkin"></a>Zipkin</h2><h3 id="功能-5"><a href="#功能-5" class="headerlink" title="功能"></a>功能</h3><p>Zipkin是分布式实时数据追踪系统，由Twitter公司开发。主要功能是聚集来自各系统的实时监控数据。</p>
 <p>主要由四部分组成：</p>
 <ol>
 <li>收集器：收集追踪数据。</li>
@@ -471,7 +496,7 @@
 <li>查询：向其它服务服务提供数据查询功能</li>
 <li>Web页面</li>
 </ol>
-<h3 id="使用方法-6"><a href="#使用方法-6" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h3 id="使用方法-8"><a href="#使用方法-8" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li>创建Zipkin Server、<ol>
 <li>添加pom依赖zipkin-autoconfigure-ui和zipkin-server；</li>
 <li>在启动类中添加@EnableZipkinServer，表示启动Zipkin服务端。</li>
@@ -483,7 +508,7 @@
 </ol>
 </li>
 </ol>
-<h3 id="与Spring-Cloud-Stream整合"><a href="#与Spring-Cloud-Stream整合" class="headerlink" title="与Spring Cloud Stream整合"></a>与Spring Cloud Stream整合</h3><p>由于将日志传输到Zipkin Server的方式是HTTP请求，请求量太大时会给系统带来很大压力，如果改为使用Stream消息机制传输监控日志就可以减轻压力。</p>
+<h3 id="整合Stream"><a href="#整合Stream" class="headerlink" title="整合Stream"></a>整合Stream</h3><p>由于将日志传输到Zipkin Server的方式是HTTP请求，请求量太大时会给系统带来很大压力，如果改为使用Stream消息机制传输监控日志就可以减轻压力。</p>
 <p>Zipkin与Spring Cloud Stream整合的方法是：</p>
 <ol>
 <li>在Zipkin Server端<ol>
@@ -498,13 +523,61 @@
 </ol>
 </li>
 </ol>
-<h3 id="与MySQL整合"><a href="#与MySQL整合" class="headerlink" title="与MySQL整合"></a>与MySQL整合</h3><p>Zipkin默认将数据存储在内存中，如果要持久化这些数据可以整合MySQL.</p>
+<h3 id="整合MySQL"><a href="#整合MySQL" class="headerlink" title="整合MySQL"></a>整合MySQL</h3><p>Zipkin默认将数据存储在内存中，如果要持久化这些数据可以整合MySQL.</p>
 <p>Zipkin与MySQL整合的方法是：</p>
 <ol>
 <li>添加对JDBC和MySQL驱动的依赖，spring-boot-starter-jdbc和mysql-connector-java</li>
 <li>在配置文件中配置MySQL的连接信息，设置initialize参数为true（在启动时创建表结构  ）</li>
 </ol>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<h1 id="消息驱动"><a href="#消息驱动" class="headerlink" title="消息驱动"></a>消息驱动</h1><h2 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h2><h3 id="功能和概念"><a href="#功能和概念" class="headerlink" title="功能和概念"></a>功能和概念</h3><p>在企业级应用中处理非同步场景、消息通知、应用间解耦等场景经常会使用消息中间件，常见的消息中间件有如，ActiveMQ、RabbitMQ、MetaMQ、Kafka、Redis等。</p>
+<p><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-stream">Spring Cloud Stream</a>是一个构建事件驱动或消息驱动微服务的框架，提供了一个灵活的编程模型，该模型建立在已经建立和熟悉的 Spring 习惯用法和最佳实践之上，包括对持久发布&#x2F;订阅语义、消费者组和有状态分区的支持。</p>
+<p>利用Stream可以对消息中间件实现进一步的封装，使代码更具有通用性，降低项目对消息中间件的耦合。更重要的是这一就可以方便地实现消息中间件的混用，比如生产者使用Kafka，消费者使用RabbitMQ。</p>
+<p>Stream目前支持的中间件：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-rabbit">RabbitMQ</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-kafka">Apache Kafka</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-kafka/tree/master/spring-cloud-stream-binder-kafka-streams">Kafka Streams</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-aws-kinesis">Amazon Kinesis</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-gcp/tree/master/spring-cloud-gcp-pubsub-stream-binder">Google PubSub <em>(partner maintained)</em></a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/SolaceProducts/spring-cloud-stream-binder-solace">Solace PubSub+ <em>(partner maintained)</em></a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-stream-binder-eventhubs">Azure Event Hubs <em>(partner maintained)</em></a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-stream-binder-servicebus">Azure Service Bus <em>(partner maintained)</em></a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/idealo/spring-cloud-stream-binder-sqs">AWS SQS <em>(partner maintained)</em></a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/idealo/spring-cloud-stream-binder-sns">AWS SNS <em>(partner maintained)</em></a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/RocketMQ-en">Apache RocketMQ <em>(partner maintained)</em></a></li>
+</ul>
+<p>概念：</p>
+<ul>
+<li><em>Bindings</em>（绑定）：是一组接口，以声明方式标识输入和输出通道。在<code>@EnableBinding</code>注解中，你可以指定要绑定的通道集合。</li>
+<li><em>Binder</em>（绑定器）：是消息中间件的实现，例如Kafka或RabbitMQ。绑定器负责将应用程序与特定的消息中间件进行连接和通信。</li>
+<li><em>Channel</em>（通道）：代表消息中间件与应用程序之间的通信管道。通道可以是输入通道（用于接收消息）或输出通道（用于发送消息）。</li>
+<li><em>StreamListeners</em>（流监听器）：是在Bean中定义的用于处理消息的方法。这些方法会自动在通道上接收到消息后被调用。在调用之前，消息转换器（MessageConverter）会执行消息的序列化和反序列化操作，将消息转换为中间件特定的事件和领域对象类型&#x2F;POJO之间进行转换。</li>
+<li><em>Message Schemas</em>（消息模式）：用于消息的序列化和反序列化的模式。消息模式可以静态地从位置读取或动态加载，支持领域对象类型的演进。消息模式可以确保消息在不同系统之间的一致性和互操作性。</li>
+</ul>
+<h3 id="使用方法（以RabbitMQ为例）"><a href="#使用方法（以RabbitMQ为例）" class="headerlink" title="使用方法（以RabbitMQ为例）"></a>使用方法（以RabbitMQ为例）</h3><ol>
+<li>启动RabbitMQ服务，比如可以使用Docker启动RabbitMQ</li>
+<li>建两个Maven项目，分别作为消息的生产者和消费者</li>
+<li>均添加依赖spring-cloud-starter-stream（对Streram的依赖）和spring-cloud-starter-stream-rabbit（对RabbitMQ的依赖）。</li>
+<li>在消费者增加配置，配置消费的消息信息和RabbitMQ服务的信息</li>
+<li>在消费者启动类上添加@EnableBinding(BindingsInterface.class)，该注解表示为该Spring Boot项目增加Stream通道监听功能。BindingsInterface可以是sink、source、processor或三者的组合：<ol>
+<li>sink：只带有输入通道的应用</li>
+<li>source：只带有输出通道应用</li>
+<li>processor：带有输入通道和输出通道的应用</li>
+</ol>
+</li>
+<li>创建BindingsInterface接口</li>
+</ol>
+<h1 id="消息总线"><a href="#消息总线" class="headerlink" title="消息总线"></a>消息总线</h1><h2 id="Bus"><a href="#Bus" class="headerlink" title="Bus"></a>Bus</h2><h3 id="功能-6"><a href="#功能-6" class="headerlink" title="功能"></a>功能</h3><p>Bus的一个常用功能是进行配置中心客户端的刷新。当Git Repository改变时，Bus会通过POST请求Config Server的&#x2F;bus&#x2F;refresh，Config Server会从Repository获取最新的信息并传递给Client。通过&#x2F;bus&#x2F;refresh的destination参数可以指定刷新某一台Client实例。</p>
+<p>Bus的配置刷新通知功能是基于Spring的事件机制实现的，这些事件是可追踪的。</p>
+<h1 id="短生命微服务"><a href="#短生命微服务" class="headerlink" title="短生命微服务"></a>短生命微服务</h1><h2 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h2><h3 id="功能-7"><a href="#功能-7" class="headerlink" title="功能"></a>功能</h3><p><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-task">官方对Spring Cloud Task的介绍</a>十分简单明了：Spring Cloud Task allows a user to develop and run short lived microservices using Spring Cloud and run them locally, in the cloud, even on Spring Cloud Data Flow. Just add <code>@EnableTask</code> and run your app as a Spring Boot app (single application context).</p>
+<p>Task用于支持短生命周期的微服务，该类微服务常见于定时任务、批处理等场景。</p>
+<h3 id="使用方法-9"><a href="#使用方法-9" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<li>添加依赖spring-cloud-task-core</li>
+<li>在启动类添加@EnableTask注解</li>
+</ol>
+<p>Task默认将Task生命周期记录在内存中，可以和数据库集成将其存储到数据库中。 </p>
+<p>Task可以通过Stream启动，实现方法是在Task项目中创建一个Sink来监听包含TaskLaunchRequest的消息实现的。</p>
+<h1 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h1><h2 id="Seata"><a href="#Seata" class="headerlink" title="Seata"></a>Seata</h2><h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
 <li>胡劲寒. 极简Spring Cloud实战. 北京: 机械工业出版社, 2019.</li>
 </ul>
 
