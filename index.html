@@ -262,7 +262,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-05-26 23:01:22" itemprop="dateModified" datetime="2023-05-26T23:01:22+08:00">2023-05-26</time>
+      <time title="Modified: 2023-05-27 12:02:57" itemprop="dateModified" datetime="2023-05-27T12:02:57+08:00">2023-05-27</time>
     </span>
 
   
@@ -275,9 +275,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <h1 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h1><p>微服务架构是一种一个单一应用程序开发为一组小型服务的代码结构，每个服务运行在自己的进程中，服务间采用轻量级通信机制（如HTTP）进行通信。这些服务可以独立部署，不同服务可以使用不同语言开发，使用不同的数据存储技术。</p>
+          <h1 id="服务架构"><a href="#服务架构" class="headerlink" title="服务架构"></a>服务架构</h1><p>微服务架构是一种一个单一应用程序开发为一组小型服务的代码结构，每个服务运行在自己的进程中，服务间采用轻量级通信机制（如HTTP）进行通信。这些服务可以独立部署，不同服务可以使用不同语言开发，使用不同的数据存储技术。</p>
 <h2 id="微服务与Spring-Cloud"><a href="#微服务与Spring-Cloud" class="headerlink" title="微服务与Spring Cloud"></a>微服务与Spring Cloud</h2><p>为了降低构建和维护分布式系统的难度，加快微服务的落地，Spring Cloud提供了快速构建分布式微服务系统的一些常用功能，如配置管理、服务发现、断路器、路由、服务代理、控制总线等工具。使用这些工具可以快速构建分布式微服务架构的系统。</p>
 <h2 id="Spring-Cloud与Dubbo"><a href="#Spring-Cloud与Dubbo" class="headerlink" title="Spring Cloud与Dubbo"></a>Spring Cloud与Dubbo</h2><h3 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h3><p>Apache Dubbo 是一款 RPC 服务开发框架，用于解决微服务架构下的服务治理与通信问题。利用 Dubbo 提供的丰富服务治理特性，可以实现诸如服务发现、负载均衡、流量调度等服务治理诉求。</p>
+<p><a target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/what/overview/">官网对Dubbo的含义的介绍</a>：</p>
+<ul>
+<li>Dubbo的产生原因：微服务的分布式特性，使得应用间的依赖、网络交互、数据传输变得更频繁，因此不同的应用需要定义、暴露或调用 RPC 服务，那么这些 RPC 服务如何定义、如何与应用开发框架结合、服务调用行为如何控制？</li>
+<li>Dubbo的含义：<strong>Dubbo 在微服务应用开发框架之上抽象了一套 RPC 服务定义、暴露、调用与治理的编程范式</strong>。</li>
+</ul>
 <p><a target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/registry/">Dubbo支持的注册中心</a>的官网介绍。</p>
 <h3 id="Spring-Cloud与Dubbo的区别"><a href="#Spring-Cloud与Dubbo的区别" class="headerlink" title="Spring Cloud与Dubbo的区别"></a>Spring Cloud与Dubbo的区别</h3><p>Dubbo主要用来实现服务治理，而Spring Cloud的各个组件实现了微服务架构下的所需的各种功能，服务治理只是其中的一个方面。</p>
 <p>Dubbo的在Spring Cloud Netfix技术架构中的替代方案可以是，通过Consul或Eureka Server等实现服务注册中心（对应Dubbo中的注册中心），通过Ribbon实现软负载均衡。 </p>
@@ -304,8 +309,59 @@
 </ol>
 </li>
 </ol>
-<h2 id="Nacos（注册中心和配置中心）"><a href="#Nacos（注册中心和配置中心）" class="headerlink" title="Nacos（注册中心和配置中心）"></a>Nacos（注册中心和配置中心）</h2><h2 id="Consul（注册中心和配置中心）"><a href="#Consul（注册中心和配置中心）" class="headerlink" title="Consul（注册中心和配置中心）"></a>Consul（注册中心和配置中心）</h2><h3 id="功能-1"><a href="#功能-1" class="headerlink" title="功能"></a>功能</h3><p>Consul是HashiCrop公司推出的开源工具，提供了服务注册和发现、分布式一致性协议实现、健康检查、Key&#x2F;Value存储、多数据中心方案等。</p>
+<h2 id="Nacos（注册中心和配置中心）"><a href="#Nacos（注册中心和配置中心）" class="headerlink" title="Nacos（注册中心和配置中心）"></a>Nacos（注册中心和配置中心）</h2><h3 id="功能和特性"><a href="#功能和特性" class="headerlink" title="功能和特性"></a>功能和特性</h3><p><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/what-is-nacos.html">Nacos</a> &#x2F;nɑ:kəʊs&#x2F; 是 Dynamic Naming and Configuration Service的首字母简称，一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</p>
+<p>Nacos官网给出的关键特性包括:</p>
+<ul>
+<li><p><strong>服务发现和服务健康监测</strong></p>
+<p>Nacos 支持基于 DNS 和基于 RPC 的服务发现。服务提供者使用 <a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/sdk.html">原生SDK</a>、<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/open-api.html">OpenAPI</a>、或一个<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/other-language.html">独立的Agent TODO</a>注册 Service 后，服务消费者可以使用<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/xx">DNS TODO</a> 或<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/open-api.html">HTTP&amp;API</a>查找和发现服务。</p>
+<p>Nacos 提供对服务的实时的健康检查，阻止向不健康的主机或服务实例发送请求。Nacos 支持传输层 (PING 或 TCP)和应用层 (如 HTTP、MySQL、用户自定义）的健康检查。 对于复杂的云环境和网络拓扑环境中（如 VPC、边缘网络等）服务的健康检查，Nacos 提供了 agent 上报模式和服务端主动检测2种健康检查模式。Nacos 还提供了统一的健康检查仪表盘，帮助您根据健康状态管理服务的可用性及流量。</p>
+</li>
+<li><p><strong>动态配置服务</strong></p>
+<p>动态配置服务可以让您以中心化、外部化和动态化的方式管理所有环境的应用配置和服务配置。</p>
+<p>动态配置消除了配置变更时重新部署应用和服务的需要，让配置管理变得更加高效和敏捷。</p>
+<p>配置中心化管理让实现无状态服务变得更简单，让服务按需弹性扩展变得更容易。</p>
+<p>Nacos 提供了一个简洁易用的UI (<a target="_blank" rel="noopener" href="http://console.nacos.io/nacos/index.html">控制台样例 Demo</a>) 帮助您管理所有的服务和应用的配置。Nacos 还提供包括配置版本跟踪、金丝雀发布、一键回滚配置以及客户端配置更新状态跟踪在内的一系列开箱即用的配置管理特性，帮助您更安全地在生产环境中管理配置变更和降低配置变更带来的风险。</p>
+</li>
+<li><p><strong>动态 DNS 服务</strong></p>
+<p>动态 DNS 服务支持权重路由，让您更容易地实现中间层负载均衡、更灵活的路由策略、流量控制以及数据中心内网的简单DNS解析服务。动态DNS服务还能让您更容易地实现以 DNS 协议为基础的服务发现，以帮助您消除耦合到厂商私有服务发现 API 上的风险。</p>
+<p>Nacos 提供了一些简单的 <a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/xx">DNS APIs TODO</a> 帮助您管理服务的关联域名和可用的 IP:PORT 列表.</p>
+</li>
+<li><p><strong>服务及其元数据管理</strong></p>
+<p>Nacos 能让您从微服务平台建设的视角管理数据中心的所有服务及元数据，包括管理服务的描述、生命周期、服务的静态依赖分析、服务的健康状态、服务的流量管理、路由及安全策略、服务的 SLA 以及最首要的 metrics 统计数据。</p>
+</li>
+</ul>
 <h3 id="使用方法-1"><a href="#使用方法-1" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<li>在创建的SpringBoot项目中添加依赖nacos-discovery-spring-boot- starter</li>
+<li>创建Controller类，通过@NacosInjected注入Nacos的NamingService，并提供discovery方法用于根据服务名称获取注册到Nacos上的服务地址</li>
+<li>添加对Nacos服务地址的配置</li>
+</ol>
+<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><p>在分布式架构中，任何中间件或者应用都不允许单点存在，所以开源组件一般都会支持高可用的集群。Nacos的集群架构类似于Zookeeper，包含一个Leader节点和多个Follower节点，和Zookeeper不同的是，它的数据一致性算法使用的是Raft。</p>
+<p>Nacos支持Derby和MySQL两种持久化机制，默认使用的是Derby数据库，Derby的吞吐量没有MySQL大，生产环境中可以使用MySQL替换，如果使用M有SQL，需要运行nacos-mysql-sql脚本创建数据库和表。</p>
+<h3 id="Dubbo使用Nacos作为注册中心"><a href="#Dubbo使用Nacos作为注册中心" class="headerlink" title="Dubbo使用Nacos作为注册中心"></a>Dubbo使用Nacos作为注册中心</h3><blockquote>
+<p>官方文档：<a target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/quickstart/java/spring-boot/">Dubbo x Spring Boot 开发</a></p>
+</blockquote>
+<ol>
+<li><p>在一个Maven项目（spring-boot-dubbo-sample）中添加三个模块，分别用来声明接口、实现接口和使用接口的实现类。</p>
+</li>
+<li><p>在声明接口的模块（nacos-sample-interface）中声明接口，打包安装模块。</p>
+</li>
+<li><p>在实现接口的模块（nacos-sample-provider）中添加三个依赖nacos-discovery-spring-boot-starter（Nacos的Starter组件）、dubbo-spring-boot-starter（Dubbo的Starter组件）以及nacos-sample-api（声明接口的模块名）；</p>
+<p>创建接口的实现类，并在实现类中添加<code>@DubboService</code> 注解（<code>@Service</code> 注解从 3.0 版本开始就已经废弃，改用 <code>@DubboService</code>，以区别于 Spring 的 <code>@Service</code> 注解）；配置Dubbo 的应用名（dubbo.application.name）、Dubbo 协议信息（dubbo.protocol）、Dubbo 使用的注册中心地址（dubbo.register.adderss）等信息。配置示例：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dubbo:</span></span><br><span class="line">  <span class="attr">application:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">nacos-sample-provider</span></span><br><span class="line">  <span class="attr">protocol:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">dubbo</span></span><br><span class="line">    <span class="attr">port:</span> <span class="number">-1</span></span><br><span class="line">  <span class="attr">registry:</span></span><br><span class="line">    <span class="attr">address:</span> <span class="string">nacos://127.0.0.1:8848</span></span><br><span class="line">    <span class="comment">#如果使用Zookeeper作为注册中心，只需要修改此address如下</span></span><br><span class="line">    <span class="comment">#address: zookeeper:127.0.0.1:2181</span></span><br></pre></td></tr></table></figure>
+
+<p>在启动类中添加注解@EnableDubbo。</p>
+</li>
+<li><p>在使用接口的实现类的模块（nacos-sample-consumer）使用@DubboReference注解（<code>@Reference</code> 注解从 3.0 版本开始就已经废弃，改用 <code>@DubboReference</code>，以区别于 Spring 的 <code>@Reference</code> 注解）即可获取nacos-sample-provider中的实现类对象；在配置文件中配置Dubbo 的应用名、Dubbo 协议信息、Dubbo 使用的注册中心地址；在启动类中添加注解@EnableDubbo。</p>
+</li>
+</ol>
+<h3 id="Nacos源码"><a href="#Nacos源码" class="headerlink" title="Nacos源码"></a>Nacos源码</h3><p>根据注册中心的主要功能确定Nacos源码关键的部分有：服务注册、服务地址的获取、服务变化的感知。</p>
+<ol>
+<li>服务注册</li>
+<li>服务地址的获取</li>
+<li>服务变化的感知</li>
+</ol>
+<h3 id="Nacos作为配置中心"><a href="#Nacos作为配置中心" class="headerlink" title="Nacos作为配置中心"></a>Nacos作为配置中心</h3><h2 id="Consul（注册中心和配置中心）"><a href="#Consul（注册中心和配置中心）" class="headerlink" title="Consul（注册中心和配置中心）"></a>Consul（注册中心和配置中心）</h2><h3 id="功能-1"><a href="#功能-1" class="headerlink" title="功能"></a>功能</h3><p>Consul是HashiCrop公司推出的开源工具，提供了服务注册和发现、分布式一致性协议实现、健康检查、Key&#x2F;Value存储、多数据中心方案等。</p>
+<h3 id="使用方法-2"><a href="#使用方法-2" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li>启动Consul服务，可以使用Docker等方法启动Consul。</li>
 <li>其它步骤参加Zookeeper的使用方法，不同的是依赖是spring-cloud-consul-discovery</li>
 </ol>
@@ -318,7 +374,7 @@
 </li>
 </ul>
 <p>Eureka Server和Eureka Client之间的协作使得微服务可以快速地、灵活地进行部署和扩展，并且可以轻松地进行服务监控和故障排除。</p>
-<h3 id="使用方法-2"><a href="#使用方法-2" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h3 id="使用方法-3"><a href="#使用方法-3" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li>在Eureka Server中，添加pom依赖（spring-cloud-strater-eureka-server），在启动类上添加@EnableEurekaServer注解表示该服务是一个EurekaServer。</li>
 <li>在Eureka Client中，添加pom依赖（spring-cloud-strater-eureka），在application.yml中添加配置（配置注册中心的地址defaultZone和自身的名字name），在启动类上添加@EnableEurekaClient注解表示该服务是一个EurekaClient。</li>
 </ol>
@@ -336,14 +392,14 @@
 <li>Spring Boot项目中不需要改动代码，加入一个启动配置文件指明使用Config Server中哪个配置文件即可。</li>
 </ol>
 <p>主要包含两个部分：Config Client、Config Server。</p>
-<h3 id="使用方法-3"><a href="#使用方法-3" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h3 id="使用方法-4"><a href="#使用方法-4" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li>Config的配置必须放在bootstrap.properities中，才能被正确加载，因为放在bootstrap.properities中才能确保config相关的配置先于application.properities加载（bootstrap.properities的加载先于application.properities）。</li>
 <li>在Config Server中，添加pom依赖，在启动类上添加@EnableConfigServer注解表示允许该服务以HTTP形式对外提供配置管理服务。</li>
 <li>在Config Client中，添加pom依赖，在启动类上添加@EnableAutoConfiguration注解表示自动向Config Server获取项目的配置。</li>
 </ol>
 <h3 id="热生效"><a href="#热生效" class="headerlink" title="热生效"></a>热生效</h3><p>热生效是指，让修改后的配置动态生效。</p>
 <p>用法是在Config Client的启动类上添加@RefreshScope注解。此外，还需要搭配Spring Cloud Bus，通知Config Client进行本地配置更新。</p>
-<h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><p>通过将所有Config Server实例以服务提供方的形式注册到Eureka上，Config Client以服务消费方的形式区Eureka获取Config Server的实例。由Eureka提供故障转移、服务注册和发现等功能。</p>
+<h3 id="高可用-1"><a href="#高可用-1" class="headerlink" title="高可用"></a>高可用</h3><p>通过将所有Config Server实例以服务提供方的形式注册到Eureka上，Config Client以服务消费方的形式区Eureka获取Config Server的实例。由Eureka提供故障转移、服务注册和发现等功能。</p>
 <p>使用方法：</p>
 <ol>
 <li><p>在Config Server（作为Eureka Client）添加pom依赖，在配置文件application.yml中添加对Eureka注册中心的配置，在启动类上添加注解（具体方法见Eureka的使用方法之Eureka Client的配置方法）。</p>
@@ -353,7 +409,7 @@
 </li>
 </ol>
 <h1 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h1><h2 id="Ribbon"><a href="#Ribbon" class="headerlink" title="Ribbon"></a>Ribbon</h2><h3 id="功能-2"><a href="#功能-2" class="headerlink" title="功能"></a>功能</h3><p>Ribbon最主要的功能是提供了客户端的负载均衡算法，还提供了一系列完整的服务调用配置项，如连接超时、失败重试、访问权重、调用优先级等。</p>
-<h3 id="使用方法-4"><a href="#使用方法-4" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h3 id="使用方法-5"><a href="#使用方法-5" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li><p>在Eureka的客户端代码的基础上进行改造</p>
 <p>将DiscoveryClient改为LoadBalancerClient，并调用其choose方法，会使原先得到的ServiceInstance集合变为得到单个ServiceInstance实例。</p>
 </li>
@@ -391,7 +447,7 @@
 </li>
 </ol>
 <p>服务调用的各种结果（成功、异常、超时、拒绝）都会上报给熔断器，加入bucket计算发生的总数。</p>
-<h3 id="使用方法-5"><a href="#使用方法-5" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h3 id="使用方法-6"><a href="#使用方法-6" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li><p>引入Hystrix的maven依赖，spring-cloud-starter-hystrix</p>
 </li>
 <li><p>在启动类中添加@EnableCircutBreaker注解或@EnableHystrix注解</p>
@@ -428,7 +484,7 @@
 <li>请求Turbine的聚合监测面板地址就能看到聚合后的图形化监测信息。</li>
 </ol>
 <h2 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h2><h1 id="声明式RESTful客户端"><a href="#声明式RESTful客户端" class="headerlink" title="声明式RESTful客户端"></a>声明式RESTful客户端</h1><h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><p>使用Ribbon的缺点是需要对请求拼接参数，而<a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-openfeign/reference/html/#spring-cloud-feign">Feign</a>解决了这个问题。使用Feign，可以通过定义接口的方式来描述服务间的交互，而无需手动编写HTTP请求代码。</p>
-<h3 id="使用方法-6"><a href="#使用方法-6" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h3 id="使用方法-7"><a href="#使用方法-7" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li><p>添加依赖：spring-cloud-starter-feign</p>
 </li>
 <li><p>在启动类上添加注解：@EnableFeignClients，该注解的defaultConfiguration属性可以指定所有Feign接口的配置类。</p>
@@ -441,7 +497,7 @@
 <p>API 网关就像整个微服务系统的门面一样，是系统对外的唯一入口。有了它，客户端会先将请求发送到 API 网关，然后由 API 网关根据请求的标识信息将请求转发到微服务实例。</p>
 <h2 id="Zuul"><a href="#Zuul" class="headerlink" title="Zuul"></a>Zuul</h2><h3 id="功能-3"><a href="#功能-3" class="headerlink" title="功能"></a>功能</h3><p>Zuul的具体作用就是服务转发，Zuul可以作为为资源的统一访问入口。</p>
 <p>此外Zuul还提供了过滤器的功能，可以用来进行接口权限校验、限流、统计等。</p>
-<h3 id="使用方法-7"><a href="#使用方法-7" class="headerlink" title="使用方法"></a>使用方法</h3><p>Zuul用做服务转发的使用方法：</p>
+<h3 id="使用方法-8"><a href="#使用方法-8" class="headerlink" title="使用方法"></a>使用方法</h3><p>Zuul用做服务转发的使用方法：</p>
 <ol>
 <li><p>添加pom依赖，spring-cloud-starter-zuul</p>
 </li>
@@ -570,7 +626,7 @@
 <li>查询：向其它服务服务提供数据查询功能</li>
 <li>Web页面</li>
 </ol>
-<h3 id="使用方法-8"><a href="#使用方法-8" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h3 id="使用方法-9"><a href="#使用方法-9" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li>创建Zipkin Server、<ol>
 <li>添加pom依赖zipkin-autoconfigure-ui和zipkin-server；</li>
 <li>在启动类中添加@EnableZipkinServer，表示启动Zipkin服务端。</li>
@@ -645,7 +701,7 @@
 <p>Bus的配置刷新通知功能是基于Spring的事件机制实现的，这些事件是可追踪的。</p>
 <h1 id="短生命微服务"><a href="#短生命微服务" class="headerlink" title="短生命微服务"></a>短生命微服务</h1><h2 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h2><h3 id="功能-7"><a href="#功能-7" class="headerlink" title="功能"></a>功能</h3><p><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-task">官方对Spring Cloud Task的介绍</a>十分简单明了：Spring Cloud Task allows a user to develop and run short lived microservices using Spring Cloud and run them locally, in the cloud, even on Spring Cloud Data Flow. Just add <code>@EnableTask</code> and run your app as a Spring Boot app (single application context).</p>
 <p>Task用于支持短生命周期的微服务，该类微服务常见于定时任务、批处理等场景。</p>
-<h3 id="使用方法-9"><a href="#使用方法-9" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
+<h3 id="使用方法-10"><a href="#使用方法-10" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li>添加依赖spring-cloud-task-core</li>
 <li>在启动类添加@EnableTask注解</li>
 </ol>
