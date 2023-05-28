@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"songbaoru.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="索引不适用的条件索引列上有函数，不满足最左前缀，使用了不等号，使用了范围查询等等索引的分类B-Tree索引， Hash索引，全文索引，单值索引、唯一索引、复合索引聚簇索引、非聚簇索引等等， 监视器打开MySQL监视器打开MySQL监视器的命令格式： 1mysql -u 用户名 -p密码  或者使用命令： 1mysql -u 用户名 -p  然后输入密码即可 查看字符编码在监视器中查看MySQL中字">
+    <meta name="description" content="监视器打开MySQL监视器打开MySQL监视器的命令格式： 1mysql -u 用户名 -p密码  或者使用命令： 1mysql -u 用户名 -p  然后输入密码即可 查看字符编码在监视器中查看MySQL中字符编码等的设置情况的命令： 1status  或者使用命令： 1SHOW VARIABLES LIKE &amp;#x27;char%&amp;#x27;  修改密码修改密码的命令： 1SET PASSWO">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL">
 <meta property="og:url" content="https://songbaoru.github.io/2023/05/06/MySQL/index.html">
 <meta property="og:site_name" content="SBR Blog">
-<meta property="og:description" content="索引不适用的条件索引列上有函数，不满足最左前缀，使用了不等号，使用了范围查询等等索引的分类B-Tree索引， Hash索引，全文索引，单值索引、唯一索引、复合索引聚簇索引、非聚簇索引等等， 监视器打开MySQL监视器打开MySQL监视器的命令格式： 1mysql -u 用户名 -p密码  或者使用命令： 1mysql -u 用户名 -p  然后输入密码即可 查看字符编码在监视器中查看MySQL中字">
+<meta property="og:description" content="监视器打开MySQL监视器打开MySQL监视器的命令格式： 1mysql -u 用户名 -p密码  或者使用命令： 1mysql -u 用户名 -p  然后输入密码即可 查看字符编码在监视器中查看MySQL中字符编码等的设置情况的命令： 1status  或者使用命令： 1SHOW VARIABLES LIKE &amp;#x27;char%&amp;#x27;  修改密码修改密码的命令： 1SET PASSWO">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-06T03:02:46.000Z">
-<meta property="article:modified_time" content="2023-05-14T14:21:47.616Z">
+<meta property="article:modified_time" content="2023-05-28T08:04:20.182Z">
 <meta property="article:author" content="SBR">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -186,7 +186,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2023-05-14 22:21:47" itemprop="dateModified" datetime="2023-05-14T22:21:47+08:00">2023-05-14</time>
+      <time title="Modified: 2023-05-28 16:04:20" itemprop="dateModified" datetime="2023-05-28T16:04:20+08:00">2023-05-28</time>
     </span>
 
   
@@ -198,8 +198,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>索引不适用的条件<br>索引列上有函数，不满足最左前缀，使用了不等号，使用了范围查询等等<br>索引的分类<br>B-Tree索引， Hash索引，全文索引，单值索引、唯一索引、复合索引<br>聚簇索引、非聚簇索引等等，</p>
-<h1 id="监视器"><a href="#监视器" class="headerlink" title="监视器"></a>监视器</h1><h2 id="打开MySQL监视器"><a href="#打开MySQL监视器" class="headerlink" title="打开MySQL监视器"></a>打开MySQL监视器</h2><p>打开MySQL监视器的命令格式：</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="监视器"><a href="#监视器" class="headerlink" title="监视器"></a>监视器</h1><h2 id="打开MySQL监视器"><a href="#打开MySQL监视器" class="headerlink" title="打开MySQL监视器"></a>打开MySQL监视器</h2><p>打开MySQL监视器的命令格式：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u 用户名 -p密码</span><br></pre></td></tr></table></figure>
 
 <p>或者使用命令：</p>
@@ -1583,6 +1582,7 @@
 <li><p>查询优化</p>
 </li>
 </ol>
+<p>索引不适用的条件<br>索引列上有函数，不满足最左前缀，使用了不等号，使用了范围查询等等<br>索引的分类<br>B-Tree索引， Hash索引，全文索引，单值索引、唯一索引、复合索引<br>聚簇索引、非聚簇索引等等，</p>
 
     </div>
 

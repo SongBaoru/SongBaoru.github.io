@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"songbaoru.github.io","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.15.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="RocketMQ架构通信模块 消息结构 心跳检测 数据存储 数据刷盘 RocketMQ集群服务NameServer集群 Broker集群 RocketMQ消息处理模式消息广播 消息排序 延迟消息 消息过滤 消息批处理 日志消息处理 事务消息">
+    <meta name="description" content="RocketMQ简介RocketMQ是一款由Alibaba研发的分布式的消息中间件。支持事务消息、顺序消息、延时消息、定时消息、批量消息。 Apache RocketMQ 中消息的生命周期主要分为消息生产、消息存储、消息消费这三部分。生产者生产消息并发送至 Apache RocketMQ 服务端（Broker），消息被存储在Broker的主题（Topic）中，消费者通过订阅主题消费消息。 消息中间">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RocketMQ">
 <meta property="og:url" content="https://songbaoru.github.io/2023/05/24/RocketMQ/index.html">
 <meta property="og:site_name" content="SBR Blog">
-<meta property="og:description" content="RocketMQ架构通信模块 消息结构 心跳检测 数据存储 数据刷盘 RocketMQ集群服务NameServer集群 Broker集群 RocketMQ消息处理模式消息广播 消息排序 延迟消息 消息过滤 消息批处理 日志消息处理 事务消息">
+<meta property="og:description" content="RocketMQ简介RocketMQ是一款由Alibaba研发的分布式的消息中间件。支持事务消息、顺序消息、延时消息、定时消息、批量消息。 Apache RocketMQ 中消息的生命周期主要分为消息生产、消息存储、消息消费这三部分。生产者生产消息并发送至 Apache RocketMQ 服务端（Broker），消息被存储在Broker的主题（Topic）中，消费者通过订阅主题消费消息。 消息中间">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-24T08:13:44.000Z">
-<meta property="article:modified_time" content="2023-05-24T08:16:01.239Z">
+<meta property="article:modified_time" content="2023-05-28T14:41:14.031Z">
 <meta property="article:author" content="SBR">
 <meta property="article:tag" content="RocketMQ">
 <meta name="twitter:card" content="summary">
@@ -105,7 +105,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RocketMQ%E6%9E%B6%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">RocketMQ架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RocketMQ%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1"><span class="nav-number">2.</span> <span class="nav-text">RocketMQ集群服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RocketMQ%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="nav-number">3.</span> <span class="nav-text">RocketMQ消息处理模式</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RocketMQ%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">RocketMQ简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">消息中间件的应用场景</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%A6%82%E5%BF%B5"><span class="nav-number">3.</span> <span class="nav-text">模型概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%8D%E5%8A%A1%E7%AB%AF"><span class="nav-number">3.1.</span> <span class="nav-text">服务端</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E7%94%9F%E4%BA%A7"><span class="nav-number">3.2.</span> <span class="nav-text">消息生产</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%AD%98%E5%82%A8"><span class="nav-number">3.3.</span> <span class="nav-text">消息存储</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E6%B6%88%E8%B4%B9"><span class="nav-number">3.4.</span> <span class="nav-text">消息消费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B"><span class="nav-number">3.5.</span> <span class="nav-text">消息类型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86"><span class="nav-number">3.6.</span> <span class="nav-text">消息处理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E7%B1%BB%E5%9E%8B%E5%8E%9F%E7%90%86"><span class="nav-number">4.</span> <span class="nav-text">消息类型原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%99%AE%E9%80%9A%E6%B6%88%E6%81%AF"><span class="nav-number">4.1.</span> <span class="nav-text">普通消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%A1%BA%E5%BA%8F%E6%B6%88%E6%81%AF"><span class="nav-number">4.2.</span> <span class="nav-text">顺序消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1%E6%B6%88%E6%81%AF"><span class="nav-number">4.3.</span> <span class="nav-text">事务消息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6-x2F-%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF"><span class="nav-number">4.4.</span> <span class="nav-text">定时&#x2F;延时消息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9E%B6%E6%9E%84"><span class="nav-number">5.</span> <span class="nav-text">架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4%E6%9C%8D%E5%8A%A1"><span class="nav-number">6.</span> <span class="nav-text">集群服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%A4%84%E7%90%86%E6%A8%A1%E5%BC%8F"><span class="nav-number">7.</span> <span class="nav-text">消息处理模式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">8.</span> <span class="nav-text">Reference</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -178,9 +178,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2023-05-24 16:13:44 / Modified: 16:16:01" itemprop="dateCreated datePublished" datetime="2023-05-24T16:13:44+08:00">2023-05-24</time>
+      <time title="Created: 2023-05-24 16:13:44" itemprop="dateCreated datePublished" datetime="2023-05-24T16:13:44+08:00">2023-05-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2023-05-28 22:41:14" itemprop="dateModified" datetime="2023-05-28T22:41:14+08:00">2023-05-28</time>
     </span>
 
   
@@ -192,20 +198,115 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h1 id="RocketMQ架构"><a href="#RocketMQ架构" class="headerlink" title="RocketMQ架构"></a>RocketMQ架构</h1><p>通信模块</p>
+    <div class="post-body" itemprop="articleBody"><h1 id="RocketMQ简介"><a href="#RocketMQ简介" class="headerlink" title="RocketMQ简介"></a>RocketMQ简介</h1><p>RocketMQ是一款由Alibaba研发的分布式的消息中间件。支持事务消息、顺序消息、延时消息、定时消息、批量消息。</p>
+<p>Apache RocketMQ 中消息的生命周期主要分为消息生产、消息存储、消息消费这三部分。生产者生产消息并发送至 Apache RocketMQ 服务端（Broker），消息被存储在Broker的主题（Topic）中，消费者通过订阅主题消费消息。</p>
+<h1 id="消息中间件的应用场景"><a href="#消息中间件的应用场景" class="headerlink" title="消息中间件的应用场景"></a>消息中间件的应用场景</h1><p>消息中间件常用于分布式系统中的应用解耦、流量削峰填谷、异步处理等场景。比如，再秒杀业务中，在秒杀业务中下单后可以发送延迟消息，若5分钟未支付，就取消订单、回滚库存。</p>
+<p>消息队列的应用场景：</p>
+<ol>
+<li>应用解耦：系统的耦合度越高，容错性就越低。在等待系统恢复正常的时间里，要处理的数据可以被缓存到消息队列中。</li>
+<li>流量削峰填谷：消息到加入消息队列而不是直接发给消费者，消费者按照自己的消费速度从消息队列获取消息进行处理。</li>
+<li>异步处理：不需要同步处理完成后才能响应，由消息队列缓存消息后续通知消息接收方进行异步处理，提高了响应效率。</li>
+</ol>
+<h1 id="模型概念"><a href="#模型概念" class="headerlink" title="模型概念"></a>模型概念</h1><h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><ul>
+<li><p>Broker</p>
+<p>Broker是Apache RocketMQ的服务端，生产者生产的消息会发送到 Broker，并存储在Broker的主题（Topic）中。</p>
+</li>
+<li><p>NameServer</p>
+<p>NameServer是Broker注册中心，支持Broker的注册和发现、Topic路由、Broker心跳检测。</p>
+<p>NameServer通常采用集群的方式部署，各实例间互相不进行通信，Broker会向每一台NameServer注册，所以每一个NameServer都保存一份完整的路由信息，当某个NameServer下线了，Broker依然可以向其它的NameServer注册。</p>
+</li>
+</ul>
+<h2 id="消息生产"><a href="#消息生产" class="headerlink" title="消息生产"></a><strong>消息生产</strong></h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/04producer">生产者（Producer）</a>：</p>
+<p>Apache RocketMQ 中用于产生消息的运行实体，一般集成于业务调用链路的上游。生产者是轻量级匿名无身份的。</p>
+</li>
+</ul>
+<h2 id="消息存储"><a href="#消息存储" class="headerlink" title="消息存储"></a><strong>消息存储</strong></h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/02topic">主题（Topic）</a>：</p>
+<p>Apache RocketMQ 消息传输和存储的分组容器，主题内部由多个队列组成，消息的存储和水平扩展实际是通过主题内的队列实现的。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/03messagequeue">队列（MessageQueue）</a>：</p>
+<p>Apache RocketMQ 消息传输和存储的实际单元容器，类比于其他消息队列中的分区。 Apache RocketMQ 通过流式特性的无限队列结构来存储消息，消息在队列内具备顺序性存储特征。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/04message">消息（Message）</a>：</p>
+<p>Apache RocketMQ 的最小传输单元。消息具备不可变性，在初始化发送和完成存储后即不可变。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/docs/introduction/02concepts#messagetype">队列类型（MessageType）</a>：</p>
+<p>由用于类型管理和安全验证的消息传输特性定义的类别。Apache RocketMQ支持NORMAL、FIFO、TRANSACTION和DELAY消息类型。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/docs/introduction/02concepts#messageview">消息视图（MessageView）</a>：</p>
+<p>从开发的角度来看，MessageView 是消息的只读接口。消息视图允许读取消息中的多个属性和负载信息，但不能对消息本身进行任何更改。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/docs/introduction/02concepts#messagetag">消息标签（MessageTag）</a>：</p>
+<p>MessageTag是一个细粒度的消息分类属性，允许在主题级别以下对消息进行细分。消费者通过订阅特定标签来实现消息过滤。</p>
+</li>
+</ul>
+<h2 id="消息消费"><a href="#消息消费" class="headerlink" title="消息消费"></a><strong>消息消费</strong></h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/07consumergroup">消费者分组（ConsumerGroup）</a>：</p>
+<p>Apache RocketMQ 发布订阅模型中定义的独立的消费身份分组，用于统一管理底层运行的多个消费者（Consumer）。同一个消费组的多个消费者必须保持消费逻辑和配置一致，共同分担该消费组订阅的消息，实现消费能力的水平扩展。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/08consumer">消费者（Consumer）</a>：</p>
+<p>Apache RocketMQ 消费消息的运行实体，一般集成在业务调用链路的下游。消费者必须被指定到某一个消费组中。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/09subscription">订阅关系（Subscription）</a>：</p>
+<p>Apache RocketMQ 发布订阅模型中消息过滤、重试、消费进度的规则配置。订阅关系以消费组粒度进行管理，消费组通过定义订阅关系控制指定消费组下的消费者如何实现消息过滤、消费重试及消费进度恢复等。</p>
+<p>Apache RocketMQ 的订阅关系除过滤表达式之外都是持久化的，即服务端重启或请求断开，订阅关系依然保留。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E6%B6%88%E8%B4%B9%E7%BB%93%E6%9E%9Cconsumeresult">消费结果（ConsumeResult）</a></p>
+<p>Apache RocketMQ 中PushConsumer消费监听器处理消息完成后返回的处理结果，用来标识本次消息是否正确处理。消费结果包含消费成功和消费失败。</p>
+</li>
+</ul>
+<h2 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/01normalmessage">普通消息</a></p>
+<p>普通消息为 Apache RocketMQ 中最基础的消息，区别于有特性的顺序消息、定时&#x2F;延时消息和事务消息。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E4%BA%8B%E5%8A%A1%E6%B6%88%E6%81%AF">事务消息</a></p>
+<p>事务消息是Apache RocketMQ 提供的一种高级消息类型，支持在分布式场景下保障消息生产和本地事务的最终一致性。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E5%AE%9A%E6%97%B6%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF">定时&#x2F;延时消息</a></p>
+<p>定时&#x2F;延时消息是Apache RocketMQ 提供的一种高级消息类型，消息被发送至服务端后，在指定时间后才能被消费者消费。通过设置一定的定时时间可以实现分布式场景的延时调度触发效果。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E9%A1%BA%E5%BA%8F%E6%B6%88%E6%81%AF">顺序消息</a></p>
+<p>顺序消息是Apache RocketMQ 提供的一种高级消息类型，支持消费者按照发送消息的先后顺序获取消息，从而实现业务场景中的顺序处理。</p>
+</li>
+</ul>
+<h2 id="消息处理"><a href="#消息处理" class="headerlink" title="消息处理"></a>消息处理</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E6%B6%88%E6%81%AF%E8%BF%87%E6%BB%A4">消息过滤</a></p>
+<p>消费者可以通过订阅指定消息标签（Tag）对消息进行过滤，确保最终只接收被过滤后的消息合集。过滤规则的计算和匹配在Apache RocketMQ 的服务端完成。更多信息，请参见<a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/07messagefilter">消息过滤</a>。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E9%87%8D%E7%BD%AE%E6%B6%88%E8%B4%B9%E4%BD%8D%E7%82%B9">重置消费位点</a></p>
+<p>以时间轴为坐标，在消息持久化存储的时间范围内，重新设置消费者分组对已订阅主题的消费进度，设置完成后消费者将接收设定时间点之后，由生产者发送到Apache RocketMQ 服务端的消息。更多信息，请参见<a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/09consumerprogress">重置消费位点</a>。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E6%B6%88%E6%81%AF%E8%BD%A8%E8%BF%B9">消息轨迹</a></p>
+<p>在一条消息从生产者发出到消费者接收并处理过程中，由各个相关节点的时间、地点等数据汇聚而成的完整链路信息。通过消息轨迹，您能清晰定位消息从生产者发出，经由Apache RocketMQ 服务端，投递给消费者的完整链路，方便定位排查问题。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF">消息堆积</a></p>
+<p>生产者已经将消息发送到Apache RocketMQ 的服务端，但由于消费者的消费能力有限，未能在短时间内将所有消息正确消费掉，此时在服务端保存着未被消费的消息，该状态即消息堆积。</p>
+</li>
+</ul>
+<h1 id="消息类型原理"><a href="#消息类型原理" class="headerlink" title="消息类型原理"></a>消息类型原理</h1><h2 id="普通消息"><a href="#普通消息" class="headerlink" title="普通消息"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/01normalmessage">普通消息</a></h2><p>普通消息为 Apache RocketMQ 中最基础的消息，区别于有特性的顺序消息、定时&#x2F;延时消息和事务消息。</p>
+<h2 id="顺序消息"><a href="#顺序消息" class="headerlink" title="顺序消息"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/03fifomessage">顺序消息</a></h2><p>顺序消息是Apache RocketMQ 提供的一种高级消息类型，支持消费者按照发送消息的先后顺序获取消息，从而实现业务场景中的顺序处理。</p>
+<h2 id="事务消息"><a href="#事务消息" class="headerlink" title="事务消息"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/04transactionmessage">事务消息</a></h2><p>事务消息是Apache RocketMQ 提供的一种高级消息类型，支持在分布式场景下保障消息生产和本地事务的最终一致性。</p>
+<h2 id="定时-x2F-延时消息"><a href="#定时-x2F-延时消息" class="headerlink" title="定时&#x2F;延时消息"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/02delaymessage">定时&#x2F;延时消息</a></h2><p>定时&#x2F;延时消息是Apache RocketMQ 提供的一种高级消息类型，消息被发送至服务端后，在指定时间后才能被消费者消费。通过设置一定的定时时间可以实现分布式场景的延时调度触发效果。</p>
+<h1 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h1><p>通信模块</p>
 <p>消息结构</p>
 <p>心跳检测</p>
 <p>数据存储</p>
 <p>数据刷盘</p>
-<h1 id="RocketMQ集群服务"><a href="#RocketMQ集群服务" class="headerlink" title="RocketMQ集群服务"></a>RocketMQ集群服务</h1><p>NameServer集群</p>
+<h1 id="集群服务"><a href="#集群服务" class="headerlink" title="集群服务"></a>集群服务</h1><p>NameServer集群</p>
 <p>Broker集群</p>
-<h1 id="RocketMQ消息处理模式"><a href="#RocketMQ消息处理模式" class="headerlink" title="RocketMQ消息处理模式"></a>RocketMQ消息处理模式</h1><p>消息广播</p>
+<h1 id="消息处理模式"><a href="#消息处理模式" class="headerlink" title="消息处理模式"></a>消息处理模式</h1><p>消息广播</p>
 <p>消息排序</p>
-<p>延迟消息</p>
+<p>延时消息</p>
 <p>消息过滤</p>
 <p>消息批处理</p>
 <p>日志消息处理</p>
 <p>事务消息</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/">https://rocketmq.apache.org/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/rocketmq">https://github.com/apache/rocketmq</a></li>
+<li><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/">https://rocketmq.apache.org/zh/</a></li>
+</ul>
 
     </div>
 
