@@ -1,204 +1,213 @@
 <!DOCTYPE html>
-<html lang=en>
+<html lang="en">
 <head>
-    <!-- so meta -->
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="HandheldFriendly" content="True">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="服务架构微服务架构是一种一个单一应用程序开发为一组小型服务的代码结构，每个服务运行在自己的进程中，服务间采用轻量级通信机制（如HTTP）进行通信。这些服务可以独立部署，不同服务可以使用不同语言开发，使用不同的数据存储技术。 微服务与Spring Cloud为了降低构建和维护分布式系统的难度，加快微服务的落地，Spring Cloud提供了快速构建分布式微服务系统的一些常用功能，如配置管理、服务发现">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Spring Cloud">
-<meta property="og:url" content="https://songbaoru.github.io/2023/05/24/Spring-Cloud/index.html">
-<meta property="og:site_name" content="SBR Blog">
-<meta property="og:description" content="服务架构微服务架构是一种一个单一应用程序开发为一组小型服务的代码结构，每个服务运行在自己的进程中，服务间采用轻量级通信机制（如HTTP）进行通信。这些服务可以独立部署，不同服务可以使用不同语言开发，使用不同的数据存储技术。 微服务与Spring Cloud为了降低构建和维护分布式系统的难度，加快微服务的落地，Spring Cloud提供了快速构建分布式微服务系统的一些常用功能，如配置管理、服务发现">
-<meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://songbaoru.github.io/2023/05/24/Spring-Cloud/Spring-Cloud/image-20230525183105335.png">
-<meta property="og:image" content="https://songbaoru.github.io/2023/05/24/Spring-Cloud/Spring-Cloud/image-20230525221748527.png">
-<meta property="article:published_time" content="2023-05-24T08:08:42.000Z">
-<meta property="article:modified_time" content="2023-05-30T00:59:38.143Z">
-<meta property="article:author" content="SBR">
-<meta property="article:tag" content="Spring Cloud">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://songbaoru.github.io/2023/05/24/Spring-Cloud/Spring-Cloud/image-20230525183105335.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="Hexo Theme Keep">
+    <meta name="author" content="Keep Team">
     
-    
+    <title>
         
-          
-              <link rel="shortcut icon" href="/images/favicon.ico">
-          
+            Spring Cloud |
         
-        
-          
-            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
-          
-        
-        
-          
-            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
-          
-        
-    
-    <!-- title -->
-    <title>Spring Cloud</title>
-    <!-- styles -->
-    
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-
-    
-<link rel="stylesheet" href="/lib/meslo-LG/styles.css">
-
-    
-<link rel="stylesheet" href="/lib/justified-gallery/justifiedGallery.min.css">
-
+        Keep Theme
+    </title>
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <!-- rss -->
+    <link rel="shortcut icon" href="/images/logo.svg">
     
-    
-    <!-- jquery -->
-    
-<script src="/lib/jquery/jquery.min.js"></script>
+<link rel="stylesheet" href="/font/css/fontawesome.min.css">
 
+    
+<link rel="stylesheet" href="/font/css/regular.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/solid.min.css">
+
+    
+<link rel="stylesheet" href="/font/css/brands.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {}
+    KEEP.hexo_config = {"hostname":"songbaoru.github.io","root":"/","language":"en"}
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
+    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
+    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
+  </script>
 <meta name="generator" content="Hexo 6.3.0"></head>
 
+
 <body>
-    <div class="banner">
-<div id="blogtitel" class="blogtitel">SBR Blog</div>
-<ul id="wrapper" class="wrapper">
-  <div class="sun">
-    <div class="star"></div>
-  </div>
-  <div class="mercury">
-    <div class="planet">
-      <div class="shadow"></div>
-    </div>
-  </div>
-  <div class="venus">
-    <div class="planet">
-      <div class="shadow"></div>
-    </div>
-  </div>
-  <div class="earth">
-    <div class="planet"><div class="shadow"></div></div>
-  </div>
-  <div class="mars">
-    <div class="planet"><div class="shadow"></div></div>
-  </div>
-  <div class="jupiter">
-    <div class="planet"><div class="shadow"></div></div>
-  </div>
-</ul>
-</div>
-
-    <div class="background">
-      
-        <div id="header-post">
-  <a id="menu-icon" href="#"><i class="fa fa-bars fa-lg"></i></a>
-  <a id="menu-icon-tablet" href="#"><i class="fa fa-bars fa-lg"></i></a>
-  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fa fa-chevron-up fa-lg"></i></a>
-  <span id="menu">
-    <span id="nav">
-      <ul>
-         
-          <li><a href="/home/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="http://github.com/tzvetkov75">Projects</a></li>
-        
-      </ul>
-    </span>
-    <br/>
-    <span id="actions">
-      <ul>
-        
-        <li><a class="icon" href="/2023/05/24/RocketMQ/"><i class="fa fa-chevron-left" aria-hidden="true" onmouseover='$("#i-prev").toggle();' onmouseout='$("#i-prev").toggle();'></i></a></li>
-        
-        
-        <li><a class="icon" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"><i class="fa fa-chevron-right" aria-hidden="true" onmouseover='$("#i-next").toggle();' onmouseout='$("#i-next").toggle();'></i></a></li>
-        
-        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up" aria-hidden="true" onmouseover='$("#i-top").toggle();' onmouseout='$("#i-top").toggle();'></i></a></li>
-        <li><a class="icon" href="#"><i class="fa fa-share-alt" aria-hidden="true" onmouseover='$("#i-share").toggle();' onmouseout='$("#i-share").toggle();' onclick='$("#share").toggle();return false;'></i></a></li>
-      </ul>
-      <span id="i-prev" class="info" style="display:none;">Previous post</span>
-      <span id="i-next" class="info" style="display:none;">Next post</span>
-      <span id="i-top" class="info" style="display:none;">Back to top</span>
-      <span id="i-share" class="info" style="display:none;">Share post</span>
-    </span>
-    <br/>
-    <div id="share" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://songbaoru.github.io/2023/05/24/Spring-Cloud/"><i class="fa fa-facebook " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&text=Spring Cloud"><i class="fa fa-twitter " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&title=Spring Cloud"><i class="fa fa-linkedin " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&is_video=false&description=Spring Cloud"><i class="fa fa-pinterest " aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Spring Cloud&body=Check out this article: https://songbaoru.github.io/2023/05/24/Spring-Cloud/"><i class="fa fa-envelope " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&title=Spring Cloud"><i class="fa fa-get-pocket " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&title=Spring Cloud"><i class="fa fa-reddit " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&title=Spring Cloud"><i class="fa fa-stumbleupon " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&title=Spring Cloud"><i class="fa fa-digg " aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&name=Spring Cloud&description="><i class="fa fa-tumblr " aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-    <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">服务架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%8ESpring-Cloud"><span class="toc-number">1.1.</span> <span class="toc-text">微服务与Spring Cloud</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Cloud%E4%B8%8EDubbo"><span class="toc-number">1.2.</span> <span class="toc-text">Spring Cloud与Dubbo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dubbo"><span class="toc-number">1.2.1.</span> <span class="toc-text">Dubbo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Cloud%E4%B8%8EDubbo%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.2.</span> <span class="toc-text">Spring Cloud与Dubbo的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Cloud-Netfix%E5%92%8CSpring-Cloud-Alibaba"><span class="toc-number">1.3.</span> <span class="toc-text">Spring Cloud Netfix和Spring Cloud Alibaba</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Cloud-Netfix"><span class="toc-number">1.3.1.</span> <span class="toc-text">Spring Cloud Netfix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Cloud-Alibaba"><span class="toc-number">1.3.2.</span> <span class="toc-text">Spring Cloud Alibaba</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">2.</span> <span class="toc-text">服务注册中心和配置中心</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Zookeeper%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">Zookeeper（注册中心和配置中心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">2.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.2.</span> <span class="toc-text">使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nacos%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">Nacos（注册中心和配置中心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E7%89%B9%E6%80%A7"><span class="toc-number">2.2.1.</span> <span class="toc-text">功能和特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-number">2.2.3.</span> <span class="toc-text">高可用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dubbo%E4%BD%BF%E7%94%A8Nacos%E4%BD%9C%E4%B8%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">2.2.4.</span> <span class="toc-text">Dubbo使用Nacos作为注册中心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nacos%E6%BA%90%E7%A0%81%EF%BC%88%E5%BE%85%E5%AE%8C%E5%96%84%EF%BC%89"><span class="toc-number">2.2.5.</span> <span class="toc-text">Nacos源码（待完善）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nacos%E4%BD%9C%E4%B8%BA%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">2.2.6.</span> <span class="toc-text">Nacos作为配置中心</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consul%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">Consul（注册中心和配置中心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-1"><span class="toc-number">2.3.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="toc-number">2.4.</span> <span class="toc-text">Eureka（注册中心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E7%BB%84%E6%88%90"><span class="toc-number">2.4.1.</span> <span class="toc-text">功能和组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-3"><span class="toc-number">2.4.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5"><span class="toc-number">2.4.3.</span> <span class="toc-text">健康检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E6%88%91%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.4.4.</span> <span class="toc-text">自我保护模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%B1%E8%BF%91%E5%8E%9F%E5%88%99"><span class="toc-number">2.4.5.</span> <span class="toc-text">就近原则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Config%EF%BC%88%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="toc-number">2.5.</span> <span class="toc-text">Config（配置中心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E3%80%81%E7%89%B9%E7%82%B9%E5%92%8C%E7%BB%84%E6%88%90"><span class="toc-number">2.5.1.</span> <span class="toc-text">功能、特点和组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-4"><span class="toc-number">2.5.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E7%94%9F%E6%95%88"><span class="toc-number">2.5.3.</span> <span class="toc-text">热生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8-1"><span class="toc-number">2.5.4.</span> <span class="toc-text">高可用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">3.</span> <span class="toc-text">负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ribbon"><span class="toc-number">3.1.</span> <span class="toc-text">Ribbon</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-2"><span class="toc-number">3.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-5"><span class="toc-number">3.1.2.</span> <span class="toc-text">使用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E5%99%A8%EF%BC%88%E6%96%AD%E8%B7%AF%E5%99%A8%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">熔断器（断路器）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">4.1.</span> <span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.1.</span> <span class="toc-text">限流算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text">隔离方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E6%A6%82%E5%BF%B5"><span class="toc-number">4.1.3.</span> <span class="toc-text">熔断概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%8D%E7%BA%A7%E6%A6%82%E5%BF%B5"><span class="toc-number">4.1.4.</span> <span class="toc-text">降级概念</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hystrix"><span class="toc-number">4.2.</span> <span class="toc-text">Hystrix</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E5%8E%9F%E7%90%86"><span class="toc-number">4.2.1.</span> <span class="toc-text">熔断原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-6"><span class="toc-number">4.2.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%91%E6%B5%8B%E5%B7%A5%E5%85%B7"><span class="toc-number">4.2.3.</span> <span class="toc-text">监测工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sentinel"><span class="toc-number">4.3.</span> <span class="toc-text">Sentinel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-3"><span class="toc-number">4.3.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-7"><span class="toc-number">4.3.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sentinel%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">4.3.3.</span> <span class="toc-text">Sentinel持久化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sentinal-DashBoard%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="toc-number">4.3.4.</span> <span class="toc-text">Sentinal DashBoard配置项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%8E%A7%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.3.4.1.</span> <span class="toc-text">流控模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%8E%A7%E6%95%88%E6%9E%9C"><span class="toc-number">4.3.4.2.</span> <span class="toc-text">流控效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E9%99%8D%E7%BA%A7"><span class="toc-number">4.3.4.3.</span> <span class="toc-text">熔断降级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%83%AD%E7%82%B9%E5%8F%82%E6%95%B0%E9%99%90%E6%B5%81"><span class="toc-number">4.3.4.4.</span> <span class="toc-text">热点参数限流</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8FRESTful%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">5.</span> <span class="toc-text">声明式RESTful客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Feign"><span class="toc-number">5.1.</span> <span class="toc-text">Feign</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-8"><span class="toc-number">5.1.1.</span> <span class="toc-text">使用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%BD%91%E5%85%B3"><span class="toc-number">6.</span> <span class="toc-text">路由网关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Zuul"><span class="toc-number">6.1.</span> <span class="toc-text">Zuul</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-4"><span class="toc-number">6.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-9"><span class="toc-number">6.1.2.</span> <span class="toc-text">使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gateway"><span class="toc-number">6.2.</span> <span class="toc-text">Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E7%89%B9%E7%82%B9"><span class="toc-number">6.2.1.</span> <span class="toc-text">功能和特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E8%A8%80%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">6.2.2.</span> <span class="toc-text">断言的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">6.2.3.</span> <span class="toc-text">过滤器的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E5%A6%82%E4%B8%8B%E5%9B%BE"><span class="toc-number">6.2.4.</span> <span class="toc-text">工作流程如下图</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E9%93%BE%E8%B7%9F%E8%B8%AA"><span class="toc-number">7.</span> <span class="toc-text">调用链跟踪</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sleuth"><span class="toc-number">7.1.</span> <span class="toc-text">Sleuth</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-5"><span class="toc-number">7.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AF%E8%AF%AD%EF%BC%88Terminology%EF%BC%89"><span class="toc-number">7.1.2.</span> <span class="toc-text">术语（Terminology）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Zipkin"><span class="toc-number">7.2.</span> <span class="toc-text">Zipkin</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-6"><span class="toc-number">7.2.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-10"><span class="toc-number">7.2.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88Stream"><span class="toc-number">7.2.3.</span> <span class="toc-text">整合Stream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88MySQL"><span class="toc-number">7.2.4.</span> <span class="toc-text">整合MySQL</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8"><span class="toc-number">8.</span> <span class="toc-text">消息驱动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Stream"><span class="toc-number">8.1.</span> <span class="toc-text">Stream</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E6%A6%82%E5%BF%B5"><span class="toc-number">8.1.1.</span> <span class="toc-text">功能和概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%88%E4%BB%A5RabbitMQ%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-number">8.1.2.</span> <span class="toc-text">使用方法（以RabbitMQ为例）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E6%80%BB%E7%BA%BF"><span class="toc-number">9.</span> <span class="toc-text">消息总线</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bus"><span class="toc-number">9.1.</span> <span class="toc-text">Bus</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-7"><span class="toc-number">9.1.1.</span> <span class="toc-text">功能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%AD%E7%94%9F%E5%91%BD%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.</span> <span class="toc-text">短生命微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Task"><span class="toc-number">10.1.</span> <span class="toc-text">Task</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-8"><span class="toc-number">10.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-11"><span class="toc-number">10.1.2.</span> <span class="toc-text">使用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">11.</span> <span class="toc-text">分布式事务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">11.1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ACID"><span class="toc-number">11.1.1.</span> <span class="toc-text">ACID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BASE"><span class="toc-number">11.1.2.</span> <span class="toc-text">BASE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">11.1.3.</span> <span class="toc-text">分布式事务解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2PC"><span class="toc-number">11.1.3.1.</span> <span class="toc-text">2PC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCC"><span class="toc-number">11.1.3.2.</span> <span class="toc-text">TCC</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seata"><span class="toc-number">11.2.</span> <span class="toc-text">Seata</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Seata%E6%9C%AF%E8%AF%AD"><span class="toc-number">11.2.1.</span> <span class="toc-text">Seata术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">11.2.2.</span> <span class="toc-text">事务模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AT-%E6%A8%A1%E5%BC%8F"><span class="toc-number">11.2.2.1.</span> <span class="toc-text">AT 模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCC%E6%A8%A1%E5%BC%8F"><span class="toc-number">11.2.2.2.</span> <span class="toc-text">TCC模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SAGA%E6%A8%A1%E5%BC%8F"><span class="toc-number">11.2.2.3.</span> <span class="toc-text">SAGA模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XA%E6%A8%A1%E5%BC%8F"><span class="toc-number">11.2.2.4.</span> <span class="toc-text">XA模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-12"><span class="toc-number">11.2.3.</span> <span class="toc-text">使用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">12.</span> <span class="toc-text">Reference</span></a></li></ol>
-    </div>
-  </span>
-</div>
-
-      
-      <div class="content index width mx-auto px2 my4">
-          
-          <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
-  <header>
+<div class="progress-bar-container">
     
-    <h1 class="posttitle" itemprop="name headline">
-        Spring Cloud
-    </h1>
+
+    
+</div>
 
 
+<main class="page-container">
 
-    <div class="meta">
-      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
-        <span itemprop="name">SBR Blog</span>
-      </span>
-      
-    <div class="postdate">
-        <time datetime="2023-05-24T08:08:42.000Z" itemprop="datePublished">2023-05-24</time>
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            
+<header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+                <a class="logo-image" href="/">
+                    <img src="/images/logo.svg">
+                </a>
+            
+            <a class="logo-title" href="/">
+               Keep Theme
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
     </div>
 
-
-      
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Spring-Cloud/" rel="tag">Spring Cloud</a>
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
     </div>
 
+    <div class="window-mask"></div>
 
-    </div>
-  </header>
-  
+</header>
 
-  <div class="content" itemprop="articleBody">
-    <h1 id="服务架构"><a href="#服务架构" class="headerlink" title="服务架构"></a>服务架构</h1><p>微服务架构是一种一个单一应用程序开发为一组小型服务的代码结构，每个服务运行在自己的进程中，服务间采用轻量级通信机制（如HTTP）进行通信。这些服务可以独立部署，不同服务可以使用不同语言开发，使用不同的数据存储技术。</p>
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="post-page-container">
+        <div class="article-content-container">
+
+            <div class="article-title">
+                <span class="title-hover-animation">Spring Cloud</span>
+            </div>
+
+            
+                <div class="article-header">
+                    <div class="avatar">
+                        <img src="/images/avatar.svg">
+                    </div>
+                    <div class="info">
+                        <div class="author">
+                            <span class="name">Keep Team</span>
+                            
+                                <span class="author-label">Lv2</span>
+                            
+                        </div>
+                        <div class="meta-info">
+                            
+<div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        
+            <i class="fa-regular fa-calendar-plus"></i>&nbsp;
+        
+        <span class="pc">2023-05-24 16:08:42</span>
+        <span class="mobile">2023-05-24 16:08</span>
+    </span>
+    
+        <span class="article-update-date article-meta-item">
+        <i class="fas fa-file-pen"></i>&nbsp;
+        <span class="pc">2023-05-30 08:59:38</span>
+    </span>
+    
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Spring-Cloud/">Spring Cloud</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            
+
+            <div class="article-content keep-markdown-body">
+                
+
+                <h1 id="服务架构"><a href="#服务架构" class="headerlink" title="服务架构"></a>服务架构</h1><p>微服务架构是一种一个单一应用程序开发为一组小型服务的代码结构，每个服务运行在自己的进程中，服务间采用轻量级通信机制（如HTTP）进行通信。这些服务可以独立部署，不同服务可以使用不同语言开发，使用不同的数据存储技术。</p>
 <h2 id="微服务与Spring-Cloud"><a href="#微服务与Spring-Cloud" class="headerlink" title="微服务与Spring Cloud"></a>微服务与Spring Cloud</h2><p>为了降低构建和维护分布式系统的难度，加快微服务的落地，Spring Cloud提供了快速构建分布式微服务系统的一些常用功能，如配置管理、服务发现、断路器、路由、服务代理、控制总线等工具。使用这些工具可以快速构建分布式微服务架构的系统。</p>
 <h2 id="Spring-Cloud与Dubbo"><a href="#Spring-Cloud与Dubbo" class="headerlink" title="Spring Cloud与Dubbo"></a>Spring Cloud与Dubbo</h2><h3 id="Dubbo"><a href="#Dubbo" class="headerlink" title="Dubbo"></a>Dubbo</h3><p>Apache Dubbo 是一款 RPC 服务开发框架，用于解决微服务架构下的服务治理与通信问题。利用 Dubbo 提供的丰富服务治理特性，可以实现诸如服务发现、负载均衡、流量调度等服务治理诉求。</p>
-<p><a target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/what/overview/">官网对Dubbo的含义的介绍</a>：</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/what/overview/" >官网对Dubbo的含义的介绍<i class="fas fa-external-link-alt"></i></a>：</p>
 <ul>
 <li>Dubbo的产生原因：微服务的分布式特性，使得应用间的依赖、网络交互、数据传输变得更频繁，因此不同的应用需要定义、暴露或调用 RPC 服务，那么这些 RPC 服务如何定义、如何与应用开发框架结合、服务调用行为如何控制？</li>
 <li>Dubbo的含义：<strong>Dubbo 在微服务应用开发框架之上抽象了一套 RPC 服务定义、暴露、调用与治理的编程范式</strong>。</li>
 </ul>
-<p><a target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/registry/">Dubbo支持的注册中心</a>的官网介绍。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/mannual/java-sdk/reference-manual/registry/" >Dubbo支持的注册中心<i class="fas fa-external-link-alt"></i></a>的官网介绍。</p>
 <h3 id="Spring-Cloud与Dubbo的区别"><a href="#Spring-Cloud与Dubbo的区别" class="headerlink" title="Spring Cloud与Dubbo的区别"></a>Spring Cloud与Dubbo的区别</h3><p>Dubbo主要用来实现服务治理，而Spring Cloud的各个组件实现了微服务架构下的所需的各种功能，服务治理只是其中的一个方面。</p>
 <p>Dubbo的在Spring Cloud Netfix技术架构中的替代方案可以是，通过Consul或Eureka Server等实现服务注册中心（对应Dubbo中的注册中心），通过Ribbon实现软负载均衡。 </p>
 <h2 id="Spring-Cloud-Netfix和Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Netfix和Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Netfix和Spring Cloud Alibaba"></a>Spring Cloud Netfix和Spring Cloud Alibaba</h2><p>Spring Cloud Netfix和Spring Cloud Alibaba是Spring Cloud的两套技术架构。</p>
-<h3 id="Spring-Cloud-Netfix"><a href="#Spring-Cloud-Netfix" class="headerlink" title="Spring Cloud Netfix"></a>Spring Cloud Netfix</h3><p><a target="_blank" rel="noopener" href="https://www.springcloud.cc/spring-cloud-netflix.html">Spring Cloud Netfix在官方文档</a>中介绍：该项目通过自动配置和绑定到Spring环境和其他Spring编程模型的习惯方式来为Spring Boot应用程序提供Netflix OSS集成。通过几个简单的注释，您可以快速启用和配置应用程序中的常见模式，并通过经过测试的Netflix组件构建大型分布式系统。提供的组件包括服务发现（Eureka），断路器（Hystrix），智能路由（Zuul）和客户端负载平衡（Ribbon）。可以从<a target="_blank" rel="noopener" href="https://github.com/Netflix">Netfix的GitHub</a>中找到这些组件。</p>
-<h3 id="Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Alibaba"></a>Spring Cloud Alibaba</h3><p>Spring Cloud Alibaba的相关文档：<a target="_blank" rel="noopener" href="https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html">Spring Cloud Alibaba参考文档</a>、<a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/blob/2022.x/README-zh.md">Spring Cloud Alibaba中文版README.md</a>。其提供的组件有：Sentinel(分布式流控：流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性)、Nacos（注册中心）、RocketMQ（分布式消息组件）、Seata（分布式事务组件）等。</p>
+<h3 id="Spring-Cloud-Netfix"><a href="#Spring-Cloud-Netfix" class="headerlink" title="Spring Cloud Netfix"></a>Spring Cloud Netfix</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.springcloud.cc/spring-cloud-netflix.html" >Spring Cloud Netfix在官方文档<i class="fas fa-external-link-alt"></i></a>中介绍：该项目通过自动配置和绑定到Spring环境和其他Spring编程模型的习惯方式来为Spring Boot应用程序提供Netflix OSS集成。通过几个简单的注释，您可以快速启用和配置应用程序中的常见模式，并通过经过测试的Netflix组件构建大型分布式系统。提供的组件包括服务发现（Eureka），断路器（Hystrix），智能路由（Zuul）和客户端负载平衡（Ribbon）。可以从<a class="link"   target="_blank" rel="noopener" href="https://github.com/Netflix" >Netfix的GitHub<i class="fas fa-external-link-alt"></i></a>中找到这些组件。</p>
+<h3 id="Spring-Cloud-Alibaba"><a href="#Spring-Cloud-Alibaba" class="headerlink" title="Spring Cloud Alibaba"></a>Spring Cloud Alibaba</h3><p>Spring Cloud Alibaba的相关文档：<a class="link"   target="_blank" rel="noopener" href="https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/zh-cn/index.html" >Spring Cloud Alibaba参考文档<i class="fas fa-external-link-alt"></i></a>、<a class="link"   target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/blob/2022.x/README-zh.md" >Spring Cloud Alibaba中文版README.md<i class="fas fa-external-link-alt"></i></a>。其提供的组件有：Sentinel(分布式流控：流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性)、Nacos（注册中心）、RocketMQ（分布式消息组件）、Seata（分布式事务组件）等。</p>
 <h1 id="服务注册中心和配置中心"><a href="#服务注册中心和配置中心" class="headerlink" title="服务注册中心和配置中心"></a>服务注册中心和配置中心</h1><p>服务注册中心提供了服务注册和服务发现功能</p>
 <ol>
 <li>服务注册：所有服务的提供方启动时向注册中心发送自己的信息，包括地址、端口、提供的服务等。</li>
@@ -219,22 +228,22 @@
 </ol>
 </li>
 </ol>
-<h2 id="Nacos（注册中心和配置中心）"><a href="#Nacos（注册中心和配置中心）" class="headerlink" title="Nacos（注册中心和配置中心）"></a>Nacos（注册中心和配置中心）</h2><h3 id="功能和特性"><a href="#功能和特性" class="headerlink" title="功能和特性"></a>功能和特性</h3><p><a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/what-is-nacos.html">Nacos</a> &#x2F;nɑ:kəʊs&#x2F; 是 Dynamic Naming and Configuration Service的首字母简称，一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</p>
+<h2 id="Nacos（注册中心和配置中心）"><a href="#Nacos（注册中心和配置中心）" class="headerlink" title="Nacos（注册中心和配置中心）"></a>Nacos（注册中心和配置中心）</h2><h3 id="功能和特性"><a href="#功能和特性" class="headerlink" title="功能和特性"></a>功能和特性</h3><p><a class="link"   target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/what-is-nacos.html" >Nacos<i class="fas fa-external-link-alt"></i></a> &#x2F;nɑ:kəʊs&#x2F; 是 Dynamic Naming and Configuration Service的首字母简称，一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。</p>
 <p>Nacos官网给出的关键特性包括:</p>
 <ul>
 <li><p><strong>服务发现和服务健康监测</strong></p>
-<p>Nacos 支持基于 DNS 和基于 RPC 的服务发现。服务提供者使用 <a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/sdk.html">原生SDK</a>、<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/open-api.html">OpenAPI</a>、或一个<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/other-language.html">独立的Agent TODO</a>注册 Service 后，服务消费者可以使用<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/xx">DNS TODO</a> 或<a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/open-api.html">HTTP&amp;API</a>查找和发现服务。</p>
+<p>Nacos 支持基于 DNS 和基于 RPC 的服务发现。服务提供者使用 <a class="link"   target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/sdk.html" >原生SDK<i class="fas fa-external-link-alt"></i></a>、<a class="link"   target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/open-api.html" >OpenAPI<i class="fas fa-external-link-alt"></i></a>、或一个<a class="link"   target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/other-language.html" >独立的Agent TODO<i class="fas fa-external-link-alt"></i></a>注册 Service 后，服务消费者可以使用<a class="link"   target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/xx" >DNS TODO<i class="fas fa-external-link-alt"></i></a> 或<a class="link"   target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/open-api.html" >HTTP&amp;API<i class="fas fa-external-link-alt"></i></a>查找和发现服务。</p>
 <p>Nacos 提供对服务的实时的健康检查，阻止向不健康的主机或服务实例发送请求。Nacos 支持传输层 (PING 或 TCP)和应用层 (如 HTTP、MySQL、用户自定义）的健康检查。 对于复杂的云环境和网络拓扑环境中（如 VPC、边缘网络等）服务的健康检查，Nacos 提供了 agent 上报模式和服务端主动检测2种健康检查模式。Nacos 还提供了统一的健康检查仪表盘，帮助您根据健康状态管理服务的可用性及流量。</p>
 </li>
 <li><p><strong>动态配置服务</strong></p>
 <p>动态配置服务可以让您以中心化、外部化和动态化的方式管理所有环境的应用配置和服务配置。</p>
 <p>动态配置消除了配置变更时重新部署应用和服务的需要，让配置管理变得更加高效和敏捷。</p>
 <p>配置中心化管理让实现无状态服务变得更简单，让服务按需弹性扩展变得更容易。</p>
-<p>Nacos 提供了一个简洁易用的UI (<a target="_blank" rel="noopener" href="http://console.nacos.io/nacos/index.html">控制台样例 Demo</a>) 帮助您管理所有的服务和应用的配置。Nacos 还提供包括配置版本跟踪、金丝雀发布、一键回滚配置以及客户端配置更新状态跟踪在内的一系列开箱即用的配置管理特性，帮助您更安全地在生产环境中管理配置变更和降低配置变更带来的风险。</p>
+<p>Nacos 提供了一个简洁易用的UI (<a class="link"   target="_blank" rel="noopener" href="http://console.nacos.io/nacos/index.html" >控制台样例 Demo<i class="fas fa-external-link-alt"></i></a>) 帮助您管理所有的服务和应用的配置。Nacos 还提供包括配置版本跟踪、金丝雀发布、一键回滚配置以及客户端配置更新状态跟踪在内的一系列开箱即用的配置管理特性，帮助您更安全地在生产环境中管理配置变更和降低配置变更带来的风险。</p>
 </li>
 <li><p><strong>动态 DNS 服务</strong></p>
 <p>动态 DNS 服务支持权重路由，让您更容易地实现中间层负载均衡、更灵活的路由策略、流量控制以及数据中心内网的简单DNS解析服务。动态DNS服务还能让您更容易地实现以 DNS 协议为基础的服务发现，以帮助您消除耦合到厂商私有服务发现 API 上的风险。</p>
-<p>Nacos 提供了一些简单的 <a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/xx">DNS APIs TODO</a> 帮助您管理服务的关联域名和可用的 IP:PORT 列表.</p>
+<p>Nacos 提供了一些简单的 <a class="link"   target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/xx" >DNS APIs TODO<i class="fas fa-external-link-alt"></i></a> 帮助您管理服务的关联域名和可用的 IP:PORT 列表.</p>
 </li>
 <li><p><strong>服务及其元数据管理</strong></p>
 <p>Nacos 能让您从微服务平台建设的视角管理数据中心的所有服务及元数据，包括管理服务的描述、生命周期、服务的静态依赖分析、服务的健康状态、服务的流量管理、路由及安全策略、服务的 SLA 以及最首要的 metrics 统计数据。</p>
@@ -248,7 +257,7 @@
 <h3 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h3><p>在分布式架构中，任何中间件或者应用都不允许单点存在，所以开源组件一般都会支持高可用的集群。Nacos的集群架构类似于Zookeeper，包含一个Leader节点和多个Follower节点，和Zookeeper不同的是，它的数据一致性算法使用的是Raft。</p>
 <p>Nacos支持Derby和MySQL两种持久化机制，默认使用的是Derby数据库，Derby的吞吐量没有MySQL大，生产环境中可以使用MySQL替换，如果使用M有SQL，需要运行nacos-mysql-sql脚本创建数据库和表。</p>
 <h3 id="Dubbo使用Nacos作为注册中心"><a href="#Dubbo使用Nacos作为注册中心" class="headerlink" title="Dubbo使用Nacos作为注册中心"></a>Dubbo使用Nacos作为注册中心</h3><blockquote>
-<p>官方文档：<a target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/quickstart/java/spring-boot/">Dubbo x Spring Boot 开发</a></p>
+<p>官方文档：<a class="link"   target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/overview/quickstart/java/spring-boot/" >Dubbo x Spring Boot 开发<i class="fas fa-external-link-alt"></i></a></p>
 </blockquote>
 <ol>
 <li><p>在一个Maven项目（spring-boot-dubbo-sample）中添加三个模块，分别用来声明接口、实现接口和使用接口的实现类。</p>
@@ -270,7 +279,7 @@
 <li>服务地址的获取</li>
 <li>服务变化的感知</li>
 </ol>
-<h3 id="Nacos作为配置中心"><a href="#Nacos作为配置中心" class="headerlink" title="Nacos作为配置中心"></a>Nacos作为配置中心</h3><p><a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/Nacos-config">使用方法</a>：</p>
+<h3 id="Nacos作为配置中心"><a href="#Nacos作为配置中心" class="headerlink" title="Nacos作为配置中心"></a>Nacos作为配置中心</h3><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/Nacos-config" >使用方法<i class="fas fa-external-link-alt"></i></a>：</p>
 <ol>
 <li>引入依赖spring-cloud-starter-alibaba-nacos-config。</li>
 <li>添加配置，使用 bootstrap.properties 配置文件来配置Nacos Server 地址、文件扩展名。</li>
@@ -285,7 +294,7 @@
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.profiles.active</span>=<span class="hljs-string">develop</span><br></code></pre></td></tr></table></figure>
 </li>
 <li><p>支持自定义 namespace 的配置</p>
-<p>首先看一下 Nacos 的 Namespace 的概念， <a target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/concepts.html">Nacos 概念</a></p>
+<p>首先看一下 Nacos 的 Namespace 的概念， <a class="link"   target="_blank" rel="noopener" href="https://nacos.io/zh-cn/docs/concepts.html" >Nacos 概念<i class="fas fa-external-link-alt"></i></a></p>
 <blockquote>
 <p>用于进行租户粒度的配置隔离。不同的命名空间下，可以存在相同的 Group 或 Data ID 的配置。Namespace 的常用场景之一是不同环境的配置的区分隔离，例如开发测试环境和生产环境的资源（如配置、服务）隔离等。</p>
 </blockquote>
@@ -301,7 +310,7 @@
 <p>该配置必须放在 bootstrap.properties 文件中。并且在添加配置时 Group 的值一定要和 <code>spring.cloud.nacos.config.group</code> 的配置值一致。</p>
 </li>
 <li><p>支持自定义扩展的 Data Id 配置</p>
-<p>Spring Cloud Alibaba Nacos Config 从 0.2.1 版本后，可支持自定义 Data Id 的配置。关于这部分详细的设计可参考 <a target="_blank" rel="noopener" href="https://github.com/spring-cloud-incubator/spring-cloud-alibaba/issues/141">这里</a>。 一个完整的配置案例如下所示：</p>
+<p>Spring Cloud Alibaba Nacos Config 从 0.2.1 版本后，可支持自定义 Data Id 的配置。关于这部分详细的设计可参考 <a class="link"   target="_blank" rel="noopener" href="https://github.com/spring-cloud-incubator/spring-cloud-alibaba/issues/141" >这里<i class="fas fa-external-link-alt"></i></a>。 一个完整的配置案例如下所示：</p>
 <figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">spring.application.name</span>=<span class="hljs-string">opensource-service-provider</span><br><span class="hljs-attr">spring.cloud.nacos.config.server-addr</span>=<span class="hljs-string">127.0.0.1:8848</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># config external configuration</span><br><span class="hljs-comment"># 1、Data Id 在默认的组 DEFAULT_GROUP,不支持配置的动态刷新</span><br><span class="hljs-attr">spring.cloud.nacos.config.extension-configs[0].data-id</span>=<span class="hljs-string">ext-config-common01.properties</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 2、Data Id 不在默认的组，不支持动态刷新</span><br><span class="hljs-attr">spring.cloud.nacos.config.extension-configs[1].data-id</span>=<span class="hljs-string">ext-config-common02.properties</span><br><span class="hljs-attr">spring.cloud.nacos.config.extension-configs[1].group</span>=<span class="hljs-string">GLOBALE_GROUP</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 3、Data Id 既不在默认的组，也支持动态刷新</span><br><span class="hljs-attr">spring.cloud.nacos.config.extension-configs[2].data-id</span>=<span class="hljs-string">ext-config-common03.properties</span><br><span class="hljs-attr">spring.cloud.nacos.config.extension-configs[2].group</span>=<span class="hljs-string">REFRESH_GROUP</span><br><span class="hljs-attr">spring.cloud.nacos.config.extension-configs[2].refresh</span>=<span class="hljs-string">true</span><br></code></pre></td></tr></table></figure>
 
 <p>可以看到:</p>
@@ -473,15 +482,15 @@
 <li>在被监测的服务项目中，也需要进行配置，保证配置中的eureka.instance.metadata-map.cluster和Turbine中的clusterConfig的配置名称一致。</li>
 <li>请求Turbine的聚合监测面板地址就能看到聚合后的图形化监测信息。</li>
 </ol>
-<h2 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h2><h3 id="功能-3"><a href="#功能-3" class="headerlink" title="功能"></a>功能</h3><p> <a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel">Sentinel</a> 以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。</p>
+<h2 id="Sentinel"><a href="#Sentinel" class="headerlink" title="Sentinel"></a>Sentinel</h2><h3 id="功能-3"><a href="#功能-3" class="headerlink" title="功能"></a>功能</h3><p> <a class="link"   target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel" >Sentinel<i class="fas fa-external-link-alt"></i></a> 以流量为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。</p>
 <p>Sentinel在服务隔离的实现方式和Hystrix完全不一样，Hystrix使用的是通过线程池隔离，而Sentinel采用了两种不同的手段，信号量隔离、响应时间隔离、QPS隔离。</p>
 <p>Sentinel的系统负载保护意思是，Sentinel从系统的维度提供了保护，确保系统的入口流量和系统的负载达到一个平衡，保证系统在能力范围内处理最多的请求。</p>
-<h3 id="使用方法-7"><a href="#使用方法-7" class="headerlink" title="使用方法"></a><a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/Sentinel">使用方法</a></h3><ol>
+<h3 id="使用方法-7"><a href="#使用方法-7" class="headerlink" title="使用方法"></a><a class="link"   target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/Sentinel" >使用方法<i class="fas fa-external-link-alt"></i></a></h3><ol>
 <li>引入依赖spring-cloud-starter-alibaba-sentinel</li>
 <li>添加配置，如Sentinal DashBoard的地址、端口</li>
 <li>在Service类要使用Sentinel的方法上使用@SentinelResource注解</li>
 </ol>
-<h3 id="Sentinel持久化"><a href="#Sentinel持久化" class="headerlink" title="Sentinel持久化"></a><a target="_blank" rel="noopener" href="https://github.com/all4you/sentinel-tutorial/blob/master/sentinel-practice/sentinel-persistence-rules/sentinel-persistence-rules.md">Sentinel持久化</a></h3><p>无论是通过硬编码的方式来更新规则，还是通过接入 Sentinel Dashboard 后，在页面上操作来更新规则，都无法避免一个问题，那就是服务重新后，规则就丢失了，因为默认情况下规则是保存在内存中的。</p>
+<h3 id="Sentinel持久化"><a href="#Sentinel持久化" class="headerlink" title="Sentinel持久化"></a><a class="link"   target="_blank" rel="noopener" href="https://github.com/all4you/sentinel-tutorial/blob/master/sentinel-practice/sentinel-persistence-rules/sentinel-persistence-rules.md" >Sentinel持久化<i class="fas fa-external-link-alt"></i></a></h3><p>无论是通过硬编码的方式来更新规则，还是通过接入 Sentinel Dashboard 后，在页面上操作来更新规则，都无法避免一个问题，那就是服务重新后，规则就丢失了，因为默认情况下规则是保存在内存中的。</p>
 <p>目前 Sentinel 中默认实现了5种规则持久化的方式，分别是：file、redis、nacos、zk和apollo。</p>
 <p>使用方法：</p>
 <ol>
@@ -496,20 +505,20 @@
 </ol>
 <h4 id="流控效果"><a href="#流控效果" class="headerlink" title="流控效果"></a>流控效果</h4><ol>
 <li>快速失败：直接失败并抛出异常</li>
-<li><a target="_blank" rel="noopener" href="https://sentinelguard.io/zh-cn/blog/sentinel-golang-0-6-0-release.html">Warm UP</a>：当系统长期处于低水位的情况下，流量突然增加时，直接把系统拉升到高水位可能瞬间把系统压垮。比如刚启动的服务，数据库连接池可能还未初始化，缓存也处于空的状态，这时候激增的流量非常容易导致服务崩溃。这时我们就可以利用 Sentinel 的 Warm-Up 流控模式，控制通过的流量缓慢增加，在一定时间内逐渐增加到阈值上限，而不是在一瞬间全部放行。这样可以给冷系统一个预热的时间，避免冷系统被压垮。</li>
-<li>排队等待（<a target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel/wiki/%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6-%E5%8C%80%E9%80%9F%E6%8E%92%E9%98%9F%E6%A8%A1%E5%BC%8F">匀速排队模式</a>）：这种方式适合用于请求以突刺状来到，这个时候我们不希望一下子把所有的请求都通过，这样可能会把系统压垮；同时我们也期待系统以稳定的速度，逐步处理这些请求，以起到“削峰填谷”的效果，而不是拒绝所有请求。</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://sentinelguard.io/zh-cn/blog/sentinel-golang-0-6-0-release.html" >Warm UP<i class="fas fa-external-link-alt"></i></a>：当系统长期处于低水位的情况下，流量突然增加时，直接把系统拉升到高水位可能瞬间把系统压垮。比如刚启动的服务，数据库连接池可能还未初始化，缓存也处于空的状态，这时候激增的流量非常容易导致服务崩溃。这时我们就可以利用 Sentinel 的 Warm-Up 流控模式，控制通过的流量缓慢增加，在一定时间内逐渐增加到阈值上限，而不是在一瞬间全部放行。这样可以给冷系统一个预热的时间，避免冷系统被压垮。</li>
+<li>排队等待（<a class="link"   target="_blank" rel="noopener" href="https://github.com/alibaba/Sentinel/wiki/%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6-%E5%8C%80%E9%80%9F%E6%8E%92%E9%98%9F%E6%A8%A1%E5%BC%8F" >匀速排队模式<i class="fas fa-external-link-alt"></i></a>）：这种方式适合用于请求以突刺状来到，这个时候我们不希望一下子把所有的请求都通过，这样可能会把系统压垮；同时我们也期待系统以稳定的速度，逐步处理这些请求，以起到“削峰填谷”的效果，而不是拒绝所有请求。</li>
 </ol>
-<h4 id="熔断降级"><a href="#熔断降级" class="headerlink" title="熔断降级"></a>熔断降级</h4><p><a target="_blank" rel="noopener" href="https://sentinelguard.io/zh-cn/docs/circuit-breaking.html">Sentinel 提供以下几种熔断策略</a>：</p>
+<h4 id="熔断降级"><a href="#熔断降级" class="headerlink" title="熔断降级"></a>熔断降级</h4><p><a class="link"   target="_blank" rel="noopener" href="https://sentinelguard.io/zh-cn/docs/circuit-breaking.html" >Sentinel 提供以下几种熔断策略<i class="fas fa-external-link-alt"></i></a>：</p>
 <ul>
 <li>慢调用比例 (<code>SLOW_REQUEST_RATIO</code>)：选择以慢调用比例作为阈值，需要设置允许的慢调用 RT（即最大的响应时间），请求的响应时间大于该值则统计为慢调用。当单位统计时长（<code>statIntervalMs</code>）内请求数目大于设置的最小请求数目，并且慢调用的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求响应时间小于设置的慢调用 RT 则结束熔断，若大于设置的慢调用 RT 则会再次被熔断。</li>
 <li>异常比例 (<code>ERROR_RATIO</code>)：当单位统计时长（<code>statIntervalMs</code>）内请求数目大于设置的最小请求数目，并且异常的比例大于阈值，则接下来的熔断时长内请求会自动被熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。异常比率的阈值范围是 <code>[0.0, 1.0]</code>，代表 0% - 100%。</li>
 <li>异常数 (<code>ERROR_COUNT</code>)：当单位统计时长内的异常数目超过阈值之后会自动进行熔断。经过熔断时长后熔断器会进入探测恢复状态（HALF-OPEN 状态），若接下来的一个请求成功完成（没有错误）则结束熔断，否则会再次被熔断。</li>
 </ul>
-<h4 id="热点参数限流"><a href="#热点参数限流" class="headerlink" title="热点参数限流"></a>热点参数限流</h4><p><a target="_blank" rel="noopener" href="https://sentinelguard.io/zh-cn/docs/parameter-flow-control.html">热点参数限流</a>会根据配置的限流阈值与模式，对包含热点参数的资源调用进行限流。</p>
+<h4 id="热点参数限流"><a href="#热点参数限流" class="headerlink" title="热点参数限流"></a>热点参数限流</h4><p><a class="link"   target="_blank" rel="noopener" href="https://sentinelguard.io/zh-cn/docs/parameter-flow-control.html" >热点参数限流<i class="fas fa-external-link-alt"></i></a>会根据配置的限流阈值与模式，对包含热点参数的资源调用进行限流。</p>
 <p>Sentinel 利用 LRU 策略统计最近最常访问的热点参数，结合令牌桶算法来进行参数级别的流控。</p>
 <p>要使用热点参数限流功能，需要引入sentinel-parameter-flow-control，并使用<code>@SentinelResource</code> 注解（与Hysyrix的@HysyrixCommand类似）定义资源</p>
-<h1 id="声明式RESTful客户端"><a href="#声明式RESTful客户端" class="headerlink" title="声明式RESTful客户端"></a>声明式RESTful客户端</h1><h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><p>使用Ribbon的缺点是需要对请求拼接参数，而<a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-openfeign/reference/html/#spring-cloud-feign">Feign</a>解决了这个问题。使用Feign，可以通过定义接口并添加注解的方式来描述服务间的交互，而无需手动编写HTTP请求代码。</p>
-<h3 id="使用方法-8"><a href="#使用方法-8" class="headerlink" title="使用方法"></a><a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html">使用方法</a></h3><ol>
+<h1 id="声明式RESTful客户端"><a href="#声明式RESTful客户端" class="headerlink" title="声明式RESTful客户端"></a>声明式RESTful客户端</h1><h2 id="Feign"><a href="#Feign" class="headerlink" title="Feign"></a>Feign</h2><p>使用Ribbon的缺点是需要对请求拼接参数，而<a class="link"   target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-openfeign/reference/html/#spring-cloud-feign" >Feign<i class="fas fa-external-link-alt"></i></a>解决了这个问题。使用Feign，可以通过定义接口并添加注解的方式来描述服务间的交互，而无需手动编写HTTP请求代码。</p>
+<h3 id="使用方法-8"><a href="#使用方法-8" class="headerlink" title="使用方法"></a><a class="link"   target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-netflix/multi/multi_spring-cloud-feign.html" >使用方法<i class="fas fa-external-link-alt"></i></a></h3><ol>
 <li><p>添加依赖：spring-cloud-starter-feign</p>
 </li>
 <li><p>在启动类上添加注解：@EnableFeignClients，该注解的defaultConfiguration属性可以指定所有Feign接口的配置类。</p>
@@ -561,7 +570,7 @@
 <li>能够重写请求路径。</li>
 </ul>
 <p>可以通过配置使Gateway兼容HTTPS请求，</p>
-<p>核心概念（<a target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-gateway/reference/html/#glossary">Glossary</a>）</p>
+<p>核心概念（<a class="link"   target="_blank" rel="noopener" href="https://cloud.spring.io/spring-cloud-gateway/reference/html/#glossary" >Glossary<i class="fas fa-external-link-alt"></i></a>）</p>
 <p>Spring Cloud GateWay 最主要的功能就是路由转发，而在定义转发规则时主要涉及了以下三个核心概念，如下表。</p>
 <table>
 <thead>
@@ -631,7 +640,7 @@
 <li>数据分析</li>
 </ol>
 <p>Spring Cloud Sleuth是Spring Cloud生态中实现调用链跟踪的子项目，Spring Cloud Sleuth可以结合Zipkin，将消息发送到Zipkin，利用Zipkin存储信息，利用Zipkin UI展示数据，也可以只是简单的把数据存储在日记中。</p>
-<h3 id="术语（Terminology）"><a href="#术语（Terminology）" class="headerlink" title="术语（Terminology）"></a>术语（<a target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-sleuth/docs/3.1.8/reference/htmlsingle/spring-cloud-sleuth.html#getting-started-terminology">Terminology</a>）</h3><p>Spring Cloud Sleuth borrows <a target="_blank" rel="noopener" href="https://research.google.com/pubs/pub36356.html">Dapper’s</a> terminology.</p>
+<h3 id="术语（Terminology）"><a href="#术语（Terminology）" class="headerlink" title="术语（Terminology）"></a>术语（<a class="link"   target="_blank" rel="noopener" href="https://docs.spring.io/spring-cloud-sleuth/docs/3.1.8/reference/htmlsingle/spring-cloud-sleuth.html#getting-started-terminology" >Terminology<i class="fas fa-external-link-alt"></i></a>）</h3><p>Spring Cloud Sleuth borrows <a class="link"   target="_blank" rel="noopener" href="https://research.google.com/pubs/pub36356.html" >Dapper’s<i class="fas fa-external-link-alt"></i></a> terminology.</p>
 <p><strong>Span</strong>: The basic unit of work. For example, sending an RPC is a new span, as is sending a response to an RPC. Spans also have other data, such as descriptions, timestamped events, key-value annotations (tags), the ID of the span that caused them, and process IDs (normally IP addresses).</p>
 <p>Spans can be started and stopped, and they keep track of their timing information. Once you create a span, you must stop it at some point in the future.</p>
 <p><strong>Trace:</strong> A set of spans forming a tree-like structure. For example, if you run a distributed big-data store, a trace might be formed by a <code>PUT</code> request.</p>
@@ -685,14 +694,14 @@
 <li>在配置文件中配置MySQL的连接信息，设置initialize参数为true（在启动时创建表结构  ）</li>
 </ol>
 <h1 id="消息驱动"><a href="#消息驱动" class="headerlink" title="消息驱动"></a>消息驱动</h1><h2 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h2><h3 id="功能和概念"><a href="#功能和概念" class="headerlink" title="功能和概念"></a>功能和概念</h3><p>在企业级应用中处理非同步场景、消息通知、应用间解耦等场景经常会使用消息中间件，常见的消息中间件有如，ActiveMQ、RabbitMQ、MetaMQ、Kafka、Redis等。</p>
-<p><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-stream">Spring Cloud Stream</a>是一个构建事件驱动或消息驱动微服务的框架，提供了一个灵活的编程模型，该模型建立在已经建立和熟悉的 Spring 习惯用法和最佳实践之上，包括对持久发布&#x2F;订阅语义、消费者组和有状态分区的支持。</p>
+<p><a class="link"   target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-stream" >Spring Cloud Stream<i class="fas fa-external-link-alt"></i></a>是一个构建事件驱动或消息驱动微服务的框架，提供了一个灵活的编程模型，该模型建立在已经建立和熟悉的 Spring 习惯用法和最佳实践之上，包括对持久发布&#x2F;订阅语义、消费者组和有状态分区的支持。</p>
 <p>利用Stream可以对消息中间件实现进一步的封装，使代码更具有通用性，降低项目对消息中间件的耦合。更重要的是这一就可以方便地实现消息中间件的混用，比如生产者使用Kafka，消费者使用RabbitMQ。</p>
 <p>Stream目前支持的中间件：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-rabbit">RabbitMQ</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-kafka">Apache Kafka</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-kafka/tree/master/spring-cloud-stream-binder-kafka-streams">Kafka Streams</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-aws-kinesis">Amazon Kinesis</a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-rabbit" >RabbitMQ<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-kafka" >Apache Kafka<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-kafka/tree/master/spring-cloud-stream-binder-kafka-streams" >Kafka Streams<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-stream-binder-aws-kinesis" >Amazon Kinesis<i class="fas fa-external-link-alt"></i></a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/spring-cloud/spring-cloud-gcp/tree/master/spring-cloud-gcp-pubsub-stream-binder">Google PubSub <em>(partner maintained)</em></a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/SolaceProducts/spring-cloud-stream-binder-solace">Solace PubSub+ <em>(partner maintained)</em></a></li>
 <li><a target="_blank" rel="noopener" href="https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/spring-cloud-azure-stream-binder-eventhubs">Azure Event Hubs <em>(partner maintained)</em></a></li>
@@ -724,7 +733,7 @@
 </ol>
 <h1 id="消息总线"><a href="#消息总线" class="headerlink" title="消息总线"></a>消息总线</h1><h2 id="Bus"><a href="#Bus" class="headerlink" title="Bus"></a>Bus</h2><h3 id="功能-7"><a href="#功能-7" class="headerlink" title="功能"></a>功能</h3><p>Bus的一个常用功能是进行配置中心客户端的刷新。当Git Repository改变时，Bus会通过POST请求Config Server的&#x2F;bus&#x2F;refresh，Config Server会从Repository获取最新的信息并传递给Client。通过&#x2F;bus&#x2F;refresh的destination参数可以指定刷新某一台Client实例。</p>
 <p>Bus的配置刷新通知功能是基于Spring的事件机制实现的，这些事件是可追踪的。</p>
-<h1 id="短生命微服务"><a href="#短生命微服务" class="headerlink" title="短生命微服务"></a>短生命微服务</h1><h2 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h2><h3 id="功能-8"><a href="#功能-8" class="headerlink" title="功能"></a>功能</h3><p><a target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-task">官方对Spring Cloud Task的介绍</a>十分简单明了：Spring Cloud Task allows a user to develop and run short lived microservices using Spring Cloud and run them locally, in the cloud, even on Spring Cloud Data Flow. Just add <code>@EnableTask</code> and run your app as a Spring Boot app (single application context).</p>
+<h1 id="短生命微服务"><a href="#短生命微服务" class="headerlink" title="短生命微服务"></a>短生命微服务</h1><h2 id="Task"><a href="#Task" class="headerlink" title="Task"></a>Task</h2><h3 id="功能-8"><a href="#功能-8" class="headerlink" title="功能"></a>功能</h3><p><a class="link"   target="_blank" rel="noopener" href="https://spring.io/projects/spring-cloud-task" >官方对Spring Cloud Task的介绍<i class="fas fa-external-link-alt"></i></a>十分简单明了：Spring Cloud Task allows a user to develop and run short lived microservices using Spring Cloud and run them locally, in the cloud, even on Spring Cloud Data Flow. Just add <code>@EnableTask</code> and run your app as a Spring Boot app (single application context).</p>
 <p>Task用于支持短生命周期的微服务，该类微服务常见于定时任务、批处理等场景。</p>
 <h3 id="使用方法-11"><a href="#使用方法-11" class="headerlink" title="使用方法"></a>使用方法</h3><ol>
 <li>添加依赖spring-cloud-task-core</li>
@@ -732,7 +741,7 @@
 </ol>
 <p>Task默认将Task生命周期记录在内存中，可以和数据库集成将其存储到数据库中。 </p>
 <p>Task可以通过Stream启动，实现方法是在Task项目中创建一个Sink来监听包含TaskLaunchRequest的消息实现的。</p>
-<h1 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903647197806605">分布式事务</a></h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h3><p>说到数据库事务就不得不说，数据库事务中的四大特性，ACID:</p>
+<h1 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a><a class="link"   target="_blank" rel="noopener" href="https://juejin.cn/post/6844903647197806605" >分布式事务<i class="fas fa-external-link-alt"></i></a></h1><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="ACID"><a href="#ACID" class="headerlink" title="ACID"></a>ACID</h3><p>说到数据库事务就不得不说，数据库事务中的四大特性，ACID:</p>
 <ul>
 <li><p>A（Atomicity，原子性）：事务作为一个整体被执行，要么全部成功，要么全部失败。</p>
 </li>
@@ -764,7 +773,7 @@
 <li>撤销阶段（Cancel）：撤销事务。</li>
 </ol>
 <p>TCC采用的是补偿机制，核心思想是针对每个操作，都要编写一个与其对应的确认和补偿（撤销）操作逻辑。</p>
-<h2 id="Seata"><a href="#Seata" class="headerlink" title="Seata"></a><a target="_blank" rel="noopener" href="https://seata.io/zh-cn/docs/overview/what-is-seata.html">Seata</a></h2><p>Seata 是一款开源的分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。</p>
+<h2 id="Seata"><a href="#Seata" class="headerlink" title="Seata"></a><a class="link"   target="_blank" rel="noopener" href="https://seata.io/zh-cn/docs/overview/what-is-seata.html" >Seata<i class="fas fa-external-link-alt"></i></a></h2><p>Seata 是一款开源的分布式事务解决方案，致力于提供高性能和简单易用的分布式事务服务。</p>
 <h3 id="Seata术语"><a href="#Seata术语" class="headerlink" title="Seata术语"></a>Seata术语</h3><ul>
 <li>TC (Transaction Coordinator) - 事务协调者 - Seata Server</li>
 </ul>
@@ -778,7 +787,7 @@
 </ul>
 <p>管理分支事务处理的资源，与TC交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。</p>
 <h3 id="事务模式"><a href="#事务模式" class="headerlink" title="事务模式"></a>事务模式</h3><p>Seata 将为用户提供了 AT、TCC、SAGA 和 XA 事务模式。</p>
-<h4 id="AT-模式"><a href="#AT-模式" class="headerlink" title="AT 模式"></a><a target="_blank" rel="noopener" href="https://seata.io/zh-cn/blog/seata-at-lock.html#:~:text=Seata%20AT%20%E6%A8%A1%E5%BC%8F%E6%98%AF%E4%B8%80,%E6%97%A5%E5%BF%97%EF%BC%8C%E6%A3%80%E6%9F%A5%E5%85%A8%E5%B1%80%E9%94%81%E7%AD%89%E3%80%82">AT 模式</a></h4><p>Seata AT 模式是一种非侵入式的分布式事务解决方案，Seata 在内部做了对数据库操作的代理层，我们使用 Seata AT 模式时，实际上用的是 Seata 自带的数据源代理 DataSourceProxy，Seata 在这层代理中加入了很多逻辑，比如插入回滚 undo_log 日志，检查全局锁等。</p>
+<h4 id="AT-模式"><a href="#AT-模式" class="headerlink" title="AT 模式"></a><a class="link"   target="_blank" rel="noopener" href="https://seata.io/zh-cn/blog/seata-at-lock.html#:~:text=Seata%20AT%20%E6%A8%A1%E5%BC%8F%E6%98%AF%E4%B8%80,%E6%97%A5%E5%BF%97%EF%BC%8C%E6%A3%80%E6%9F%A5%E5%85%A8%E5%B1%80%E9%94%81%E7%AD%89%E3%80%82" >AT 模式<i class="fas fa-external-link-alt"></i></a></h4><p>Seata AT 模式是一种非侵入式的分布式事务解决方案，Seata 在内部做了对数据库操作的代理层，我们使用 Seata AT 模式时，实际上用的是 Seata 自带的数据源代理 DataSourceProxy，Seata 在这层代理中加入了很多逻辑，比如插入回滚 undo_log 日志，检查全局锁等。</p>
 <p>AT 模式是2PC的演变：</p>
 <ol>
 <li><p>一阶段</p>
@@ -857,101 +866,199 @@
 </li>
 <li><p>开课吧,李伟杰,刘雪松,刘自强,王超. Spring Cloud Alibaba微服务开发从入门到实战.</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/Sentinel">https://github.com/alibaba/spring-cloud-alibaba/wiki/Sentinel</a></p>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://github.com/alibaba/spring-cloud-alibaba/wiki/Sentinel" >https://github.com/alibaba/spring-cloud-alibaba/wiki/Sentinel<i class="fas fa-external-link-alt"></i></a></p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/en-us/index.html">https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/en-us/index.html</a></p>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/en-us/index.html" >https://spring-cloud-alibaba-group.github.io/github-pages/hoxton/en-us/index.html<i class="fas fa-external-link-alt"></i></a></p>
 </li>
 </ul>
 
-  </div>
-</article>
+            </div>
 
+            
 
+            
+                <ul class="post-tags-box">
+                    
+                        <li class="tag-item">
+                            <a href="/tags/Spring-Cloud/">#Spring Cloud</a>&nbsp;
+                        </li>
+                    
+                </ul>
+            
 
-      </div>
-      
-       <div id="footer-post-container">
-  <div id="footer-post">
+            
+                <div class="article-nav">
+                    
+                        <div class="article-prev">
+                            <a class="prev"
+                               rel="prev"
+                               href="/2023/05/24/RocketMQ/"
+                            >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                                <span class="title flex-center">
+                                <span class="post-nav-title-item">RocketMQ</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                            </a>
+                        </div>
+                    
+                    
+                        <div class="article-next">
+                            <a class="next"
+                               rel="next"
+                               href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/"
+                            >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Java并发编程</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                                <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                            </a>
+                        </div>
+                    
+                </div>
+            
 
-    <div id="nav-footer" style="display: none">
-      <ul>
-         
-          <li><a href="/home/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="http://github.com/tzvetkov75">Projects</a></li>
+            
+        </div>
+
         
-      </ul>
     </div>
-
-    <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84"><span class="toc-number">1.</span> <span class="toc-text">服务架构</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E6%9C%8D%E5%8A%A1%E4%B8%8ESpring-Cloud"><span class="toc-number">1.1.</span> <span class="toc-text">微服务与Spring Cloud</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Cloud%E4%B8%8EDubbo"><span class="toc-number">1.2.</span> <span class="toc-text">Spring Cloud与Dubbo</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Dubbo"><span class="toc-number">1.2.1.</span> <span class="toc-text">Dubbo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Cloud%E4%B8%8EDubbo%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">1.2.2.</span> <span class="toc-text">Spring Cloud与Dubbo的区别</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-Cloud-Netfix%E5%92%8CSpring-Cloud-Alibaba"><span class="toc-number">1.3.</span> <span class="toc-text">Spring Cloud Netfix和Spring Cloud Alibaba</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Cloud-Netfix"><span class="toc-number">1.3.1.</span> <span class="toc-text">Spring Cloud Netfix</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Spring-Cloud-Alibaba"><span class="toc-number">1.3.2.</span> <span class="toc-text">Spring Cloud Alibaba</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%9C%8D%E5%8A%A1%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">2.</span> <span class="toc-text">服务注册中心和配置中心</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Zookeeper%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="toc-number">2.1.</span> <span class="toc-text">Zookeeper（注册中心和配置中心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">2.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">2.1.2.</span> <span class="toc-text">使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Nacos%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="toc-number">2.2.</span> <span class="toc-text">Nacos（注册中心和配置中心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E7%89%B9%E6%80%A7"><span class="toc-number">2.2.1.</span> <span class="toc-text">功能和特性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8"><span class="toc-number">2.2.3.</span> <span class="toc-text">高可用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Dubbo%E4%BD%BF%E7%94%A8Nacos%E4%BD%9C%E4%B8%BA%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83"><span class="toc-number">2.2.4.</span> <span class="toc-text">Dubbo使用Nacos作为注册中心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nacos%E6%BA%90%E7%A0%81%EF%BC%88%E5%BE%85%E5%AE%8C%E5%96%84%EF%BC%89"><span class="toc-number">2.2.5.</span> <span class="toc-text">Nacos源码（待完善）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nacos%E4%BD%9C%E4%B8%BA%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83"><span class="toc-number">2.2.6.</span> <span class="toc-text">Nacos作为配置中心</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Consul%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E5%92%8C%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">Consul（注册中心和配置中心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-1"><span class="toc-number">2.3.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-2"><span class="toc-number">2.3.2.</span> <span class="toc-text">使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Eureka%EF%BC%88%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="toc-number">2.4.</span> <span class="toc-text">Eureka（注册中心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E7%BB%84%E6%88%90"><span class="toc-number">2.4.1.</span> <span class="toc-text">功能和组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-3"><span class="toc-number">2.4.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%A5%E5%BA%B7%E6%A3%80%E6%9F%A5"><span class="toc-number">2.4.3.</span> <span class="toc-text">健康检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%87%AA%E6%88%91%E4%BF%9D%E6%8A%A4%E6%A8%A1%E5%BC%8F"><span class="toc-number">2.4.4.</span> <span class="toc-text">自我保护模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%B1%E8%BF%91%E5%8E%9F%E5%88%99"><span class="toc-number">2.4.5.</span> <span class="toc-text">就近原则</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Config%EF%BC%88%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%EF%BC%89"><span class="toc-number">2.5.</span> <span class="toc-text">Config（配置中心）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E3%80%81%E7%89%B9%E7%82%B9%E5%92%8C%E7%BB%84%E6%88%90"><span class="toc-number">2.5.1.</span> <span class="toc-text">功能、特点和组成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-4"><span class="toc-number">2.5.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E7%94%9F%E6%95%88"><span class="toc-number">2.5.3.</span> <span class="toc-text">热生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%AB%98%E5%8F%AF%E7%94%A8-1"><span class="toc-number">2.5.4.</span> <span class="toc-text">高可用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1"><span class="toc-number">3.</span> <span class="toc-text">负载均衡</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ribbon"><span class="toc-number">3.1.</span> <span class="toc-text">Ribbon</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-2"><span class="toc-number">3.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-5"><span class="toc-number">3.1.2.</span> <span class="toc-text">使用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E5%99%A8%EF%BC%88%E6%96%AD%E8%B7%AF%E5%99%A8%EF%BC%89"><span class="toc-number">4.</span> <span class="toc-text">熔断器（断路器）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A1%A5%E5%85%85"><span class="toc-number">4.1.</span> <span class="toc-text">补充</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%90%E6%B5%81%E7%AE%97%E6%B3%95"><span class="toc-number">4.1.1.</span> <span class="toc-text">限流算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%94%E7%A6%BB%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.2.</span> <span class="toc-text">隔离方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E6%A6%82%E5%BF%B5"><span class="toc-number">4.1.3.</span> <span class="toc-text">熔断概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%8D%E7%BA%A7%E6%A6%82%E5%BF%B5"><span class="toc-number">4.1.4.</span> <span class="toc-text">降级概念</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hystrix"><span class="toc-number">4.2.</span> <span class="toc-text">Hystrix</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E5%8E%9F%E7%90%86"><span class="toc-number">4.2.1.</span> <span class="toc-text">熔断原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-6"><span class="toc-number">4.2.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9B%91%E6%B5%8B%E5%B7%A5%E5%85%B7"><span class="toc-number">4.2.3.</span> <span class="toc-text">监测工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sentinel"><span class="toc-number">4.3.</span> <span class="toc-text">Sentinel</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-3"><span class="toc-number">4.3.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-7"><span class="toc-number">4.3.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sentinel%E6%8C%81%E4%B9%85%E5%8C%96"><span class="toc-number">4.3.3.</span> <span class="toc-text">Sentinel持久化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sentinal-DashBoard%E9%85%8D%E7%BD%AE%E9%A1%B9"><span class="toc-number">4.3.4.</span> <span class="toc-text">Sentinal DashBoard配置项</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%8E%A7%E6%A8%A1%E5%BC%8F"><span class="toc-number">4.3.4.1.</span> <span class="toc-text">流控模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E6%8E%A7%E6%95%88%E6%9E%9C"><span class="toc-number">4.3.4.2.</span> <span class="toc-text">流控效果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%86%94%E6%96%AD%E9%99%8D%E7%BA%A7"><span class="toc-number">4.3.4.3.</span> <span class="toc-text">熔断降级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%83%AD%E7%82%B9%E5%8F%82%E6%95%B0%E9%99%90%E6%B5%81"><span class="toc-number">4.3.4.4.</span> <span class="toc-text">热点参数限流</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A3%B0%E6%98%8E%E5%BC%8FRESTful%E5%AE%A2%E6%88%B7%E7%AB%AF"><span class="toc-number">5.</span> <span class="toc-text">声明式RESTful客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Feign"><span class="toc-number">5.1.</span> <span class="toc-text">Feign</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-8"><span class="toc-number">5.1.1.</span> <span class="toc-text">使用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B7%AF%E7%94%B1%E7%BD%91%E5%85%B3"><span class="toc-number">6.</span> <span class="toc-text">路由网关</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Zuul"><span class="toc-number">6.1.</span> <span class="toc-text">Zuul</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-4"><span class="toc-number">6.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-9"><span class="toc-number">6.1.2.</span> <span class="toc-text">使用方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gateway"><span class="toc-number">6.2.</span> <span class="toc-text">Gateway</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E7%89%B9%E7%82%B9"><span class="toc-number">6.2.1.</span> <span class="toc-text">功能和特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%AD%E8%A8%80%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">6.2.2.</span> <span class="toc-text">断言的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%87%E6%BB%A4%E5%99%A8%E7%9A%84%E7%B1%BB%E5%9E%8B"><span class="toc-number">6.2.3.</span> <span class="toc-text">过滤器的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B%E5%A6%82%E4%B8%8B%E5%9B%BE"><span class="toc-number">6.2.4.</span> <span class="toc-text">工作流程如下图</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%B0%83%E7%94%A8%E9%93%BE%E8%B7%9F%E8%B8%AA"><span class="toc-number">7.</span> <span class="toc-text">调用链跟踪</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Sleuth"><span class="toc-number">7.1.</span> <span class="toc-text">Sleuth</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-5"><span class="toc-number">7.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%AF%E8%AF%AD%EF%BC%88Terminology%EF%BC%89"><span class="toc-number">7.1.2.</span> <span class="toc-text">术语（Terminology）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Zipkin"><span class="toc-number">7.2.</span> <span class="toc-text">Zipkin</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-6"><span class="toc-number">7.2.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-10"><span class="toc-number">7.2.2.</span> <span class="toc-text">使用方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88Stream"><span class="toc-number">7.2.3.</span> <span class="toc-text">整合Stream</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B4%E5%90%88MySQL"><span class="toc-number">7.2.4.</span> <span class="toc-text">整合MySQL</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E9%A9%B1%E5%8A%A8"><span class="toc-number">8.</span> <span class="toc-text">消息驱动</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Stream"><span class="toc-number">8.1.</span> <span class="toc-text">Stream</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD%E5%92%8C%E6%A6%82%E5%BF%B5"><span class="toc-number">8.1.1.</span> <span class="toc-text">功能和概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%88%E4%BB%A5RabbitMQ%E4%B8%BA%E4%BE%8B%EF%BC%89"><span class="toc-number">8.1.2.</span> <span class="toc-text">使用方法（以RabbitMQ为例）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B6%88%E6%81%AF%E6%80%BB%E7%BA%BF"><span class="toc-number">9.</span> <span class="toc-text">消息总线</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bus"><span class="toc-number">9.1.</span> <span class="toc-text">Bus</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-7"><span class="toc-number">9.1.1.</span> <span class="toc-text">功能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%9F%AD%E7%94%9F%E5%91%BD%E5%BE%AE%E6%9C%8D%E5%8A%A1"><span class="toc-number">10.</span> <span class="toc-text">短生命微服务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Task"><span class="toc-number">10.1.</span> <span class="toc-text">Task</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD-8"><span class="toc-number">10.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-11"><span class="toc-number">10.1.2.</span> <span class="toc-text">使用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1"><span class="toc-number">11.</span> <span class="toc-text">分布式事务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-number">11.1.</span> <span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ACID"><span class="toc-number">11.1.1.</span> <span class="toc-text">ACID</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BASE"><span class="toc-number">11.1.2.</span> <span class="toc-text">BASE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">11.1.3.</span> <span class="toc-text">分布式事务解决方案</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2PC"><span class="toc-number">11.1.3.1.</span> <span class="toc-text">2PC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCC"><span class="toc-number">11.1.3.2.</span> <span class="toc-text">TCC</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Seata"><span class="toc-number">11.2.</span> <span class="toc-text">Seata</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Seata%E6%9C%AF%E8%AF%AD"><span class="toc-number">11.2.1.</span> <span class="toc-text">Seata术语</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%8B%E5%8A%A1%E6%A8%A1%E5%BC%8F"><span class="toc-number">11.2.2.</span> <span class="toc-text">事务模式</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#AT-%E6%A8%A1%E5%BC%8F"><span class="toc-number">11.2.2.1.</span> <span class="toc-text">AT 模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#TCC%E6%A8%A1%E5%BC%8F"><span class="toc-number">11.2.2.2.</span> <span class="toc-text">TCC模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SAGA%E6%A8%A1%E5%BC%8F"><span class="toc-number">11.2.2.3.</span> <span class="toc-text">SAGA模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#XA%E6%A8%A1%E5%BC%8F"><span class="toc-number">11.2.2.4.</span> <span class="toc-text">XA模式</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95-12"><span class="toc-number">11.2.3.</span> <span class="toc-text">使用方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Reference"><span class="toc-number">12.</span> <span class="toc-text">Reference</span></a></li></ol>
-    </div>
-
-    <div id="share-footer" style="display: none">
-      <ul>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://songbaoru.github.io/2023/05/24/Spring-Cloud/"><i class="fa fa-facebook fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&text=Spring Cloud"><i class="fa fa-twitter fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&title=Spring Cloud"><i class="fa fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&is_video=false&description=Spring Cloud"><i class="fa fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" href="mailto:?subject=Spring Cloud&body=Check out this article: https://songbaoru.github.io/2023/05/24/Spring-Cloud/"><i class="fa fa-envelope fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&title=Spring Cloud"><i class="fa fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&title=Spring Cloud"><i class="fa fa-reddit fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&title=Spring Cloud"><i class="fa fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&title=Spring Cloud"><i class="fa fa-digg fa-lg" aria-hidden="true"></i></a></li>
-  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://songbaoru.github.io/2023/05/24/Spring-Cloud/&name=Spring Cloud&description="><i class="fa fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
-</ul>
-
-    </div>
-
-    <div id="actions-footer">
-      <ul>
-        <li id="toc"><a class="icon" href="#" onclick='$("#toc-footer").toggle();return false;'><i class="fa fa-list fa-lg" aria-hidden="true"></i> TOC</a></li>
-        <li id="share"><a class="icon" href="#" onclick='$("#share-footer").toggle();return false;'><i class="fa fa-share-alt fa-lg" aria-hidden="true"></i> Share</a></li>
-        <li id="top" style="display:none"><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fa fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a></li>
-        <li id="menu"><a class="icon" href="#" onclick='$("#nav-footer").toggle();return false;'><i class="fa fa-bars fa-lg" aria-hidden="true"></i> Menu</a></li>
-      </ul>
-    </div>
-
-  </div>
 </div>
 
-      
-      <footer id="footer">
-  <div class="footer-left">
-    Copyright &copy; 2023 SBR
-  </div>
-  <div class="footer-right">
-    <nav>
-      <ul>
-         
-          <li><a href="/home/">Home</a></li>
-         
-          <li><a href="/about/">About</a></li>
-         
-          <li><a href="/archives/">Writing</a></li>
-         
-          <li><a target="_blank" rel="noopener" href="http://github.com/tzvetkov75">Projects</a></li>
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            
+<footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+                <span>2020</span> -
+            
+            2023
+            
+                &nbsp;<i class="fas fa-heart icon-animate"></i>
+                &nbsp;<a href="/">Keep Team</a>
+            
+        </div>
         
-      </ul>
-    </nav>
-  </div>
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
+        </div>
+        
+        
+    </div>
 </footer>
 
-      
-<script src="/lib/justified-gallery/jquery.justifiedGallery.min.js"></script>
+        </div>
+    </div>
 
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="zoom-in-image-mask">
+    <img class="zoom-in-image">
+</div>
+
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
 
 <script src="/js/main.js"></script>
 
-<!-- Google Analytics -->
+<script src="/js/header-shrink.js"></script>
 
-<!-- Disqus Comments -->
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
 
 
-    </div>
+
+
+
+
+
+
+
+
+<div class="post-scripts">
+    
+        
+<script src="/js/post-helper.js"></script>
+
+        
+        
+    
+</div>
+
+
+
 </body>
 </html>
