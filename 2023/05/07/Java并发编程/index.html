@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="Hexo Theme Keep">
     <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="Keep Team">
+    <meta name="author" content="Song Baoru">
     
     <title>
         
             Java并发编程 |
         
-        Keep Theme
+        SBR&#39;s Blog.
     </title>
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/41830790?v=4">
     
 <link rel="stylesheet" href="/font/css/fontawesome.min.css">
 
@@ -31,8 +31,8 @@
 
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {}
-    KEEP.hexo_config = {"hostname":"songbaoru.github.io","root":"/","language":"en"}
-    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.hexo_config = {"hostname":"songbaoru.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://avatars.githubusercontent.com/u/41830790?v=4","favicon":"https://avatars.githubusercontent.com/u/41830790?v=4","avatar":"https://avatars.githubusercontent.com/u/41830790?v=4","font_size":null,"font_family":"STKaiti","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.6.1"}
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
     KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
@@ -44,6 +44,9 @@
 <div class="progress-bar-container">
     
 
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
     
 </div>
 
@@ -62,11 +65,11 @@
         <div class="left">
             
                 <a class="logo-image" href="/">
-                    <img src="/images/logo.svg">
+                    <img src="https://avatars.githubusercontent.com/u/41830790?v=4">
                 </a>
             
             <a class="logo-title" href="/">
-               Keep Theme
+               SBR&#39;s Blog.
             </a>
         </div>
 
@@ -91,9 +94,15 @@
                         </li>
                     
                     
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
                 </ul>
             </div>
             <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
                 <div class="icon-item menu-bar">
                     <div class="menu-bar-middle"></div>
@@ -141,11 +150,11 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/avatar.svg">
+                        <img src="https://avatars.githubusercontent.com/u/41830790?v=4">
                     </div>
                     <div class="info">
                         <div class="author">
-                            <span class="name">Keep Team</span>
+                            <span class="name">Song Baoru</span>
                             
                                 <span class="author-label">Lv2</span>
                             
@@ -184,6 +193,10 @@
     
     
     
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
 </div>
 
                         </div>
@@ -196,7 +209,12 @@
 
                 <h1 id="线程"><a href="#线程" class="headerlink" title="线程"></a>线程</h1><p>线程可以通俗的理解为程序不同的执行路径</p>
 <h2 id="线程相关的类"><a href="#线程相关的类" class="headerlink" title="线程相关的类"></a>线程相关的类</h2><p>下图是java并发包的截图，其中红色边框圈出的是部分常用的线程相关的类。</p>
-<img src="./Java并发编程/image-20230517171439391.png" alt="image-20230517171439391" style="zoom:80%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="./Java并发编程/image-20230517171439391.png"
+                      alt="image-20230517171439391" style="zoom:80%;" 
+                >
 
 <h2 id="线程的创建方式"><a href="#线程的创建方式" class="headerlink" title="线程的创建方式"></a>线程的创建方式</h2><p>Java 中创建线程的方法有四种：继承 Thread 类、实现 Runnable 接口、实现 Callable 接口并使用FutureTask类以及通过线程池创建线程。</p>
 <ol>
@@ -327,7 +345,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">volatile</span> RejectedExecutionHandler handler;<br></code></pre></td></tr></table></figure>
 
 <p>RejectedExecutionHandler接口有四个实现类，这四个类就是JDK提供的线程池拒绝策略的实现类，如果没有传递该handler参数指定使用的拒绝策略，则默认执行AbortPolicy类的拒绝策略，否则执行传递的类的执行策略。继承RejectedExecutionHandler可以实现自定义的拒绝策略。</p>
-<img src="./Java并发编程/image-20230519215921078.png" alt="image-20230519215921078" style="zoom:80%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="./Java并发编程/image-20230519215921078.png"
+                      alt="image-20230519215921078" style="zoom:80%;" 
+                >
 
 <h2 id="线程池的关闭方式"><a href="#线程池的关闭方式" class="headerlink" title="线程池的关闭方式"></a>线程池的关闭方式</h2><p>Java 线程池的关闭方式有两种：调用 shutdown() 和 shutdownNow() 方法。</p>
 <ol>
@@ -736,10 +759,20 @@
 </ol>
 <h2 id="使用JOL查看对象结构"><a href="#使用JOL查看对象结构" class="headerlink" title="使用JOL查看对象结构"></a>使用JOL查看对象结构</h2><p>为了方便查看JVM中对象结构并计算某个对象的大小，OpenJDK提供了一个JOL工具包</p>
 <p>定义了一个int[]数组，并使用JOL提供的方法输出对象信息：</p>
-<img src="./Java并发编程/image-20230516191412412.png" alt="image-20230516191412412" style="zoom:93%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="./Java并发编程/image-20230516191412412.png"
+                      alt="image-20230516191412412" style="zoom:93%;" 
+                >
 
 <p>输出的Java对象信息：</p>
-<img src="./Java并发编程/image-20230516190422449.png" alt="image-20230516190422449" style="zoom: 80%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="./Java并发编程/image-20230516190422449.png"
+                      alt="image-20230516190422449" style="zoom: 80%;" 
+                >
 
 <h2 id="synchronized底层实现"><a href="#synchronized底层实现" class="headerlink" title="synchronized底层实现"></a>synchronized底层实现</h2><p>JVM是基于JVM中的monitor锁实现的，Java1.5版本之前的synchronized锁性能较低，但是从Java1.6开始，对synchronized锁进行了优化，引入了锁升级、锁粗化、锁消除等技术来提高synchronized的性能。</p>
 <ol>
@@ -889,7 +922,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/** waitStatus value to indicate thread has cancelled */</span><br><span class="hljs-comment">// 表示当前节点中的线程已被取消</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">CANCELLED</span> <span class="hljs-operator">=</span>  <span class="hljs-number">1</span>;<br><span class="hljs-comment">/** waitStatus value to indicate successor&#x27;s thread needs unparking */</span><br><span class="hljs-comment">// 表示后继节点中的线程处于等待状态，需要被唤醒</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">SIGNAL</span>    <span class="hljs-operator">=</span> -<span class="hljs-number">1</span>;<br><span class="hljs-comment">/** waitStatus value to indicate thread is waiting on condition */</span><br><span class="hljs-comment">// 表示当前节点中的线程在等待某个条件，也就是当前节点处于condition队列中</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">CONDITION</span> <span class="hljs-operator">=</span> -<span class="hljs-number">2</span>;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * waitStatus value to indicate the next acquireShared should</span><br><span class="hljs-comment"> * unconditionally propagate</span><br><span class="hljs-comment"> */</span><br><span class="hljs-comment">// 表示在当前场景下能够执行后续的acquireShared操作</span><br><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">PROPAGATE</span> <span class="hljs-operator">=</span> -<span class="hljs-number">3</span>;<br></code></pre></td></tr></table></figure></li>
 </ol>
 <h2 id="AQS底层对锁的支持"><a href="#AQS底层对锁的支持" class="headerlink" title="AQS底层对锁的支持"></a>AQS底层对锁的支持</h2><p>Java中java.util.concurrent包下的大部分工具类的实现都基于AQS（都extends Sync，而Sync extends AbstractQueuedSynchronizer）。基于AQS的工具类：</p>
-<img src="./Java并发编程/image-20230517221126607.png" alt="image-20230517221126607" style="zoom:80%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="./Java并发编程/image-20230517221126607.png"
+                      alt="image-20230517221126607" style="zoom:80%;" 
+                >
 
 <p>AQS底层支持独占锁和共享锁两种模式：</p>
 <ol>
@@ -911,10 +949,20 @@
 <li>而当调用synchronized修饰的代码时，并不需要显示的加锁和解锁的过程，所以称之为隐式锁</li>
 </ol>
 <p>JUC显示锁中核心的接口是Lock接口，位于java.util.concurrent.locks包下：</p>
-<img src="./Java并发编程/image-20230517172627640.png" alt="image-20230517172627640" style="zoom:80%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="./Java并发编程/image-20230517172627640.png"
+                      alt="image-20230517172627640" style="zoom:80%;" 
+                >
 
 <p>Lock接口提供的方法：</p>
-<img src="./Java并发编程/image-20230517173037786.png" alt="image-20230517173037786" style="zoom:80%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="./Java并发编程/image-20230517173037786.png"
+                      alt="image-20230517173037786" style="zoom:80%;" 
+                >
 
 <h2 id="公平锁和非公平锁的原理"><a href="#公平锁和非公平锁的原理" class="headerlink" title="公平锁和非公平锁的原理"></a>公平锁和非公平锁的原理</h2><p>公平锁中的线程在抢占锁时首先会判断等待队列是否为空，如果队列为空或者当前线程是队列的队首元素，则当前线程获取到锁资源，否则会被放入队列尾部等待获取锁</p>
 <p>非公平锁中的线程在抢占锁时会先直接尝试抢占锁，如果抢占成功就继续执行程序的业务逻辑，如果抢占失败，才会进入等待队列中等待</p>
@@ -952,7 +1000,12 @@
 <h3 id="StampedLock"><a href="#StampedLock" class="headerlink" title="StampedLock"></a>StampedLock</h3><p>StampedLock支持读锁、写锁、乐观锁三种模式。</p>
 <h2 id="LockSupport原理"><a href="#LockSupport原理" class="headerlink" title="LockSupport原理"></a>LockSupport原理</h2><p>LockSupport位于<code>java.util.concurrent.locks</code>包，是Java提供的创建锁和其他多线程工具的基础类库，主要作用就是阻塞和唤醒线程，底层是基于UnSafe类实现的。AQS 底层就是使用了<code>LockSupport</code>来实现线程的阻塞和唤醒。</p>
 <p>LockSupport类提供的核心方法：</p>
-<img src="./Java并发编程/image-20230518115147049.png" alt="image-20230518115147049" style="zoom:80%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="./Java并发编程/image-20230518115147049.png"
+                      alt="image-20230518115147049" style="zoom:80%;" 
+                >
 
 <table>
 <thead>
@@ -1031,7 +1084,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment">Params:</span><br><span class="hljs-comment">    expectedReference – the expected value of the reference </span><br><span class="hljs-comment">    newReference – the new value for the reference </span><br><span class="hljs-comment">    expectedMark – the expected value of the mark </span><br><span class="hljs-comment">    newMark – the new value for the mark</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">compareAndSet</span><span class="hljs-params">(V expectedReference,</span><br><span class="hljs-params">                             V newReference,</span><br><span class="hljs-params">                             <span class="hljs-type">boolean</span> expectedMark,</span><br><span class="hljs-params">                             <span class="hljs-type">boolean</span> newMark)</span> &#123;<br>    Pair&lt;V&gt; current = pair;<br>    <span class="hljs-keyword">return</span><br>        expectedReference == current.reference &amp;&amp;<br>        expectedMark == current.mark &amp;&amp;<br>        ((newReference == current.reference &amp;&amp;<br>          newMark == current.mark) ||<br>         casPair(current, Pair.of(newReference, newMark)));<br>&#125;<br></code></pre></td></tr></table></figure></li>
 </ol>
 <h1 id="JUC同步锁"><a href="#JUC同步锁" class="headerlink" title="JUC同步锁"></a>JUC同步锁</h1><p>以下的锁当中除了LockSupport之外，其他的都是基于AQS实现的</p>
-<img src="./Java并发编程/image-20230517170215865.png" alt="image-20230517170215865" style="zoom:80%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="./Java并发编程/image-20230517170215865.png"
+                      alt="image-20230517170215865" style="zoom:80%;" 
+                >
 
 <h2 id="ReentrantLock"><a href="#ReentrantLock" class="headerlink" title="ReentrantLock"></a>ReentrantLock</h2><p>ReentrantLock是Java并发包<code>java.util.concurrent.locks</code>中的一个类，ReentrantLock是可重入锁，每获取一次，重入的计数就会增加1。当线程释放锁时，重入的计数就会减少1。只有当重入的计数变为0时，锁才会真正被释放。</p>
 <p><code>ReentrantLock</code>是基于Java的<code>AbstractQueuedSynchronizer</code>(AQS)框架实现的。AQS使用一个整数值来表示锁的状态，并使用一个FIFO队列来管理等待的线程。ReentrantLock底层使用的是锁的park()和unpark()</p>
@@ -1101,7 +1159,12 @@
 
 <p>可以看到，两个线程之间成功进行了数据交换，并且获取到了对方传递的数据。</p>
 <h2 id="Phaser"><a href="#Phaser" class="headerlink" title="Phaser"></a>Phaser</h2><p>略</p>
-<h1 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h1><img src="./Java并发编程/image-20230517170045229.png" alt="image-20230517170045229" style="zoom:80%;" />
+<h1 id="原子类"><a href="#原子类" class="headerlink" title="原子类"></a>原子类</h1><img  
+                     lazyload
+                     alt="image"
+                     data-src="./Java并发编程/image-20230517170045229.png"
+                      alt="image-20230517170045229" style="zoom:80%;" 
+                >
 
 <h2 id="秒杀性能比较"><a href="#秒杀性能比较" class="headerlink" title="秒杀性能比较"></a>秒杀性能比较</h2><ul>
 <li><p>synchronized</p>
@@ -1159,7 +1222,12 @@
 <li><p>使用JMeter对接口进行并发测试，设置线程数为5，Ramp-up period是0，即5个线程会同时访问</p>
 </li>
 <li><p>运行JMeter测试任务，得到输出结果，可以看到存在对同一商品的相同库存进行了多次扣减的问题，即超卖问题。</p>
-<p><img src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521092117804.png" alt="image-20230521092117804"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521092117804.png"
+                      alt="image-20230521092117804"
+                ></p>
 </li>
 </ol>
 <h2 id="分布式锁"><a href="#分布式锁" class="headerlink" title="分布式锁"></a>分布式锁</h2><h3 id="分布式锁的实现方式"><a href="#分布式锁的实现方式" class="headerlink" title="分布式锁的实现方式"></a>分布式锁的实现方式</h3><p>Java提供的锁机制都是JVM级别的，只在JVM进程内部有效。但是不能解决分布式场景下的高并发问题，要解决分布式环境下的高并发问题，需要使用分布式锁。</p>
@@ -1221,15 +1289,30 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/order/v2&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OverSoldV2</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">PRODUCT_ID</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;1001&quot;</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">THREAD_ID</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;THREAD_ID&quot;</span>;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">STOCK_COUNT</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;100&quot;</span>;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Logger</span> <span class="hljs-variable">logger</span> <span class="hljs-operator">=</span> Logger.getLogger(String.valueOf(OverSoldV2.class));<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> StringRedisTemplate stringRedisTemplate;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">OverSoldV2</span><span class="hljs-params">(StringRedisTemplate stringRedisTemplate)</span> &#123;<br>        <span class="hljs-built_in">this</span>.stringRedisTemplate = stringRedisTemplate;<br>        stringRedisTemplate.opsForValue().set(PRODUCT_ID, STOCK_COUNT);<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/submitOrder&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">submitOrder</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">threadId</span> <span class="hljs-operator">=</span> String.valueOf(Thread.currentThread().getId());<br>        <span class="hljs-type">Boolean</span> <span class="hljs-variable">isLocked</span> <span class="hljs-operator">=</span> stringRedisTemplate.opsForValue().setIfAbsent(THREAD_ID, threadId, <span class="hljs-number">30</span>, TimeUnit.SECONDS);<br>        <span class="hljs-keyword">if</span> (Boolean.FALSE.equals(isLocked)) &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;failure&quot;</span>;<br>        &#125;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">stockString</span> <span class="hljs-operator">=</span> stringRedisTemplate.opsForValue().get(PRODUCT_ID);<br>            <span class="hljs-keyword">if</span> (stockString == <span class="hljs-literal">null</span> || <span class="hljs-string">&quot;&quot;</span>.equals(stockString.trim())) &#123;<br>                logger.info(<span class="hljs-string">&quot;库存不足，扣减失败&quot;</span>);<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;库存不足，扣减失败&quot;</span>);<br>            &#125;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">stock</span> <span class="hljs-operator">=</span> Integer.parseInt(stockString);<br>            <span class="hljs-keyword">if</span> (stock &gt; <span class="hljs-number">0</span>) &#123;<br>                stock -= <span class="hljs-number">1</span>;<br>                stringRedisTemplate.opsForValue().set(PRODUCT_ID, String.valueOf(stock));<br>                <span class="hljs-type">String</span> <span class="hljs-variable">info</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;库存扣减成功，当前库存为：&quot;</span> + stock;<br>                logger.info(info);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                logger.info(<span class="hljs-string">&quot;库存不足，扣减失败&quot;</span>);<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;库存不足，扣减失败&quot;</span>);<br>            &#125;<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            stringRedisTemplate.delete(THREAD_ID);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;success&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>运行JMeter测试任务，得到输出结果，可以看到不再发生对库存重复扣减，超卖问题被解决。</p>
-<p><img src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521143353323.png" alt="image-20230521143353323"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521143353323.png"
+                      alt="image-20230521143353323"
+                ></p>
 <p>虽然超卖问题已经解决，但是每次获取锁失败就直接返回，没有实现锁的阻塞性，要实现锁的阻塞性，一种简单的实现方式是使用自旋：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RestController</span><br><span class="hljs-meta">@RequestMapping(&quot;/order/v3&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OverSoldV3</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">PRODUCT_ID</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;1001&quot;</span>;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">THREAD_ID</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;THREAD_ID&quot;</span>;<br>    <span class="hljs-type">String</span> <span class="hljs-variable">STOCK_COUNT</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;100&quot;</span>;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> <span class="hljs-type">Logger</span> <span class="hljs-variable">logger</span> <span class="hljs-operator">=</span> Logger.getLogger(String.valueOf(OverSoldV3.class));<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> StringRedisTemplate stringRedisTemplate;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">OverSoldV3</span><span class="hljs-params">(StringRedisTemplate stringRedisTemplate)</span> &#123;<br>        <span class="hljs-built_in">this</span>.stringRedisTemplate = stringRedisTemplate;<br>        stringRedisTemplate.opsForValue().set(PRODUCT_ID, STOCK_COUNT);<br>    &#125;<br><br>    <span class="hljs-meta">@RequestMapping(&quot;/submitOrder&quot;)</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">submitOrder</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">threadId</span> <span class="hljs-operator">=</span> String.valueOf(Thread.currentThread().getId());<br>        <span class="hljs-type">Boolean</span> <span class="hljs-variable">isLocked</span> <span class="hljs-operator">=</span> stringRedisTemplate.opsForValue().setIfAbsent(THREAD_ID, threadId, <span class="hljs-number">30</span>, TimeUnit.SECONDS);<br>        <span class="hljs-keyword">if</span> (Boolean.FALSE.equals(isLocked)) &#123;<br>            <span class="hljs-keyword">do</span> &#123;<br>                isLocked = stringRedisTemplate.opsForValue().setIfAbsent(THREAD_ID, threadId, <span class="hljs-number">30</span>, TimeUnit.SECONDS);<br>            &#125; <span class="hljs-keyword">while</span> (Boolean.FALSE.equals(isLocked));<br>        &#125;<br>        <span class="hljs-keyword">try</span> &#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">stockString</span> <span class="hljs-operator">=</span> stringRedisTemplate.opsForValue().get(PRODUCT_ID);<br>            <span class="hljs-keyword">if</span> (stockString == <span class="hljs-literal">null</span> || <span class="hljs-string">&quot;&quot;</span>.equals(stockString.trim())) &#123;<br>                logger.info(<span class="hljs-string">&quot;库存不足，扣减失败&quot;</span>);<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;库存不足，扣减失败&quot;</span>);<br>            &#125;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">stock</span> <span class="hljs-operator">=</span> Integer.parseInt(stockString);<br>            <span class="hljs-keyword">if</span> (stock &gt; <span class="hljs-number">0</span>) &#123;<br>                stock -= <span class="hljs-number">1</span>;<br>                stringRedisTemplate.opsForValue().set(PRODUCT_ID, String.valueOf(stock));<br>                <span class="hljs-type">String</span> <span class="hljs-variable">info</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;库存扣减成功，当前库存为：&quot;</span> + stock;<br>                logger.info(info);<br>            &#125; <span class="hljs-keyword">else</span> &#123;<br>                logger.info(<span class="hljs-string">&quot;库存不足，扣减失败&quot;</span>);<br>                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RuntimeException</span>(<span class="hljs-string">&quot;库存不足，扣减失败&quot;</span>);<br>            &#125;<br>        &#125; <span class="hljs-keyword">finally</span> &#123;<br>            stringRedisTemplate.delete(THREAD_ID);<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;success&quot;</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>使用阻塞等待后，调整JMeter的请求数等于商品数（100），如果恰好消费完，说明锁的阻塞等待是有效的。</p>
 <p>JMeter的线程参数配置如下图，开启了5个线程，每个线程循环20次，请求次数总共100次：</p>
-<p><img src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521144244517.png" alt="image-20230521144244517"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521144244517.png"
+                      alt="image-20230521144244517"
+                ></p>
 <p>运行JMeter测试任务，输出结果显示如下图：</p>
-<p><img src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521144440514.png" alt="image-20230521144440514"></p>
+<p><img  
+                     lazyload
+                     alt="image"
+                     data-src="/./Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/image-20230521144440514.png"
+                      alt="image-20230521144440514"
+                ></p>
 <p>输出结果显示，确实是恰好消费完，说明锁的阻塞等待是有效的。</p>
 <h1 id="秒杀系统架构"><a href="#秒杀系统架构" class="headerlink" title="秒杀系统架构"></a>秒杀系统架构</h1><h2 id="电商系统架构"><a href="#电商系统架构" class="headerlink" title="电商系统架构"></a>电商系统架构</h2><p>一个简化的电商系统架构由上到下分为客户端、网关层、负载均衡层、应用层和存储层。各层包含的应用和服务举例如下：</p>
 <ol>
@@ -1382,6 +1465,15 @@
         </div>
 
         
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B"><span class="nav-text">线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9B%B8%E5%85%B3%E7%9A%84%E7%B1%BB"><span class="nav-text">线程相关的类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="nav-text">线程的创建方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F"><span class="nav-text">线程局部变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ThreadLocal"><span class="nav-text">ThreadLocal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#InheritableThreadLocal"><span class="nav-text">InheritableThreadLocal</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E7%8A%B6%E6%80%81"><span class="nav-text">线程状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%96%B9%E6%B3%95"><span class="nav-text">线程方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sleep"><span class="nav-text">sleep</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#interrupt"><span class="nav-text">interrupt</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#join"><span class="nav-text">join</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#yield"><span class="nav-text">yield</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#daemon"><span class="nav-text">daemon</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E5%90%8C%E6%AD%A5"><span class="nav-text">线程同步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1"><span class="nav-text">线程间通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E7%BA%BF%E7%A8%8B%E5%92%8C%E5%AE%88%E6%8A%A4%E7%BA%BF%E7%A8%8B"><span class="nav-text">用户线程和守护线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-text">线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E7%8A%B6%E6%80%81"><span class="nav-text">线程池的状态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%88%9B%E5%BB%BA%E6%96%B9%E5%BC%8F"><span class="nav-text">线程池的创建方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E6%89%A7%E8%A1%8C%E4%BB%BB%E5%8A%A1%E7%9A%84%E6%B5%81%E7%A8%8B"><span class="nav-text">线程池执行任务的流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E6%8B%92%E7%BB%9D%E7%AD%96%E7%95%A5"><span class="nav-text">线程池的拒绝策略</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E7%A8%8B%E6%B1%A0%E7%9A%84%E5%85%B3%E9%97%AD%E6%96%B9%E5%BC%8F"><span class="nav-text">线程池的关闭方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E4%BD%B3%E7%BA%BF%E7%A8%8B%E6%95%B0"><span class="nav-text">最佳线程数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#XXX%E7%A8%8B"><span class="nav-text">XXX程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9B%E7%A8%8B%E5%92%8C%E7%BA%BF%E7%A8%8B"><span class="nav-text">进程和线程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%8F%E7%A8%8B"><span class="nav-text">协程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%A4%E7%A8%8B"><span class="nav-text">纤程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E7%BA%BF%E7%A8%8B"><span class="nav-text">超线程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B%E7%9B%B8%E5%85%B3%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">并发编程相关的概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%B4%E7%95%8C%E5%8C%BA"><span class="nav-text">临界区</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%BA%92%E6%96%A5%E9%87%8F"><span class="nav-text">操作系统的互斥量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%80%81%E3%80%81%E5%86%85%E6%A0%B8%E6%80%81"><span class="nav-text">用户态、内核态</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E5%92%8C%E5%BC%82%E6%AD%A5"><span class="nav-text">同步和异步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E3%80%81%E9%A5%A5%E9%A5%BF%E3%80%81%E6%B4%BB%E9%94%81"><span class="nav-text">死锁、饥饿、活锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%BB%E9%94%81"><span class="nav-text">死锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BD%A2%E6%88%90%E6%AD%BB%E9%94%81%E7%9A%84%E5%BF%85%E8%A6%81%E6%9D%A1%E4%BB%B6"><span class="nav-text">形成死锁的必要条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%AD%BB%E9%94%81%E7%9A%84%E9%A2%84%E9%98%B2"><span class="nav-text">死锁的预防</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%87%AA%E6%97%8B%E9%94%81"><span class="nav-text">自旋锁</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7%E3%80%81%E5%8F%AF%E8%A7%81%E6%80%A7%E3%80%81%E6%9C%89%E5%BA%8F%E6%80%A7"><span class="nav-text">原子性、可见性、有序性</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E6%80%A7%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-text">原子性核心原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BA%BF%E9%94%81%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="nav-text">总线锁保证原子性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%92%E6%96%A5%E9%94%81%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="nav-text">互斥锁保证原子性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAS%E4%BF%9D%E8%AF%81%E5%8E%9F%E5%AD%90%E6%80%A7"><span class="nav-text">CAS保证原子性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E8%A7%81%E6%80%A7%E5%92%8C%E6%9C%89%E5%BA%8F%E6%80%A7%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-text">可见性和有序性核心原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98%E4%B8%80%E8%87%B4%E6%80%A7"><span class="nav-text">缓存一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MESI%E5%8D%8F%E8%AE%AE"><span class="nav-text">MESI协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-text">volatile核心原理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E8%AF%81%E5%8F%AF%E8%A7%81%E6%80%A7%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-text">保证可见性的核心原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E8%AF%81%E6%9C%89%E5%BA%8F%E6%80%A7%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-text">保证有序性的核心原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DCL%E5%8D%95%E4%BE%8B"><span class="nav-text">DCL单例</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java%E5%86%85%E5%AD%98%E6%A8%A1%E5%9E%8B"><span class="nav-text">Java内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JMM%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="nav-text">JMM的概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Happens-Before%E5%8E%9F%E5%88%99"><span class="nav-text">Happens-Before原则</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#synchronized"><span class="nav-text">synchronized</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized%E7%94%A8%E6%B3%95"><span class="nav-text">synchronized用法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%84"><span class="nav-text">Java对象结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8JOL%E6%9F%A5%E7%9C%8B%E5%AF%B9%E8%B1%A1%E7%BB%93%E6%9E%84"><span class="nav-text">使用JOL查看对象结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#synchronized%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0"><span class="nav-text">synchronized底层实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Monitor%E9%94%81%E5%8E%9F%E7%90%86"><span class="nav-text">Monitor锁原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%81%E5%8D%87%E7%BA%A7%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="nav-text">锁升级的过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%81%E9%99%8D%E7%BA%A7"><span class="nav-text">锁降级</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AQS%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-text">AQS核心原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#AQS%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8E%9F%E7%90%86"><span class="nav-text">AQS数据结构原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AQS%E5%BA%95%E5%B1%82%E5%AF%B9%E9%94%81%E7%9A%84%E6%94%AF%E6%8C%81"><span class="nav-text">AQS底层对锁的支持</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8B%AC%E5%8D%A0%E9%94%81%E5%92%8C%E5%85%B1%E4%BA%AB%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%B5%81%E7%A8%8B"><span class="nav-text">独占锁和共享锁的实现流程</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Lock%E9%94%81%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-text">Lock锁核心原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%BE%E7%A4%BA%E9%94%81"><span class="nav-text">显示锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%AC%E5%B9%B3%E9%94%81%E5%92%8C%E9%9D%9E%E5%85%AC%E5%B9%B3%E9%94%81%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">公平锁和非公平锁的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%82%B2%E8%A7%82%E9%94%81%E5%92%8C%E4%B9%90%E8%A7%82%E9%94%81%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">悲观锁和乐观锁的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%AF%E4%B8%AD%E6%96%AD%E9%94%81%E5%92%8C%E4%B8%8D%E5%8F%AF%E4%B8%AD%E6%96%AD%E9%94%81%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">可中断锁和不可中断锁的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8B%AC%E5%8D%A0%E9%94%81%E5%92%8C%E5%85%B1%E4%BA%AB%E9%94%81%E7%9A%84%E5%8E%9F%E7%90%86"><span class="nav-text">独占锁和共享锁的原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%BB-x2F-%E5%86%99%E9%94%81"><span class="nav-text">读&#x2F;写锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ReentrantReadWriteLock"><span class="nav-text">ReentrantReadWriteLock</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#StampedLock"><span class="nav-text">StampedLock</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#LockSupport%E5%8E%9F%E7%90%86"><span class="nav-text">LockSupport原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CAS%E6%A0%B8%E5%BF%83%E5%8E%9F%E7%90%86"><span class="nav-text">CAS核心原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAS%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-text">CAS的基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAS%E7%9A%84%E6%A0%B8%E5%BF%83%E7%B1%BBUnsafe"><span class="nav-text">CAS的核心类Unsafe</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ABA%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-text">ABA问题的解决方案</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JUC%E5%90%8C%E6%AD%A5%E9%94%81"><span class="nav-text">JUC同步锁</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ReentrantLock"><span class="nav-text">ReentrantLock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CountDownLatch"><span class="nav-text">CountDownLatch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CyclicBarrier"><span class="nav-text">CyclicBarrier</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ReadWriteLock"><span class="nav-text">ReadWriteLock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#StampedLock-1"><span class="nav-text">StampedLock</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Semaphore"><span class="nav-text">Semaphore</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exchanger"><span class="nav-text">Exchanger</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Phaser"><span class="nav-text">Phaser</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%9F%E5%AD%90%E7%B1%BB"><span class="nav-text">原子类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%92%E6%9D%80%E6%80%A7%E8%83%BD%E6%AF%94%E8%BE%83"><span class="nav-text">秒杀性能比较</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%94%81%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88"><span class="nav-text">锁优化方案</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%8F%E5%B0%8F%E9%94%81%E7%9A%84%E8%8C%83%E5%9B%B4"><span class="nav-text">减小锁的范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%8F%E5%B0%8F%E9%94%81%E7%9A%84%E7%B2%92%E5%BA%A6"><span class="nav-text">减小锁的粒度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%81%E5%88%86%E7%A6%BB"><span class="nav-text">锁分离</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%94%81%E5%88%86%E6%AE%B5"><span class="nav-text">锁分段</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%BF%E5%85%8D%E7%83%AD%E7%82%B9%E5%8C%BA%E5%9F%9F"><span class="nav-text">避免热点区域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E7%8B%AC%E5%8D%A0%E9%94%81%E7%9A%84%E6%9B%BF%E6%8D%A2%E6%96%B9%E6%A1%88"><span class="nav-text">使用独占锁的替换方案</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JVM%E8%87%AA%E5%B8%A6%E7%9A%84%E9%94%81%E4%BC%98%E5%8C%96"><span class="nav-text">JVM自带的锁优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%81%E6%B6%88%E9%99%A4"><span class="nav-text">锁消除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%81%E7%B2%97%E5%8C%96"><span class="nav-text">锁粗化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E6%9E%B6%E6%9E%84"><span class="nav-text">分布式锁架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B6%85%E5%8D%96%E9%97%AE%E9%A2%98"><span class="nav-text">超卖问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-text">分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-text">分布式锁的实现方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E6%B1%82"><span class="nav-text">分布式锁的基本要求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CAP%E7%90%86%E8%AE%BA%E4%B8%8E%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E6%A8%A1%E5%9E%8B"><span class="nav-text">CAP理论与分布式锁模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8ERedis%E5%AE%9E%E7%8E%B0%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-text">基于Redis实现分布式锁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-text">秒杀系统架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E5%95%86%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84"><span class="nav-text">电商系统架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%89%A9%E5%AE%B9"><span class="nav-text">系统扩容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%93%E5%AD%98"><span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%BA%93%E5%88%86%E8%A1%A8"><span class="nav-text">分库分表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%AF%BB%E5%86%99%E5%88%86%E7%A6%BB"><span class="nav-text">读写分离</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A7%92%E6%9D%80%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">秒杀系统的特点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E5%AE%B9%E5%99%A8"><span class="nav-text">同步容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%B7%A5%E9%97%AE%E9%A2%98%E7%9A%84%E5%AE%9E%E7%8E%B0%E6%96%B9%E5%BC%8F"><span class="nav-text">分工问题的实现方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ParallelStream"><span class="nav-text">ParallelStream</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JMH"><span class="nav-text">JMH</span></a></li></ol>
+    </div>
+</div>
+
+            </div>
+        
     </div>
 </div>
 
@@ -1403,9 +1495,20 @@
             2023
             
                 &nbsp;<i class="fas fa-heart icon-animate"></i>
-                &nbsp;<a href="/">Keep Team</a>
+                &nbsp;<a href="/">Song Baoru</a>
             
         </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
         
         <div class="theme-info info-item">
             Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
@@ -1423,6 +1526,10 @@
             <div class="post-tools-container">
     <ul class="tools-list">
         <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
         
 
         <!-- go comment -->
@@ -1478,6 +1585,35 @@
 
 
     
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
 
 </main>
 
@@ -1498,20 +1634,70 @@
 
 
 
+    
+<script src="/js/local-search.js"></script>
 
 
 
 
 
-<div class="post-scripts">
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
     
         
 <script src="/js/post-helper.js"></script>
 
         
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
         
     
 </div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
 
 
 

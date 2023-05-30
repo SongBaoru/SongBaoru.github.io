@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta name="keywords" content="Hexo Theme Keep">
     <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="Keep Team">
+    <meta name="author" content="Song Baoru">
     
     <title>
         
             Redis |
         
-        Keep Theme
+        SBR&#39;s Blog.
     </title>
     
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/logo.svg">
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/41830790?v=4">
     
 <link rel="stylesheet" href="/font/css/fontawesome.min.css">
 
@@ -31,8 +31,8 @@
 
     <script id="hexo-configurations">
     let KEEP = window.KEEP || {}
-    KEEP.hexo_config = {"hostname":"songbaoru.github.io","root":"/","language":"en"}
-    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.6.1"}
+    KEEP.hexo_config = {"hostname":"songbaoru.github.io","root":"/","language":"en","path":"search.json"}
+    KEEP.theme_config = {"toc":{"enable":true,"number":false,"expand_all":true,"init_open":true},"style":{"primary_color":"#0066cc","logo":"https://avatars.githubusercontent.com/u/41830790?v=4","favicon":"https://avatars.githubusercontent.com/u/41830790?v=4","avatar":"https://avatars.githubusercontent.com/u/41830790?v=4","font_size":null,"font_family":"STKaiti","hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":true,"preload":true},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":true},"lazyload":{"enable":true},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.6.1"}
     KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
     KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
     KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
@@ -44,6 +44,9 @@
 <div class="progress-bar-container">
     
 
+    
+        <span class="pjax-progress-bar"></span>
+        <i class="pjax-progress-icon fas fa-circle-notch fa-spin"></i>
     
 </div>
 
@@ -62,11 +65,11 @@
         <div class="left">
             
                 <a class="logo-image" href="/">
-                    <img src="/images/logo.svg">
+                    <img src="https://avatars.githubusercontent.com/u/41830790?v=4">
                 </a>
             
             <a class="logo-title" href="/">
-               Keep Theme
+               SBR&#39;s Blog.
             </a>
         </div>
 
@@ -91,9 +94,15 @@
                         </li>
                     
                     
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
                 </ul>
             </div>
             <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
                 
                 <div class="icon-item menu-bar">
                     <div class="menu-bar-middle"></div>
@@ -141,11 +150,11 @@
             
                 <div class="article-header">
                     <div class="avatar">
-                        <img src="/images/avatar.svg">
+                        <img src="https://avatars.githubusercontent.com/u/41830790?v=4">
                     </div>
                     <div class="info">
                         <div class="author">
-                            <span class="name">Keep Team</span>
+                            <span class="name">Song Baoru</span>
                             
                                 <span class="author-label">Lv2</span>
                             
@@ -183,6 +192,10 @@
     
     
     
+    
+        <span class="article-pv article-meta-item">
+            <i class="fas fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
     
 </div>
 
@@ -273,7 +286,12 @@
 <p>F &#x3D; 0.6185 ^ (L &#x2F; N)</p>
 <p>K和（L&#x2F;N）成正比，F和（L&#x2F;N）成反比。</p>
 <p>在线计算布隆过滤器计算器：<a class="link"   target="_blank" rel="noopener" href="https://krisives.github.io/bloom-calculator" >https://krisives.github.io/bloom-calculator<i class="fas fa-external-link-alt"></i></a></p>
-<img src="./Redis/image-20230522110209728.png" alt="image-20230522110209728" style="zoom:67%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="./Redis/image-20230522110209728.png"
+                      alt="image-20230522110209728" style="zoom:67%;" 
+                >
 
 <p><strong>当实际元素数量超过设置的预计元素的数量：</strong></p>
 <p>当实际元素数量超过设置的预计元素的数量，错误率会有陡峭的增大，设实际元素数量和设置的预计元素的数量比值为T，使用的hash函数的数量是K，错误率（设为F）的计算公式是：</p>
@@ -381,7 +399,12 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RedisLimiter</span> &#123;<br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Jedis jedis;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">RedisLimiter</span><span class="hljs-params">(Jedis jedis)</span> &#123;<br>        <span class="hljs-built_in">this</span>.jedis = jedis;<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isActionAllowed</span><span class="hljs-params">(String userId, String action, <span class="hljs-type">int</span> period, <span class="hljs-type">int</span> maxCount)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> String.format(<span class="hljs-string">&quot;hist:%s:%s&quot;</span>, userId, action);<br>        <span class="hljs-type">long</span> <span class="hljs-variable">nowTimeMillis</span> <span class="hljs-operator">=</span> System.currentTimeMillis();<br>        <span class="hljs-type">Pipeline</span> <span class="hljs-variable">pipeline</span> <span class="hljs-operator">=</span> jedis.pipelined();<br>        pipeline.zadd(key, nowTimeMillis, String.valueOf(nowTimeMillis)); <span class="hljs-comment">// 向key中添加member-score，方法的参数是zadd(String key, double score, String member)</span><br>        pipeline.zremrangeByScore(key, <span class="hljs-number">0</span>, nowTimeMillis - period * <span class="hljs-number">1000L</span>); <span class="hljs-comment">//删除key里面过期的member-score，只保留最近period * 1000L毫秒内的member-score</span><br>        Response&lt;Long&gt; count = pipeline.zcard(key);<br>        pipeline.expire(key, period); <span class="hljs-comment">//设置过期时间</span><br>        pipeline.close();<br>        pipeline.sync();<br>        <span class="hljs-type">Long</span> <span class="hljs-variable">value</span> <span class="hljs-operator">=</span> count.get();<br>        <span class="hljs-comment">//System.out.println(&quot;value = &quot; + value); //如果没有删除缓存，就可能看到value不是从1开始的</span><br>        <span class="hljs-keyword">return</span> count.get() &lt;= maxCount;<br>    &#125;<br>    <br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deleteCache</span><span class="hljs-params">(String userId, String action)</span> &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">key</span> <span class="hljs-operator">=</span> String.format(<span class="hljs-string">&quot;hist:%s:%s&quot;</span>, userId, action);<br>        jedis.del(key);<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> InterruptedException &#123;<br>        <span class="hljs-type">Jedis</span> <span class="hljs-variable">jedis</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Jedis</span>();<br>        <span class="hljs-type">RedisLimiter</span> <span class="hljs-variable">redisLimiter</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">RedisLimiter</span>(jedis);<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">USER_ID</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;user&quot;</span>;<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">String</span> <span class="hljs-variable">ACTION</span> <span class="hljs-operator">=</span> <span class="hljs-string">&quot;getRequest&quot;</span>;<br>        redisLimiter.deleteCache(USER_ID, ACTION); <span class="hljs-comment">//删除Redis缓存</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">20</span>; i++) &#123;<br>            Thread.sleep(<span class="hljs-number">1</span>); <span class="hljs-comment">//sleep一毫秒，确保isActionAllowed函数中的nowTimeMillis值每次都不同</span><br>            System.out.println(redisLimiter.isActionAllowed(USER_ID, ACTION, <span class="hljs-number">60</span>, <span class="hljs-number">5</span>));<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>输出结果如下，只有当缓存中存储的次数不超过maxCount允许的数量（例子中是5），才可以返回true：</p>
-<img src="./Redis/image-20230522172919614.png" alt="image-20230522172919614" style="zoom: 80%;" />
+<img  
+                     lazyload
+                     alt="image"
+                     data-src="./Redis/image-20230522172919614.png"
+                      alt="image-20230522172919614" style="zoom: 80%;" 
+                >
 
 <h3 id="漏斗限流（Redis-Cell模块的cl-throttle命令）"><a href="#漏斗限流（Redis-Cell模块的cl-throttle命令）" class="headerlink" title="漏斗限流（Redis-Cell模块的cl.throttle命令）"></a>漏斗限流（Redis-Cell模块的cl.throttle命令）</h3><p>漏斗（Funnel）限流是最常用的限流算法之一。漏斗的剩余空间代表着行为当前可以进行的数量，漏斗的流水速率代表系统允许该行为的最大频率。要实现这一算法需要存储几个参数，比如漏斗容量、流水速率、漏斗剩余空间，可以考虑使用Redis的hash数据结构实现，但是存在一个问题，就是无法保证漏斗容量计算时涉及到的取值、运算、写值的三个过程的原子性。</p>
 <p>Redis-Cell模块提供了漏斗算法的实现，解决了这一问题，该模块的命令只有一个，cl.throttle，该命令的使用格式如下：</p>
@@ -653,6 +676,15 @@
         </div>
 
         
+            <div class="toc-content-container">
+                <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80"><span class="nav-text">基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-text">基础数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E7%A7%8D%E5%9F%BA%E7%A1%80%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-text">5种基础数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#string%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%89"><span class="nav-text">string（字符串）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#list%EF%BC%88%E5%88%97%E8%A1%A8%EF%BC%89"><span class="nav-text">list（列表）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hash%EF%BC%88%E5%AD%97%E5%85%B8%EF%BC%89"><span class="nav-text">hash（字典）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#set%EF%BC%88%E9%9B%86%E5%90%88%EF%BC%89"><span class="nav-text">set（集合）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#zset%EF%BC%88%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88%EF%BC%89"><span class="nav-text">zset（有序集合）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%B9%E5%99%A8%E5%9E%8B%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E7%9A%84%E4%B8%A4%E6%9D%A1%E8%A7%84%E5%88%99"><span class="nav-text">容器型数据结构的两条规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%87%E6%9C%9F%E6%97%B6%E9%97%B4"><span class="nav-text">过期时间</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B6%E5%AE%83%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84"><span class="nav-text">其它数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BD%8D%E5%9B%BE"><span class="nav-text">位图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HyperLogLog"><span class="nav-text">HyperLogLog</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%83%E9%9A%86%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-text">布隆过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GeoHash"><span class="nav-text">GeoHash</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stream"><span class="nav-text">Stream</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B6%88%E8%B4%B9%E7%BB%84"><span class="nav-text">消费组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E6%B6%88%E8%B4%B9%E7%BB%84"><span class="nav-text">创建消费组</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%8B%AC%E7%AB%8B%E6%B6%88%E8%B4%B9"><span class="nav-text">独立消费</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B6%88%E6%81%AF"><span class="nav-text">消息</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B6%88%E6%81%AFID"><span class="nav-text">消息ID</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%86%85%E5%AE%B9"><span class="nav-text">消息内容</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E6%93%8D%E4%BD%9C"><span class="nav-text">消息操作</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B6%88%E8%B4%B9%E8%80%85"><span class="nav-text">消费者</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B6%88%E8%B4%B9%E6%B6%88%E6%81%AF"><span class="nav-text">消费消息</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#pending-ids"><span class="nav-text">pending_ids</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E6%93%8D%E4%BD%9C%E5%91%BD%E4%BB%A4"><span class="nav-text">Redis操作命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#scan"><span class="nav-text">scan</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-text">Redis的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81"><span class="nav-text">分布式锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%B6%E6%97%B6%E9%98%9F%E5%88%97%EF%BC%88zset%E5%81%9A%E5%BC%82%E6%AD%A5%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97%EF%BC%89"><span class="nav-text">延时队列（zset做异步消息队列）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E9%99%90%E6%B5%81"><span class="nav-text">简单限流</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%BC%8F%E6%96%97%E9%99%90%E6%B5%81%EF%BC%88Redis-Cell%E6%A8%A1%E5%9D%97%E7%9A%84cl-throttle%E5%91%BD%E4%BB%A4%EF%BC%89"><span class="nav-text">漏斗限流（Redis-Cell模块的cl.throttle命令）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E4%BC%A0%E8%BE%93%E4%B8%8E%E7%BD%91%E7%BB%9C"><span class="nav-text">数据传输与网络</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E7%9A%84%E7%89%B9%E7%82%B9"><span class="nav-text">Redis的特点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#I-x2F-O%E7%BA%BF%E7%A8%8B%E6%A8%A1%E5%9E%8B"><span class="nav-text">I&#x2F;O线程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E4%B8%8E%E5%BC%82%E6%AD%A5"><span class="nav-text">同步与异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5%E7%A7%8D%E4%B8%BB%E8%A6%81%E7%9A%84IO%E6%A8%A1%E5%9E%8B"><span class="nav-text">5种主要的IO模型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E5%BA%8F%E5%88%97%E5%8C%96%E5%8D%8F%E8%AE%AE%EF%BC%88RESP%EF%BC%89"><span class="nav-text">Redis序列化协议（RESP）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%A1%E9%81%93"><span class="nav-text">管道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8B%E5%8A%A1"><span class="nav-text">事务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B6%88%E6%81%AF%E5%A4%9A%E6%92%AD%EF%BC%88PubSub%EF%BC%89"><span class="nav-text">消息多播（PubSub）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-text">持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#RDB%E6%97%A5%E5%BF%97%EF%BC%88%E5%86%85%E5%AD%98%E5%BF%AB%E7%85%A7%EF%BC%89"><span class="nav-text">RDB日志（内存快照）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AOF%E6%97%A5%E5%BF%97"><span class="nav-text">AOF日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%B7%E5%90%88%E6%8C%81%E4%B9%85%E5%8C%96"><span class="nav-text">混合持久化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86"><span class="nav-text">内存管理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%9B%9E%E6%94%B6%E6%9C%BA%E5%88%B6"><span class="nav-text">内存回收机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E5%AD%98%E5%88%86%E9%85%8D%E6%9C%BA%E5%88%B6"><span class="nav-text">内存分配机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E8%BF%87%E6%9C%9F%E6%9C%BA%E5%88%B6"><span class="nav-text">数据过期机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E6%97%B6%E5%88%A0%E9%99%A4"><span class="nav-text">定时删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%83%B0%E6%80%A7%E5%88%A0%E9%99%A4"><span class="nav-text">惰性删除</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="nav-text">数据淘汰策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis%E6%94%AF%E6%8C%81%E7%9A%84%E6%95%B0%E6%8D%AE%E6%B7%98%E6%B1%B0%E7%AD%96%E7%95%A5"><span class="nav-text">Redis支持的数据淘汰策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LRU"><span class="nav-text">LRU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LFU"><span class="nav-text">LFU</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%9B%86%E7%BE%A4"><span class="nav-text">集群</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5"><span class="nav-text">主从同步</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BF%AB%E7%85%A7%EF%BC%88RDB%EF%BC%89%E5%90%8C%E6%AD%A5"><span class="nav-text">快照（RDB）同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E9%87%8F%EF%BC%88AOF%EF%BC%89%E5%90%8C%E6%AD%A5"><span class="nav-text">增量（AOF）同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A2%9E%E5%8A%A0%E8%8A%82%E7%82%B9"><span class="nav-text">增加节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%AD%A5%E5%A4%8D%E5%88%B6"><span class="nav-text">同步复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Sentinel"><span class="nav-text">Sentinel</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis%E9%9B%86%E7%BE%A4%E6%96%B9%E6%A1%88"><span class="nav-text">Redis集群方案</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Codis"><span class="nav-text">Codis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Codis%E5%92%8CRedis-Cluster%E7%9A%84%E4%B8%8D%E5%90%8C"><span class="nav-text">Codis和Redis Cluster的不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Redis-Cluster"><span class="nav-text">Redis Cluster</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Raft%E5%8D%8F%E8%AE%AE"><span class="nav-text">Raft协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Gossip%E5%8D%8F%E8%AE%AE"><span class="nav-text">Gossip协议</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8B%93%E5%B1%95"><span class="nav-text">拓展</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#info%E6%8C%87%E4%BB%A4"><span class="nav-text">info指令</span></a></li></ol></li></ol>
+    </div>
+</div>
+
+            </div>
+        
     </div>
 </div>
 
@@ -674,9 +706,20 @@
             2023
             
                 &nbsp;<i class="fas fa-heart icon-animate"></i>
-                &nbsp;<a href="/">Keep Team</a>
+                &nbsp;<a href="/">Song Baoru</a>
             
         </div>
+        
+            <script async data-pjax
+                    src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                    Visitor Count&nbsp;<span id="busuanzi_value_site_uv"></span>&ensp;
+                
+                
+                    Totalview&nbsp;<span id="busuanzi_value_site_pv"></span>
+                
+            </div>
         
         <div class="theme-info info-item">
             Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
@@ -694,6 +737,10 @@
             <div class="post-tools-container">
     <ul class="tools-list">
         <!-- TOC aside toggle -->
+        
+            <li class="tools-item flex-center toggle-show-toc">
+                <i class="fas fa-list"></i>
+            </li>
         
 
         <!-- go comment -->
@@ -749,6 +796,35 @@
 
 
     
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="close-popup-btn">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
 
 </main>
 
@@ -769,20 +845,70 @@
 
 
 
+    
+<script src="/js/local-search.js"></script>
 
 
 
 
 
-<div class="post-scripts">
+
+    
+<script src="/js/lazyload.js"></script>
+
+
+
+<div class="post-scripts pjax">
     
         
 <script src="/js/post-helper.js"></script>
 
         
+            
+<script src="/js/libs/anime.min.js"></script>
+
+        
+        
+            
+<script src="/js/toc.js"></script>
+
         
     
 </div>
+
+
+    
+<script src="/js/libs/pjax.min.js"></script>
+
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        window.pjax = new Pjax({
+            selectors: [
+                'head title',
+                '.page-container',
+                '.pjax'
+            ],
+            history: true,
+            debug: false,
+            cacheBust: false,
+            timeout: 0,
+            analytics: false,
+            currentUrlFullReload: false,
+            scrollRestoration: false,
+            // scrollTo: true,
+        });
+
+        document.addEventListener('pjax:send', () => {
+            KEEP.utils.pjaxProgressBarStart();
+        });
+
+        document.addEventListener('pjax:complete', () => {
+            KEEP.utils.pjaxProgressBarEnd();
+            window.pjax.executeScripts(document.querySelectorAll('script[data-pjax], .pjax script'));
+            KEEP.refresh();
+        });
+    });
+</script>
 
 
 
