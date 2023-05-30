@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="robots" content="noindex"><meta><title>Tag: RocketMQ - SBR Blog</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="SBR Blog"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="SBR Blog"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta property="og:type" content="blog"><meta property="og:title" content="SBR Blog"><meta property="og:url" content="https://songbaoru.github.io/"><meta property="og:site_name" content="SBR Blog"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://songbaoru.github.io/img/og_image.png"><meta property="article:author" content="SBR"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://songbaoru.github.io/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://songbaoru.github.io"},"headline":"SBR Blog","image":["https://songbaoru.github.io/img/og_image.png"],"author":{"@type":"Person","name":"SBR"},"publisher":{"@type":"Organization","name":"SBR Blog","logo":{"@type":"ImageObject","url":"https://songbaoru.github.io/img/logo.svg"}},"description":""}</script><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.7.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container navbar-container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="SBR Blog" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="Search" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-8-widescreen"><div class="card"><div class="card-content"><nav class="breadcrumb" aria-label="breadcrumbs"><ul><li><a href="/tags">Tags</a></li><li class="is-active"><a href="#" aria-current="page">RocketMQ</a></li></ul></nav></div></div><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item">Posted&nbsp;<time dateTime="2023-05-24T08:13:44.000Z" title="2023/5/24 16:13:44">2023-05-24</time></span><span class="level-item">Updated&nbsp;<time dateTime="2023-05-30T03:07:51.205Z" title="2023/5/30 11:07:51">2023-05-30</time></span><span class="level-item"><a class="link-muted" href="/categories/IT/">IT</a></span><span class="level-item">an hour read (About 8715 words)</span></div></div><p class="title is-3 is-size-4-mobile"><a class="link-muted" href="/2023/05/24/RocketMQ/">RocketMQ</a></p><div class="content"><h1 id="RocketMQ简介"><a href="#RocketMQ简介" class="headerlink" title="RocketMQ简介"></a>RocketMQ简介</h1><p>RocketMQ是一款由Alibaba研发的分布式的消息中间件。支持事务消息、顺序消息、延时消息、定时消息、批量消息。</p>
+<p>Apache RocketMQ 中消息的生命周期主要分为消息生产、消息存储、消息消费这三部分。生产者生产消息并发送至 Apache RocketMQ 服务端（Broker），消息被存储在Broker的主题（Topic）中，消费者通过订阅主题消费消息。</p>
+<h1 id="消息中间件的应用场景"><a href="#消息中间件的应用场景" class="headerlink" title="消息中间件的应用场景"></a>消息中间件的应用场景</h1><p>消息中间件常用于分布式系统中的应用解耦、流量削峰填谷、异步处理等场景。比如，再秒杀业务中，在秒杀业务中下单后可以发送延迟消息，若5分钟未支付，就取消订单、回滚库存。</p>
+<p>消息队列的应用场景：</p>
+<ol>
+<li>应用解耦：系统的耦合度越高，容错性就越低。在等待系统恢复正常的时间里，要处理的数据可以被缓存到消息队列中。</li>
+<li>流量削峰填谷：消息到加入消息队列而不是直接发给消费者，消费者按照自己的消费速度从消息队列获取消息进行处理。</li>
+<li>异步处理：不需要同步处理完成后才能响应，由消息队列缓存消息后续通知消息接收方进行异步处理，提高了响应效率。</li>
+</ol>
+<h1 id="模型概念"><a href="#模型概念" class="headerlink" title="模型概念"></a>模型概念</h1><h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><ul>
+<li><p>Broker</p>
+<p>Broker是Apache RocketMQ的服务端，生产者生产的消息会发送到 Broker，并存储在Broker的主题（Topic）中。</p>
+</li>
+<li><p>NameServer</p>
+<p>NameServer是Broker注册中心，支持Broker的注册和发现、Topic路由、Broker心跳检测。</p>
+<p>NameServer通常采用集群的方式部署，各实例间互相不进行通信，Broker会向每一台NameServer注册，所以每一个NameServer都保存一份完整的路由信息，当某个NameServer下线了，Broker依然可以向其它的NameServer注册。</p>
+</li>
+</ul>
+<h2 id="消息生产"><a href="#消息生产" class="headerlink" title="消息生产"></a><strong>消息生产</strong></h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/04producer">生产者（Producer）</a>：</p>
+<p>Apache RocketMQ 中用于产生消息的运行实体，一般集成于业务调用链路的上游。生产者是轻量级匿名无身份的。</p>
+</li>
+</ul>
+<h2 id="消息存储"><a href="#消息存储" class="headerlink" title="消息存储"></a><strong>消息存储</strong></h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/02topic">主题（Topic）</a>：</p>
+<p>Apache RocketMQ 消息传输和存储的分组容器，主题内部由多个队列组成，消息的存储和水平扩展实际是通过主题内的队列实现的。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/03messagequeue">队列（MessageQueue）</a>：</p>
+<p>Apache RocketMQ 消息传输和存储的实际单元容器，类比于其他消息队列中的分区。 Apache RocketMQ 通过流式特性的无限队列结构来存储消息，消息在队列内具备顺序性存储特征。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/04message">消息（Message）</a>：</p>
+<p>Apache RocketMQ 的最小传输单元。消息具备不可变性，在初始化发送和完成存储后即不可变。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/docs/introduction/02concepts#messagetype">队列类型（MessageType）</a>：</p>
+<p>由用于类型管理和安全验证的消息传输特性定义的类别。Apache RocketMQ支持NORMAL、FIFO、TRANSACTION和DELAY消息类型。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/docs/introduction/02concepts#messageview">消息视图（MessageView）</a>：</p>
+<p>从开发的角度来看，MessageView 是消息的只读接口。消息视图允许读取消息中的多个属性和负载信息，但不能对消息本身进行任何更改。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/docs/introduction/02concepts#messagetag">消息标签（MessageTag）</a>：</p>
+<p>MessageTag是一个细粒度的消息分类属性，允许在主题级别以下对消息进行细分。消费者通过订阅特定标签来实现消息过滤。</p>
+</li>
+</ul>
+<h2 id="消息消费"><a href="#消息消费" class="headerlink" title="消息消费"></a><strong>消息消费</strong></h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/07consumergroup">消费者分组（ConsumerGroup）</a>：</p>
+<p>Apache RocketMQ 发布订阅模型中定义的独立的消费身份分组，用于统一管理底层运行的多个消费者（Consumer）。同一个消费组的多个消费者必须保持消费逻辑和配置一致，共同分担该消费组订阅的消息，实现消费能力的水平扩展。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/08consumer">消费者（Consumer）</a>：</p>
+<p>Apache RocketMQ 消费消息的运行实体，一般集成在业务调用链路的下游。消费者必须被指定到某一个消费组中。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/domainModel/09subscription">订阅关系（Subscription）</a>：</p>
+<p>Apache RocketMQ 发布订阅模型中消息过滤、重试、消费进度的规则配置。订阅关系以消费组粒度进行管理，消费组通过定义订阅关系控制指定消费组下的消费者如何实现消息过滤、消费重试及消费进度恢复等。</p>
+<p>Apache RocketMQ 的订阅关系除过滤表达式之外都是持久化的，即服务端重启或请求断开，订阅关系依然保留。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E6%B6%88%E8%B4%B9%E7%BB%93%E6%9E%9Cconsumeresult">消费结果（ConsumeResult）</a></p>
+<p>Apache RocketMQ 中PushConsumer消费监听器处理消息完成后返回的处理结果，用来标识本次消息是否正确处理。消费结果包含消费成功和消费失败。</p>
+</li>
+</ul>
+<h2 id="消息类型"><a href="#消息类型" class="headerlink" title="消息类型"></a>消息类型</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/01normalmessage">普通消息</a></p>
+<p>普通消息为 Apache RocketMQ 中最基础的消息，区别于有特性的顺序消息、定时&#x2F;延时消息和事务消息。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E4%BA%8B%E5%8A%A1%E6%B6%88%E6%81%AF">事务消息</a></p>
+<p>事务消息是Apache RocketMQ 提供的一种高级消息类型，支持在分布式场景下保障消息生产和本地事务的最终一致性。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E5%AE%9A%E6%97%B6%E5%BB%B6%E6%97%B6%E6%B6%88%E6%81%AF">定时&#x2F;延时消息</a></p>
+<p>定时&#x2F;延时消息是Apache RocketMQ 提供的一种高级消息类型，消息被发送至服务端后，在指定时间后才能被消费者消费。通过设置一定的定时时间可以实现分布式场景的延时调度触发效果。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E9%A1%BA%E5%BA%8F%E6%B6%88%E6%81%AF">顺序消息</a></p>
+<p>顺序消息是Apache RocketMQ 提供的一种高级消息类型，支持消费者按照发送消息的先后顺序获取消息，从而实现业务场景中的顺序处理。</p>
+</li>
+</ul>
+<h2 id="消息处理"><a href="#消息处理" class="headerlink" title="消息处理"></a>消息处理</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E6%B6%88%E6%81%AF%E8%BF%87%E6%BB%A4">消息过滤</a></p>
+<p>消费者可以通过订阅指定消息标签（Tag）对消息进行过滤，确保最终只接收被过滤后的消息合集。过滤规则的计算和匹配在Apache RocketMQ 的服务端完成。更多信息，请参见<a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/07messagefilter">消息过滤</a>。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E9%87%8D%E7%BD%AE%E6%B6%88%E8%B4%B9%E4%BD%8D%E7%82%B9">重置消费位点</a></p>
+<p>以时间轴为坐标，在消息持久化存储的时间范围内，重新设置消费者分组对已订阅主题的消费进度，设置完成后消费者将接收设定时间点之后，由生产者发送到Apache RocketMQ 服务端的消息。更多信息，请参见<a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/09consumerprogress">重置消费位点</a>。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E6%B6%88%E6%81%AF%E8%BD%A8%E8%BF%B9">消息轨迹</a></p>
+<p>在一条消息从生产者发出到消费者接收并处理过程中，由各个相关节点的时间、地点等数据汇聚而成的完整链路信息。通过消息轨迹，您能清晰定位消息从生产者发出，经由Apache RocketMQ 服务端，投递给消费者的完整链路，方便定位排查问题。</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/02concepts#%E6%B6%88%E6%81%AF%E5%A0%86%E7%A7%AF">消息堆积</a></p>
+<p>生产者已经将消息发送到Apache RocketMQ 的服务端，但由于消费者的消费能力有限，未能在短时间内将所有消息正确消费掉，此时在服务端保存着未被消费的消息，该状态即消息堆积。</p>
+</li>
+</ul>
+<h1 id="消息类型原理"><a href="#消息类型原理" class="headerlink" title="消息类型原理"></a>消息类型原理</h1><h2 id="普通消息"><a href="#普通消息" class="headerlink" title="普通消息"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/01normalmessage">普通消息</a></h2><p><strong>应用场景</strong></p>
+<p>普通消息一般应用于微服务解耦、事件驱动、数据集成等场景，这些场景大多数要求数据传输通道具有可靠传输的能力，且对消息的处理时机、处理顺序没有特别要求。</p>
+<p>普通消息仅支持使用MessageType为Normal主题，即普通消息只能发送至类型为普通消息的主题中，发送的消息的类型必须和主题的类型一致。</p>
+<p><strong>普通消息生命周期</strong></p>
+<ul>
+<li>初始化：消息被生产者构建并完成初始化，待发送到服务端的状态。</li>
+<li>待消费：消息被发送到服务端，对消费者可见，等待消费者消费的状态。</li>
+<li>消费中：消息被消费者获取，并按照消费者本地的业务逻辑进行处理的过程。 此时服务端会等待消费者完成消费并提交消费结果，如果一定时间后没有收到消费者的响应，Apache RocketMQ会对消息进行重试处理。具体信息，请参见<a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/10consumerretrypolicy">消费重试</a>。</li>
+<li>消费提交：消费者完成消费处理，并向服务端提交消费结果，服务端标记当前消息已经被处理（包括消费成功和失败）。 Apache RocketMQ默认支持保留所有消息，此时消息数据并不会立即被删除，只是逻辑标记已消费。消息在保存时间到期或存储空间不足被删除前，消费者仍然可以回溯消息重新消费。</li>
+<li>消息删除：Apache RocketMQ按照消息保存机制滚动清理最早的消息数据，将消息从物理文件中删除。更多信息，请参见<a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/11messagestorepolicy">消息存储和清理机制</a>。</li>
+</ul>
+<h2 id="顺序消息"><a href="#顺序消息" class="headerlink" title="顺序消息"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/03fifomessage">顺序消息</a></h2><p>顺序消息是 Apache RocketMQ 提供的一种高级消息类型，支持消费者按照发送消息的先后顺序获取消息，从而实现业务场景中的顺序处理。 相比其他类型消息，顺序消息在发送、存储和投递的处理过程中，更多强调多条消息间的先后顺序关系。</p>
+<p>Apache RocketMQ 顺序消息的顺序关系通过消息组（MessageGroup）判定和识别，发送顺序消息时需要为每条消息设置归属的消息组，相同消息组的多条消息之间遵循先进先出的顺序关系，不同消息组、无消息组的消息之间不涉及顺序性。</p>
+<p>基于消息组的顺序判定逻辑，支持按照业务逻辑做细粒度拆分，可以在满足业务局部顺序的前提下提高系统的并行度和吞吐能力。</p>
+<p>顺序消息仅支持使用MessageType为FIFO的主题，即顺序消息只能发送至类型为顺序消息的主题中，发送的消息的类型必须和主题的类型一致。</p>
+<p><strong>应用场景</strong></p>
+<p>在有序事件处理、撮合交易、数据实时增量同步等场景下，异构系统间需要维持强一致的状态同步，上游的事件变更需要按照顺序传递到下游进行处理。在这类场景下使用 Apache RocketMQ 的顺序消息可以有效保证数据传输的顺序性。</p>
+<ul>
+<li><p><strong>典型场景一：撮合交易</strong></p>
+<p>以证券、股票交易撮合场景为例，对于出价相同的交易单，坚持按照先出价先交易的原则，下游处理订单的系统需要严格按照出价顺序来处理订单。</p>
+</li>
+<li><p><strong>典型场景二：数据实时增量同步</strong></p>
+<p>以数据库变更增量同步场景为例，上游源端数据库按需执行增删改操作，将二进制操作日志作为消息，通过 Apache RocketMQ 传输到下游搜索系统，下游系统按顺序还原消息数据，实现状态数据按序刷新。如果是普通消息则可能会导致状态混乱，和预期操作结果不符，基于顺序消息可以实现下游状态和上游操作结果一致。</p>
+</li>
+</ul>
+<p><strong>如何保证消息的顺序性</strong></p>
+<p>Apache RocketMQ 的消息的顺序性分为两部分，生产顺序性和消费顺序性。</p>
+<ul>
+<li><p><strong>生产顺序性</strong> ：</p>
+<p>Apache RocketMQ 通过生产者和服务端的协议保障单个生产者串行地发送消息，并按序存储和持久化。</p>
+<p>如需保证消息生产的顺序性，则必须满足以下条件：</p>
+<ul>
+<li>单一生产者：消息生产的顺序性仅支持单一生产者，不同生产者分布在不同的系统，即使设置相同的消息组，不同生产者之间产生的消息也无法判定其先后顺序。</li>
+<li>串行发送：Apache RocketMQ 生产者客户端支持多线程安全访问，但如果生产者使用多线程并行发送，则不同线程间产生的消息将无法判定其先后顺序。</li>
+</ul>
+<p>满足以上条件的生产者，将顺序消息发送至 Apache RocketMQ 后，会保证设置了同一消息组的消息，按照发送顺序存储在同一队列中。服务端顺序存储逻辑如下：</p>
+<ul>
+<li>相同消息组的消息按照先后顺序被存储在同一个队列。</li>
+<li>不同消息组的消息可以混合在同一个队列中，且不保证连续。</li>
+</ul>
+<p><img src="https://rocketmq.apache.org/zh/assets/images/fifomessagegroup-aad0a1b7e64089075db956c0eca0cbf4.png" alt="顺序存储逻辑"></p>
+</li>
+</ul>
+<p>如上图所示，消息组1和消息组4的消息混合存储在队列1中， Apache RocketMQ 保证消息组1中的消息G1-M1、G1-M2、G1-M3是按发送顺序存储，且消息组4的消息G4-M1、G4-M2也是按顺序存储，但消息组1和消息组4中的消息不涉及顺序关系。</p>
+<ul>
+<li><p><strong>消费顺序性</strong> ：</p>
+<p>Apache RocketMQ 通过消费者和服务端的协议保障消息消费严格按照存储的先后顺序来处理。</p>
+<p>如需保证消息消费的顺序性，则必须满足以下条件：</p>
+<ul>
+<li><p>投递顺序</p>
+<p>Apache RocketMQ 通过客户端SDK和服务端通信协议保障消息按照服务端存储顺序投递，但业务方消费消息时需要严格按照接收—处理—应答的语义处理消息，避免因异步处理导致消息乱序。</p>
+<p>备注：消费者类型为PushConsumer时， Apache RocketMQ 保证消息按照存储顺序一条一条投递给消费者，若消费者类型为SimpleConsumer，则消费者有可能一次拉取多条消息。此时，消息消费的顺序性需要由业务方自行保证。消费者类型的具体信息，请参见<a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/06consumertype">消费者分类</a>。</p>
+</li>
+<li><p>有限重试</p>
+<p>Apache RocketMQ 顺序消息投递仅在重试次数限定范围内，即一条消息如果一直重试失败，超过最大重试次数后将不再重试，跳过这条消息消费，不会一直阻塞后续消息处理。</p>
+<p>对于需要严格保证消费顺序的场景，请务设置合理的重试次数，避免参数不合理导致消息乱序。</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>生产顺序性和消费顺序性组合</strong></p>
+<p>如果消息需要严格按照先进先出（FIFO）的原则处理，即先发送的先消费、后发送的后消费，则必须要同时满足生产顺序性和消费顺序性。</p>
+<p>一般业务场景下，同一个生产者可能对接多个下游消费者，不一定所有的消费者业务都需要顺序消费，您可以将生产顺序性和消费顺序性进行差异化组合，应用于不同的业务场景。例如发送顺序消息，但使用非顺序的并发消费方式来提高吞吐能力。</p>
+<p><strong>顺序消息生命周期</strong></p>
+<p><a href="##%E6%99%AE%E9%80%9A%E6%B6%88%E6%81%AF">同普通消息的生命周期</a></p>
+<h2 id="事务消息"><a href="#事务消息" class="headerlink" title="事务消息"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/04transactionmessage">事务消息</a></h2><p>Apache RocketMQ 提供的事务消息支持在分布式场景下保障消息的最终一致性。</p>
+<p><strong>其它事务消息的处理方案</strong></p>
+<ul>
+<li><p><strong>传统XA事务方案：性能不足</strong></p>
+<p>为了保证分支的执行结果一致性，典型方案是基于XA协议的分布式事务系统来实现。将多个调用分支封装成包含独立事务分支的大事务。基于XA分布式事务的方案可以满足业务处理结果的正确性，但最大的缺点是多分支环境下资源锁定范围大，并发度低，随着下游分支的增加，系统性能会越来越差。</p>
+</li>
+</ul>
+<p><strong>事务消息处理流程</strong></p>
+<p>事务消息交互流程如下图所示。<img src="https://rocketmq.apache.org/zh/assets/images/transflow-0b07236d124ddb814aeaf5f6b5f3f72c.png" alt="事务消息"></p>
+<ol>
+<li>生产者将消息发送至Apache RocketMQ服务端。</li>
+<li>Apache RocketMQ服务端将消息持久化成功之后，向生产者返回Ack确认消息已经发送成功，此时消息被标记为”暂不能投递”，这种状态下的消息即为<strong>半事务消息</strong>。</li>
+<li>生产者开始执行本地事务逻辑。</li>
+<li>生产者根据本地事务执行结果向服务端提交二次确认结果（Commit或是Rollback），服务端收到确认结果后处理逻辑如下：<ul>
+<li>二次确认结果为Commit：服务端将半事务消息标记为可投递，并投递给消费者。</li>
+<li>二次确认结果为Rollback：服务端将回滚事务，不会将半事务消息投递给消费者。</li>
+</ul>
+</li>
+<li>在断网或者是生产者应用重启的特殊情况下，若服务端未收到发送者提交的二次确认结果，或服务端收到的二次确认结果为Unknown未知状态，经过固定时间后，服务端将对消息生产者即生产者集群中任一生产者实例发起消息回查。 <strong>说明</strong>：服务端回查的间隔时间和最大回查次数，请参见<a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/introduction/03limits">参数限制</a>。</li>
+<li>生产者收到消息回查后，需要检查对应消息的本地事务执行的最终结果。</li>
+<li>生产者根据检查到的本地事务的最终状态再次提交二次确认，服务端仍按照步骤4对半事务消息进行处理。</li>
+</ol>
+<p><strong>事务消息生命周期</strong></p>
+<ul>
+<li>初始化：半事务消息被生产者构建并完成初始化，待发送到服务端的状态。</li>
+<li>事务待提交：半事务消息被发送到服务端，和普通消息不同，并不会直接被服务端持久化，而是会被单独存储到事务存储系统中，等待第二阶段本地事务返回执行结果后再提交。此时消息对下游消费者不可见。</li>
+<li>消息回滚：第二阶段如果事务执行结果明确为回滚，服务端会将半事务消息回滚，该事务消息流程终止。</li>
+<li>提交待消费：第二阶段如果事务执行结果明确为提交，服务端会将半事务消息重新存储到普通存储系统中，此时消息对下游消费者可见，等待被消费者获取并消费。</li>
+<li>消费中：<a href="##%E6%99%AE%E9%80%9A%E6%B6%88%E6%81%AF">同普通消息的生命周期</a></li>
+<li>消费提交：<a href="##%E6%99%AE%E9%80%9A%E6%B6%88%E6%81%AF">同普通消息的生命周期</a></li>
+<li>消息删除：<a href="##%E6%99%AE%E9%80%9A%E6%B6%88%E6%81%AF">同普通消息的生命周期</a></li>
+</ul>
+<h2 id="定时-x2F-延时消息"><a href="#定时-x2F-延时消息" class="headerlink" title="定时&#x2F;延时消息"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/02delaymessage">定时&#x2F;延时消息</a></h2><p>在分布式定时调度触发、任务超时处理等场景，需要实现精准、可靠的定时事件触发。使用 Apache RocketMQ 的定时消息可以简化定时调度任务的开发逻辑，实现高性能、可扩展、高可靠的定时触发能力。</p>
+<ul>
+<li>定时消息：例如，当前系统时间为2022-06-09 17:30:00，您希望消息在下午19:20:00定时投递，则定时时间为2022-06-09 19:20:00，转换成时间戳格式为1654773600000。</li>
+<li>延时消息：例如，当前系统时间为2022-06-09 17:30:00，您希望延时1个小时后投递消息，则您需要根据当前时间和延时时长换算成定时时刻，即消息投递时间为2022-06-09 18:30:00，转换为时间戳格式为1654770600000。</li>
+</ul>
+<p>定时消息仅支持在 MessageType为Delay 的主题内使用，即定时消息只能发送至类型为定时消息的主题中，发送的消息的类型必须和主题的类型一致。</p>
+<p><strong>应用场景</strong></p>
+<ul>
+<li><p><strong>典型场景一：分布式定时调度</strong></p>
+<p>在分布式定时调度场景下，需要实现各类精度的定时任务，例如每天5点执行文件清理，每隔2分钟触发一次消息推送等需求。传统基于数据库的定时调度方案在分布式场景下，性能不高，实现复杂。基于 Apache RocketMQ 的定时消息可以封装出多种类型的定时触发器。</p>
+</li>
+<li><p><strong>典型场景二：任务超时处理</strong></p>
+<p>以电商交易场景为例，订单下单后暂未支付，此时不可以直接关闭订单，而是需要等待一段时间后才能关闭订单。使用 Apache RocketMQ 定时消息可以实现超时任务的检查触发。</p>
+</li>
+</ul>
+<p><strong>定时消息生命周期</strong></p>
+<ul>
+<li>初始化：<a href="##%E6%99%AE%E9%80%9A%E6%B6%88%E6%81%AF">同普通消息的生命周期</a></li>
+<li>定时中：消息被发送到服务端，和普通消息不同的是，服务端不会直接构建消息索引，而是会将定时消息单独存储在定时存储系统中，等待定时时刻到达。</li>
+<li>待消费：定时时刻到达后，服务端将消息重新写入普通存储引擎，对下游消费者可见，等待消费者消费的状态。</li>
+<li>消费中：<a href="##%E6%99%AE%E9%80%9A%E6%B6%88%E6%81%AF">同普通消息的生命周期</a></li>
+<li>消费提交：<a href="##%E6%99%AE%E9%80%9A%E6%B6%88%E6%81%AF">同普通消息的生命周期</a></li>
+<li>消息删除：<a href="##%E6%99%AE%E9%80%9A%E6%B6%88%E6%81%AF">同普通消息的生命周期</a></li>
+</ul>
+<h1 id="消息处理原理"><a href="#消息处理原理" class="headerlink" title="消息处理原理"></a>消息处理原理</h1><h2 id="消息发送重试机制"><a href="#消息发送重试机制" class="headerlink" title="消息发送重试机制"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/05sendretrypolicy">消息发送重试机制</a></h2><p>Apache RocketMQ 客户端连接服务端发起消息发送请求时，可能会因为网络故障、服务异常等原因导致调用失败。为保证消息的可靠性， Apache RocketMQ 在客户端SDK中内置请求重试逻辑，尝试通过重试发送达到最终调用成功的效果。</p>
+<p>同步发送和异步发送模式均支持消息发送重试。</p>
+<p> <strong>重试触发条件</strong></p>
+<p>触发消息发送重试机制的条件如下：</p>
+<ul>
+<li>客户端消息发送请求调用失败或请求超时</li>
+<li>网络异常造成连接失败或请求超时。</li>
+<li>服务端节点处于重启或下线等状态造成连接失败。</li>
+<li>服务端运行慢造成请求超时。</li>
+<li>服务端返回失败错误码<ul>
+<li>系统逻辑错误：因运行逻辑不正确造成的错误。</li>
+<li>系统流控错误：因容量超限造成的流控错误。</li>
+</ul>
+</li>
+</ul>
+<p>对于事务消息，只会进行<a target="_blank" rel="noopener" href="https://github.com/grpc/proposal/blob/master/A6-client-retries.md#transparent-retries">透明重试（transparent retries）</a>，网络超时或异常等场景不会进行重试。</p>
+<h3 id="重试流程"><a href="#重试流程" class="headerlink" title="重试流程"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/05sendretrypolicy#%E9%87%8D%E8%AF%95%E6%B5%81%E7%A8%8B">重试流程</a></h3><p>生产者在初始化时设置消息发送最大重试次数，当出现上述触发条件的场景时，生产者客户端会按照设置的重试次数一直重试发送消息，直到消息发送成功或达到最大重试次数重试结束，并在最后一次重试失败后返回调用错误响应。</p>
+<ul>
+<li>同步发送：调用线程会一直阻塞，直到某次重试成功或最终重试失败，抛出错误码和异常。</li>
+<li>异步发送：调用线程不会阻塞，但调用结果会通过异常事件或者成功事件返回。</li>
+</ul>
+<h3 id="功能约束"><a href="#功能约束" class="headerlink" title="功能约束"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/05sendretrypolicy#%E5%8A%9F%E8%83%BD%E7%BA%A6%E6%9D%9F">功能约束</a></h3><ul>
+<li>链路耗时阻塞评估：从上述重试机制可以看出，在重试流程中生产者仅能控制最大重试次数。若由于系统异常触发了SDK内置的重试逻辑，则服务端需要等待最终重试结果，可能会导致消息发送请求链路被阻塞。对于某些实时调用类场景，您需要合理评估每次调用请求的超时时间以及最大重试次数，避免影响全链路的耗时。</li>
+<li>最终异常兜底： Apache RocketMQ 客户端内置的发送请求重试机制并不能保证消息发送一定成功。当最终重试仍然失败时，业务方调用需要捕获异常，并做好冗余保护处理，避免消息发送结果不一致。</li>
+<li>消息重复问题：因远程调用的不确定性，当Apache RocketMQ客户端因请求超时触发消息发送重试流程，此时客户端无法感知服务端的处理结果，客户端进行的消息发送重试可能会产生消息重复问题，业务逻辑需要自行处理消息重复问题。</li>
+</ul>
+<h2 id="消息流控机制"><a href="#消息流控机制" class="headerlink" title="消息流控机制"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/05sendretrypolicy">消息流控机制</a></h2><p>消息流控指的是系统容量或水位过高， Apache RocketMQ 服务端会通过快速失败返回流控错误来避免底层资源承受过高压力。</p>
+<h3 id="触发条件"><a href="#触发条件" class="headerlink" title="触发条件"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/05sendretrypolicy#%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6">触发条件</a></h3><p>Apache RocketMQ 的消息流控触发条件如下：</p>
+<ul>
+<li>存储压力大：参考<a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/09consumerprogress">消费进度管理</a>的原理机制，消费者分组的初始消费位点为当前队列的最大消费位点。若某些场景例如业务上新等需要回溯到指定时刻前开始消费，此时队列的存储压力会瞬间飙升，触发消息流控。</li>
+<li>服务端请求任务排队溢出：若消费者消费能力不足，导致队列中有大量堆积消息，当堆积消息超过一定数量后会触发消息流控，减少下游消费系统压力。</li>
+</ul>
+<h3 id="流控行为"><a href="#流控行为" class="headerlink" title="流控行为"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/05sendretrypolicy#%E6%B5%81%E6%8E%A7%E8%A1%8C%E4%B8%BA">流控行为</a></h3><p>当系统触发消息发送流控时，客户端会收到系统限流错误和异常，错误码信息如下：</p>
+<ul>
+<li>reply-code：530</li>
+<li>reply-text：TOO_MANY_REQUESTS</li>
+</ul>
+<p>客户端收到系统流控错误码后，会根据指数退避策略进行消息发送重试。</p>
+<h3 id="处理建议"><a href="#处理建议" class="headerlink" title="处理建议"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/05sendretrypolicy#%E5%A4%84%E7%90%86%E5%BB%BA%E8%AE%AE">处理建议</a></h3><ul>
+<li>如何避免触发消息流控：触发限流的根本原因是系统容量或水位过高，您可以利用可观测性功能监控系统水位容量等，保证底层资源充足，避免触发流控机制。</li>
+<li>突发消息流控处理：如果因为突发原因触发消息流控，且客户端内置的重试流程执行失败，则建议业务方将请求调用临时替换到其他系统进行应急处理。</li>
+</ul>
+<h2 id="消息过滤"><a href="#消息过滤" class="headerlink" title="消息过滤"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/07messagefilter">消息过滤</a></h2><p>消费者订阅了某个主题后，Apache RocketMQ 会将该主题中的所有消息投递给消费者。若消费者只需要关注部分消息，可通过设置过滤条件在 Apache RocketMQ 服务端进行过滤，只获取到需要关注的消息子集，避免接收到大量无效的消息。</p>
+<p>消息过滤主要解决的单个业务域即同一个主题内不同消息子集的过滤问题，一般是基于同一业务下更具体的分类进行过滤匹配。如果是需要对不同业务域的消息进行拆分，建议使用不同主题处理不同业务域的消息。</p>
+<h3 id="功能概述"><a href="#功能概述" class="headerlink" title="功能概述"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/07messagefilter#%E5%8A%9F%E8%83%BD%E6%A6%82%E8%BF%B0">功能概述</a></h3><p><strong>消息过滤定义</strong></p>
+<p>过滤的含义指的是将符合条件的消息投递给消费者，而不是将匹配到的消息过滤掉。</p>
+<p>Apache RocketMQ 的消息过滤功能通过生产者和消费者对消息的属性、标签进行定义，并在 Apache RocketMQ 服务端根据过滤条件进行筛选匹配，将符合条件的消息投递给消费者进行消费。</p>
+<p><strong>消息过滤原理</strong></p>
+<p>消息过滤主要通过以下几个关键流程实现：</p>
+<ul>
+<li>生产者：生产者在初始化消息时预先为消息设置一些属性和标签，用于后续消费时指定过滤目标。</li>
+<li>消费者：消费者在初始化及后续消费流程中通过调用订阅关系注册接口，向服务端上报需要订阅指定主题的哪些消息，即过滤条件。</li>
+<li>服务端：消费者获取消息时会触发服务端的动态过滤计算，Apache RocketMQ 服务端根据消费者上报的过滤条件的表达式进行匹配，并将符合条件的消息投递给消费者。</li>
+</ul>
+<h3 id="消息过滤分类"><a href="#消息过滤分类" class="headerlink" title="消息过滤分类"></a><strong>消息过滤分类</strong></h3><p>Apache RocketMQ 支持Tag标签过滤和SQL属性过滤。</p>
+<ul>
+<li><p>Tag标签过滤方式是生产者在发送消息时，设置消息的Tag标签，消费者需指定已有的Tag标签来进行匹配订阅。</p>
+</li>
+<li><p>SQL属性过滤方式是是生产者定义消息属性，消费者设置SQL过滤条件。生产者发送消息时可以自定义消息属性，每个属性都是一个自定义的键值对（Key-Value）。生产者在发送消息时可设置多个属性，消费者订阅时可设置SQL语法的过滤表达式过滤多个属性。</p>
+</li>
+</ul>
+<h2 id="消费重试"><a href="#消费重试" class="headerlink" title="消费重试"></a><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/docs/featureBehavior/10consumerretrypolicy">消费重试</a></h2><p>消费重试指的是，消费者在消费某条消息失败后，Apache RocketMQ 服务端会根据重试策略重新消费该消息，超过一次定数后若还未消费成功，则该消息将不再继续重试，直接被发送到死信队列中。</p>
+<p>Apache RocketMQ 的消费重试主要解决的是业务处理逻辑失败导致的消费完整性问题，是一种为业务兜底的策略，不应该被用做业务流程控制。</p>
+<h3 id="PushConsumer消费重试策略"><a href="#PushConsumer消费重试策略" class="headerlink" title="PushConsumer消费重试策略"></a>PushConsumer消费重试策略</h3><p><strong>重试状态机</strong></p>
+<p>PushConsumer消费消息时，消息的几个主要状态如下：</p>
+<ul>
+<li>Ready：已就绪状态。消息在Apache RocketMQ服务端已就绪，可以被消费者消费。</li>
+<li>Inflight：处理中状态。消息被消费者客户端获取，处于消费中还未返回消费结果的状态。</li>
+<li>WaitingRetry：待重试状态，PushConsumer独有的状态。当消费者消息处理失败或消费超时，会触发消费重试逻辑判断。如果当前重试次数未达到最大次数，则该消息变为待重试状态，经过重试间隔后，消息将重新变为已就绪状态可被重新消费。多次重试之间，可通过重试间隔进行延长，防止无效高频的失败。</li>
+<li>Commit：提交状态。消费成功的状态，消费者返回成功响应即可结束消息的状态机。</li>
+<li>DLQ：死信状态。消费逻辑的最终兜底机制，若消息一直处理失败并不断进行重试，直到超过最大重试次数还未成功，此时消息不会再重试，会被投递至死信队列。您可以通过消费死信队列的消息进行业务恢复。</li>
+</ul>
+<p>消息重试过程中，每次重试消息状态都会经过已就绪&gt;处理中&gt;待重试的变化，两次消费间的间隔时间实际由消费耗时及重试间隔控制，消费耗时的最大上限受服务端系统参数控制，一般不应该超过上限时间。</p>
+<h3 id="SimpleConsumer消费重试策略"><a href="#SimpleConsumer消费重试策略" class="headerlink" title="SimpleConsumer消费重试策略"></a>SimpleConsumer消费重试策略</h3><p><strong>重试状态机</strong></p>
+<p>SimpleConsumer消费消息时，消息的几个主要状态如下：</p>
+<h2 id="消费者负载均衡"><a href="#消费者负载均衡" class="headerlink" title="消费者负载均衡"></a>消费者负载均衡</h2><h2 id="消费进度管理"><a href="#消费进度管理" class="headerlink" title="消费进度管理"></a>消费进度管理</h2><h1 id="集群服务"><a href="#集群服务" class="headerlink" title="集群服务"></a>集群服务</h1><p>NameServer集群</p>
+<p>Broker集群</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ul>
+<li><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/">https://rocketmq.apache.org/</a></li>
+<li><a target="_blank" rel="noopener" href="https://github.com/apache/rocketmq">https://github.com/apache/rocketmq</a></li>
+<li><a target="_blank" rel="noopener" href="https://rocketmq.apache.org/zh/">https://rocketmq.apache.org/zh/</a></li>
+</ul>
+</div></article></div></div><div class="column column-left is-4-tablet is-4-desktop is-4-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.png" alt="Your name"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Your name</p><p class="is-size-6 is-block">Your title</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Your location</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">Posts</p><a href="/archives"><p class="title">11</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Category</p><a href="/categories"><p class="title">1</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">Tags</p><a href="/tags"><p class="title">10</p></a></div></div></nav><div class="level"><a class="level-item button is-primary is-rounded" href="https://github.com/ppoffice" target="_blank" rel="noopener">Follow</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Github" href="https://github.com/ppoffice"><i class="fab fa-github"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Facebook" href="https://facebook.com"><i class="fab fa-facebook"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Twitter" href="https://twitter.com"><i class="fab fa-twitter"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="Dribbble" href="https://dribbble.com"><i class="fab fa-dribbble"></i></a><a class="level-item button is-transparent is-marginless" target="_blank" rel="noopener" title="RSS" href="/"><i class="fas fa-rss"></i></a></div></div></div><div class="card widget" data-type="links"><div class="card-content"><div class="menu"><h3 class="menu-label">Links</h3><ul class="menu-list"><li><a class="level is-mobile" href="https://hexo.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Hexo</span></span><span class="level-right"><span class="level-item tag">hexo.io</span></span></a></li><li><a class="level is-mobile" href="https://bulma.io" target="_blank" rel="noopener"><span class="level-left"><span class="level-item">Bulma</span></span><span class="level-right"><span class="level-item tag">bulma.io</span></span></a></li></ul></div></div></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">Categories</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/IT/"><span class="level-start"><span class="level-item">IT</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">Recents</h3><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-24T08:13:44.000Z">2023-05-24</time></p><p class="title"><a href="/2023/05/24/RocketMQ/">RocketMQ</a></p><p class="categories"><a href="/categories/IT/">IT</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-24T08:08:42.000Z">2023-05-24</time></p><p class="title"><a href="/2023/05/24/Spring-Cloud/">Spring Cloud</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-07T13:39:13.000Z">2023-05-07</time></p><p class="title"><a href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/">Java并发编程</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-07T13:37:05.000Z">2023-05-07</time></p><p class="title"><a href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time dateTime="2023-05-06T03:04:46.000Z">2023-05-06</time></p><p class="title"><a href="/2023/05/06/MyBatis/">MyBatis</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">Archives</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/"><span class="level-start"><span class="level-item">2023</span></span><span class="level-end"><span class="level-item tag">11</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">Tags</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/JVM/"><span class="tag">JVM</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Kafka/"><span class="tag">Kafka</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MyBatis/"><span class="tag">MyBatis</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/MySQL/"><span class="tag">MySQL</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Redis/"><span class="tag">Redis</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/RocketMQ/"><span class="tag">RocketMQ</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Spring/"><span class="tag">Spring</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Spring-Cloud/"><span class="tag">Spring Cloud</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/java/"><span class="tag">java</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/%E5%B9%B6%E5%8F%91/"><span class="tag">并发</span><span class="tag">1</span></a></div></div></div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">Subscribe for updates</h3><form action="https://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open(&#039;https://feedburner.google.com/fb/a/mailverify?uri=&#039;,&#039;popupwindow&#039;,&#039;scrollbars=yes,width=550,height=520&#039;);return true"><input type="hidden" value="" name="uri"><input type="hidden" name="loc" value="en_US"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div><div class="card widget"><div class="card-content"><div class="notification is-danger">You need to set <code>client_id</code> and <code>slot_id</code> to show this AD unit. Please set it in <code>_config.yml</code>.</div></div></div><div class="card widget" data-type="subscribe-email"><div class="card-content"><div class="menu"><h3 class="menu-label">follow.it</h3><form action="" method="post" target="_blank"><div class="field has-addons"><div class="control has-icons-left is-expanded"><input class="input" name="email" type="email" placeholder="Email"><span class="icon is-small is-left"><i class="fas fa-envelope"></i></span></div><div class="control"><input class="button" type="submit" value="Subscribe"></div></div></form></div></div></div></div><div class="column column-right is-4-tablet is-4-desktop is-4-widescreen  order-3"><!--!--></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="SBR Blog" height="28"></a><p class="is-size-7"><span>&copy; 2023 SBR</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="noopener">Icarus</a></p><p class="is-size-7">© 2019</p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("en");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="Back to top" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "This website uses cookies to improve your experience.",
+          dismiss: "Got it!",
+          allow: "Allow cookies",
+          deny: "Decline",
+          link: "Learn more",
+          policy: "Cookie Policy",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="Type something..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"Type something...","untitled":"(Untitled)","posts":"Posts","pages":"Pages","categories":"Categories","tags":"Tags"});
+        });</script></body></html>
