@@ -1,32 +1,222 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Java基础 | SBR Blog</title><meta name="author" content="Song Baoru"><meta name="copyright" content="Song Baoru"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决 参考出处：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38367575&#x2F;article&#x2F;details&#x2F;120420633  Scanner类用于扫描从控制台输入的数据，可以接收字符串和基本数据类型的数据。位于java.util.Scanner包中。 Scanner常用方法 String  next();">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java基础">
+<meta property="og:url" content="https://songbaoru.github.io/2023/05/02/Java%E5%9F%BA%E7%A1%80/index.html">
+<meta property="og:site_name" content="SBR Blog">
+<meta property="og:description" content="JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决 参考出处：https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_38367575&#x2F;article&#x2F;details&#x2F;120420633  Scanner类用于扫描从控制台输入的数据，可以接收字符串和基本数据类型的数据。位于java.util.Scanner包中。 Scanner常用方法 String  next();">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://th.bing.com/th/id/R.938bed6fc39fc253a7cd36e5481b79c0?rik=Y2Po9N8cpCfjDg&riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_12064_1.jpg&ehk=14nQEbT9IJH%2frqdvkztI9ztPhTEGaionf87iHCQxaz8%3d&risl=&pid=ImgRaw&r=0">
+<meta property="article:published_time" content="2023-05-02T13:23:04.000Z">
+<meta property="article:modified_time" content="2023-05-31T02:42:50.944Z">
+<meta property="article:author" content="Song Baoru">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://th.bing.com/th/id/R.938bed6fc39fc253a7cd36e5481b79c0?rik=Y2Po9N8cpCfjDg&riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_12064_1.jpg&ehk=14nQEbT9IJH%2frqdvkztI9ztPhTEGaionf87iHCQxaz8%3d&risl=&pid=ImgRaw&r=0"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://songbaoru.github.io/2023/05/02/Java%E5%9F%BA%E7%A1%80/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Java基础',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-05-31 10:42:50'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  #post
-    if top_img === false
-      include includes/header/post-info.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
 
-    article#article-container.post-content!=page.content
-    include includes/post/post-copyright.pug
-    .tag_share
-      if (theme.post_meta.post.tags)
-        .post-meta__tag-list
-          each item, index in page.tags.data
-            a(href=url_for(item.path)).post-meta__tags #[=item.name]
-      include includes/third-party/share/index.pug
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
         
-    if theme.reward.enable && theme.reward.QR_code
-      !=partial('includes/post/reward', {}, {cache: true})
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="SBR Blog"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">SBR Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Java基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-02T13:23:04.000Z" title="Created 2023-05-02 21:23:04">2023-05-02</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-05-31T02:42:50.944Z" title="Updated 2023-05-31 10:42:50">2023-05-31</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT/">IT</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Java基础"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决"><a href="#JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决" class="headerlink" title="JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决"></a>JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决</h1><blockquote>
+<p>参考出处：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38367575/article/details/120420633">https://blog.csdn.net/qq_38367575/article/details/120420633</a></p>
+</blockquote>
+<p>Scanner类用于扫描从控制台输入的数据，可以接收字符串和基本数据类型的数据。位于java.util.Scanner包中。</p>
+<h2 id="Scanner常用方法"><a href="#Scanner常用方法" class="headerlink" title="Scanner常用方法"></a>Scanner常用方法</h2><ol>
+<li><p>String  next(); </p>
+<p>作用：接收控制台输入的一个字符串。</p>
+<p>注意：以空格和回车为结束符 </p>
+</li>
+<li><p>String  nextLine(); </p>
+<p>作用：接收控制台输入的一个字符串。 </p>
+<p>注意：以回车为结束符</p>
+</li>
+<li><p>int  nextInt(); </p>
+<p>作用：接收控制台输入的一个int类型的数据。</p>
+<p>注意：以空格和回车为结束符 </p>
+</li>
+<li><p>double  nextDouble(); </p>
+<p>作用：接收控制台输入的一个double类型的数据。</p>
+<p>注意：以空格和回车为结束符  </p>
+</li>
+<li><p>boolean  nextBoolean(); </p>
+<p>作用：接收控制台输入的一个boolean类型的数据。</p>
+<p>注意：以空格和回车为结束符</p>
+</li>
+</ol>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//步骤1、创建Scanner类的一个对象。 </span><br><span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in); 	 <br><span class="hljs-comment">//步骤2、通过scanner调用next等方法，接收控制台输入的数据。 </span><br>System.out.println(“姓名：”);<br><span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> scanner.next();<br></code></pre></td></tr></table></figure>
 
-    //- ad
-    if theme.ad && theme.ad.post
-      .ads-wrap!=theme.ad.post
+<h2 id="常见问题"><a href="#常见问题" class="headerlink" title="常见问题"></a>常见问题</h2><img src="/.io//image-20230517204729870.png" alt="image-20230517204729870" style="zoom:80%;">
 
-    if theme.post_pagination
-      include includes/pagination.pug
-    if theme.related_post && theme.related_post.enable
-      != related_posts(page,site.posts)
+<p>原因分析：原因是nextDouble()、nextInt()等方法，能够读出空格或者回车前的字符串或者数字，并且下次读时不会切换到空格或者回车之后（也就是还在18之后继续读，不会切换到下一行）。而nextLine则会读取本行且下次自动切换到下一行开头读。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><p>在nextDouble()、nextInt()等方法后面都要加上一句不需要赋值的nextLine()，把读的位置切换到下一行</p>
+<p>示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs Java"><span class="hljs-keyword">import</span> java.util.Scanner;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Tess</span> &#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		<span class="hljs-type">Scanner</span> <span class="hljs-variable">scanner</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Scanner</span>(System.in);<br>		<span class="hljs-type">int</span> <span class="hljs-variable">age</span> <span class="hljs-operator">=</span> scanner.nextInt();<br>		scanner.nextLine();<span class="hljs-comment">//把读的位置切换到下一行</span><br>		<span class="hljs-type">String</span> <span class="hljs-variable">name</span> <span class="hljs-operator">=</span> scanner.nextLine();<br>		<span class="hljs-type">double</span> <span class="hljs-variable">salary</span> <span class="hljs-operator">=</span> scanner.nextDouble();<br>		scanner.nextLine();<span class="hljs-comment">//把读的位置切换到下一行</span><br>		System.out.println(<span class="hljs-string">&quot;age:&quot;</span> + age);<br>		System.out.println(<span class="hljs-string">&quot;name:&quot;</span> + name);<br>		System.out.println(<span class="hljs-string">&quot;salary:&quot;</span> + salary);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-    if page.comments !== false && theme.comments && theme.comments.use
-      - var commentsJsLoad = true
-      !=partial('includes/third-party/comments/index', {}, {cache: true})
-      
+<h1 id="IO流"><a href="#IO流" class="headerlink" title="IO流"></a>IO流</h1><h2 id="字节流和字符流"><a href="#字节流和字符流" class="headerlink" title="字节流和字符流"></a>字节流和字符流</h2><blockquote>
+<p>根据数据流向的方向不同，分为输入流和输出流</p>
+</blockquote>
+<p>IO流的输入\出源有控制台、文件、网络、数据库…</p>
+<p>常用的IO流：分字节流（以字节，8bit为单位对数据进行读写操作）和字符流（以字符为单位，一个字符占2个字节）</p>
+<p>输入字节流包含：文件（File）、对象（Object）、字节数组（ByteArray）、管道（Pipe）、过滤器（Filter）、缓冲字符串、顺序输入流（InputStream），都是InputStream（抽象类）的子类</p>
+<p>输出字节流包含：文件（File）、对象（Object）、字节数组（ByteArray）、管道（Pipe）、过滤器（Filter）输出流（OutputStream），都是OutputStream（抽象类）的子类</p>
+<p>输入字符流包含：字符数组（CharArray）、字符串（String）、其他输入流的缓冲区（Buffered）、管道（Piped）、过滤器（Filter）、将字节输入流转换为字符输入流（InputStream）Reader，都是Reader的子类（Reader是所有字符输入流的父类）</p>
+<p>输出字符流包含：字符数组（CharArray）、字符串（String）、其他输出流的缓冲区（Buffered）、管道（Piped）、过滤器（Filter）、将字节输入流转换为字符输入流（InputStream）Writer，都是Writer的子类（Writer是所有字符输出流的父类）</p>
+<h2 id="节点流和处理流"><a href="#节点流和处理流" class="headerlink" title="节点流和处理流"></a>节点流和处理流</h2><p>节点流是低级流，直接与数据源相连，并且进行读写；处理流是高级流，不直接和数据源相连（采用装饰器模式对节点流进行封装），主要用于消除不同节点实现上的差异。</p>
+<p>节点流包含：FileInputStream、FileOutputStream、FileReader、FileWriter</p>
+<p>处理流包含：BufferInputStream（<a target="_blank" rel="noopener" href="https://docs.oracle.com/javase/7/docs/api/java/io/FilterInputStream.html">FilterInputStream</a>的实现类）、BufferOutputStream、BufferReader、BufferWriter</p>
+<p>处理流相比节点流的优点：通过增加缓存提高了数据输入和输出的效率、封装了一系列高级方法来完成一次性大批量数据的输入和输出</p>
+<h2 id="内存映射文件技术"><a href="#内存映射文件技术" class="headerlink" title="内存映射文件技术"></a>内存映射文件技术</h2><p>含义：操作系统利用虚拟内存将文件映射到内存中，然后，这个文件就可以被当作内存数据来访问</p>
+<p>关键技术优势：</p>
+<ul>
+<li>让操作系统负责文件的读写，应用程序只需要处理内存数据，就可以实现IO操作；</li>
+<li>可以实现共享内存，内存映射文件可以被多个进程同时访问；内存映射文件技术涉及的内存在Java的堆空间之外；</li>
+<li>大幅提升文件数据的输入输出速度</li>
+</ul>
+<p>Java的NIO包支持内存映射技术，实现方式是通过<strong>MapperdBytyBuffer</strong>读写内存</p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://songbaoru.github.io">Song Baoru</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://songbaoru.github.io/2023/05/02/Java%E5%9F%BA%E7%A1%80/">https://songbaoru.github.io/2023/05/02/Java%E5%9F%BA%E7%A1%80/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post_share"><div class="social-share" data-image="https://th.bing.com/th/id/R.938bed6fc39fc253a7cd36e5481b79c0?rik=Y2Po9N8cpCfjDg&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_12064_1.jpg&amp;ehk=14nQEbT9IJH%2frqdvkztI9ztPhTEGaionf87iHCQxaz8%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" title="JVM底层原理"><img class="cover" src="https://th.bing.com/th/id/R.22f11d40e255acfdd79725639136d216?rik=6sX7IVmauPHLHA&amp;riu=http%3a%2f%2fup.deskcity.org%2fpic_360%2f202010%2fsl%2forx1oja4chp1120.jpg&amp;ehk=AmTg0CepawJWQDpxVYKxNFtBAxg0bJf830W5BvMPyl4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">JVM底层原理</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Song Baoru</div><div class="author-info__description">锲而不舍，金石可镂</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/SongBaoru"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JAVA%E4%B8%ADScanner%E7%9A%84%E4%BD%BF%E7%94%A8%E5%8F%8AnextLine%E5%92%8CnextInt%E7%AD%89%E6%B7%B7%E7%94%A8%E6%8A%A5%E9%94%99%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3"><span class="toc-number">1.</span> <span class="toc-text">JAVA中Scanner的使用及nextLine和nextInt等混用报错问题解决</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Scanner%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="toc-number">1.1.</span> <span class="toc-text">Scanner常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.</span> <span class="toc-text">常见问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="toc-number">1.3.</span> <span class="toc-text">解决方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#IO%E6%B5%81"><span class="toc-number">2.</span> <span class="toc-text">IO流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E8%8A%82%E6%B5%81%E5%92%8C%E5%AD%97%E7%AC%A6%E6%B5%81"><span class="toc-number">2.1.</span> <span class="toc-text">字节流和字符流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%8A%82%E7%82%B9%E6%B5%81%E5%92%8C%E5%A4%84%E7%90%86%E6%B5%81"><span class="toc-number">2.2.</span> <span class="toc-text">节点流和处理流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%98%A0%E5%B0%84%E6%96%87%E4%BB%B6%E6%8A%80%E6%9C%AF"><span class="toc-number">2.3.</span> <span class="toc-text">内存映射文件技术</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/RocketMQ/" title="RocketMQ"><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/04/ChMkJlbKx9CIKZ-qABs7mJV2aP0AALH5ALBgd0AGzuw770.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RocketMQ"/></a><div class="content"><a class="title" href="/2023/05/24/RocketMQ/" title="RocketMQ">RocketMQ</a><time datetime="2023-05-24T08:13:44.000Z" title="Created 2023-05-24 16:13:44">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud"><img src="https://th.bing.com/th/id/OIP.fekfR1FWtn_EXSMaueufagHaEK?pid=ImgDet&amp;rs=1" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud"/></a><div class="content"><a class="title" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud">Spring Cloud</a><time datetime="2023-05-24T08:08:42.000Z" title="Created 2023-05-24 16:08:42">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程"><img src="https://th.bing.com/th/id/R.9316fccce50d6257f0ffb94c5ae6461a?rik=EDdsz%2f4EuNN2ig&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_23966_2.jpg&amp;ehk=ww8MI8P3WC8UIvjNAsOE50t9oRfkNst8LVUnJmhIK8A%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java并发编程"/></a><div class="content"><a class="title" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程">Java并发编程</a><time datetime="2023-05-07T13:39:13.000Z" title="Created 2023-05-07 21:39:13">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络"><img src="https://th.bing.com/th/id/R.826fae185d03cd7935cc5haf1cd1844c3?rik=9ONAxF3s06zoPg&amp;riu=http%3a%2f%2fpic5.bbzhi.com%2ffengjingbizhi%2fgaoqingziranfengjingbizhi%2fgaoqingziranfengjingbizhi_415690_15.jpg&amp;ehk=BbD3V6XWzCc5AJ7yXlMt4j5AU09Nk56syRdeDXFSvYY%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络"/></a><div class="content"><a class="title" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">计算机网络</a><time datetime="2023-05-07T13:37:05.000Z" title="Created 2023-05-07 21:37:05">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/06/MyBatis/" title="MyBatis"><img src="https://th.bing.com/th/id/R.f30d1b50c29ba7f0e12424fbbf0551ca?rik=hnAxT1tmhc0F6w&amp;riu=http%3a%2f%2fpic1.nipic.com%2f2008-12-08%2f2008128103444133_2.jpg&amp;ehk=qaYhQ%2bunO6OW2e3CpMr0hG1F0%2fDwzdUsf6rpZ9plC5Y%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MyBatis"/></a><div class="content"><a class="title" href="/2023/05/06/MyBatis/" title="MyBatis">MyBatis</a><time datetime="2023-05-06T03:04:46.000Z" title="Created 2023-05-06 11:04:46">2023-05-06</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By Song Baoru</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

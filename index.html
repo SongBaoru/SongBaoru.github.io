@@ -1,7 +1,274 @@
-extends includes/layout.pug
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>SBR Blog - 锲而不舍，金石可镂</title><meta name="author" content="Song Baoru"><meta name="copyright" content="Song Baoru"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="锲而不舍，金石可镂">
+<meta property="og:type" content="website">
+<meta property="og:title" content="SBR Blog">
+<meta property="og:url" content="https://songbaoru.github.io/index.html">
+<meta property="og:site_name" content="SBR Blog">
+<meta property="og:description" content="锲而不舍，金石可镂">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://songbaoru.github.io/img/avatar.jpg">
+<meta property="article:author" content="Song Baoru">
+<meta property="article:tag" content="Java后端博客">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://songbaoru.github.io/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://songbaoru.github.io/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'SBR Blog',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-31 11:44:16'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
 
-block content
-  include ./includes/mixins/post-ui.pug
-  #recent-posts.recent-posts
-    +postUI
-    include includes/pagination.pug
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="SBR Blog"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">SBR Blog</span></a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/2023/05/24/RocketMQ/" title="RocketMQ"><img class="post-bg" src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/04/ChMkJlbKx9CIKZ-qABs7mJV2aP0AALH5ALBgd0AGzuw770.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RocketMQ"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/24/RocketMQ/" title="RocketMQ">RocketMQ</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-24T08:13:44.000Z" title="Created 2023-05-24 16:13:44">2023-05-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IT/">IT</a></span></div><div class="content">RocketMQ简介RocketMQ是一款由Alibaba研发的分布式的消息中间件。支持事务消息、顺序消息、延时消息、定时消息、批量消息。
+Apache RocketMQ 中消息的生命周期主要分为消息生产、消息存储、消息消费这三部分。生产者生产消息并发送至 Apache RocketMQ 服务端（Broker），消息被存储在Broker的主题（Topic）中，消费者通过订阅主题消费消息。
+消息中间件的应用场景消息中间件常用于分布式系统中的应用解耦、流量削峰填谷、异步处理等场景。比如，再秒杀业务中，在秒杀业务中下单后可以发送延迟消息，若5分钟未支付，就取消订单、回滚库存。
+消息队列的应用场景：
+
+应用解耦：系统的耦合度越高，容错性就越低。在等待系统恢复正常的时间里，要处理的数据可以被缓存到消息队列中。
+流量削峰填谷：消息到加入消息队列而不是直接发给消费者，消费者按照自己的消费速度从消息队列获取消息进行处理。
+异步处理：不需要同步处理完成后才能响应，由消息队列缓存消息后续通知消息接收方进行异步处理，提高了响应效率。
+
+模型概念服务端
+Broker
+Broker是Apache RocketM ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/05/24/Spring-Cloud/" title="Spring Cloud"><img class="post-bg" src="https://th.bing.com/th/id/OIP.fekfR1FWtn_EXSMaueufagHaEK?pid=ImgDet&amp;rs=1" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud">Spring Cloud</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-24T08:08:42.000Z" title="Created 2023-05-24 16:08:42">2023-05-24</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IT/">IT</a></span></div><div class="content">服务架构微服务架构是一种一个单一应用程序开发为一组小型服务的代码结构，每个服务运行在自己的进程中，服务间采用轻量级通信机制（如HTTP）进行通信。这些服务可以独立部署，不同服务可以使用不同语言开发，使用不同的数据存储技术。
+微服务与Spring Cloud为了降低构建和维护分布式系统的难度，加快微服务的落地，Spring Cloud提供了快速构建分布式微服务系统的一些常用功能，如配置管理、服务发现、断路器、路由、服务代理、控制总线等工具。使用这些工具可以快速构建分布式微服务架构的系统。
+Spring Cloud与DubboDubboApache Dubbo 是一款 RPC 服务开发框架，用于解决微服务架构下的服务治理与通信问题。利用 Dubbo 提供的丰富服务治理特性，可以实现诸如服务发现、负载均衡、流量调度等服务治理诉求。
+官网对Dubbo的含义的介绍：
+
+Dubbo的产生原因：微服务的分布式特性，使得应用间的依赖、网络交互、数据传输变得更频繁，因此不同的应用需要定义、暴露或调用 RPC 服务，那么这些 RPC 服务如何定义、如何与应用开发框架结合、服务调用行为如何控制？
+Dubbo ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程"><img class="post-bg" src="https://th.bing.com/th/id/R.9316fccce50d6257f0ffb94c5ae6461a?rik=EDdsz%2f4EuNN2ig&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_23966_2.jpg&amp;ehk=ww8MI8P3WC8UIvjNAsOE50t9oRfkNst8LVUnJmhIK8A%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java并发编程"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程">Java并发编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-07T13:39:13.000Z" title="Created 2023-05-07 21:39:13">2023-05-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IT/">IT</a></span></div><div class="content">线程线程的创建方式Java 中创建线程的方法有四种：继承 Thread 类、实现 Runnable 接口、实现 Callable 接口并使用FutureTask类以及通过线程池创建线程。
+
+继承 Thread 类：
+
+继承 Thread 类是创建线程最简单的方式，在该类中重写 run() 方法即可实现线程的执行逻辑。可以通过 start() 方法启动线程，如下所示：
+12345678class MyThread extends Thread &#123;    @Override    public void run() &#123;        // 实现线程执行逻辑    &#125;&#125;MyThread thread = new MyThread();thread.start();
+
+
+实现 Runnable 接口：
+
+实现 Runnable 接口也是一种常见的创建线程的方式，可以将 Runnable 对象传递给 Thread 类，通过 start() 方法启动线程，如下所示：
+123456789class MyRunnable implements Runnable  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络"><img class="post-bg" src="https://th.bing.com/th/id/R.826fae185d03cd7935cc5haf1cd1844c3?rik=9ONAxF3s06zoPg&amp;riu=http%3a%2f%2fpic5.bbzhi.com%2ffengjingbizhi%2fgaoqingziranfengjingbizhi%2fgaoqingziranfengjingbizhi_415690_15.jpg&amp;ehk=BbD3V6XWzCc5AJ7yXlMt4j5AU09Nk56syRdeDXFSvYY%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">计算机网络</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-07T13:37:05.000Z" title="Created 2023-05-07 21:37:05">2023-05-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IT/">IT</a></span></div><div class="content">TCP&#x2F;IP五层网络模型
+应用层：负责处理应用程序的特定通信细节。常见的应用层协议有HTTP（用于Web浏览器和服务器之间的通信）、SMTP（用于发送和接收电子邮件）和FTP（用于文件传输）等。
+传输层：负责在网络中传输数据。主要有两种传输协议：TCP（传输控制协议）和UDP（用户数据报协议）。TCP提供可靠的、面向连接的数据传输，确保数据完整性和顺序；UDP提供不可靠的、无连接的数据传输，速度快但可能丢失数据。
+网络层：负责将数据包在网络中进行路由和寻址。互联网协议（IP）是网络层的核心协议，负责将数据包传输到目标设备。此外，还有一些辅助协议，如ICMP（用于诊断网络问题）和IGMP（用于多播通信）等。
+数据链路层：负责在同一网络中传输数据帧。数据链路层协议负责将网络层的IP数据包封装为数据帧，并通过物理介质进行传输。常见的数据链路层协议有以太网、Wi-Fi和PPP等。
+物理层：负责在物理介质上进行数据传输。物理层定义了网络设备之间的电气、机械和时序规范，以及数据在物理介质上的编码方式。常见的物理介质有双绞线、光纤和无线电波等。
+
+TCPTCP（Transmission C ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/05/06/MyBatis/" title="MyBatis"><img class="post-bg" src="https://th.bing.com/th/id/R.f30d1b50c29ba7f0e12424fbbf0551ca?rik=hnAxT1tmhc0F6w&amp;riu=http%3a%2f%2fpic1.nipic.com%2f2008-12-08%2f2008128103444133_2.jpg&amp;ehk=qaYhQ%2bunO6OW2e3CpMr0hG1F0%2fDwzdUsf6rpZ9plC5Y%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MyBatis"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/06/MyBatis/" title="MyBatis">MyBatis</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-06T03:04:46.000Z" title="Created 2023-05-06 11:04:46">2023-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IT/">IT</a></span></div><div class="content">MyBatis缓存MyBatis的缓存分为一级缓存和二级缓存，一级缓存是默认开启的，而且不能关闭
+</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/05/06/Kafka/" title="Kafka"><img class="post-bg" src="https://th.bing.com/th/id/R.1558dba9f9181fbad6098a4e5d4d161d?rik=Fznzl57FcUoALA&amp;riu=http%3a%2f%2fpic4.nipic.com%2f20090803%2f3139674_170434025_2.jpg&amp;ehk=V2HHRSsszzKlfPrGelIZYMqLy0w1Zf6Xc5qeGx2NVxA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Kafka"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/06/Kafka/" title="Kafka">Kafka</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-06T03:03:13.000Z" title="Created 2023-05-06 11:03:13">2023-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IT/">IT</a></span></div><div class="content">消息处理模式消息广播
+消息过滤
+消息批处理
+日志消息处理
+通信模块
+消息结构
+数据存储
+数据刷盘
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/05/06/Redis/" title="Redis"><img class="post-bg" src="https://th.bing.com/th/id/OIP.wCDX4W_Glr7-BSlavnG2uAHaFj?pid=ImgDet&amp;rs=1" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Redis"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/06/Redis/" title="Redis">Redis</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-06T03:03:01.000Z" title="Created 2023-05-06 11:03:01">2023-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IT/">IT</a></span></div><div class="content">基础基础数据结构5种基础数据结构string（字符串）Redis的string是动态字符串，可以被修改，内部实现结构类似于Java的ArrayList，采用预分配冗余空间的方式来减少内存的频繁分配，如果字符串长度小于1MB，扩容方式是加倍现有的空间，如果字符串长度超过1MB，扩容方式是只多扩1MB的空间。
+Redis所有数据结构都以唯一的key字符串作为名称
+一个常见的用途是缓存用户信息，将用户信息序列化成字符串，存入Redis缓存，取出用户信息的时候会经过一次反序列化的过程
+mset、mget命令可以实现对多个字符串进行批量读写
+ex后缀可以在set的时候指定过期时间
+nx后缀可以在set的时候设置条件，如果key不存在才set
+list（列表）Redis的列表相当于Java的LinkedList，是双向链表，不是数组。
+当 List 中的元素数量较少且元素都比较短时，Redis 通常会采用 ziplist 来存储。ziplist 是一个特殊的双向链表（本质上是一个字节数组），特殊之处在于：没有维护双向指针，prev、next，而是存储了上一个 entry 的长度和当前 entry  ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/05/06/MySQL/" title="MySQL"><img class="post-bg" src="https://th.bing.com/th/id/R.3c9b5429b970ae83fb4ded208ce9c807?rik=VPifCoJ%2fpjqETw&amp;riu=http%3a%2f%2fpic16.nipic.com%2f20110906%2f128199_105134374000_2.jpg&amp;ehk=t%2f%2bs8eNL6%2b%2fAVJexV4GQnR77FSc2ZGNsU9v2lHWEueA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MySQL"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/06/MySQL/" title="MySQL">MySQL</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-06T03:02:46.000Z" title="Created 2023-05-06 11:02:46">2023-05-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IT/">IT</a></span></div><div class="content">监视器打开MySQL监视器打开MySQL监视器的命令格式：
+1mysql -u 用户名 -p密码
+
+或者使用命令：
+1mysql -u 用户名 -p
+
+然后输入密码即可
+查看字符编码在监视器中查看MySQL中字符编码等的设置情况的命令：
+1status
+
+或者使用命令：
+1SHOW VARIABLES LIKE &#x27;char%&#x27;
+
+修改密码修改密码的命令：
+1SET PASSWORD FOR root@localhost=PASSWORD(&#x27;新密码&#x27;)
+
+创建用户创建用户的命令：
+1CREATE USER 新用户名 IDENTIFIED BY ‘密码’
+
+用户名需要按照“用户名@主机名”的方式写
+设置用户权限设置用户权限的命令：
+1CRANT 赋予的权限 ON 数据库名.表名 TO 用户名
+
+“赋予的权限”如果是所有权限就设为“ALL”，如果仅允许SELECL和UPDATE就设置为“SELECT,UPDATE”
+如果是所有数据库的所有数据表，就设置为“*.*”
+退出监视器退出监视器的命令：
+1exit
+
+或者使用命令：
+1quit
+
+数据库操作My ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/2023/05/05/Spring/" title="Spring"><img class="post-bg" src="https://th.bing.com/th/id/R.46f0d9d7298ef3b4be2d9c5cc7d68252?rik=nyHz2lfA884lpA&amp;riu=http%3a%2f%2fup.deskcity.org%2fpic_source%2f46%2ff0%2fd9%2f46f0d9d7298ef3b4be2d9c5cc7d68252.jpg&amp;ehk=tZwzi4sWvikqa34lBE3xUyiuEvFGZoYzOQh%2beGDdecw%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/05/Spring/" title="Spring">Spring</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-05T13:02:38.000Z" title="Created 2023-05-05 21:02:38">2023-05-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IT/">IT</a></span></div><div class="content">Spring特性Spring基于J2EE技术实现了一套轻量的Java Web Service系统应用框架，有很多优秀的特性，包括，依赖注入（DI）、控制反转（IoC）、面向切面（AOP）、轻量、灵活
+
+控制反转
+指的是对象依赖的对象，将会在容器的初始化完成后会主动传递给对象，而不需要对象自己创建或查询其依赖的对象，实现了系统对象之间依赖的解耦
+Spring通过依赖注入实现控制反转，依赖注入是一种设计模式，通过该模式，对象不再创建或管理它们所需要的其他对象或服务，而是由容器（例如Spring容器）负责创建和管理这些对象或服务，并注入到需要它们的对象中。
+
+
+面向切面
+面向切面是一种编程范式，用于将系统的横切关注点（如安全性、事务、日志记录等）与业务逻辑分离
+面向切面通过将横切关注点划分为独立的模块，并在运行时动态地将这些模块植入到程序中，从而实现了对业务逻辑的无侵入式增强
+Spring AOP通过使用动态代理技术来实现对目标对象的增强
+
+
+轻量
+spring-web-5.2.0.RELEASE.jar和spring-core-5.2.0.RELEASE.jar均仅有1.4M左右
+只需要少 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" title="JVM底层原理"><img class="post-bg" src="https://th.bing.com/th/id/R.22f11d40e255acfdd79725639136d216?rik=6sX7IVmauPHLHA&amp;riu=http%3a%2f%2fup.deskcity.org%2fpic_360%2f202010%2fsl%2forx1oja4chp1120.jpg&amp;ehk=AmTg0CepawJWQDpxVYKxNFtBAxg0bJf830W5BvMPyl4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="JVM底层原理"></a></div><div class="recent-post-info"><a class="article-title" href="/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/" title="JVM底层原理">JVM底层原理</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">Created</span><time datetime="2023-05-03T01:21:36.000Z" title="Created 2023-05-03 09:21:36">2023-05-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/IT/">IT</a></span></div><div class="content">JVM结构规范和执行流程JVM的结构及其作用JVM 主要由以下部分组成：类加载器、运行时数据区、执行引擎和本地方法接口
+
+类加载器：类加载器负责将类文件（.class 文件）加载到 JVM 中，并生成对应的 Class 对象。类加载器是 JVM 的一个重要组成部分，它将类文件加载到 JVM 中，并根据需要进行链接、验证和初始化。类加载器按照类文件的位置、来源和访问权限等进行分类，通常分为三种类型：引导类加载器、扩展类加载器和应用程序类加载器。
+
+运行时数据区：运行时数据区即 JVM 内存，存储JVM在运行过程中产生的数据，它由多个不同的数据区域组成，包括方法区、堆、虚拟机栈、本地方法栈和程序计数器等。
+每个线程都有自己的虚拟机栈和本地方法栈，用于存储方法的参数、局部变量和返回值等信息。堆用于存储对象实例，方法区用于存储类信息、常量、静态变量和编译器生成的代码等。虚拟机栈用于管理Java方法的调用。而本地方法栈则用于管理native方法（例如Thread.start()）的调用
+
+执行引擎：Execution Engine 是 JVM 的核心组件，它负责执行在 JVM 中加载的字节码指令 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Song Baoru</div><div class="author-info__description">锲而不舍，金石可镂</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/SongBaoru"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/RocketMQ/" title="RocketMQ"><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/04/ChMkJlbKx9CIKZ-qABs7mJV2aP0AALH5ALBgd0AGzuw770.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RocketMQ"/></a><div class="content"><a class="title" href="/2023/05/24/RocketMQ/" title="RocketMQ">RocketMQ</a><time datetime="2023-05-24T08:13:44.000Z" title="Created 2023-05-24 16:13:44">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud"><img src="https://th.bing.com/th/id/OIP.fekfR1FWtn_EXSMaueufagHaEK?pid=ImgDet&amp;rs=1" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud"/></a><div class="content"><a class="title" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud">Spring Cloud</a><time datetime="2023-05-24T08:08:42.000Z" title="Created 2023-05-24 16:08:42">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程"><img src="https://th.bing.com/th/id/R.9316fccce50d6257f0ffb94c5ae6461a?rik=EDdsz%2f4EuNN2ig&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_23966_2.jpg&amp;ehk=ww8MI8P3WC8UIvjNAsOE50t9oRfkNst8LVUnJmhIK8A%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java并发编程"/></a><div class="content"><a class="title" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程">Java并发编程</a><time datetime="2023-05-07T13:39:13.000Z" title="Created 2023-05-07 21:39:13">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络"><img src="https://th.bing.com/th/id/R.826fae185d03cd7935cc5haf1cd1844c3?rik=9ONAxF3s06zoPg&amp;riu=http%3a%2f%2fpic5.bbzhi.com%2ffengjingbizhi%2fgaoqingziranfengjingbizhi%2fgaoqingziranfengjingbizhi_415690_15.jpg&amp;ehk=BbD3V6XWzCc5AJ7yXlMt4j5AU09Nk56syRdeDXFSvYY%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络"/></a><div class="content"><a class="title" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">计算机网络</a><time datetime="2023-05-07T13:37:05.000Z" title="Created 2023-05-07 21:37:05">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/06/MyBatis/" title="MyBatis"><img src="https://th.bing.com/th/id/R.f30d1b50c29ba7f0e12424fbbf0551ca?rik=hnAxT1tmhc0F6w&amp;riu=http%3a%2f%2fpic1.nipic.com%2f2008-12-08%2f2008128103444133_2.jpg&amp;ehk=qaYhQ%2bunO6OW2e3CpMr0hG1F0%2fDwzdUsf6rpZ9plC5Y%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="MyBatis"/></a><div class="content"><a class="title" href="/2023/05/06/MyBatis/" title="MyBatis">MyBatis</a><time datetime="2023-05-06T03:04:46.000Z" title="Created 2023-05-06 11:04:46">2023-05-06</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>Categories</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/IT/"><span class="card-category-list-name">IT</span><span class="card-category-list-count">11</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>Tags</span></div><div class="card-tag-cloud"><a href="/tags/JVM/" style="font-size: 1.15em; color: rgb(78, 147, 146)">JVM</a><a href="/tags/java/" style="font-size: 1.15em; color: rgb(68, 155, 123)">java</a><a href="/tags/Kafka/" style="font-size: 1.15em; color: rgb(60, 120, 25)">Kafka</a><a href="/tags/MyBatis/" style="font-size: 1.15em; color: rgb(44, 193, 94)">MyBatis</a><a href="/tags/%E5%B9%B6%E5%8F%91/" style="font-size: 1.15em; color: rgb(116, 170, 181)">并发</a><a href="/tags/Redis/" style="font-size: 1.15em; color: rgb(95, 85, 104)">Redis</a><a href="/tags/MySQL/" style="font-size: 1.15em; color: rgb(125, 137, 56)">MySQL</a><a href="/tags/RocketMQ/" style="font-size: 1.15em; color: rgb(197, 79, 77)">RocketMQ</a><a href="/tags/Spring-Cloud/" style="font-size: 1.15em; color: rgb(42, 153, 172)">Spring Cloud</a><a href="/tags/Spring/" style="font-size: 1.15em; color: rgb(167, 15, 192)">Spring</a><a href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" style="font-size: 1.15em; color: rgb(174, 122, 103)">计算机网络</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>Archives</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/05/"><span class="card-archive-list-date">May 2023</span><span class="card-archive-list-count">11</span></a></li></ul></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By Song Baoru</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
