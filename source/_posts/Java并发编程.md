@@ -954,8 +954,6 @@ Java锁对象由无锁升级为重量级锁的其他途径：
 
 # AQS核心原理
 
-，
-
 AQS（AbstractQueuedSynchronizer）是volatile和CAS和队列的组合应用
 
 java中哪些同步锁是基于AQS实现的：
@@ -1050,268 +1048,6 @@ AQS底层支持独占锁和共享锁两种模式：
 **共享锁模式下的解锁流程：**
 
 共享锁模式中，释放锁的入口方法是releaseShared()，在release()方法中首先会调用tryReleaseShared()方法尝试释放锁，如果返回true，就执行doReleaseShared()方法唤醒队列后面的线程。
-
-# Lock锁核心原理
-
-## 显示锁
-
-Lock显示锁和synchronized隐式锁
-
-1. Lock锁都是手动写代码去获取锁和释放锁的，所以也叫显示锁
-2. 而当调用synchronized修饰的代码时，并不需要显示的加锁和解锁的过程，所以称之为隐式锁
-
-JUC显示锁中核心的接口是Lock接口，位于java.util.concurrent.locks包下：
-
-![image-20230517172627640](./Java并发编程/image-20230517172627640.png)
-
-Lock接口提供的方法：
-
-![image-20230517173037786](./Java并发编程/image-20230517173037786.png)
-
-## 公平锁和非公平锁的原理
-
-公平锁中的线程在抢占锁时首先会判断等待队列是否为空，如果队列为空或者当前线程是队列的队首元素，则当前线程获取到锁资源，否则会被放入队列尾部等待获取锁
-
-非公平锁中的线程在抢占锁时会先直接尝试抢占锁，如果抢占成功就继续执行程序的业务逻辑，如果抢占失败，才会进入等待队列中等待
-
-ReentrantLock支持公平锁和非公平锁，在使用时公平锁和非公平锁的用法一样：
-
-```java
-// 创建公平锁实例
-Lock lock = new ReentrantLock(true); // 创建公平锁
-// Lock lock = new ReentrantLock(false); // 创建非公平锁
-// Lock lock = new ReentrantLock(); // 创建非公平锁
-try {
-	lock.lock();
-} finally {
-	lock.unlock();
-}
-```
-
-## 悲观锁和乐观锁的原理
-
-悲观锁的核心思想是对数据是否被修改持有悲观态度，认为其他线程会修改数据，所以在线程每次获取数据时都会加锁。
-
-乐观锁的核心思想是对数据是否被修改持有乐观态度，认为其他线程不会修改数据，所以在线程每次获取数据时都不会加锁。乐观锁适合读多写少的场景。
-
-synchronized锁就是悲观锁
-
-java.util.concurrent.atomic包下的原子类就是乐观锁
-
-AtomicInteger类的用法示例：
-
-```java
-AtomicInteger atomicInteger = new AtomicInteger(); //创建原子类
-atomicInteger.incrementAndGet(); //加1
-int num = atomicInteger.get(); // get值
-```
-
-## 可中断锁和不可中断锁的原理
-
-可中断锁指在多个线程抢占的过程中可以被中断的锁。
-
-不可中断锁指在多个线程抢占的过程中不可以被中断的锁。
-
-ReentrantLock，就是可中断锁，ReentrantLock支持两种可中断锁的使用方式，lockInterruptibly()和tryLock(long timeout, TimeUnit unit)，如果当前线程在抢占锁的过程中被中断，就会抛出InterruptedException()用法示例：
-
-```java
-try {
-	lock.lockInterruptibly();
-} catch (InterruptedException) {
-	// 抢占锁被中断
-} finally {
-	lock.unlock();
-}
-```
-
-synchronized锁是不可中断锁，只能在抢占锁成功后被中断，不能在抢占锁的过程中被中断。
-
-## 独占锁和共享锁的原理
-
-按照加锁后的资源能否在被多个线程访问，可以将锁分为独占锁和共享锁
-
-线程获取到独占锁后，其他线程如果想要获取该锁，只能等待。
-
-线程获取到共享锁后，其他线程也可以获取到该锁，但是共享锁只允许对临界区的数据进行读取操作，不允许修改。也就是说，共享锁是针对读操作的锁。
-
-synchronized锁、ReentrantLock锁、ReentrantReadWriteLock的写锁都是独占锁。
-
-ReentrantReadWriteLock的读锁、Semaphore类、CountDownLatch类都是共享锁。
-
-## 读/写锁
-
-### ReentrantReadWriteLock
-
-ReentrantReadWriteLock是ReadWriteLock接口的实现类：`ReentrantReadWriteLock implements ReadWriteLock`
-
-ReadWriteLock支持由写锁将为读锁（锁降级）
-
-ReentrantReadWriteLock的写锁（独占锁）用法示例：
-
-```java
-public class WriteUsage {
-    ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-    Lock writeLock = readWriteLock.writeLock(); //ReadWriteLock的写锁（独占锁）
-
-    public void writeLockUsage(){
-        try {
-            writeLock.lock();
-            System.out.println(Thread.currentThread().getName() + "抢占锁成功");
-            Thread.sleep(1000); //使占有锁的线程运行一段时间后再释放
-        } catch (InterruptedException e) {
-            System.out.println("sleeping");
-        } finally {
-            writeLock.unlock();
-            System.out.println(Thread.currentThread().getName() + "释放锁成功");
-        }
-    }
-
-    public static void main(String[] args) {
-        WriteUsage writeUsage = new WriteUsage();
-        for (int i = 0; i < 5; i++) {
-            new Thread(() -> {
-                System.out.println(Thread.currentThread().getName() + "开始抢占锁");
-                writeUsage.writeLockUsage();
-            }).start();
-        }
-    }
-    /*
-    	输出的结果：
-            Thread-1开始抢占锁
-            Thread-4开始抢占锁
-            Thread-3开始抢占锁
-            Thread-0开始抢占锁
-            Thread-2开始抢占锁
-            Thread-1抢占锁成功
-            Thread-1释放锁成功
-            Thread-4抢占锁成功
-            Thread-4释放锁成功
-            Thread-3抢占锁成功
-            Thread-3释放锁成功
-            Thread-0抢占锁成功
-            Thread-0释放锁成功
-            Thread-2抢占锁成功
-            Thread-2释放锁成功
-        只有一个线程能够抢占到写锁
-    */
-}
-
-```
-
-ReentrantReadWriteLock的读锁（共享锁）用法示例：
-
-```java
-public class ReadUsage {
-    ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
-    Lock readLock = readWriteLock.readLock(); //ReadWriteLock的读锁（共享锁）
-    public void readLockUsage(){
-        try {
-            readLock.lock();
-            System.out.println(Thread.currentThread().getName() + "抢占锁成功");
-            Thread.sleep(1000); //使占有锁的线程运行一段时间后再释放
-        } catch (InterruptedException e) {
-            System.out.println("sleeping");
-        } finally {
-            readLock.unlock();
-            System.out.println(Thread.currentThread().getName() + "释放锁成功");
-        }
-    }
-    public static void main(String[] args) {
-        ReadUsage readUsage = new ReadUsage();
-        for (int i = 0; i < 5; i++) {
-            new Thread(() -> {
-                System.out.println(Thread.currentThread().getName() + "开始抢占锁");
-                readUsage.readLockUsage();
-            }).start();
-        }
-    }
-    /*
-    	输出的结果：
-            Thread-0开始抢占锁
-            Thread-4开始抢占锁
-            Thread-2开始抢占锁
-            Thread-3开始抢占锁
-            Thread-1开始抢占锁
-            Thread-0抢占锁成功
-            Thread-4抢占锁成功
-            Thread-2抢占锁成功
-            Thread-3抢占锁成功
-            Thread-1抢占锁成功
-            Thread-0释放锁成功
-            Thread-2释放锁成功
-            Thread-4释放锁成功
-            Thread-1释放锁成功
-            Thread-3释放锁成功
-        多个线程都能够抢占到读锁
-    */
-}
-
-```
-
-
-
-### StampedLock
-
-StampedLock支持读锁、写锁、乐观锁三种模式。
-
-## LockSupport原理
-
-LockSupport位于`java.util.concurrent.locks`包，是Java提供的创建锁和其他多线程工具的基础类库，主要作用就是阻塞和唤醒线程，底层是基于UnSafe类实现的。AQS 底层就是使用了`LockSupport`来实现线程的阻塞和唤醒。
-
-LockSupport类提供的核心方法：
-
-<img src="./Java并发编程/image-20230518115147049.png" alt="image-20230518115147049" style="zoom:80%;" />
-
-| 方法                                                        | 功能                                                         |
-| ----------------------------------------------------------- | ------------------------------------------------------------ |
-| public static void park()                                   | 阻塞当前线程                                                 |
-| public static void park(Object blocker)                     | 使用指定的 blocker（锁对象）阻塞当前线程                     |
-| public static void parkNanos(long nanos)                    | 阻塞当前线程，并指定了最长阻塞的时间，单位是纳秒             |
-| public static void parkUntil(long deadline)                 | 阻塞当前线程，并指定了deadline时间点                         |
-| public static void parkNanos(Object blocker, long nanos)    | 阻塞当前线程，并指定了使用的 blocker（锁对象）、最长阻塞的时间，单位是纳秒 |
-| public static void parkUntil(Object blocker, long deadline) | 阻塞当前线程，并指定了使用的 blocker（锁对象）、deadline时间点 |
-| public static void unpark(Thread thread)                    | 解除指定已被park的线程的阻塞状态；如果线程已经启动但还未park，就取消下一次的park。 |
-
-在底层实现上，`LockSupport`使用了一种名为"许可（Permit）"的概念来控制阻塞和唤醒。Permit的数量最多为1。
-
-如果线程已经拿到了Permit，则调用`LockSupport.park()`会立即返回；如果没有拿到Permit，`park()`方法会阻塞线程。调用`LockSupport.unpark(Thread)`方法会给指定的线程发放Permit。
-
-unpark()可以先于park()调用：如果 `unpark(thread)` 在 `park()` 之前被调用，那么线程会获得一个Permit，当后续 `park()` 被调用时，线程可以立即消费掉这个Permit并继续执行，而不会阻塞。
-
-如果调用者的线程被中断，park 将返回。
-
-下面是一个简单的`LockSupport`使用例子：
-
-```java
-public class LockSupportExample {
-    public static void main(String[] args) {
-        Thread thread = new Thread(() -> {
-            System.out.println("Child thread begin park!");
-
-            // 调用park方法，挂起自己
-            LockSupport.park();
-
-            System.out.println("Child thread end park!");
-        });
-
-        thread.start();
-
-        // 主线程延迟2s
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Main thread begin unpark!");
-
-        // 调用unpark方法让thread线程持有许可证，然后park方法返回
-        LockSupport.unpark(thread);
-    }
-}
-```
-
-在这个例子中，子线程通过调用`LockSupport.park()`方法阻塞自己，主线程在延迟2秒后调用`LockSupport.unpark(thread)`方法唤醒子线程。
 
 # CAS核心原理
 
@@ -1458,7 +1194,6 @@ java中的java.util.concurrent.atomic包下提供了AtomicStampedReference类和
    }
    ```
 
-   
 
 # 同步集合
 
@@ -1596,256 +1331,464 @@ ConcurrentSkipListMap底层使用了跳表数据结构，索引节点是Index类
 
 **特性**
 
-Java中的并发阻塞队列可以为队列的容量设置大小，当队列满时会阻塞执行队列添加操作的线程，直到队列数据被消费，执行添加操作的线程才会被唤醒；当队列为空时会阻塞执行队列消费操作的线程，直到队列中添加了新数据，执行消费操作的线程才会被唤醒。
+Java中的并发阻塞队列中对于支持有界队列（可以设置队列容量）的并发阻塞队列，当队列满时会阻塞执行添加操作的线程，直到队列数据被消费，执行添加操作的线程才会被唤醒。
+
+当队列为空时并发阻塞队列会阻塞执行消费操作的线程，直到队列中添加了新数据，执行消费操作的线程才会被唤醒。
 
 并发阻塞队列可以分为单端阻塞队列和双端阻塞队列。单端阻塞队列只能向队列的一端添加数据，且只能从另一端消费数据。双端阻塞队列可以分别在队列两端添加数据或者消费数据。
 
+Java的除了LinkedTransferQueue（队列为空时会生成并添加一个null元素），其它所有并发阻塞队列的元素都不能为null。
+
 **类的继承关系**
 
-Java中的并发阻塞队列类都实现了BlockingQueue接口，该接口规定了对于数据的添加、删除和获取有4钟不同的处理方式，分别为抛出异常、返回值、限时阻塞和阻塞：
+Java中的并发阻塞队列类都实现了BlockingQueue接口（LinkedTransferQueue和LinkedBlockingDeque是间接实现的，分别实现了TransferQueue和BlockingDeque接口，这些接口又继承了BlockingQueue接口），该接口规定了对于数据的添加、删除和获取有4钟不同的处理方式，分别为抛出异常、返回值、阻塞和限时返回：
 
-| 操作     | 抛出异常            | 返回值   | 限时阻塞                | 阻塞   |
-| -------- | ------------------- | -------- | ----------------------- | ------ |
-| 添加数据 | add(e)              | offer(e) | offer(e, timeout, unit) | put(e) |
-| 删除数据 | remove(e)或remove() | poll()   | poll(timeout, unit)     | take() |
-| 获取数据 | element()           | peek()   | 无                      | 无     |
+|             | *Throws exception*                                           | *Special value*                                              | *Blocks*                                                     | *Times out*                                                  |
+| ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Insert**  | [`add(e)`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html#add-E-) | [`offer(e)`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html#offer-E-) | [`put(e)`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html#put-E-) | [`offer(e, time, unit)`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html#offer-E-long-java.util.concurrent.TimeUnit-) |
+| **Remove**  | [`remove()`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html#remove-java.lang.Object-) | [`poll()`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html#poll-long-java.util.concurrent.TimeUnit-) | [`take()`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html#take--) | [`poll(time, unit)`](https://docs.oracle.com/javase/8/docs/api/java/util/concurrent/BlockingQueue.html#poll-long-java.util.concurrent.TimeUnit-) |
+| **Examine** | [`element()`](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html#element--) | [`peek()`](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html#peek--) | *not applicable*                                             | *not applicable*                                             |
 
 **应用**
 
 使用阻塞队列能够实现多个线程之间以线程安全的方式进行数据共享。
 
-生产者-消费者模式可以使用并发阻塞队列实现。之所以是使用并发阻塞队列，而不是非并发阻塞队列，原因是，阻塞队列能够实现消费队列没有任务时消费者线程的阻塞，有任务之后消费者线程被唤醒；而非并发阻塞队列不存在阻塞和唤醒功能。
+并发阻塞队列有两个典型的应用案例，一个是生产者-消费者模式，另一个是按周期执行定时任务。
+
+- 生产者-消费者模式可以使用并发阻塞队列实现。之所以是使用并发阻塞队列，而不是非并发阻塞队列，原因是，阻塞队列能够实现消费队列没有任务时消费者线程的阻塞，有任务之后消费者线程被唤醒；而非并发阻塞队列不存在阻塞和唤醒功能。
+- 使用并发阻塞队列的DelayQueue可以非常方便地执行定时任务。
 
 ### ArrayBlockingQueue
 
-ArrayBlockingQueue是基于数组实现的有界阻塞队列，遵循先进先出的原则，支持公平和非公平两种线程访问方式。
+ArrayBlockingQueue是基于数组实现的，线程安全的**有界**阻塞队列，且仅支持有界，即所有构造函数都需要指定队列容量。
 
-
+**支持公平和非公平两种线程访问方式。**
 
 ### LinkedBlockingQueue
 
+LinkedBlockingQueue是基于链表实现的，线程安全的阻塞队列。支持**无界和有界**队列。
+
 ### PriorityBlockingQueue
+
+PriorityBlockingQueue是基于堆实现的，带优先级的无界阻塞队列，元素按照比较规则进行排序。支持**无界和有界**队列。
 
 ### DelayQueue
 
+DelayQueue是基于PriorityQueue（底层基于堆）实现的，支持延时获取数据的**无界**阻塞队列，元素按照过期时间进行排序。
+
+添加到DelayQueue中的元素必须实现Delayed接口。
+
 ### SynchronousQueue
+
+SynchronousQueue底层基于CAS实现的**无界**阻塞队列，内部不存储元素。对SynchronousQueue的添加操作必须等待其它线程执行删除操作，才能执行，同样的，对SynchronousQueue的删除操作也必须等待其它线程执行添加操作。
+
+**支持公平和非公平两种线程访问方式。**
 
 ### LinkedTransferQueue
 
+LinkedTransferQueue是由链表实现的**无界**阻塞队列，实现了TransferQueue接口，TransferQueue接口继承了BlockingQueue接口，相比其它阻塞队列多了tryTransfer和transfer等方法。
 
+LinkedTransferQueu采用预占模式读写数据。
+
+在消费者线程从LinkedTransferQueue中获取数据时，如果LinkedTransferQueue中存在数据，则直接获取数据并返回。如果LinkedTransferQueue为空，就会生成一个元素为null的节点添加到LinkedTransferQueue中，并且消费者会在这个节点上阻塞等待；在后续生产者线程调用transfer方法时，不会将数据添加到LinkedTransferQueue中，而是将数据直接传递给消费者线程。
+
+在生产者线程调用transfer方法时，如果未发现有在LinkedTransferQueue节点上等待的消费者线程，就会将数据添加到LinkedTransferQueue中，然后阻塞等待，直到有其他消费者线程获取添加的元素。
 
 ### LinkedBlockingDeque
 
+LinkedBlockingDeque是一个基于双向链表实现的**双向**阻塞队列，能够从队列两端添加和删除数据，支持先进先出和先进后出。支持**无界和有界**队列。
+
+创建LinkedBlockingDeque时可以指定容量，如果不指定，则默认队列的容量是Integer.MAX_VALUE。
+
 ## 并发Queu集合类之非阻塞队列
+
+### 并发非阻塞队列概述
+
+并发阻塞队列的实现大都基于ReentrantLock锁，与并发阻塞队列不同的是，并发非阻塞队列是基于CAS自旋锁实现的，在并发非阻塞队列上读写数据时，线程不会阻塞。
+
+并发非阻塞队列可以分为单端非阻塞队列和双端非阻塞队列。
+
+**类的继承关系**
+
+并发非阻塞队列都实现了Queue接口，并且都是基于链表实现的无界队列。
+
+Java中的并发非阻塞队列类都实现了Queue接口（ConcurrentLinkedDeque是间接实现，ConcurrentLinkedDeque实现了Deque接口，该接口又继承了Queue接口），该接口规定了对于数据的添加、删除和获取有2钟不同的处理方式，分别为抛出异常和返回值：
+
+|             | Throws exception                                             | Returns special value                                        |
+| ----------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| **Insert**  | [`add(e)`](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html#add-E-) | [`offer(e)`](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html#offer-E-) |
+| **Remove**  | [`remove()`](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html#remove--) | [`poll()`](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html#poll--) |
+| **Examine** | [`element()`](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html#element--) | [`peek()`](https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html#peek--) |
 
 ### ConcurrentLinkedQueue
 
-### ConcurrentLinkedDuque
+ConcurrentLinkedQueue是基于链表实现的无界非阻塞队列，没有保存队列的元素数量，其size操作是通过遍历计算元素数量实现的。
+
+### ConcurrentLinkedDeque
+
+ConcurrentLinkedDeque是基于链表实现的无界非阻塞队列，没有保存队列的元素数量。
 
 # 并发工具类
 
-并发工具类是一组用于帮助管理多线程并发操作的类。它们提供了一些功能，例如线程同步、线程通信和控制线程执行的顺序等。
+并发工具类是一组用于帮助管理多线程并发操作的类。它们提供了例如线程同步、线程通信和控制线程执行的顺序等功能。
 
 ## CountDownLatch
 
-概念：
+CountDownLatch能够实现一个或多个线程，等待其它所有线程完成某种操作后再执行。
 
-`CountDownLatch`位于`java.util.concurrent`包中。`CountDownLatch`允许一个或多个线程等待其他线程完成一组操作。
+CountDownLatch是基于AQS（AbstractQueuedSynchronizer）实现的，调用CountDownLatch的await方法的线程，会被加入到AQS的阻塞队列中等待。
 
-`CountDownLatch`是不能重用的，一旦计数器的值变为0，就不能再次将它重置回一个非零的值。
-
-使用场景：
-
-假设一个并发程序的主线程需要等待其他几个工作线程完成一组操作后才能继续执行。在这种情况下，我们可以使用`CountDownLatch`。
-
-用法：
-
-创建一个`CountDownLatch`的实例，将计数器的初始值设为工作线程的数量。每个工作线程完成任务后调用`countDown()`方法。主线程在开始任务前调用`await()`方法，然后等待所有的工作线程都完成任务。这里有一个简单的例子来说明`CountDownLatch`的使用：
-
-```java
-import java.util.concurrent.CountDownLatch;
-
-public class CountDownLatchDemo {
-    public static void main(String[] args) throws InterruptedException {
-        int workerNum = 5;
-        final CountDownLatch latch = new CountDownLatch(workerNum);
-        
-        for (int i = 0; i < workerNum; i++) {
-            new Thread(() -> {
-                // do some work
-                System.out.println(Thread.currentThread().getName() + " finished work.");
-                latch.countDown();
-            }).start();
-        }
-
-        latch.await();
-        System.out.println("All workers have finished their jobs.");
-    }
-}
-```
-
-在这个例子中，创建一个了`CountDownLatch`的实例时，传递给它的构造函数的整数就是计数器的初始值。每个工作线程在完成任务后调用`countDown()`方法，每次调用这个方法都会将计数器的值减1。主线程在开始任务前调用`await()`方法，使主线程等待，然后等待计数器的值变为0，主线程继续执行，并输出一条消息。
-
-## CyclicBarrier
-
-`CyclicBarrier` 是 Java 并发编程中一种同步辅助工具，它允许一组线程互相等待，直到所有线程都到达某个公共的屏障点（Barrier Point）。
-
-"Cyclic" 的含义是这个屏障点是可以重复利用的，也就是说，一旦所有等待线程都达到了屏障点，这个屏障就可以为下一轮的等待线程使用。
+CountDownLatch维护了一个计数器，记录未完成某种操作的线程数量，随构造函数传入初始值，调用countDown方法时计数器的值减1，当计数器的值减到0时，阻塞的线程会被唤醒。CountDownLatch的计数器值不能被重置。
 
 使用示例：
 
 ```java
-import java.util.concurrent.CyclicBarrier;
-public class CyclicBarrierDemo {
-    public static void main(String[] args) {
-        // 创建一个新的CyclicBarrier，当有3个线程达到时触发
-        CyclicBarrier barrier = new CyclicBarrier(3, new Runnable() {
-            @Override
-            public void run() {
-                // 所有线程到达屏障后执行此任务
-                System.out.println("所有线程都到达了屏障点");
-            }
-        });
+public class CountDownLatchArrivalTask implements Runnable {
+    private final String name;
+    private final CountDownLatch countDownLatch;
 
-        // 启动三个将在屏障处等待的线程
-        Thread t1 = new Thread(new Task(barrier), "线程 1");
-        Thread t2 = new Thread(new Task(barrier), "线程 2");
-        Thread t3 = new Thread(new Task(barrier), "线程 3");
-
-        t1.start();
-        t2.start();
-        t3.start();
+    public CountDownLatchArrivalTask(String name, CountDownLatch countDownLatch) {
+        this.name = name;
+        this.countDownLatch = countDownLatch;
     }
 
-    static class Task implements Runnable {
-        private CyclicBarrier barrier;
-
-        public Task(CyclicBarrier barrier) {
-            this.barrier = barrier;
-        }
-
-        @Override
-        public void run() {
-            try {
-                System.out.println(Thread.currentThread().getName() + " 在屏障处等待");
-                barrier.await();
-                System.out.println(Thread.currentThread().getName() + " 已经通过了屏障");
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            } catch (BrokenBarrierException ex) {
-                ex.printStackTrace();
-            }
-        }
+    @Override
+    public void run() {
+        System.out.println(name + " has arrived.");
+        countDownLatch.countDown();
     }
 }
 ```
+
+```java
+public class CountDownLatchWaitingTask implements Runnable {
+    private String name;
+    private CountDownLatch countDownLatch;
+
+    public CountDownLatchWaitingTask(String name, CountDownLatch countDownLatch) {
+        this.name = name;
+        this.countDownLatch = countDownLatch;
+    }
+
+    @Override
+    public void run() {
+        try {
+            System.out.println(name + " is waiting for tourists.");
+            countDownLatch.await();
+            System.out.println("The tour can begin.");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+```
+
+```java
+public class CountDownLatchTest {
+    public static void main(String[] args) {
+        CountDownLatch countDownLatch = new CountDownLatch(2);
+        new Thread(new CountDownLatchWaitingTask("Tourist guide", countDownLatch)).start();
+        new Thread(new CountDownLatchArrivalTask("Tourist Amy", countDownLatch)).start();
+        new Thread(new CountDownLatchArrivalTask("Tourist Sam", countDownLatch)).start();
+    }
+}
+/**
+运行输出：
+Tourist Amy has arrived.
+Tourist guide is waiting for tourists.
+Tourist Sam has arrived.
+The tour can begin.
+*/
+//"The tour can begin."总是最后执行
+```
+
+在这个例子中，有一个旅游团的导游和两个游客（CountDownLatch对象的计数器被初始化为2），导游需要等待所有游客到达（导游线程调用await方法）后才开始旅游，每个游客线程在到达后会调用countDown()方法来减少CountDownLatch对象的计数器，当计数器值减为0，await之后的代码继续执行。
+
+## CyclicBarrier
+
+CyclicBarrier的功能是对CountDownLatch工具类的增强。
+
+CyclicBarrier的计数器可以被自动重置（在计数器减为0后，会自动重置为创建CyclicBarrier对象时的初始值），还能够实现多个线程之间互相的计数等待。
+
+构造CyclicBarrier时，除了可以传入计数器的初始值，还可以传入一个实现了Runnable接口的类对象（有两种构造器），当计数器值减为0时，会自动调用Runnale接口对象的run方法。
+
+使用示例：
+
+```java
+public class CyclicBarrierTask implements Runnable {
+    private final String task;
+    private final CyclicBarrier cyclicBarrier;
+
+    public CyclicBarrierTask(String task, CyclicBarrier cyclicBarrier) {
+        this.task = task;
+        this.cyclicBarrier = cyclicBarrier;
+    }
+
+    @Override
+    public void run() {
+        //模拟了三个任务
+        IntStream.rangeClosed(1, 3).forEach((i) -> {
+            try {
+                System.out.println("完成" + task + "的操作；");
+                cyclicBarrier.await();
+            } catch (InterruptedException | BrokenBarrierException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+    }
+}
+```
+
+```java
+public class CyclicBarrierTest {
+    public static void main(String[] args) throws InterruptedException {
+        CyclicBarrier cyclicBarrier = new CyclicBarrier(2, () -> {
+            System.out.println("当前提交订单、扣减库存完成");
+        });
+        //提交订单和扣减库存的操作会互相等待
+        new Thread(new CyclicBarrierTask("提交订单", cyclicBarrier)).start();
+        new Thread(new CyclicBarrierTask("扣减库存", cyclicBarrier)).start();
+    }
+}
+```
+
+在这个例子中，模拟了三个任务，每个任务都分别包含提交订单、扣减库存两个操作。如果使用CyclicBarrier，则只需要创建一个CyclicBarrier对象，每个任务执行完毕后CyclicBarrier会自动重置计数器的值，继续执行下一个任务。
 
 ## Phaser
 
-略
+Phaser的功能类似于CountDownLatch和CyclicBarrier的集合。
 
-## Semaphore
+Phaser适用于将一个大任务拆分为多个小任务，拆分后的每个小任务都可以并发执行，且上一个大任务完成才可以执行下一个大任务。这种场景使用CountDownLatch和CyclicBarrier也能实现，但是使用Phaser会更灵活。
 
-信号量
-
-用途：限流
-
-## Exchanger
-
-Exchanger 是 Java 并发包中提供的一个工具类，它用于在两个线程之间交换数据。Exchanger 提供了一个对外公开的 exchange() 方法，当一个线程调用该方法时，如果另一个线程已经调用了同一 Exchanger 对象的 exchange() 方法，则会导致两个线程相互阻塞，直到两个线程均完成数据的交换。
-
-Exchanger 的主要特点如下：
-
-1. 只支持两个线程之间的数据交换，不能用于多个线程之间的通信。
-
-2. 数据交换的过程是原子性的，即在一个线程完成数据交换之前，另一个线程无法访问交换的数据，保证了线程安全性。
-
-3. 如果一个线程先调用了 exchange() 方法，那么它会被阻塞等待另一个线程进行数据交换，避免了资源浪费和不必要的竞争。
-
-Exchanger 的使用场景比较广泛，例如可以用于实现两个线程之间的数据异步传递、多线程流水线处理等。在使用 Exchanger 时需要注意线程安全问题和数据的一致性问题，确保数据交换的正确性和可靠性。
-
-下面是一个简单的示例，演示了两个线程之间通过 Exchanger 进行数据交换的过程：
+使用示例：
 
 ```java
-import java.util.concurrent.Exchanger;
+public class PhaserDinner extends Phaser {
+    @Override
+    protected boolean onAdvance(int phase, int registeredParties) {
+        //return if this phaser should terminate
+        return switch (phase) {
+            case 0 -> allArrive();
+            case 1 -> allOrderedMeal();
+            case 2 -> allOrderedDrink();
+            default -> true;
+        };
+    }
 
-public class ExchangerExample {
+    private boolean allOrderedDrink() {
+        System.out.println("所有人都点完了饮料");
+        return false;
+    }
 
-    public static void main(String[] args) {
-        Exchanger<String> exchanger = new Exchanger<>();
-        Thread t1 = new Thread(() -> {
-            try {
-                String data = "Hello from thread 1";
-                String result = exchanger.exchange(data);
-                System.out.println("Thread 1 got result: " + result);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-        Thread t2 = new Thread(() -> {
-            try {
-                String data = "Hello from thread 2";
-                String result = exchanger.exchange(data);
-                System.out.println("Thread 2 got result: " + result);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        });
-        t1.start();
-        t2.start();
+    private boolean allOrderedMeal() {
+        System.out.println("所有人都点完了菜");
+        return false;
+    }
+
+    private boolean allArrive() {
+        System.out.println("所有人都到齐了");
+        return false;
     }
 }
 ```
 
-输出结果如下：
+```java
+public class PhaserTask implements Runnable{
+    private final String name;
+    private final Phaser phaser;
+    private final String meal;
+    private final String drink;
 
-```
-Thread 1 got result: Hello from thread 2
-Thread 2 got result: Hello from thread 1
+    public PhaserTask(String name, Phaser phaser, String meal, String drink) {
+        this.name = name;
+        this.phaser = phaser;
+        this.meal = meal;
+        this.drink = drink;
+    }
+
+    @Override
+    public void run() {
+        //到达聚餐地点
+        System.out.println(name + "到达聚餐地点");
+        phaser.arriveAndAwaitAdvance(); //等待其它线程到达
+        //点菜
+        System.out.println(name + "点了一份" + meal);
+        phaser.arriveAndAwaitAdvance();
+        //点饮料
+        System.out.println(name + "点了一份" + drink);
+        phaser.arriveAndAwaitAdvance();
+    }
+}
 ```
 
-可以看到，两个线程之间成功进行了数据交换，并且获取到了对方传递的数据。
+```Java
+public class PhaserTest {
+    public static void main(String[] args) {
+        PhaserDinner phaserDinner = new PhaserDinner();
+        new Thread(new PhaserTask("Amy", phaserDinner, "hamburg", "cola")).start();
+        phaserDinner.register();
+        new Thread(new PhaserTask("Sam", phaserDinner, "sandwich", "coffee")).start();
+        phaserDinner.register();
+    }
+}
+/**
+输出结果：
+Amy到达聚餐地点
+Sam到达聚餐地点
+所有人都到齐了
+Amy点了一份hamburg
+Sam点了一份sandwich
+所有人都点完了菜
+Sam点了一份coffee
+Amy点了一份cola
+所有人都点完了饮料
+*/
+```
+
+在这个例子中，场景是等待所有人到达后点菜，所有人点完蔡后点饮料，要开启下一阶段（到达 -> 点菜 -> 点饮料），需要所有线程都完成上一阶段。PhaserTask类定义了整个阶段每个阶段的任务，阶段之间使用phaser.arriveAndAwaitAdvance()等待所有线程执行完之前的代码，PhaserDinner类是Phaser接口的实现类，覆盖了onAdvance方法，定义了每个阶段完成后执行的操作以及返回是否继续使用Phaser（Phaser是否继续生效）。
+
+## Semaphore
+
+Semaphore可以限制同时访问某一资源的线程数量，相当于一个共享锁，允许多个线程同时拥有一定数量的信号量许可（permits）。
+
+Semaphore提供了公平信号量与非公平信号量两种模式。
+
+使用示例：
+
+```java
+public class SemaphoreTask implements Runnable{
+    private final Semaphore semaphore;
+
+    public SemaphoreTask(Semaphore semaphore) {
+        this.semaphore = semaphore;
+    }
+
+    @Override
+    public void run() {
+        try {
+            semaphore.acquire(); //获取信号量许可
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            System.out.println(Thread.currentThread().getName() + " 获取到许可，执行时间为 " + LocalTime.now().format(formatter));
+            Thread.sleep(2000);
+            semaphore.release(); //释放许可
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+```java
+public class SemaphoreTest {
+    public static void main(String[] args) {
+        Semaphore semaphore = new Semaphore(2); //创建了一个信号量许可数量为2的非公平的Semaphore对象
+        int threadNum = 6;
+        ExecutorService threadPool = Executors.newFixedThreadPool(threadNum);
+        IntStream.range(0, threadNum).forEach((i) -> {
+            threadPool.submit(new SemaphoreTask(semaphore));
+        });
+    }
+}
+/**
+输出结果：
+pool-1-thread-2 获取到许可，执行时间为 10:40:52
+pool-1-thread-4 获取到许可，执行时间为 10:40:52
+pool-1-thread-6 获取到许可，执行时间为 10:40:54
+pool-1-thread-1 获取到许可，执行时间为 10:40:54
+pool-1-thread-3 获取到许可，执行时间为 10:40:56
+pool-1-thread-5 获取到许可，执行时间为 10:40:56
+*/
+```
+
+在这个例子中，创建了一个信号量许可数量为2的非公平的Semaphore对象，和一个线程数为6的线程池，线程执行的是SemaphoreTask类实现的run方法，run方法中有一个两秒钟的睡眠，从输出结果中可以看到，每两秒的时间内只有两个线程能够执行。
+
+## Exchanger
+
+Exchanger能够实现两个线程之间的数据交换。当一个线程调用了Exchanger对象的exchange方法，就会进入阻塞状态，直到另一个线程也调用了exchange方法后，两个线程会交换数据，然后继续执行。
+
+使用示例：
+
+```java
+public class ExchangerTask<T> implements Runnable {
+    Exchanger<T> exchanger;
+    T object;
+
+    public ExchangerTask(Exchanger<T> exchanger, T object) {
+        this.exchanger = exchanger;
+        this.object = object;
+    }
+
+    @Override
+    public void run() {
+        try {
+            T getFromExchanger = exchanger.exchange(object);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm:ss");
+            System.out.println(getFromExchanger.toString() + "完成的时间为 " + LocalTime.now().format(formatter));
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+```
+
+```java
+public class ExchangerTest {
+    public static void main(String[] args) throws InterruptedException {
+        Exchanger<String> exchanger = new Exchanger<>();
+        new Thread(new ExchangerTask<>(exchanger, "付款")).start(); //先启动了付款线程
+        Thread.sleep(2000); //在付款和交付之间加入时间间隙，以验证Exchanger的作用
+        new Thread(new ExchangerTask<>(exchanger, "交付")).start(); //两秒后启动交付线程
+    }
+}
+/**
+输出结果：
+付款完成的时间为 11:54:54
+交付完成的时间为 11:54:54
+*/
+```
+
+在这个示例中，使用了两个线程模拟了商品付款的交付的过程，使用了Exchanger实现了线程间的等待和数据交换。虽然付款线程最先启动，两秒后才启动交付线程，但是由于Exchanger的exchange机制，实现了两个线程共同执行完exchange，交换完毕数据之后，才继续后续任务。
 
 # 锁工具类
 
 锁工具类是用于实现线程同步和互斥访问的工具。它们提供了一种机制，允许线程对共享资源进行独占访问，以确保数据的一致性和正确性。
 
-## ReentrantLock
+## Lock接口
 
-ReentrantLock是Java并发包`java.util.concurrent.locks`中的一个类，ReentrantLock是可重入锁，每获取一次，重入的计数就会增加1。当线程释放锁时，重入的计数就会减少1。只有当重入的计数变为0时，锁才会真正被释放。
+Lock接口是Java从1.5版本开始提供的显示锁接口。位于java.util.concurrent.locks包下：
 
-`ReentrantLock`是基于Java的`AbstractQueuedSynchronizer`(AQS)框架实现的。AQS使用一个整数值来表示锁的状态，并使用一个FIFO队列来管理等待的线程。ReentrantLock底层使用的是锁的park()和unpark()
+![image-20230517172627640](./Java并发编程/image-20230517172627640.png)
 
-要使用`ReentrantLock`，需要创建一个`ReentrantLock`的实例，然后在需要互斥访问的代码前调用`lock()`方法，代码后调用`unlock()`方法。为了确保锁可以被正确释放，通常需要将`unlock()`方法放在`finally`块中。下面是一个例子：
+Lock接口在声明了以下方法：
 
-```java
-import java.util.concurrent.locks.ReentrantLock;
+- `void lock()`：无条件地获取锁。如果锁不可用，则当前线程会被阻塞，直到获取到锁为止。
 
-public class ReentrantLockExample {
-    private final ReentrantLock lock = new ReentrantLock();
+- `void lockInterruptibly() throws InterruptedException`：获取锁，但是允许响应中断。如果锁不可用，当前线程会进入阻塞状态，直到获取到锁或者当前线程被中断。
 
-    public void doSomething() {
-        lock.lock();
-        try {
-            // critical section
-        } finally {
-            lock.unlock();
-        }
-    }
-}
-```
+- `boolean tryLock()`：尝试获取锁，如果锁可用，则立即获取锁，并返回`true`。如果锁不可用，则立即返回`false`，而不会阻塞当前线程。
 
-在这个例子中，`doSomething`方法中的代码是互斥的，也就是说，在任何时刻，最多只有一个线程可以执行这段代码。
+- `boolean tryLock(long time, TimeUnit unit) throws InterruptedException`：在给定的时间范围内尝试获取锁。如果在指定时间内获取到锁，则返回`true`，否则返回`false`。如果获取锁超时，当前线程可能会被阻塞，直到获取到锁或者超时时间到达。
 
-ReentrantLock提供了比内置`synchronized`关键字更强大更灵活的锁机制。
+- `void unlock()`：释放锁。必须在获取锁之后才能调用此方法，否则会抛出`IllegalMonitorStateException`异常。
 
-ReentrantLock比synchronized增加的功能：
+- `Condition newCondition()`：获取与锁关联的条件对象。可以使用条件对象进行线程的等待和通知。
 
-1. ReentrantLock可以设置等待时间，如果超时未得到锁，可以进入finally里面解除获取锁的操作
-2. ReentrantLock可以使用可打断的等待lock.lockInterruptibly()，其他线程打断可打断的等待线程之后，等待线程就可以进入被打断的catch
-3. ReentrantLock还支持公平锁，synchronized只支持非公平锁。公平锁模式可以防止线程饥饿，但是在性能上通常不如非公平锁模式。ReentrantLock使用公平锁的方式是往够早函数里面传一个true参数，即new ReentrantLock(true)。
 
-**lock.lock();是写在try里面还是外面**
+![image-20230517173037786](./Java并发编程/image-20230517173037786.png)
+
+**Lock锁（继承了Lock接口的锁工具类的统称）比synchronized锁更灵活**
+
+1. Lock锁中的ReadWriteLock可以实现读读不互斥。
+2. Lock锁可以实现在没有获取到锁的情况下直接返回。
+3. Lock锁支持超时机制。
+4. Lock锁支持可中断。
+5. Lock锁支持公平锁。
+
+Lock锁的使用方法是，首先创建一个Lock对象，调用加锁方法进行加锁，然后在try代码块中实现业务代码，在catch代码块中处理异常，最后在finally代码块中释放锁资源。
+
+**lock.lock()是写在try里面还是外面**
 
 在使用 `Lock` 的时候，通常建议将 `lock.lock();` 写在 `try` 块的外面，然后在 `finally` 块中释放锁。例如：
 
@@ -1860,86 +1803,399 @@ try {
 }
 ```
 
-这样做的原因是，如果获取锁（`lock.lock()`）失败抛出了异常，那么在 `finally` 块中就无需（也不能）去释放这个锁。如果将 `lock.lock();` 写在 `try` 块内部，当获取锁抛出异常时，`finally` 块仍然会执行，这可能会导致尝试释放一个实际上并未被当前线程持有的锁，从而引发 `IllegalMonitorStateException`。
+这样做的原因是，如果获取锁（`lock.lock()`）失败抛出了异常，那么在 `finally` 块中就无需（也不能）去释放这个锁。如果将 `lock.lock();` 如果写在 `try` 块内部，当获取锁抛出异常时，`finally` 块仍然会执行，这可能会导致尝试释放一个实际上并未被当前线程持有的锁，从而引发 `IllegalMonitorStateException`。
 
-然而，需要注意的是，这种模式主要适用于 `lock.lock()` 不会抛出受检异常的情况。在 `java.util.concurrent.locks.Lock` 接口中，`lock()` 方法是不会抛出受检异常的。但如果你使用的锁实现可能会在 `lock()` 方法中抛出受检异常，那么你可能需要将 `lock()` 调用放入 `try` 块中，并在 `catch` 块中适当地处理异常。
+然而，需要注意的是，这种模式主要适用于 `lock.lock()` 不会抛出受检异常的情况。在 `Lock` 接口中，`lock()` 方法正是不会抛出受检异常的。但如果你使用的锁实现可能会在 `lock()` 方法中抛出受检异常，那么你可能需要将 `lock()` 调用放入 `try` 块中，并在 `catch` 块中适当地处理异常。
 
+使用示例：
 
+```java
+public class LockTask implements Runnable {
+    Lock lock;
 
-## ReadWriteLock
+    public LockTask(Lock lock) {
+        this.lock = lock;
+    }
 
-ReadWriteLock，读写锁，
+    @Override
+    public void run() {
+        lock.lock();
+        try {
+            System.out.println(Thread.currentThread().getName() + "线程获取到锁");
+            System.out.println(Thread.currentThread().getName() + "线程执行任务");
+        } finally {
+            System.out.println(Thread.currentThread().getName() + "线程释放锁");
+            lock.unlock();
+        }
+    }
+}
+```
+
+```java
+public class LockTest {
+    public static void main(String[] args) {
+        Lock lock = new ReentrantLock();
+        IntStream.range(0, 5).forEach((i) -> {
+            new Thread(new LockTask(lock)).start();
+        });
+    }
+}
+/**
+输出结果：
+Thread-0线程获取到锁
+Thread-0线程执行任务
+Thread-0线程释放锁
+Thread-2线程获取到锁
+Thread-2线程执行任务
+Thread-2线程释放锁
+Thread-4线程获取到锁
+Thread-4线程执行任务
+Thread-4线程释放锁
+Thread-3线程获取到锁
+Thread-3线程执行任务
+Thread-3线程释放锁
+Thread-1线程获取到锁
+Thread-1线程执行任务
+Thread-1线程释放锁
+*/
+```
+
+在这个例子中，创建了一个Runnable的实现类LockTask，LockTask中使用了Lock锁，确保了run方法中打印的顺序是以线程为单位的，同一时刻只有一个线程能访问临界区资源，并完整地执行完获取锁和释放锁。
+
+## Condition接口
+
+使用Condition接口的wait、signal和signalAll方法结合Lock锁使用可以实现线程间的等待与通知（即线程间的通信）。这种功能类似使用Java的Object类提供的wait、notify和notifyAll方法结合synchronized实现对象的等待和通知，如：
+
+```java
+//Object类j提供的wait、notify和notifyAll方法结合且必须结合synchronized实现对象的等待和通知
+private final Object obj = new Object();
+public void testWait() throws InterruptedException {
+    synchronized(obj) {
+        obj.wait();
+    }
+}
+public void testNotify() {
+    synchronized (obj) {
+        obj.notify();
+    }
+}
+public void testNotifyAll() {
+    synchronized (obj) {
+        obj.notifyAll();
+    }
+}
+```
+
+在使用Condition接口时，不会直接创建Condition接口的对象，而是通过Lock接口的newCondition()方法创建。调用Lock锁对象的newCondition()方法就能够生成与当前Lock锁绑定的Condition对象，然后使用Condition对象就可以实现线程的等待与通知机制。
+
+使用示例：
+
+```java
+public class ConditionTask implements Runnable {
+    private Lock lock;
+    private Condition condition;
+
+    public ConditionTask(Lock lock, Condition condition) {
+        this.lock = lock;
+        this.condition = condition;
+    }
+
+    @Override
+    public void run() {
+        lock.lock();
+        try {
+            System.out.println("线程进入等待");
+            condition.await();
+            System.out.println("线程被唤醒");
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+```
+
+```java
+public class ConditionTest {
+    public static void main(String[] args) throws InterruptedException {
+        Lock lock = new ReentrantLock();
+        Condition condition = lock.newCondition();
+        new Thread(new ConditionTask(lock, condition)).start();
+        Thread.sleep(1000);
+        //主线程获取锁
+        lock.lock();
+        try {
+            System.out.println("唤醒等待的线程");
+            condition.signal();
+            Thread.sleep(1000);
+            System.out.println("唤醒等待的线程结束");
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+/**
+线程进入等待
+唤醒等待的线程
+唤醒等待的线程结束
+线程被唤醒
+*/
+```
+
+在这个例子中，创建了一个执行condition.await()进入等待状态的线程，使用主线程执行condition.signal()唤醒等待的线程，主线程释放锁后进入等待状态的线程成功地被唤醒。
+
+## ReentrantLock
+
+ReentrantLock是Java提供的一种可重入锁，一个线程可以多次通过ReentrantLock的lock()方法获取锁，所以要完全释放锁，必须要调用相同次数的unlock()释放锁的方法。底层的实现是，每获取一次锁，计数器就会加1，当线程释放锁时，重入的计数就会减少1。只有当重入的计数变为0时，锁才会真正被释放。
+
+ReentrantLock支持公平和非公平两种模式。底层是ReentrantLock通过内部的两个抽象类，FairSync和NonfairSync，实现的。FairSync和NonfairSync分别表示公平锁和非公平锁模式，两者都继承了Sync类，而Sync类继承了AQS，所以ReentrantLock是基于AQS实现的。
+
+使用示例：
+
+```java
+public class ReentrantLockTask implements Runnable {
+    private Lock lock;
+
+    public ReentrantLockTask(Lock lock) {
+        this.lock = lock;
+    }
+
+    @Override
+    public void run() {
+        lock.lock();
+        String threadName = Thread.currentThread().getName();
+        System.out.println(threadName + "线程第一次加锁");
+        lock.lock();
+        System.out.println(threadName + "线程第二次加锁");
+        try {
+            System.out.println(threadName + "线程使用临界区资源");
+        } finally {
+            System.out.println(threadName + "线程第一次解锁");
+            lock.unlock();
+            System.out.println(threadName + "线程第二次解锁");
+            lock.unlock();
+        }
+    }
+}
+
+```
+
+```java
+public class ReentrantLockTest {
+    public static void main(String[] args) {
+        ReentrantLock lock = new ReentrantLock();
+        IntStream.range(0, 2).forEach((i) -> {
+            new Thread(new ReentrantLockTask(lock)).start();
+        });
+    }
+}
+/**
+Thread-0线程第一次加锁
+Thread-0线程第二次加锁
+Thread-0线程使用临界区资源
+Thread-0线程第一次解锁
+Thread-0线程第二次解锁
+Thread-1线程第一次加锁
+Thread-1线程第二次加锁
+Thread-1线程使用临界区资源
+Thread-1线程第一次解锁
+Thread-1线程第二次解锁
+*/
+```
+
+在这个例子中，在ReentrantLockTask的run方法中演示了ReentrantLock的锁重入的使用方法。
+
+## ReadWriteLock接口
+
+ReadWriteLock是Java提供的一种读写锁，ReadWriteLock锁声明了两个方法，分别用于获取读锁和写锁。
 
 读写锁：
 
 - 共享锁（读锁）：读共享
 - 排他锁（写锁）：写互斥
 
-由ReadWriteLock对象可以得到读锁和写锁
+## ReentrantReadWriteLock
 
-ReentrantReadWriteLock在实际项目中使用的并不多，简单了解即可。JDK 1.8 引入了性能更好的读写锁StampedLock。
+ReentrantReadWriteLock是从Java1.5开始提供的ReadWriteLock的实现类。使用ReentrantReadWriteLock对象可以获取读锁和写锁。
+
+ReentrantReadWriteLock也支持公平锁和非公平锁，底层也是通过ReentrantReadWriteLock内部的两个抽象类两个抽象类FairSync和NonfairSync实现的，所以也是基于AQS实现的。
+
+ReentrantReadWriteLock内部还定义了两个读写类，分别是ReadLock和WriteLock。
+
+ReentrantReadWriteLock支持锁降级，即获取写锁的线程可以获取读锁，锁降级后锁的级别会从写锁降为读锁。
+
+使用示例：
+
+```java
+public class ReadWriteLockTest {
+    private ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+    private Lock readLock = readWriteLock.readLock();
+    private Lock writeLock = readWriteLock.writeLock();
+    public void read() {
+        readLock.lock();
+        try {
+            System.out.println(Thread.currentThread().getName() + "线程获取到读锁");
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            System.out.println(Thread.currentThread().getName() + "线程释放读锁");
+            readLock.unlock();
+        }
+    }
+    public void write() {
+        writeLock.lock();
+        try {
+            System.out.println(Thread.currentThread().getName() + "线程获取到写锁");
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            System.out.println(Thread.currentThread().getName() + "线程释放写锁");
+            writeLock.unlock();
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        ReadWriteLockTest readWriteLockTest = new ReadWriteLockTest();
+        IntStream.range(0, 3).forEach((i) -> {
+            new Thread(readWriteLockTest::read).start();
+        });
+        Thread.sleep(1000);
+        IntStream.range(0, 3).forEach((i) -> {
+            new Thread(readWriteLockTest::write).start();
+        });
+    }
+}
+/**
+输出结果：
+Thread-0线程获取到读锁
+Thread-1线程获取到读锁
+Thread-2线程获取到读锁
+Thread-0线程释放读锁
+Thread-1线程释放读锁
+Thread-2线程释放读锁
+Thread-3线程获取到写锁
+Thread-3线程释放写锁
+Thread-5线程获取到写锁
+Thread-5线程释放写锁
+Thread-4线程获取到写锁
+Thread-4线程释放写锁
+*/
+```
+
+在这个例子中，创建了一个ReentrantReadWriteLock类的对象，并由这个对象获取到读锁跟写锁，分别开启多个使用读锁的线程和使用写锁的线程，可以看到看到读锁同一时刻可以被多个线程获取，验证了ReentrantReadWriteLock的读锁是共享的，可以看到写锁同一时刻只能被一个线程获取，线程释放写锁后其它线程才有机会获取，验证了ReentrantReadWriteLock的写锁是互斥的。
 
 ## StampedLock
 
-`StampedLock` 是 Java 在 JDK 8 中引入的一个新的同步工具类，用来解决某些场景下的并发问题。它设计的初衷是为了优化读多写少的场景，因此在读线程非常多，写线程非常少的情况下，`StampedLock` 提供了一种乐观读锁，可以使得多个线程同时读，大大提高了并发性能。
+StampedLock是从Java1.8开始提供的读写锁，支持读锁（悲观读）、写锁、乐观读（OptimisticRead）。只支持非公平锁。不支持重入。支持锁的升级和降级。
 
-`StampedLock` 提供的锁包括写锁、悲观读锁以及乐观读，这三种锁的释放和获取都是通过一个 `stamp`（邮票）变量来控制的，这个 `stamp` 变量类似于版本号，每次写锁的获取和释放都会导致 `stamp` 变化。
+StampedLock在获取读锁和写锁成功后都会返回一个Long型的返回值，在释放锁时需要传入这个返回值。
 
-下面是一个使用 `StampedLock` 的例子：
+[StampedLock的乐观读](https://www.liaoxuefeng.com/wiki/1252599548343744/1309138673991714)：乐观读不加锁，使用乐观读期间允许获取写锁并执行写入操作，在读取之前会获取数据的版本号，读取完成后，通过validate()方法去验证版本号，如果版本号不变，则说明在读取过程中没有发生数据修改，否则说明发生了数据修改，就需要将乐观读升级为悲观读。
+
+使用示例：
 
 ```java
-public class Point {
-    private double x, y;
-    private final StampedLock sl = new StampedLock();
-
-    void move(double deltaX, double deltaY) { // 移动点的位置
-        long stamp = sl.writeLock(); // 获取写锁
+public class StampedLockTest {
+    //共享变量（临界区资源）
+    private int count = 0;
+    //StampedLock锁
+    private final StampedLock stampedLock = new StampedLock();
+    public void write() {
+        long stamp = stampedLock.writeLock();
+        System.out.println(Thread.currentThread().getName() + "写线程修改共享变量的值开始");
         try {
-            x += deltaX;
-            y += deltaY;
+            count += 1;
         } finally {
-            sl.unlockWrite(stamp); // 释放写锁
+            stampedLock.unlockWrite(stamp);
         }
+        System.out.println(Thread.currentThread().getName() + "写线程修改共享变量的值结束");
     }
-
-    double distanceFromOrigin() { // 计算从原点到现在位置的距离
-        long stamp = sl.tryOptimisticRead(); // 尝试获取乐观读锁
-        double currentX = x, currentY = y;
-        if (!sl.validate(stamp)) { // 如果乐观读锁验证失败，改用悲观读锁
-            stamp = sl.readLock();
+    public void optimisticRead() {
+        long stamp = stampedLock.tryOptimisticRead();
+        System.out.println(Thread.currentThread().getName() + "检测共享变量是否被修改（没有被修改为true，被修改为false）：" + stampedLock.validate(stamp));
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(Thread.currentThread().getName() + "线程休眠两秒后再次检测共享变量的值是否被修改（没有被修改为true，被修改为false）：" + stampedLock.validate(stamp));
+        int result = count;
+        if (!stampedLock.validate(stamp)) {
+            System.out.println("共享变量的值被修改，说明乐观读期间也允许获取写锁");
+            //将乐观锁升级为悲观锁
+            stamp = stampedLock.readLock();
             try {
-                currentX = x;
-                currentY = y;
+                System.out.println(Thread.currentThread().getName() + "线程将乐观读升级为悲观读");
+                result = count;
+                System.out.println(Thread.currentThread().getName() + "线程从乐观读升级为悲观读后的共享变量的值：" + result);
             } finally {
-                sl.unlockRead(stamp); // 释放悲观读锁
+                stampedLock.unlockRead(stamp);
             }
         }
-        return Math.sqrt(currentX * currentX + currentY * currentY);
+        System.out.println(Thread.currentThread().getName() + "线程读取到的最终的共享变量的值：" + result);
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        StampedLockTest stampedLockTest = new StampedLockTest();
+        new Thread(stampedLockTest::optimisticRead).start();
+        TimeUnit.SECONDS.sleep(1);
+        System.out.println("一秒后启动写线程");
+        new Thread(stampedLockTest::write).start();
     }
 }
+/**
+Thread-0检测共享变量是否被修改（没有被修改为true，被修改为false）：true
+一秒后启动写线程
+Thread-1写线程修改共享变量的值开始
+Thread-1写线程修改共享变量的值结束
+Thread-0线程休眠两秒后再次检测共享变量的值是否被修改（没有被修改为true，被修改为false）：false
+共享变量的值被修改，说明乐观读期间也允许获取写锁
+Thread-0线程将乐观读升级为悲观读
+Thread-0线程从乐观读升级为悲观读后的共享变量的值：1
+Thread-0线程读取到的最终的共享变量的值：1
+*/
 ```
 
-在这个例子中，`move` 方法使用写锁，保证了数据的完整性，而 `distanceFromOrigin` 方法首先尝试获取乐观读锁，如果验证成功，则直接计算结果，否则改用悲观读锁。
-
-需要注意的是，`StampedLock` 不支持重入和条件变量，使用时也要注意避免锁升级导致的死锁问题。此外，`StampedLock` 的锁方法不响应中断，如果需要支持中断，可以使用相应的 `xxxLockInterruptibly` 方法。
-
-
-
-
+在这个例子中，使用validate方法检测变量是否被修改，首先启动了乐观读线程，一秒后启动写线程，启动写线程后虽然乐观读线程没有退出，但是再次读取时可以检测到变量值被改变，说明乐观读期间也允许获取写锁。使用乐观读时如果检测到变量值修改了，就需要将乐观读升级为悲观读。
 
 # 无锁原子类
 
+无锁原子类全部位于util.concurrent.atomic包下：
+
 ![image-20230517170045229](./Java并发编程/image-20230517170045229.png)
 
-## AtomicInteger
+- 基本类型原子类
 
-## AtomicReference
+  包括：AtomicInteger、AtomicLong、AtomicBoolean
 
-## AtomicReferenceFieldUpdater
+  基本类型的原子类只能操作Java的基本数据类型，并且只能更新单个基本数据类型的变量
 
-## AtomicLongArray
+- 引用类型原子类
 
-## LongAdder
+  包括：AtomicReference、AtomicStampedReference、AtomicMarkableReference
+
+  如果要同时操作多个变量，或者更新一个对象的多个属性，就需要使用引用类型原子类
+
+  其中，AtomicReference是最基础的引用类型原子类，AtomicStampedReference是带有stamp戳记的引用原子类，AtomicMarkableReference是带有mark标志的引用原子类
+
+- 字段类型原子类
+
+  包括：AtomicIntegerFieldUpdater、AtomicLongFieldUpdater、AtomicReferenceFieldUpdater
+
+  如果只是想更新对象中的某个字段，则可以使用Java中专门操作字段类型的原子类
+
+- 数组类型原子类
+
+  包括：AtomicIntegerArray、AtomicLongArray、AtomicReferenceArray
+
+- 累加器类型原子类
+
+  包括：DoubleAccumulator、DoubleAddr、LongAccumulator、LongAddr
+
+
 
 ## 性能比较
 
@@ -1955,6 +2211,144 @@ public class Point {
 - LongAdder
 
   实现原理：分段锁，每个线程对应数组中的一个值，最后将值加和
+
+# 锁核心原理
+
+## 隐式锁和显示锁
+
+synchronized是隐式锁，Lock等是显示锁
+
+1. 当调用synchronized修饰的代码时，并不需要显示的加锁和解锁的过程，所以称之为隐式锁
+2. 而Lock锁都是手动写代码去获取锁和释放锁的，所以也叫显示锁
+
+## 公平锁和非公平锁的原理
+
+公平锁中的线程在抢占锁时首先会判断等待队列是否为空，如果队列为空或者当前线程是队列的队首元素，则当前线程获取到锁资源，否则会被放入队列尾部等待获取锁
+
+非公平锁中的线程在抢占锁时会先直接尝试抢占锁，如果抢占成功就继续执行程序的业务逻辑，如果抢占失败，才会进入等待队列中等待
+
+ReentrantLock支持公平锁和非公平锁，在使用时公平锁和非公平锁的用法一样：
+
+```java
+// 创建公平锁实例
+Lock lock = new ReentrantLock(true); // 创建公平锁
+// Lock lock = new ReentrantLock(false); // 创建非公平锁
+// Lock lock = new ReentrantLock(); // 创建非公平锁
+try {
+	lock.lock();
+} finally {
+	lock.unlock();
+}
+```
+
+## 悲观锁和乐观锁的原理
+
+悲观锁的核心思想是对数据是否被修改持有悲观态度，认为其他线程会修改数据，所以在线程每次获取数据时都会加锁。
+
+乐观锁的核心思想是对数据是否被修改持有乐观态度，认为其他线程不会修改数据，所以在线程每次获取数据时都不会加锁。乐观锁适合读多写少的场景。
+
+synchronized锁就是悲观锁
+
+java.util.concurrent.atomic包下的原子类就是乐观锁
+
+AtomicInteger类的用法示例：
+
+```java
+AtomicInteger atomicInteger = new AtomicInteger(); //创建原子类
+atomicInteger.incrementAndGet(); //加1
+int num = atomicInteger.get(); // get值
+```
+
+## 可中断锁和不可中断锁的原理
+
+可中断锁指在多个线程抢占的过程中可以被中断的锁。
+
+不可中断锁指在多个线程抢占的过程中不可以被中断的锁。
+
+ReentrantLock，就是可中断锁，ReentrantLock支持两种可中断锁的使用方式，lockInterruptibly()和tryLock(long timeout, TimeUnit unit)，如果当前线程在抢占锁的过程中被中断，就会抛出InterruptedException()用法示例：
+
+```java
+try {
+	lock.lockInterruptibly();
+} catch (InterruptedException) {
+	// 抢占锁被中断
+} finally {
+	lock.unlock();
+}
+```
+
+synchronized锁是不可中断锁，只能在抢占锁成功后被中断，不能在抢占锁的过程中被中断。
+
+## 独占锁和共享锁的原理
+
+按照加锁后的资源能否在被多个线程访问，可以将锁分为独占锁和共享锁
+
+线程获取到独占锁后，其他线程如果想要获取该锁，只能等待。
+
+线程获取到共享锁后，其他线程也可以获取到该锁，但是共享锁只允许对临界区的数据进行读取操作，不允许修改。也就是说，共享锁是针对读操作的锁。
+
+synchronized锁、ReentrantLock锁、ReentrantReadWriteLock的写锁都是独占锁。
+
+ReentrantReadWriteLock的读锁、Semaphore类、CountDownLatch类都是共享锁。
+
+## LockSupport原理
+
+LockSupport位于`java.util.concurrent.locks`包，是Java提供的创建锁和其他多线程工具的基础类库，主要作用就是阻塞和唤醒线程，底层是基于UnSafe类实现的。AQS 底层就是使用了`LockSupport`来实现线程的阻塞和唤醒。
+
+LockSupport类提供的核心方法：
+
+<img src="./Java并发编程/image-20230518115147049.png" alt="image-20230518115147049" style="zoom:80%;" />
+
+| 方法                                                        | 功能                                                         |
+| ----------------------------------------------------------- | ------------------------------------------------------------ |
+| public static void park()                                   | 阻塞当前线程                                                 |
+| public static void park(Object blocker)                     | 使用指定的 blocker（锁对象）阻塞当前线程                     |
+| public static void parkNanos(long nanos)                    | 阻塞当前线程，并指定了最长阻塞的时间，单位是纳秒             |
+| public static void parkUntil(long deadline)                 | 阻塞当前线程，并指定了deadline时间点                         |
+| public static void parkNanos(Object blocker, long nanos)    | 阻塞当前线程，并指定了使用的 blocker（锁对象）、最长阻塞的时间，单位是纳秒 |
+| public static void parkUntil(Object blocker, long deadline) | 阻塞当前线程，并指定了使用的 blocker（锁对象）、deadline时间点 |
+| public static void unpark(Thread thread)                    | 解除指定已被park的线程的阻塞状态；如果线程已经启动但还未park，就取消下一次的park。 |
+
+在底层实现上，`LockSupport`使用了一种名为"许可（Permit）"的概念来控制阻塞和唤醒。Permit的数量最多为1。
+
+如果线程已经拿到了Permit，则调用`LockSupport.park()`会立即返回；如果没有拿到Permit，`park()`方法会阻塞线程。调用`LockSupport.unpark(Thread)`方法会给指定的线程发放Permit。
+
+unpark()可以先于park()调用：如果 `unpark(thread)` 在 `park()` 之前被调用，那么线程会获得一个Permit，当后续 `park()` 被调用时，线程可以立即消费掉这个Permit并继续执行，而不会阻塞。
+
+如果调用者的线程被中断，park 将返回。
+
+下面是一个简单的`LockSupport`使用例子：
+
+```java
+public class LockSupportExample {
+    public static void main(String[] args) {
+        Thread thread = new Thread(() -> {
+            System.out.println("Child thread begin park!");
+
+            // 调用park方法，挂起自己
+            LockSupport.park();
+
+            System.out.println("Child thread end park!");
+        });
+
+        thread.start();
+
+        // 主线程延迟2s
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Main thread begin unpark!");
+
+        // 调用unpark方法让thread线程持有许可证，然后park方法返回
+        LockSupport.unpark(thread);
+    }
+}
+```
+
+在这个例子中，子线程通过调用`LockSupport.park()`方法阻塞自己，主线程在延迟2秒后调用`LockSupport.unpark(thread)`方法唤醒子线程。
 
 # 锁优化方案
 
@@ -2516,4 +2910,6 @@ public class MyBenchmark {
 - 冰河. 深入理解高并发编程: 核心原理与案例实战. 北京: 电子工业出版社, 2023.2.
 - 尼恩等. Java高并发核心编程:加强版. 卷2, 多线陈、锁、JMM、JUC、高并发设计模式. 北京: 清华大学出版社, 2022.10.
 - https://www.bilibili.com/video/BV1xK4y1C7aT?p=2&vd_source=e229b568d11ab1ec4d7f50fb619a17b6
+- https://docs.oracle.com/javase/8/docs/api/java/util/Queue.html
 
+z
