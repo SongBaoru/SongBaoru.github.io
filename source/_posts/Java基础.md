@@ -357,9 +357,9 @@ Java14中引入switch，既可以作为语句，也可以做表达式。
 
 **参数类型**
 
-可以作为switch参数数据类型的有：int、bype、short、char、String、枚举
+可以作为switch参数数据类型的有：int、bype、short、char、String、枚举、（int、bype、short、char）的包装类
 
-不能作为switch参数的有：long、float、double、boolean、复杂的表达式
+不能作为switch参数的有：long、float、double、boolean、复杂的表达式、……
 
 case的参数可以有多个。如`case "Summer"， "Winter" -> 0;`
 

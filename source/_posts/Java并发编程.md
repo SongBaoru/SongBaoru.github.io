@@ -9,6 +9,182 @@ tags:
 
 ---
 
+# 线程工具类
+
+## Thread类
+
+Thread类用于创建和启动线程，Thread类对象就是线程对象，内部定义了线程名name、线程所在的线程组group、向JVM申请的堆栈大小stackSize等信息。
+
+Thread类实现了Runnable接口，Runnable接口是一个函数时接口。
+
+![image-20230622113831682](./Java并发编程/image-20230622113831682.png)
+
+Thread类内部定义了一个枚举类State，State类中定义了[线程的执行状态](##Java线程的生命周期)：
+
+```java
+public enum State {
+    //初始化状态
+    NEW,
+    //可运行状态，包括就绪状态和运行状态
+    RUNNABLE,
+    //阻塞状态
+    BLOCKED,
+    //等待状态
+    WAITING,
+    //超时等待状态
+    TIMED_WAITING,
+    //终止状态
+    TERMINATED;
+}
+```
+
+## 线程局部变量
+
+线程局部变量用于保证数据隔离与安全。
+
+线程局部变量有两种，ThreadLocal和InheritableThreadLocal，其中ThreadLocal在主线程和子线程之间不具备可继承性，而InheritableThreadLocal具备可继承。
+
+### ThreadLocal
+
+`ThreadLocal`由一个线程的类型为`ThreadLocal.ThreadLocalMap`的对象`threadlocals`来保存，`ThreadLocalMap`是`ThreadLocal`类的内部类。具体来说，在`ThreadLocalMap`中，set到`ThreadLocal`对象的值作为值（value），`ThreadLocal`对象作为键（key），并且key是一个弱引用。
+
+因为ThreadLocal对象（key）是一个弱引用，所以当线程销毁后，由于ThreadLocal对象不再被强引用，所以ThreadLocal对象可以被垃圾回收。但是threadlocals中依然存在键值对，所以为了避免内存溢出，还是需要手动移除（remove）ThreadLocal对象。
+
+ThreadLocal的使用方法示例：
+
+```java
+ThreadLocal<String> threadLocal = new ThreadLocal<>(); //创建一个用于存储String类型的ThreadLocal变量
+threadLocal.set("Hello, ThreadLocal!"); //设置当前线程的ThreadLocal变量值
+String value = threadLocal.get(); //返回当前线程的ThreadLocal变量值
+threadLocal.remove(); //清除当前线程的ThreadLocal变量值
+```
+
+每个线程可以创建多个ThreadLocal实例，每个ThreadLocal实例可以用来存储一个特定的值，例如，可以创建两个ThreadLocal实例来存储不同类型的值：
+
+```java
+ThreadLocal<String> threadLocal1 = new ThreadLocal<>(); //创建一个用于存储String类型的ThreadLocal变量
+ThreadLocal<Integer> threadLocal2 = new ThreadLocal<>(); //创建一个用于存储Integer类型的ThreadLocal变量
+```
+
+### InheritableThreadLocal
+
+使用InheritableThreadLocal创建对象保存的变量具有继承性，子线程调用该对象的get方法可以获取到父线程set到该对象中的值。父线程是创建和启动子线程的线程。
+
+InheritableThreadLocal的使用方法示例：
+
+```java
+static final InheritableThreadLocal<String> INHERITABLE_THREAD_LOCAL = new InheritableThreadLocal<>();
+public static void main(String[] args) {
+    INHERITABLE_THREAD_LOCAL.set("主线程保存的值");
+    new Thread(() -> {
+    String value = INHERITABLE_THREAD_LOCAL.get();
+    System.out.println("子线程中访问主线程中保存的局部变量值：" + value);
+    }).start();
+}
+/*
+输出结果：
+	子线程中访问主线程中保存的局部变量值：主线程保存的值
+*/
+```
+
+通过InheritableThreadLocal对象之所以能够访问到父（parent）线程的inheritableThreadLocals，是因为在创建线程的时候，会将parent线程的inheritableThreadLocals复制一份到子线程的inheritableThreadLocals中。
+
+## Fork/Join框架
+
+Fork/Join框架是从Java1.7开始提供的用于执行并行任务的框架，可以将一个比较大的任务拆分成多逻辑相同的小任务，最后汇总每个小任务的执行结果得到最终的结果，思想和Hadoop的MapReduce类似。
+
+Fork/Join框架使用了工作窃取算法，即处理完自己所在的任务队列的线程会去执行（窃取）其它线程的任务队列。
+
+Java提供的Fork/Join框架涉及的核心类包括ForkJoinPool类、ForkJoinTask类、ForkJoinWorkerThread类、RecursiveTask类、RecursiveAction类、CountedCompleter类：
+
+- ForkJoinPool类：实现了Fork/Join框架框架的线程池
+- ForkJoinWorkerThread类：是Fork/Join框架的线程池中运行的线程
+- ForkJoinTask类：是Fork/Join框架的任务，任务的处理逻辑在compute()方法中进行定义，提供了fork()和join()方法，分别实现了任务的拆分和合并。实际开发中，一般用它的两个子类RecursiveTask、RecursiveAction。
+- RecursiveTask类：是ForkJoinTask的子类，实现了Callable接口，并提供返回结果。
+- RecursiveAction类：是ForkJoinTask的子类，实现了Runnable接口，无返回结果。
+- CountedCompleter类：任务完成后会触发执行的一个自定义的任务。
+
+Java1.8中引入的并行流就是基于Fork/Join框架实现的。
+
+使用示例（使用Fork/Join框架计算1~10000的累加和）：
+
+```java
+public class ForkJoinTaskComputer extends RecursiveTask<Integer> {
+    //任务拆分的最小粒度
+    private static final int MIN_COUNT = 2;
+    //开始数字
+    private int start;
+    //结束数字
+    private int end;
+
+    public ForkJoinTaskComputer(int start, int end) {
+        this.start = start;
+        this.end = end;
+    }
+
+    @Override
+    protected Integer compute() {
+        int sum = 0;
+        int count = end - start;
+        if (count <= MIN_COUNT) {
+            for (int i = start; i <= end; i++) {
+                sum += i;
+            }
+        } else {
+            //找到中间值
+            int middle = start + ((end - start) >> 1);
+            //生成子任务
+            ForkJoinTaskComputer leftTaskComputer = new ForkJoinTaskComputer(start, middle);
+            ForkJoinTaskComputer rightTaskComputer = new ForkJoinTaskComputer(middle + 1, end);
+            //执行子任务
+            leftTaskComputer.fork();
+            rightTaskComputer.fork();
+            //合并子任务
+            Integer leftResult = leftTaskComputer.join();
+            Integer rightResult = rightTaskComputer.join();
+            //计算总和
+            sum = leftResult + rightResult;
+        }
+        return sum;
+    }
+}
+```
+
+```java
+public class ForkJoinTest {
+    private static final int MIN_COUNT = 1;
+    private static final int MAX_COUNT = 10_000;
+
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ForkJoinTaskComputer taskComputer = new ForkJoinTaskComputer(MIN_COUNT, MAX_COUNT);
+        ForkJoinPool forkJoinPool = new ForkJoinPool();
+        //将计算任务提交到线程池进行执行
+        ForkJoinTask<Integer> result = forkJoinPool.submit(taskComputer);
+        System.out.println("计算结果是" + result.get());
+    }
+}
+/**
+输出结果：
+计算结果是50005000
+*/
+```
+
+在这个例子中，使用Fork/Join框架实现了计算1~10000的累加和，通过将大任务拆分成小任务，再将拆分后的小任务提交到线程池进行执行，最后将结果合并得到最终的计算结果。输出的计算结果是50005000，正确。
+
+# 线程池工具类
+
+## Executor接口
+
+## Executor
+
+## ThreadPoolExecutor
+
+## ExecutorService接口
+
+## AbstractExecutorService抽象类
+
+## ScheduleExecutorService接口
+
 # 线程
 
 ## 线程的创建方式
@@ -83,59 +259,6 @@ public static void main(String[] args) {
 
 4. 通过线程池创建线程
 
-## 线程局部变量
-
-线程局部变量有两种，ThreadLocal和InheritableThreadLocal，其中ThreadLocal在主线程和子线程之间不具备可继承性，而InheritableThreadLocal具备可继承。
-
-### ThreadLocal
-
-`ThreadLocal`由一个线程的类型为`ThreadLocal.ThreadLocalMap`的对象`threadlocals`来保存，`ThreadLocalMap`是`ThreadLocal`类的内部类。具体来说，在`ThreadLocalMap`中，set到`ThreadLocal`对象的值作为值（value），`ThreadLocal`对象作为键（key），并且key是一个弱引用。
-
-因为ThreadLocal对象（key）是一个弱引用，所以当线程销毁后，由于ThreadLocal对象不再被强引用，所以ThreadLocal对象可以被垃圾回收。但是threadlocals中依然存在键值对，所以为了避免内存溢出，还是需要手动移除（remove）ThreadLocal对象。
-
-ThreadLocal的使用方法示例：
-
-```java
-ThreadLocal<String> threadLocal = new ThreadLocal<>(); //创建一个用于存储String类型的ThreadLocal变量
-threadLocal.set("Hello, ThreadLocal!"); //设置当前线程的ThreadLocal变量值
-String value = threadLocal.get(); //返回当前线程的ThreadLocal变量值
-threadLocal.remove(); //清除当前线程的ThreadLocal变量值
-```
-
-可以创建多个ThreadLocal实例，每个ThreadLocal实例可以用来存储一个特定的值，例如，可以创建两个ThreadLocal实例来存储不同类型的值：
-
-```java
-ThreadLocal<String> threadLocal1 = new ThreadLocal<>(); //创建一个用于存储String类型的ThreadLocal变量
-ThreadLocal<Integer> threadLocal2 = new ThreadLocal<>(); //创建一个用于存储Integer类型的ThreadLocal变量
-```
-
-### InheritableThreadLocal
-
-使用InheritableThreadLocal创建对象保存的变量具有继承性，子线程调用该对象的get方法可以获取到父线程set到该对象中的值。父线程是创建和启动子线程的线程。
-
-InheritableThreadLocal的使用方法示例：
-
-```java
-static final InheritableThreadLocal<String> INHERITABLE_THREAD_LOCAL = new InheritableThreadLocal<>();
-public static void main(String[] args) {
-    INHERITABLE_THREAD_LOCAL.set("主线程保存的值");
-    new Thread(() -> {
-    String value = INHERITABLE_THREAD_LOCAL.get();
-    System.out.println("子线程中访问主线程中保存的局部变量值：" + value);
-    }).start();
-}
-/*
-输出结果：
-	子线程中访问主线程中保存的局部变量值：主线程保存的值
-*/
-```
-
-通过InheritableThreadLocal对象之所以能够访问到父（parent）线程的inheritableThreadLocals，是因为在创建线程的时候，会将parent线程的inheritableThreadLocals复制一份到子线程的inheritableThreadLocals中。
-
-## Fork/Join框架
-
-
-
 ## 操作系统线程生命周期
 
 - 初始状态：处于初始状态的线程只是在编程语言层面被创建，在操作系统层面并没有被真正创建。
@@ -147,12 +270,12 @@ public static void main(String[] args) {
 ## Java线程的生命周期
 
 - 初始化状态：线程在Java中被创建（调用new方法），但还没有启动（调用start方法）。
-- 运行状态
+- 可运行状态
   - 就绪状态：对应操作系统线程生命周期中的可运行状态。
   - 运行状态：对应操作系统线程生命周期中的运行状态。
+- 阻塞状态：等待进入临界区。
 - 等待状态：等待其它线程通知或中断等待。
 - 超时等待状态：等待其它线程通知或中断等待，如果超过指定时间，当前线程也会进入下一个状态。
-- 阻塞状态：等待进入临界区。
 - 终止状态：表示当前线程执行完毕，包括正常执行结束和异常退出。
 
 ## 线程调度模型
@@ -161,6 +284,27 @@ public static void main(String[] args) {
 
 - 分时调度模型：会平均分配CPU时间片，每个线程占用的CPU时间片都是一样的，所有线程会轮流占有CPU时间片。
 - 抢占式调度模型：按照线程的优先级分配时间片，线程的优先级越高，分配到CPU时间片的概览越大。
+
+## 线程方法
+
+1. start：启动线程。
+2. sleep：让当前线程休眠（暂停执行）一段时间，**不会释放锁**。
+3. wait：让当前线程暂停执行**并释放锁资源**。
+4. notify：随机唤醒一个因wait调用而处于等待中的线程。
+5. notifyAll：唤醒所有因wait调用而处于等待中的线程。
+6. park：阻塞当前线程，等待被其它线程唤醒，**不会释放锁**。
+7. unpark：唤醒指定的线程，使其从等待状态中返回。
+8. join：如果线程a调用了线程b的join()方法，则线程a会等待线程b执行完毕后再继续执行。
+9. interrupt：如果是作用于对被sleep、wait、join阻塞的线程，会清除线程的中断标记并抛出异常；如果是作用于一个正在运行的线程，会强制终止该线程。
+10. yield：**不会释放锁**，只是让出当前线程的CPU执行时间片，回到就绪状态，等待CPU的调度。
+
+## 线程结束的方式
+
+1. 等待线程自然执行完毕
+   - run()方法执行完毕
+2. 强制结束线程
+   - 调用Interrupt()方法：推荐使用，原因是interrupt方法并不直接停止线程，而是由线程决定如何响应中断，线程有机会执行释放资源、保持数据一致性等操作。
+   - 调用stop()方法：不推荐使用，原因是使用stop方法存在一些潜在的问题，如不能释放资源、数据不一致等。
 
 ## 上下文切换
 
@@ -173,27 +317,6 @@ public static void main(String[] args) {
 1. 使用无锁编程
 2. 创建合适的线程数
 3. 使用协程
-
-## 线程方法
-
-1. start：启动线程。
-2. sleep：让当前线程休眠（暂停执行）一段时间，**不会释放锁**。
-3. wait：让当前线程暂停执行**并释放锁资源**。
-4. notify：随机唤醒一个因wait调用而处于等待中的线程。
-5. notifyAll：唤醒所有因wait调用而处于等待中的线程。
-6. park：阻塞当前线程，等待被其它线程唤醒，**不会释放锁**。
-7. unpark：唤醒指定的线程，使其从等待状态中返回。
-8. join：等待一个线程执行完毕后再继续执行当前线程。
-9. interrupt：如果是作用于对被sleep、wait、join阻塞的线程，会清除线程的中断标记并抛出异常；如果是作用于一个正在运行的线程，会强制终止该线程。
-10. yield：**不会释放锁**，只是让出当前线程的CPU执行时间片，回到就绪状态，等待CPU的调度。
-
-## 线程结束的方式
-
-1. 等待线程自然执行完毕
-   - run()方法执行完毕
-2. 强制结束线程
-   - 调用Interrupt()方法：推荐使用，原因是interrupt方法并不直接停止线程，而是由线程决定如何响应中断，线程有机会执行释放资源、保持数据一致性等操作。。
-   - 调用stop()方法：不推荐使用，原因是使用stop方法存在一些潜在的问题，如不能释放资源、数据不一致等、
 
 ## 线程同步
 
@@ -2167,50 +2290,62 @@ Thread-0线程读取到的最终的共享变量的值：1
 
 ![image-20230517170045229](./Java并发编程/image-20230517170045229.png)
 
-- 基本类型原子类
+- **基本类型原子类**
 
-  包括：AtomicInteger、AtomicLong、AtomicBoolean
+  包括：AtomicInteger、AtomicLong、AtomicBoolean。
 
-  基本类型的原子类只能操作Java的基本数据类型，并且只能更新单个基本数据类型的变量
+  基本类型的原子类只能操作Java的基本类型数据，并且只能更新单个基本类型的变量。
 
-- 引用类型原子类
+- **引用类型原子类**
 
-  包括：AtomicReference、AtomicStampedReference、AtomicMarkableReference
+  包括：AtomicReference、AtomicStampedReference、AtomicMarkableReference。
 
-  如果要同时操作多个变量，或者更新一个对象的多个属性，就需要使用引用类型原子类
+  这些引用类型原子类都是使用了泛型。
 
-  其中，AtomicReference是最基础的引用类型原子类，AtomicStampedReference是带有stamp戳记的引用原子类，AtomicMarkableReference是带有mark标志的引用原子类
+  如果要同时操作多个变量，或者更新一个对象的多个属性，就需要使用引用类型原子类。
 
-- 字段类型原子类
+  其中，AtomicReference是最基础的引用类型原子类，AtomicStampedReference是带有stamp戳记的引用原子类，AtomicMarkableReference是带有mark标志的引用原子类。
 
-  包括：AtomicIntegerFieldUpdater、AtomicLongFieldUpdater、AtomicReferenceFieldUpdater
+- **字段类型原子类**
 
-  如果只是想更新对象中的某个字段，则可以使用Java中专门操作字段类型的原子类
+  包括：AtomicIntegerFieldUpdater、AtomicLongFieldUpdater、AtomicReferenceFieldUpdater。
 
-- 数组类型原子类
+  如果只是想更新对象中的某个字段，则可以使用Java中专门操作字段类型的原子类。
 
-  包括：AtomicIntegerArray、AtomicLongArray、AtomicReferenceArray
+  使用字段类型原子类时，需要先调用各自类的newUpdater()方法来指定要更新的类和字段名称，如果使用的是AtomicReferenceFieldUpdater还需要指定字段的类型。
 
-- 累加器类型原子类
+  使用操作字段类型的原子类更新某个类中的字段时，部分类型的变量下不能实现原子性地更新：
 
-  包括：DoubleAccumulator、DoubleAddr、LongAccumulator、LongAddr
+  1. 类的静态变量
+  2. 父类的成员变量
+  3. 不能被直接访问类的成员变量
+  4. 被final关键字修饰类的成员变量
+  5. 没有使用volatile关键字修饰的类的成员变量
 
+- **数组类型原子类**
 
+  包括：AtomicIntegerArray、AtomicLongArray、AtomicReferenceArray。
 
-## 性能比较
+- **累加器类型原子类**
 
-- synchronized
-
-
-- AtomicInteger
-
-  实现原理：基于CAS，使用了`Unsafe`类的一些函数来进行底层的原子性操作。
-
-  虽然`Unsafe`类可以进行一些不安全的操作，但在`AtomicInteger`中，它被用来实现线程安全的原子性操作。这是一个很好的例子，说明了工具本身并不决定结果，关键在于如何使用工具。
-
-- LongAdder
-
-  实现原理：分段锁，每个线程对应数组中的一个值，最后将值加和
+  包括：DoubleAccumulator、DoubleAddr、LongAccumulator、LongAddr。
+  
+  **优化原理**：为减少大量线程竞争资源，进行CAS更新变量时大量失败的现象，Java1.8中提供了累加器类型原子类，通过将一个变量分解为多个变量，让多个线程竞争同一资源的情况转变为多个线程竞争多个资源，提升了性能。
+  
+  XxxAccumulator的功能比XxxAddr多，表现在：
+  
+  1. XxxAccumulator的初始值可以自定义
+  2. XxxAccumulator的运算规则可以自定义
+  
+  **累加器类型原子类的变量更新机制**：使用累加器类型原子类更新变量时会维护一个Cell类型的数组，每个Cell类型的元素内部会维护一个double类型或者long类型的变量，初始值为0，线程会竞争数组中多个Cell类型的元素（如果一个线程竞争某个元素失败，不会在该元素上进行CAS自旋，而是会尝试对其它元素进行CAS操作）。在获取累加器类型原子类的变量值时，会将Cell数组中的所有元素的value值进行累加，再加上base变量的值后得到结果并返回。
+  
+  在Cell类的定义上有@jdk.internal.vm.annotation.Contended注解，解决伪共享问题，提高性能。
+  
+  > `@jdk.internal.vm.annotation.Contended` 是 Java 中的一个注解，它的作用是用于解决伪共享（False Sharing）的问题。
+  >
+  > 伪共享是指多个线程同时访问不同的变量，但这些变量位于同一缓存行中。由于缓存行是处理器缓存的最小单位，当一个线程修改了缓存行中的一个变量，该缓存行会被标记为"脏"，其他线程在访问同一缓存行中的其他变量时，需要将该缓存行从其他处理器的缓存中读取到自己的缓存中，这个过程称为"缓存行的失效"（Cache Line Invalidation）。这种失效操作会导致性能下降，尤其在多核处理器中更为明显。
+  >
+  > `@jdk.internal.vm.annotation.Contended` 注解的作用就是通过在变量之间添加填充（Padding）来解决伪共享的问题。填充是在变量之间插入一些无意义的字段，使得它们位于不同的缓存行中，从而避免了伪共享导致的性能下降。
 
 # 锁核心原理
 
