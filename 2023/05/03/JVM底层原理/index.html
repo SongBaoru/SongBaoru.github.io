@@ -7,7 +7,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://th.bing.com/th/id/R.22f11d40e255acfdd79725639136d216?rik=6sX7IVmauPHLHA&riu=http%3a%2f%2fup.deskcity.org%2fpic_360%2f202010%2fsl%2forx1oja4chp1120.jpg&ehk=AmTg0CepawJWQDpxVYKxNFtBAxg0bJf830W5BvMPyl4%3d&risl=&pid=ImgRaw&r=0">
 <meta property="article:published_time" content="2023-05-03T01:21:36.000Z">
-<meta property="article:modified_time" content="2023-07-20T15:05:22.703Z">
+<meta property="article:modified_time" content="2023-07-21T04:14:30.831Z">
 <meta property="article:author" content="Song Baoru">
 <meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
@@ -58,7 +58,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-07-20 23:05:22'
+  postUpdate: '2023-07-21 12:14:30'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -162,7 +162,7 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="SBR Blog"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">SBR Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">JVM底层原理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-03T01:21:36.000Z" title="Created 2023-05-03 09:21:36">2023-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-20T15:05:22.703Z" title="Updated 2023-07-20 23:05:22">2023-07-20</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT/">IT</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">10k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>31min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM底层原理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="JVM的组成及其作用"><a href="#JVM的组成及其作用" class="headerlink" title="JVM的组成及其作用"></a><a target="_blank" rel="noopener" href="https://java.jverson.com/jvm/jvm-components.html">JVM的组成及其作用</a></h1><p>JVM 主要由以下四部分组成：运行时数据区（Runtime Data Area）、类加载器（ClassLoader）、执行引擎（Execution Engine ）和本地方法接口（Native Method Interface）。</p>
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="SBR Blog"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">SBR Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">JVM底层原理</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-03T01:21:36.000Z" title="Created 2023-05-03 09:21:36">2023-05-03</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-21T04:14:30.831Z" title="Updated 2023-07-21 12:14:30">2023-07-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT/">IT</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">12.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>40min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="JVM底层原理"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="JVM的组成及其作用"><a href="#JVM的组成及其作用" class="headerlink" title="JVM的组成及其作用"></a><a target="_blank" rel="noopener" href="https://java.jverson.com/jvm/jvm-components.html">JVM的组成及其作用</a></h1><p>JVM 主要由以下四部分组成：运行时数据区（Runtime Data Area）、类加载器（ClassLoader）、执行引擎（Execution Engine ）和本地方法接口（Native Method Interface）。</p>
 <p><img src="https://jverson.oss-cn-beijing.aliyuncs.com/bffcc48b5af9cfaf8ef9d2a1eb7d3f42.jpg" alt="JVM的组成"></p>
 <p>JVM 是执行 Java 程序的虚拟计算机系统，执行过程是：首先需要准备好编译好的 Java 字节码文件（即class文件），计算机要运行程序需要先通过一定方式（<strong>类加载器</strong>）将 class 文件加载到内存中（<strong>运行时数据区</strong>），但是字节码文件是JVM定义的一套指令集规范，并不能直接交给底层操作系统去执行，因此需要特定的命令解释器（<strong>执行引擎</strong>）将字节码翻译成特定的操作系统指令集交给 CPU 去执行，这个过程中会需要调用到一些不同语言为 Java 提供的接口（例如驱动、地图制作等），这就用到了本地 Native 接口（本地库接口）。</p>
 <h2 id="运行时数据区"><a href="#运行时数据区" class="headerlink" title="运行时数据区"></a>运行时数据区</h2><p>运行时数据区，即 JVM 内存，由多个不同的数据区域组成，包括程序计数器、虚拟机栈、本地方法栈、堆和方法区<strong>（JDK 1.8 的时候，方法区（HotSpot 的永久代）被彻底移除了，取而代之是元空间）</strong>。</p>
@@ -181,8 +181,8 @@
 </li>
 <li><p><strong>堆</strong>（Java Heap）这块内存区域的唯一用途就是存放<strong>对象实例</strong>，堆是垃圾收集器管理的内存区域，所以又称“GC堆”。</p>
 </li>
-<li><p><strong>元空间</strong>（JDK1.7及以前是方法区）用于存储<strong>已被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存</strong>等数据。</p>
-<p><strong>运行时常量池</strong>（Runtime Constant Pool）是方法区的一部分。Class文件中除了有类的版本、字段、方法、接口等描述信息外，还有一项信息是常量池表（Constant Pool Table），用于存放编译期生成的各种字面量与符号引用，这部分内容将在类加载后存放到方法区的运行时常量池中。</p>
+<li><p><strong>元空间</strong>（JDK1.7及以前是<strong>方法区</strong>）用于存储<strong>已被虚拟机加载的类型信息、常量、静态变量、即时编译器编译后的代码缓存</strong>等数据。</p>
+<p><strong>运行时常量池</strong>（Runtime Constant Pool）是元空间的一部分。<strong>Class文件</strong>中除了有类的版本、字段、方法、接口等描述信息外，还有一项信息是<strong>常量池表</strong>（Constant Pool Table），用于存放编译期生成的各种字面量与符号引用，这部分内容<strong>将在类加载后存放到方法区的运行时常量池中</strong>。</p>
 </li>
 <li><p><strong>直接内存</strong>（Direct Memory）并不是虚拟机运行时数据区的一部分</p>
 <p>在JDK 1.4中新加入了NIO（New Input&#x2F;Output）类，引入了一种基于通道（Channel）与缓冲区 （Buffer）的I&#x2F;O方式，它可以<strong>使用Native函数库直接分配堆外内存</strong>，然后<strong>通过一个存储在Java堆里面的 DirectByteBuffer对象作为这块内存的引用进行操作</strong>。这样能在一些场景中显著提高性能，因为<strong>避免了在Java堆和Native堆中来回复制数据</strong>。</p>
@@ -192,33 +192,85 @@
 <h2 id="执行引擎"><a href="#执行引擎" class="headerlink" title="执行引擎"></a>执行引擎</h2><p>执行引擎负责执行字节码指令，包括解释器和即时编译器两种执行方式。</p>
 <p>此外还包含垃圾回收器，用于内存管理，可以自动释放不再使用的内存空间。</p>
 <h2 id="本地方法接口"><a href="#本地方法接口" class="headerlink" title="本地方法接口"></a>本地方法接口</h2><p>允许 Java 程序与底层的本地系统交互，例如调用 C&#x2F;C++ 等语言编写的库。</p>
-<h1 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h1><h2 id="类加载阶段"><a href="#类加载阶段" class="headerlink" title="类加载阶段"></a>类加载阶段</h2><p>Java虚拟机（JVM）的类加载机制是Java程序运行时将.class文件加载到内存的过程。类加载主要分为五个阶段：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）和初始化（Initialization）。</p>
+<h1 id="类加载机制"><a href="#类加载机制" class="headerlink" title="类加载机制"></a>类加载机制</h1><h2 id="类加载器-1"><a href="#类加载器-1" class="headerlink" title="类加载器"></a>类加载器</h2><h3 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h3><p>类加载器的主要（其实除了加载类之外，类加载器还可以加载 Java 应用所需的资源如文本、图像、配置文件、视频等等文件资源）作用就是加载 Java 类的字节码（ <code>.class</code> 文件）到 JVM 中（在内存中生成一个代表该类的 <code>Class</code> 对象）。</p>
+<p>数组类不是通过 <code>ClassLoader</code> 创建的（数组类没有对应的二进制字节流），是由 JVM 直接生成的。</p>
+<h3 id="加载规则"><a href="#加载规则" class="headerlink" title="加载规则"></a>加载规则</h3><p>JVM 启动的时候，并不会一次性加载所有的类，而是根据需要去动态加载。也就是说，大部分类在具体用到的时候才会去加载，这样对内存更加友好。</p>
+<p>对于已经加载的类会被放在 <code>ClassLoader</code> 中。在类加载的时候，系统会首先判断当前类是否被加载过。已经被加载的类会直接返回，否则才会尝试加载。也就是说，对于一个类加载器来说，相同二进制名称的类只会被加载一次。</p>
+<h3 id="类型"><a href="#类型" class="headerlink" title="类型"></a>类型</h3><p>JVM类加载器（Class Loader）负责将.class文件加载到内存，主要有四种：</p>
 <ol>
-<li><p>加载（Loading）: 在这个阶段，JVM将从文件系统或网络中查找指定的.class文件，然后将其二进制数据加载到内存中，创建一个Class对象来表示这个类。类加载器主要有三个：引导类加载器（Bootstrap ClassLoader）、扩展类加载器（Extension ClassLoader）和应用类加载器（Application ClassLoader）。</p>
+<li><p>引导类加载器（Bootstrap ClassLoader）：负责加载Java核心类库（位于%Java_HOME%&#x2F;lib下），如java.util等，以及被 <code>-Xbootclasspath</code>参数指定的路径下的类。</p>
 </li>
-<li><p>验证（Verification）: JVM会对已加载的二进制数据进行校验，确保其符合Java语言规范和JVM规范。这个过程包括：文件格式验证、元数据验证、字节码验证和符号引用验证。验证阶段的目的是确保加载的类文件不会对JVM产生不良影响。</p>
+<li><p>扩展类加载器（Extension ClassLoader）：负责加载Java扩展库（位于%Java_HOME%&#x2F;jre&#x2F;lib&#x2F;ext下），以及通过java.ext.dirs系统变量指定的路径下的类。</p>
 </li>
-<li><p>准备（Preparation）: 在这个阶段，JVM会为类的静态变量分配内存，并赋予默认值。注意这里的默认值不是程序员在代码中指定的初始值，而是基本类型的零值或引用类型的null值。</p>
-<p>而对于final类型的静态变量，如果它们在编译时可以确定值（即编译时常量），JVM会在准备阶段直接为它们分配内存并赋予程序员在代码中指定的初始值。这是因为final变量的值在程序运行期间是不可变的，所以可以提前赋值。然而，如果一个final类型的静态变量不能在编译时确定值（例如，它的值是通过方法调用得到的），那么这个变量在准备阶段仍然会被赋予默认值，然后在初始化阶段由程序员指定的值替换。</p>
+<li><p>应用类加载器（Application ClassLoader）：负责加载用户程序的类路径（classpath）下的类。如果程序没有自定义类加载器, 就默认使用应用程序类加载器。</p>
 </li>
-<li><p>解析（Resolution）: 解析阶段主要是将类、接口、字段和方法等符号引用替换为直接引用。这个过程可能会触发其他类的加载。</p>
-<p>在Java程序中，类、接口、字段和方法等元素在源代码中的表示形式通常是符号引用（Symbolic Reference）。符号引用是一种依赖于符号（如类名、方法名和字段名等）的引用形式。然而，为了在运行时更高效地访问这些元素，JVM需要将这些符号引用替换为直接引用（Direct Reference）。</p>
+<li><p>自定义类加载器（User ClassLoader）：主要负责加载用户自定义的类，**<a target="_blank" rel="noopener" href="https://juejin.cn/post/7038627461713788958">不允许加载java.开头的类的</a>**。</p>
+<p>自定义类加载器是通过继承java.lang.ClassLoader类并重写loadClass（实现了双亲委派机制）和findClass方法实现的。如果我们不想打破双亲委派模型，就重写 <code>ClassLoader</code> 类中的 <code>findClass()</code> 方法即可，无法被父类加载器加载的类最终会通过这个方法被加载。但是，如果想打破双亲委派模型则需要重写 <code>loadClass()</code> 方法。</p>
+</li>
+</ol>
+<h3 id="双亲委派模型"><a href="#双亲委派模型" class="headerlink" title="双亲委派模型"></a>双亲委派模型</h3><p>类加载器采用双亲委派模型（Parent-Delegation Model）。当加载类时，先请求父加载器加载；父加载器无法加载时，当前加载器尝试加载。这保证了Java核心类库安全与一致性，避免应用程序覆盖核心类库。</p>
+<blockquote>
+<p>补充：</p>
+<p>每个 Java 类都有一个引用指向加载它的 <code>ClassLoader</code>。</p>
+<p><strong>JVM 判定两个 Java 类是否相同的具体规则</strong>：JVM 不仅要看类的全名是否相同，还要看加载此类的类加载器是否一样。只有两者都相同的情况，才认为两个类是相同的。即使两个类来源于同一个 <code>Class</code> 文件，被同一个虚拟机加载，只要加载它们的类加载器不同，那这两个类就必定不相同。</p>
+</blockquote>
+<p><strong>双亲委派模型的好处</strong></p>
+<p>双亲委派模型保证了 Java 程序的稳定运行，可以避免类的重复加载（JVM 区分不同类的方式不仅仅根据类名，相同的类文件被不同的类加载器加载产生的是两个不同的类），也保证了 Java 的核心 API 不被篡改。</p>
+<p>如果没有使用双亲委派模型，而是每个类加载器加载自己的话就会出现一些问题，比如我们编写一个称为 <code>java.lang.Object</code> 类的话，那么程序运行的时候，系统就会出现两个不同的 <code>Object</code> 类。双亲委派模型可以保证加载的是 JRE 里的那个 <code>Object</code> 类，而不是你写的 <code>Object</code> 类。这是因为 <code>AppClassLoader</code> 在加载你的 <code>Object</code> 类时，会委托给 <code>ExtClassLoader</code> 去加载，而 <code>ExtClassLoader</code> 又会委托给 <code>BootstrapClassLoader</code>，<code>BootstrapClassLoader</code> 发现自己已经加载过了 <code>Object</code> 类，会直接返回，不会去加载你写的 <code>Object</code> 类。</p>
+<p><strong>打破了双亲委派模型的应用例子</strong></p>
+<ol>
+<li><p>Tomcat下Web 应用之间的类隔离</p>
+<p>Tomcat 服务器会给每个 Web 应用创建一个类加载器实例（WebAppClassLoader实例）。WebAppClassLoader是Tomcat 自定义的类加载器，打破了双亲委托机制，每个 WebappClassLoader 加载自己目录下的.class文件，不会传递给父加载器，从而实现Web应用层级的隔离。</p>
+</li>
+</ol>
+<h3 id="父子类加载和初始化顺序关系"><a href="#父子类加载和初始化顺序关系" class="headerlink" title="父子类加载和初始化顺序关系"></a>父子类加载和初始化顺序关系</h3><p>在JVM类加载阶段，父子类关系表现在加载和初始化过程。加载子类时，所有父类被加载。初始化时，父类先于子类初始化，确保子类使用父类静态字段和方法时，父类已初始化。</p>
+<h2 id="类加载阶段"><a href="#类加载阶段" class="headerlink" title="类加载阶段"></a>类加载阶段</h2><p>Java虚拟机（JVM）的类加载机制是Java程序运行时将.class文件加载到内存的过程。类加载主要分为五个阶段：加载（Loading）、验证（Verification）、准备（Preparation）、解析（Resolution）和初始化（Initialization）。和后续两个阶段，使用（Using）、卸载（Unloading），共同组成了类的生命周期。</p>
+<p><img src="/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/.././JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/image-20230721120250116.png" alt="类的声明周期"></p>
+<p>加载、验证、准备、初始化和卸载这五个阶段的顺序是确定的，类型的加载过程必须按 照这种顺序按部就班地开始，而解析阶段则不一定：它在某些情况下可以在初始化阶段之后再开始， 这是为了支持Java语言的运行时绑定特性（也称为动态绑定或晚期绑定）。</p>
+<ol>
+<li><p>加载（Loading）：在这个阶段，类加载器通过全类名获取查找并加载指定的.class文件二进制字节流，在内存中创建一个Class对象来表示这个类。加载阶段与连接阶段的部分动作(如一部分字节码文件格式验证动作)是交叉进行的，加载阶段尚未结束，连接阶段可能就已经开始了。</p>
+</li>
+<li><p>连接（Linking）：验证、准备和解析这三个阶段可以统称为连接</p>
+<ul>
+<li><p>验证（Verification）:这一阶段会<strong>进行文件格式验证、元数据验证和字节码验证等</strong> ，目的是确保 Class 文件的字节流中包含的信息符合《Java 虚拟机规范》的全部约束要求，保证这些信息被当作代码运行后不会危害虚拟机自身的安全。</p>
+</li>
+<li><p>准备（Preparation）: 在这个阶段会<strong>为类的静态变量分配内存，并赋予默认值</strong>。</p>
+<p> 对于<strong>final类型的静态变量</strong>，如果它们在编译时可以确定值（即编译时常量），在准备阶段直接为它们分配内存并赋予程序员在代码中指定的初始值。这是因为final变量的值在程序运行期间是不可变的，所以可以提前赋值。然而，如果一个final类型的静态变量不能在编译时确定值（例如，它的值是通过方法调用得到的），那么这个变量在准备阶段仍然会被赋予默认值，然后在初始化阶段由程序员指定的值替换。</p>
+<p> 对于<strong>非final类型的静态变量</strong>，在准备阶段赋予的默认值就不是程序员在代码中指定的初始值，而是基本类型的零值或引用类型的null值。</p>
+</li>
+</ul>
+<ol>
+<li>解析（Resolution）: <strong>解析阶段是虚拟机将常量池内的符号引用替换为直接引用的过程。</strong> 解析动作主要针对类或接口、字段、类方法、接口方法、方法类型、方法句柄和调用限定符 7 类符号引用进行。这个过程可能会触发其他类的加载。这个过程可能会触发其他类的加载。需要注意的是，并非所有的符号引用都会在解析阶段被替换为直接引用，有些符号引用会在程序运行时进行动态解析。这通常发生在反射和动态代理等场景下。</li>
+</ol>
+</li>
+<li><p>初始化（Initialization）：在这个阶段，JVM会根据程序员在代码中指定的初始值，为类的静态变量赋予正确的值。此外，如果类有静态代码块，JVM会执行这些代码块。初始化阶段是类加载过程中的最后一个阶段。</p>
+</li>
+</ol>
+<h2 id="检验阶段"><a href="#检验阶段" class="headerlink" title="检验阶段"></a>检验阶段</h2><p>类加载过程中主要包括四个检验阶段：</p>
+<ol>
+<li>文件格式验证（Class 文件格式检查）：发生在类加载过程中的<strong>验证</strong>阶段</li>
+<li>元数据验证（字节码语义检查）：发生在类加载过程中的<strong>验证</strong>阶段</li>
+<li>字节码验证（程序语义检查）：发生在类加载过程中的<strong>验证</strong>阶段</li>
+<li>符号引用验证（类的正确性检查）：发生在类加载过程中的<strong>解析</strong>阶段</li>
+</ol>
+<p><strong>文件格式验证</strong></p>
+<p>文件格式验证这一阶段是基于该类的二进制字节流进行的，主要目的是保证输入的字节流能正确地解析并存储于方法区之内，格式上符合描述一个 Java 类型信息的要求。除了这一阶段之外，其余三个验证阶段都是基于方法区的存储结构上进行的，不会再直接读取、操作字节流了。</p>
+<blockquote>
+<p>方法区属于是 JVM 运行时数据区域的一块逻辑区域，是各个线程共享的内存区域。当虚拟机要使用一个类时，它需要读取并解析 Class 文件获取相关信息，再将信息存入到方法区。方法区会存储已被虚拟机加载的 <strong>类信息、字段信息、方法信息、常量、静态变量、即时编译器编译后的代码缓存等数据</strong>。</p>
+<p>关于方法区的详细介绍，推荐阅读 <a target="_blank" rel="noopener" href="https://javaguide.cn/java/jvm/memory-area.html">Java 内存区域详解open in new window</a> 这篇文章。</p>
+</blockquote>
+<p><strong>符号引用验证</strong></p>
+<p>符号引用验证的主要目的是确保解析阶段能正常执行，如果无法通过符号引用验证，JVM 会抛出异常，比如：</p>
+<ul>
+<li><code>java.lang.IllegalAccessError</code>：当类试图访问或修改它没有权限访问的字段，或调用它没有权限访问的方法时，抛出该异常。</li>
+<li><code>java.lang.NoSuchFieldError</code>：当类试图访问或修改一个指定的对象字段，而该对象不再包含该字段时，抛出该异常。</li>
+<li><code>java.lang.NoSuchMethodError</code>：当类试图访问一个指定的方法，而该方法不存在时，抛出该异常。</li>
+<li>……</li>
+</ul>
+<p><strong>符号引用和直接引用</strong></p>
+<p>在Java程序中，类、接口、字段和方法等元素在源代码中的表示形式通常是<strong>符号引用</strong>（Symbolic Reference）。符号引用是一种依赖于符号（如类名、方法名和字段名等）的引用形式。然而，为了在运行时更高效地访问这些元素，JVM需要将这些符号引用替换为直接引用（Direct Reference）。</p>
 <p>直接引用是一种可以直接指向内存地址或者间接指向内存地址的引用。在JVM中，直接引用可以是指向方法区（Method Area）中类和接口数据结构的指针、指向实例变量和类变量的内存地址的偏移量，或者是指向常量池中某个常量的索引。</p>
 <p>符号引用和直接引用的区别在于，符号引用需要在运行时通过查找和解析得到实际的内存地址，而直接引用已经包含了实际的内存地址信息，可以直接访问目标元素。因此，使用直接引用可以提高程序运行时的访问速度。</p>
-<p>在类加载的解析阶段，JVM负责将类、接口、字段和方法等符号引用替换为直接引用。这个过程可能会触发其他类的加载。需要注意的是，并非所有的符号引用都会在解析阶段被替换为直接引用，有些符号引用会在程序运行时进行动态解析。这通常发生在反射和动态代理等场景下。</p>
-</li>
-<li><p>初始化（Initialization）: 在这个阶段，JVM会根据程序员在代码中指定的初始值，为类的静态变量赋予正确的值。此外，如果类有静态代码块，JVM会执行这些代码块。初始化阶段是类加载过程中的最后一个阶段。</p>
-</li>
-</ol>
-<h2 id="父子类加载和初始化顺序关系"><a href="#父子类加载和初始化顺序关系" class="headerlink" title="父子类加载和初始化顺序关系"></a>父子类加载和初始化顺序关系</h2><p>在JVM类加载阶段，父子类关系表现在加载和初始化过程。加载子类时，所有父类被加载。初始化时，父类先于子类初始化，确保子类使用父类静态字段和方法时，父类已初始化。</p>
-<h2 id="类加载器和双亲委派模型"><a href="#类加载器和双亲委派模型" class="headerlink" title="类加载器和双亲委派模型"></a>类加载器和双亲委派模型</h2><p>JVM类加载器（Class Loader）负责将.class文件加载到内存，主要有四种：</p>
-<ol>
-<li>引导类加载器（Bootstrap ClassLoader）：负责加载位于%Java_HOME%&#x2F;lib下的Java核心类库，如java.util等</li>
-<li>扩展类加载器（Extension ClassLoader）：负责加载位于%Java_HOME%&#x2F;jre&#x2F;lib&#x2F;ext目录下Java扩展库，或通过java.ext.dirs系统变量加载指定路径下的类库</li>
-<li>应用类加载器（Application ClassLoader）：负责加载用户程序的类路径（classpath）下的类</li>
-<li>自定义类加载器（User ClassLoader）：通过继承java.lang.ClassLoader类并重写 findClass 方法实现</li>
-</ol>
-<p>类加载器采用双亲委派模型（Parent-Delegation Model）。当加载类时，先请求父加载器加载；父加载器无法加载时，当前加载器尝试加载。这保证了Java核心类库安全与一致性，避免应用程序覆盖核心类库。</p>
 <h2 id="OSGI"><a href="#OSGI" class="headerlink" title="OSGI"></a>OSGI</h2><p>OSGI（Open Service Gateway Initiative）是一个用于实现模块化和动态组件系统的开放标准框架。它允许在一个Java虚拟机（JVM）实例中创建和管理多个模块化组件，这些组件被称为“bundles”。OSGI提供了一种将Java应用程序分解为更小、更易于管理和维护的模块的方法，从而提高了开发人员的生产力和代码的可重用性。</p>
 <p>OSGI的主要特点如下：</p>
 <ol>
@@ -534,7 +586,7 @@
 <td><code>-XX:+UseConcMarkSweepGC</code> 启用CMS垃圾回收器</td>
 </tr>
 </tbody></table>
-<h2 id="日志相关的参数（部分）"><a href="#日志相关的参数（部分）" class="headerlink" title="日志相关的参数（部分）"></a>日志相关的参数（部分）</h2><table>
+<h2 id="GC日志相关的参数（部分）"><a href="#GC日志相关的参数（部分）" class="headerlink" title="GC日志相关的参数（部分）"></a>GC日志相关的参数（部分）</h2><table>
 <thead>
 <tr>
 <th>参数名</th>
@@ -557,6 +609,16 @@
 <td>在每次GC后打印堆的详细信息</td>
 <td><code>-XX:+PrintHeapAtGC</code></td>
 </tr>
+<tr>
+<td>-Xloggc</td>
+<td>设置GC日志输出的文件路径</td>
+<td><code>-Xloggc:/path/to/gc-%t.log</code></td>
+</tr>
+<tr>
+<td>-XX:GCLogFileSize</td>
+<td>设置每个GC文件上限大小，超过就触发分割</td>
+<td><code>-XX:GCLogFileSize=50M</code>设置GC文件的上限大小是50MB</td>
+</tr>
 </tbody></table>
 <h2 id="OOM相关的参数（部分）"><a href="#OOM相关的参数（部分）" class="headerlink" title="OOM相关的参数（部分）"></a>OOM相关的参数（部分）</h2><table>
 <thead>
@@ -572,7 +634,7 @@
 <td><code>-XX:+HeapDumpOnOutOfMemoryError</code>当发生OOM异常时打印日志</td>
 </tr>
 <tr>
-<td>-XX:HeapDumpPath&#x3D;path</td>
+<td>-XX:HeapDumpPath</td>
 <td>指定生成堆转储文件的路径</td>
 <td><code>-XX:HeapDumpPath=path=dump.log</code>指定OOM日志存储信息</td>
 </tr>
@@ -591,49 +653,56 @@
 <li><code>-XX:+UseG1GC</code>：使用 G1 垃圾收集器。</li>
 </ul>
 <p>这些参数的设置应该根据具体的应用程序和系统配置进行调整，以获得最佳性能和稳定性。另外，可以使用一些诊断工具，如 jstat 和 jmap 等来监测 JVM 的运行状态和内存使用情况，以帮助优化 JVM 的性能和稳定性</p>
-<h1 id="JVM性能分析工具（调优工具）"><a href="#JVM性能分析工具（调优工具）" class="headerlink" title="JVM性能分析工具（调优工具）"></a>JVM性能分析工具（调优工具）</h1><p>常用的工具有jps、jinfo、jstat、jstack、jmap等，这些工具包含在JDK（Java Development Kit）的<code>bin</code>目录中，因此需要安装JDK才能使用</p>
-<h3 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h3><p>用于查看正在运行的Java进程及其相关信息（进程id、虚拟机参数如端口号和可用内存大小、jar包名称）</p>
+<h1 id="Java监控工具"><a href="#Java监控工具" class="headerlink" title="Java监控工具"></a>Java监控工具</h1><h2 id="监控命令行工具（部分）"><a href="#监控命令行工具（部分）" class="headerlink" title="监控命令行工具（部分）"></a>监控命令行工具（部分）</h2><p>这些命令在 JDK （Java Development Kit）安装目录下的 bin 目录下。</p>
+<h3 id="jps：查看所有-Java-进程"><a href="#jps：查看所有-Java-进程" class="headerlink" title="jps：查看所有 Java 进程"></a><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/tools/jps.html#GUID-6EB65B96-F9DD-4356-B825-6146E9EEC81E">jps</a>：查看所有 Java 进程</h3><p><strong><code>jps</code></strong> (JVM Process Status）类似 UNIX 的 <code>ps</code> 命令。用于查看所有 Java 进程的启动类、进程id、虚拟机传入参数和虚拟机参数等信息。</p>
 <p><code>jps</code>的基本语法如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">jps [options] [hostid]<br></code></pre></td></tr></table></figure>
 
 <p><code>options</code>表示可选的参数，<code>hostid</code>表示远程主机的ID，如果不指定则默认为本地主机。以下是一些常用的<code>jps</code>选项：</p>
 <ul>
-<li><code>-l</code>：显示完整的包名和主类名。</li>
-<li><code>-m</code>：显示传递给Java进程的参数。</li>
-<li><code>-v</code>：显示传递给JVM的参数。</li>
-<li><code>-q</code>：仅显示Java进程的ID，不显示类名、JAR名称和传递给Java进程的参数。</li>
+<li><p><code>-l</code>：显示Java 进程的进程id、完整的包名和主类名。</p>
+<p><img src="/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/.././JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/image-20230721083459691.png" alt="image-20230721083459691"></p>
+</li>
+<li><p><code>-m</code>：显示虚拟机的传入参数。</p>
+<p><img src="/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/.././JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/image-20230721083753236.png" alt="image-20230721083753236"></p>
+</li>
+<li><p><code>-v</code>：显示虚拟机参数。</p>
+<p><img src="/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/.././JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/image-20230721083938580.png" alt="image-20230721083938580"></p>
+</li>
+<li><p><code>-q</code>：仅显示Java进程的进程id。</p>
+<p><img src="/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/.././JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/image-20230721084034514.png" alt="image-20230721084034514"></p>
+</li>
 </ul>
-<h3 id="jinfo"><a href="#jinfo" class="headerlink" title="jinfo"></a>jinfo</h3><p><code>jinfo</code>（Java Configuration Info Tool）是一个Java命令行工具，用于获取Java虚拟机（JVM）进程的配置信息，如系统属性和JVM参数</p>
-<p><code>jinfo</code>的基本语法如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">jinfo [option] pid<br></code></pre></td></tr></table></figure>
-
-<ul>
-<li><code>option</code>：表示可选的参数，如获取系统属性、JVM参数等。</li>
-<li><code>pid</code>：表示要获取配置信息的Java虚拟机进程的ID。</li>
-</ul>
-<p>以下是一些常用的<code>jinfo</code>选项：</p>
-<ul>
-<li><code>-flag</code>：显示或修改指定的JVM参数。</li>
-<li><code>-sysprops</code>：显示Java系统属性。</li>
-<li><code>-flags</code>：显示JVM参数。</li>
-</ul>
-<p>举个例子，要获取一个Java进程（假设其进程ID为12345）的Java系统属性，可以运行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">jinfo -sysprops 12345<br></code></pre></td></tr></table></figure>
-
-<p>这个命令会输出Java进程的所有Java系统属性，如<code>java.version</code>、<code>java.vendor</code>、<code>java.home</code>等。您可以根据这些信息了解Java进程的运行环境和配置。</p>
-<p>另一个例子，要查看一个Java进程（假设其进程ID为12345）的JVM参数，可以运行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">jinfo -flags 12345<br></code></pre></td></tr></table></figure>
-
-<p>这个命令会输出Java进程的所有JVM参数，如<code>-Xmx</code>、<code>-Xms</code>、<code>-XX:+UseParallelGC</code>等。您可以根据这些信息了解和优化Java进程的JVM配置。</p>
-<h3 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h3><p>用于监控JVM内存使用情况和垃圾回收情况</p>
+<h3 id="jstat：监视虚拟机运行状态信息"><a href="#jstat：监视虚拟机运行状态信息" class="headerlink" title="jstat：监视虚拟机运行状态信息"></a>jstat：监视虚拟机运行状态信息</h3><p><strong><code>jstat</code><strong>（JVM Statistics Monitoring Tool）用于收集 HotSpot 虚拟机各方面的运行数据。可以显示本地或者远程（需要远程主机提供 RMI 支持）虚拟机进程中的</strong>类信息、内存、垃圾收集、JIT 编译等运行数据</strong>。在没有 GUI，只提供了纯文本控制台环境的服务器上，它将是运行期间定位虚拟机<strong>性能问题</strong>的首选工具。</p>
 <p><code>jstat</code>的基本语法如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">jstat [option] [vmid] [interval] [count]<br></code></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">jstat -[<span class="hljs-type">option</span>] [-<span class="hljs-type">t</span>] [-<span class="hljs-type">h</span>&lt;<span class="hljs-type">lines</span>&gt;] [<span class="hljs-type">pid</span>] [<span class="hljs-built_in">int</span><span class="hljs-type">erval</span>] [<span class="hljs-type">count</span>]<br></code></pre></td></tr></table></figure>
 
 <ul>
-<li><code>option</code>：表示要收集的统计信息类型，如垃圾回收、类加载等。</li>
-<li><code>vmid</code>：表示要监控的Java虚拟机进程的ID。</li>
-<li><code>interval</code>：表示数据收集的时间间隔（以毫秒为单位），可选参数。</li>
-<li><code>count</code>：表示要收集的数据点数目，可选参数。</li>
+<li><p><code>option</code>：表示要收集的统计信息类型，如垃圾回收、类加载等。</p>
+<p><strong>常见的 option 如下：</strong></p>
+<ul>
+<li><code>jstat -class pid</code>：显示 ClassLoader 的相关信息；</li>
+<li><code>jstat -compiler pid</code>：显示 JIT 编译的相关信息；</li>
+<li><code>jstat -gc pid</code>：显示与 GC 相关的堆信息；</li>
+<li><code>jstat -gccapacity pid</code>：显示各个代的容量及使用情况；</li>
+<li><code>jstat -gcnew pid</code>：显示新生代信息；</li>
+<li><code>jstat -gcnewcapcacity pid</code>：显示新生代大小与使用情况；</li>
+<li><code>jstat -gcold pid</code>：显示老年代信息；</li>
+<li><code>jstat -gcoldcapacity pid</code>：显示老年代的大小；</li>
+<li><code>jstat -gcpermcapacity pid</code>：显示永久代大小，从 jdk1.8 开始,该选项不存在了，因为永久代被移除了；</li>
+<li><code>jstat -gcutil pid</code>：显示垃圾收集信息；</li>
+</ul>
+</li>
+<li><p><code>-t</code>：在输出信息上加一个 Timestamp 列，显示程序的运行时间</p>
+</li>
+<li><p><code>-h&lt;lines&gt;</code>：每隔lines行打印指标头部，指标头部是指在jstat输出结果中，每个列的名称。</p>
+</li>
+<li><p><code>pid</code>：表示要监控的Java虚拟机进程的ID。</p>
+</li>
+<li><p><code>interval</code>：表示数据收集的时间间隔（以毫秒为单位），可选参数。</p>
+</li>
+<li><p><code>count</code>：表示要收集的数据点数目，可选参数。</p>
+</li>
 </ul>
 <p>以下是一些常用的<code>jstat</code>选项：</p>
 <ul>
@@ -645,13 +714,54 @@
 <li><code>-gcnew</code>：显示关于新生代垃圾回收的统计信息。</li>
 <li><code>-gcold</code>：显示关于老年代垃圾回收的统计信息。</li>
 </ul>
-<p>举个例子，要收集一个Java进程（假设其进程ID为12345）的垃圾回收统计信息，每隔1000毫秒收集一次，总共收集10次，可以运行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">jstat -gc 12345 1000 10<br></code></pre></td></tr></table></figure>
+<p>用法示例：</p>
+<p><code>jstat -gc pid 1000 10</code>：收集Java进程的垃圾回收统计信息，每隔1000毫秒收集一次，总共收集10次。这个命令会输出一系列关于垃圾回收的统计信息，如内存区域的大小、已使用空间、垃圾回收次数等。</p>
+<h2 id="故障排除命令行工具（部分）"><a href="#故障排除命令行工具（部分）" class="headerlink" title="故障排除命令行工具（部分）"></a>故障排除命令行工具（部分）</h2><p>这些命令在 JDK 安装目录下的 bin 目录下</p>
+<h3 id="jinfo-查看和调整虚拟机参数"><a href="#jinfo-查看和调整虚拟机参数" class="headerlink" title="jinfo: 查看和调整虚拟机参数"></a><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/tools/jinfo.html#GUID-69246B58-28C4-477D-B375-278F5F9830A5">jinfo</a>: 查看和调整虚拟机参数</h3><p><code>jinfo</code>（Java Configuration Info Tool）是一个Java命令行工具，用于显示Java虚拟机（JVM）进程的配置信息，如<strong>系统属性和JVM参数</strong>。此命令是实验性的，不受支持。对于核心文件，请使用<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/tools/jhsdb.html#GUID-0345CAEB-71CE-4D71-97FE-AA53A4AB028E">jhsdb</a> jinfo。</p>
+<p><code>jinfo</code>的基本语法如下：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">jinfo [<span class="hljs-type">option</span>] pid<br></code></pre></td></tr></table></figure>
 
-<p>这个命令会输出一系列关于垃圾回收的统计信息，如内存区域的大小、已使用空间、垃圾回收次数等。</p>
-<h3 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h3><p>用于生成虚拟机当前时刻的线程快照，目的通常是定位线程出现长时间停顿的原因。对于诊断Java应用程序的线程问题、锁竞争和死锁等问题非常有用。</p>
+<ul>
+<li><p><code>option</code>：表示可选的参数，如获取系统属性、JVM参数等。</p>
+<p>以下是一些常用的<code>jinfo</code>选项：</p>
+<ul>
+<li><code>-flag</code>：显示或修改指定的JVM参数。</li>
+<li><code>-sysprops</code>：显示Java系统属性。</li>
+<li><code>-flags</code>：显示JVM参数。</li>
+</ul>
+</li>
+<li><p><code>pid</code>：表示要获取配置信息的Java虚拟机进程的ID。</p>
+</li>
+</ul>
+<p>要修改JVM参数，可以使用以下命令格式：</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">jinfo <span class="hljs-literal">-flag</span> &lt;参数名&gt;=&lt;新值&gt; &lt;进程ID&gt;<br></code></pre></td></tr></table></figure>
+
+<p>用法示例：</p>
+<p><code>jinfo pid</code>：输出当前 jvm 进程的全部参数和系统属性 (第一部分是系统的属性，第二部分是 JVM 的参数)。</p>
+<p><code>jinfo -sysprops pid</code>：获取Java进程的Java系统属性。</p>
+<h3 id="jmap：生成堆转储快照"><a href="#jmap：生成堆转储快照" class="headerlink" title="jmap：生成堆转储快照"></a><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/tools/jmap.html#GUID-D2340719-82BA-4077-B0F3-2803269B7F41">jmap</a>：生成堆转储快照</h3><p><code>jmap</code>（Java Memory Map Tool）用于生成Java虚拟机（JVM）进程的内存映射信息（生成<strong>堆转储快照</strong>）。此命令是实验性的，不受支持。对于核心文件，请使用<a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/tools/jhsdb.html#GUID-0345CAEB-71CE-4D71-97FE-AA53A4AB028E">jhsdb</a> jmap。</p>
+<p>如果不使用 <code>jmap</code> 命令，要想获取 Java 堆转储快照，可以使用 <code>“-XX:+HeapDumpOnOutOfMemoryError”</code> 参数，可以让虚拟机在 OOM 异常出现之后自动生成 dump 文件，Linux 命令下可以通过 <code>kill -3</code> 发送进程退出信号也能拿到 dump 文件。</p>
+<p><code>jmap</code>的基本语法如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">jmap [option] pid<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>option</code>：表示要执行的操作，如获取堆信息、生成堆转储文件等。</p>
+<p>以下是一些常用的<code>jmap</code>选项：</p>
+<ul>
+<li><code>-dump:dump_options</code>：生成堆转储文件（heap dump），可以使用内存分析工具（如Eclipse MAT）对其进行进一步分析。</li>
+<li><code>-histo</code>：显示堆中对象的实例数量、内存占用和类名等信息的直方图。</li>
+<li><code>-clstats</code>：显示类加载器和系统类的统计信息。</li>
+<li><code>-finalizerinfo</code>：显示在队列中等待执行的终结器方法的对象的信息。</li>
+</ul>
+</li>
+<li><p><code>pid</code>：表示要获取内存映射信息的Java虚拟机进程的ID。</p>
+</li>
+</ul>
+<p>用法示例：</p>
+<p><code>jmap -dump:format=b,file=heapdump.hprof pid</code>：生成Java进程堆转储文件，并将其保存到当前目录下的<code>heapdump.hprof</code>文件中。</p>
+<h3 id="jstack：生成线程快照"><a href="#jstack：生成线程快照" class="headerlink" title="jstack：生成线程快照"></a><a target="_blank" rel="noopener" href="https://docs.oracle.com/en/java/javase/11/tools/jstack.html#GUID-721096FC-237B-473C-A461-DBBBB79E4F6A">jstack</a>：生成线程快照</h3><p><strong><code>jstack</code></strong> (Stack Trace for Java) 用于生成虚拟机当前时刻的<strong>线程快照</strong>，线程快照就是当前虚拟机内每一条线程正在执行的方法堆栈的集合。目的通常是定位线程出现长时间停顿的原因，如线程间死锁、请求外部资源导致的长时间等待等都是导致线程长时间停顿的原因。线程出现停顿的时候通过<code>jstack</code>来查看各个线程的调用堆栈，就可以知道没有响应的线程到底在后台做些什么事情，或者在等待些什么资源。</p>
 <p><code>jstack</code>的基本语法如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">jstack [option] pid<br></code></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs powershell">jstack [<span class="hljs-type">option</span>] pid<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><code>option</code>：表示可选的参数，如打印锁信息等。</li>
@@ -667,29 +777,49 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">jstack 12345<br></code></pre></td></tr></table></figure>
 
 <p>这个命令会输出Java进程的所有线程的堆栈跟踪信息，包括线程ID、线程状态、调用栈等。您可以根据这些信息诊断和解决应用程序中的线程问题。</p>
-<h3 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h3><p><code>jmap</code>（Java Memory Map Tool）是一个Java命令行工具，用于获取Java虚拟机（JVM）进程的内存映射信息。它可以帮助您分析Java堆（heap）、永久代（PermGen，仅JDK 7及更早版本）或元空间（Metaspace，JDK 8及更高版本）的使用情况，从而诊断和解决内存泄漏、内存溢出等问题</p>
-<p><code>jmap</code>的基本语法如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">jmap [option] pid<br></code></pre></td></tr></table></figure>
+<h2 id="可视化分析工具（部分）"><a href="#可视化分析工具（部分）" class="headerlink" title="可视化分析工具（部分）"></a>可视化分析工具（部分）</h2><h3 id="JConsole：Java-监视与管理控制台"><a href="#JConsole：Java-监视与管理控制台" class="headerlink" title="JConsole：Java 监视与管理控制台"></a>JConsole：Java 监视与管理控制台</h3><p>JConsole 是基于JMX（JMX（Java Management Extensions）是一种用于管理和监控Java应用程序的技术）的可视化监视、管理工具，功能包括查看内存、线程、类以及CPU的使用情况。可以很方便的监视本地及远程服务器的 java 进程的内存使用情况。</p>
+<p>可以在控制台输入<code>jconsole</code>命令启动或者在 JDK 目录下的 bin 目录找到<code>jconsole.exe</code>然后双击启动。</p>
+<p>如果需要使用 JConsole 连接远程进程，可以在远程 Java 程序启动时加上下面这些参数:</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-attr">-Djava.rmi.server.hostname</span>=<span class="hljs-string">外网访问 ip 地址</span><br><span class="hljs-attr">-Dcom.sun.management.jmxremote.port</span>=<span class="hljs-string">60001   //监控的端口号</span><br><span class="hljs-attr">-Dcom.sun.management.jmxremote.authenticate</span>=<span class="hljs-string">false   //关闭认证</span><br><span class="hljs-attr">-Dcom.sun.management.jmxremote.ssl</span>=<span class="hljs-string">false</span><br></code></pre></td></tr></table></figure>
 
+<h3 id="Visual-VM-多合一故障处理工具"><a href="#Visual-VM-多合一故障处理工具" class="headerlink" title="Visual VM:多合一故障处理工具"></a>Visual VM:多合一故障处理工具</h3><p>VisualVM 提供在 Java 虚拟机 (Java Virtual Machine, JVM) 上运行的 Java 应用程序的详细信息。在 VisualVM 的图形用户界面中，您可以方便、快捷地查看多个 Java 应用程序的相关信息。<a target="_blank" rel="noopener" href="https://visualvm.github.io/">Visual VM 官网</a>。<a target="_blank" rel="noopener" href="https://visualvm.github.io/documentation.html">Visual VM 中文文档</a>。</p>
+<blockquote>
+<p>下面这段话摘自《深入理解 Java 虚拟机》。</p>
+<p>VisualVM（All-in-One Java Troubleshooting Tool）是到目前为止随 JDK 发布的功能最强大的运行监视和故障处理程序，官方在 VisualVM 的软件说明中写上了“All-in-One”的描述字样，预示着他除了运行监视、故障处理外，还提供了很多其他方面的功能，如性能分析（Profiling）。VisualVM 的性能分析功能甚至比起 JProfiler、YourKit 等专业且收费的 Profiling 工具都不会逊色多少，而且 VisualVM 还有一个很大的优点：不需要被监视的程序基于特殊 Agent 运行，因此他对应用程序的实际性能的影响很小，使得他可以直接应用在生产环境中。这个优点是 JProfiler、YourKit 等工具无法与之媲美的。</p>
+</blockquote>
+<p>VisualVM 基于 NetBeans 平台开发，因此它一开始就具备了插件扩展功能的特性，通过插件扩展支持，VisualVM 可以做到：</p>
 <ul>
-<li><code>option</code>：表示要执行的操作，如获取堆信息、生成堆转储文件等。</li>
-<li><code>pid</code>：表示要获取内存映射信息的Java虚拟机进程的ID。</li>
+<li><strong>显示虚拟机进程以及进程的配置、环境信息（jps、jinfo）。</strong></li>
+<li><strong>监视应用程序的 CPU、GC、堆、方法区以及线程的信息（jstat、jstack）。</strong></li>
+<li><strong>dump 以及分析堆转储快照（jmap、jhat）。</strong></li>
+<li><strong>方法级的程序运行性能分析，找到被调用最多、运行时间最长的方法。</strong></li>
+<li><strong>离线程序快照：收集程序的运行时配置、线程 dump、内存 dump 等信息建立一个快照，可以将快照发送开发者处进行 Bug 反馈。</strong></li>
+<li><strong>其他 plugins 的无限的可能性……</strong></li>
 </ul>
-<p>以下是一些常用的<code>jmap</code>选项：</p>
-<ul>
-<li><code>-dump</code>：生成堆转储文件（heap dump），可以使用内存分析工具（如Eclipse MAT）对其进行进一步分析。</li>
-<li><code>-histo</code>：显示堆中对象的实例数量、内存占用和类名等信息的直方图。</li>
-<li><code>-heap</code>：显示堆的摘要信息，如使用的垃圾回收器、内存区域的大小和使用情况等。</li>
-<li><code>-permstat</code>：显示永久代（PermGen）的类加载器、内存占用和类名等信息的统计信息（仅适用于JDK 7及更早版本）。</li>
-<li><code>-clstats</code>：显示类加载器和系统类的统计信息。</li>
-<li><code>-finalizerinfo</code>：显示在队列中等待执行的终结器方法的对象的信息。</li>
+<h1 id="JVM性能调优"><a href="#JVM性能调优" class="headerlink" title="JVM性能调优"></a>JVM性能调优</h1><h2 id="常见的JVM性能问题"><a href="#常见的JVM性能问题" class="headerlink" title="常见的JVM性能问题"></a>常见的JVM性能问题</h2><ul>
+<li>Full GC频繁</li>
+<li>CPU负载过高</li>
+<li>内存出现OOM问题</li>
+<li>线程出现长时间停顿或死锁</li>
+<li>程序响应时间较长</li>
 </ul>
-<p>举个例子，要为一个Java进程（假设其进程ID为12345）生成堆转储文件，并将其保存到当前目录下的<code>heapdump.hprof</code>文件中，可以运行以下命令：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">jmap -dump:format=b,file=heapdump.hprof 12345<br></code></pre></td></tr></table></figure>
-
-<p>这个命令会生成一个堆转储文件，其中包含了Java进程的内存使用情况。您可以使用内存分析工具（如Eclipse MAT）对其进行进一步分析，以诊断和解决内存相关问题。</p>
-<h1 id="JVM性能调优"><a href="#JVM性能调优" class="headerlink" title="JVM性能调优"></a>JVM性能调优</h1><h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<h2 id="JVM性能问题定位"><a href="#JVM性能问题定位" class="headerlink" title="JVM性能问题定位"></a>JVM性能问题定位</h2><p>要进行JVM性能优化，首先需要定位到系统中存在的会导致性能问题的原因。</p>
+<p>JVM性能问题的定位方法包括：</p>
+<ol>
+<li>使用jinfo或可视化工具查看配置参数。</li>
+<li>使用jstat、jmap、jstack或可视化工具等查看运行时状态。</li>
+<li>测试。</li>
+</ol>
+<h2 id="JVM性能调优-1"><a href="#JVM性能调优-1" class="headerlink" title="JVM性能调优"></a>JVM性能调优</h2><ul>
+<li>设置内存容量：增大堆内存和直接内存等内存的容量，避免出现OOM。</li>
+<li>设置垃圾收集器类型：根据系统需要选择合适的垃圾回收器。</li>
+<li>启用即时编译器（JIT）：启用JIT编译器，以将热点代码编译为本地机器码，提高执行速度。</li>
+</ul>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
 <li>周志明. 深入理解Java虚拟机:第三版. 北京: 机械工业出版社, 2019.11.</li>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/jvm/memory-area.html#java-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88">https://javaguide.cn/java/jvm/memory-area.html#java-%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%A0%88</a></li>
+<li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/jvm/jvm-parameters-intro.html">https://javaguide.cn/java/jvm/jvm-parameters-intro.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://javaguide.cn/java/jvm/jdk-monitoring-and-troubleshooting-tools.html">https://javaguide.cn/java/jvm/jdk-monitoring-and-troubleshooting-tools.html</a></li>
+<li><a target="_blank" rel="noopener" href="https://help.aliyun.com/document_detail/148851.html">https://help.aliyun.com/document_detail/148851.html</a></li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://songbaoru.github.io">Song Baoru</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://songbaoru.github.io/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">https://songbaoru.github.io/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JVM/">JVM</a></div><div class="post_share"><div class="social-share" data-image="https://th.bing.com/th/id/R.22f11d40e255acfdd79725639136d216?rik=6sX7IVmauPHLHA&amp;riu=http%3a%2f%2fup.deskcity.org%2fpic_360%2f202010%2fsl%2forx1oja4chp1120.jpg&amp;ehk=AmTg0CepawJWQDpxVYKxNFtBAxg0bJf830W5BvMPyl4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/05/Spring/" title="Spring"><img class="cover" src="https://www.tp88.net/uploads/allimg/200211/co200211105633-0.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Spring</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/02/Java%E5%9F%BA%E7%A1%80/" title="Java基础"><img class="cover" src="https://th.bing.com/th/id/R.938bed6fc39fc253a7cd36e5481b79c0?rik=Y2Po9N8cpCfjDg&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_12064_1.jpg&amp;ehk=14nQEbT9IJH%2frqdvkztI9ztPhTEGaionf87iHCQxaz8%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Java基础</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Song Baoru</div><div class="author-info__description">锲而不舍，金石可镂</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/SongBaoru"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E7%9A%84%E7%BB%84%E6%88%90%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">JVM的组成及其作用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="toc-number">1.1.</span> <span class="toc-text">运行时数据区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E"><span class="toc-number">1.3.</span> <span class="toc-text">执行引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.4.</span> <span class="toc-text">本地方法接口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E9%98%B6%E6%AE%B5"><span class="toc-number">2.1.</span> <span class="toc-text">类加载阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%88%B6%E5%AD%90%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%BA%E5%BA%8F%E5%85%B3%E7%B3%BB"><span class="toc-number">2.2.</span> <span class="toc-text">父子类加载和初始化顺序关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8%E5%92%8C%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.3.</span> <span class="toc-text">类加载器和双亲委派模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OSGI"><span class="toc-number">2.4.</span> <span class="toc-text">OSGI</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%90%86%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">垃圾回收理论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E6%B4%BB%E7%9A%84%E5%88%A4%E6%96%AD%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">对象是否存活的判断算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">3.2.</span> <span class="toc-text">Java引用类型和垃圾回收的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E4%BB%A3%E5%9B%9E%E6%94%B6%E7%90%86%E8%AE%BA"><span class="toc-number">3.3.</span> <span class="toc-text">分代回收理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apple%E5%BC%8F%E5%9B%9E%E6%94%B6"><span class="toc-number">3.4.</span> <span class="toc-text">Apple式回收</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.5.</span> <span class="toc-text">垃圾回收类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">3.6.</span> <span class="toc-text">垃圾回收算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">垃圾回收器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8B%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%B9%B6%E5%8F%91"><span class="toc-number">4.1.</span> <span class="toc-text">垃圾收集器下的并行和并发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.2.</span> <span class="toc-text">默认垃圾收集器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text">经典垃圾回收器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E7%94%9F%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.3.1.</span> <span class="toc-text">新生代垃圾回收器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%81%E5%B9%B4%E4%BB%A3%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.3.2.</span> <span class="toc-text">老年代垃圾收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%8A%9F%E8%83%BD%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.3.3.</span> <span class="toc-text">全功能垃圾收集器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8E%E5%BB%B6%E8%BF%9F%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text">低延迟垃圾回收器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%BF%9B%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.5.</span> <span class="toc-text">不进行垃圾回收的垃圾收集器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E7%9A%84%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">JVM的参数配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">堆内存相关的参数（部分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E7%9B%B8%E5%85%B3%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">垃圾回收器相关的参数（部分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%A5%E5%BF%97%E7%9B%B8%E5%85%B3%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">5.3.</span> <span class="toc-text">日志相关的参数（部分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OOM%E7%9B%B8%E5%85%B3%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">5.4.</span> <span class="toc-text">OOM相关的参数（部分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="toc-number">5.5.</span> <span class="toc-text">JVM参数设置示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%EF%BC%88%E8%B0%83%E4%BC%98%E5%B7%A5%E5%85%B7%EF%BC%89"><span class="toc-number">6.</span> <span class="toc-text">JVM性能分析工具（调优工具）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jps"><span class="toc-number">6.0.1.</span> <span class="toc-text">jps</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jinfo"><span class="toc-number">6.0.2.</span> <span class="toc-text">jinfo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jstat"><span class="toc-number">6.0.3.</span> <span class="toc-text">jstat</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jstack"><span class="toc-number">6.0.4.</span> <span class="toc-text">jstack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jmap"><span class="toc-number">6.0.5.</span> <span class="toc-text">jmap</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98"><span class="toc-number">7.</span> <span class="toc-text">JVM性能调优</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#References"><span class="toc-number">8.</span> <span class="toc-text">References</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" title="数据结构和算法二刷（更新中）"><img src="https://th.bing.com/th/id/R.ee995d98e687b0896c006b16980e126b?rik=ZPHZfBPZDznIiw&amp;riu=http%3a%2f%2fimg.sj33.cn%2fuploads%2fallimg%2f200912%2f20091223150352964.jpg&amp;ehk=ETvV5eN%2fU0LZJE9ZbDxQN%2btQkl3ZWmIGnhIp8GzKzZs%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构和算法二刷（更新中）"/></a><div class="content"><a class="title" href="/2023/07/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" title="数据结构和算法二刷（更新中）">数据结构和算法二刷（更新中）</a><time datetime="2023-07-10T00:32:48.000Z" title="Created 2023-07-10 08:32:48">2023-07-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/RocketMQ/" title="RocketMQ"><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/04/ChMkJlbKx9CIKZ-qABs7mJV2aP0AALH5ALBgd0AGzuw770.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RocketMQ"/></a><div class="content"><a class="title" href="/2023/05/24/RocketMQ/" title="RocketMQ">RocketMQ</a><time datetime="2023-05-24T08:13:44.000Z" title="Created 2023-05-24 16:13:44">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud"><img src="https://th.bing.com/th/id/OIP.fekfR1FWtn_EXSMaueufagHaEK?pid=ImgDet&amp;rs=1" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud"/></a><div class="content"><a class="title" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud">Spring Cloud</a><time datetime="2023-05-24T08:08:42.000Z" title="Created 2023-05-24 16:08:42">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程"><img src="https://th.bing.com/th/id/R.9316fccce50d6257f0ffb94c5ae6461a?rik=EDdsz%2f4EuNN2ig&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_23966_2.jpg&amp;ehk=ww8MI8P3WC8UIvjNAsOE50t9oRfkNst8LVUnJmhIK8A%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java并发编程"/></a><div class="content"><a class="title" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程">Java并发编程</a><time datetime="2023-05-07T13:39:13.000Z" title="Created 2023-05-07 21:39:13">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络"><img src="https://th.bing.com/th/id/R.826fae185d03cd7935cc5haf1cd1844c3?rik=9ONAxF3s06zoPg&amp;riu=http%3a%2f%2fpic5.bbzhi.com%2ffengjingbizhi%2fgaoqingziranfengjingbizhi%2fgaoqingziranfengjingbizhi_415690_15.jpg&amp;ehk=BbD3V6XWzCc5AJ7yXlMt4j5AU09Nk56syRdeDXFSvYY%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络"/></a><div class="content"><a class="title" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">计算机网络</a><time datetime="2023-05-07T13:37:05.000Z" title="Created 2023-05-07 21:37:05">2023-05-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By Song Baoru</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://songbaoru.github.io">Song Baoru</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://songbaoru.github.io/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/">https://songbaoru.github.io/2023/05/03/JVM%E5%BA%95%E5%B1%82%E5%8E%9F%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/JVM/">JVM</a></div><div class="post_share"><div class="social-share" data-image="https://th.bing.com/th/id/R.22f11d40e255acfdd79725639136d216?rik=6sX7IVmauPHLHA&amp;riu=http%3a%2f%2fup.deskcity.org%2fpic_360%2f202010%2fsl%2forx1oja4chp1120.jpg&amp;ehk=AmTg0CepawJWQDpxVYKxNFtBAxg0bJf830W5BvMPyl4%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/05/Spring/" title="Spring"><img class="cover" src="https://www.tp88.net/uploads/allimg/200211/co200211105633-0.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Spring</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/02/Java%E5%9F%BA%E7%A1%80/" title="Java基础"><img class="cover" src="https://th.bing.com/th/id/R.938bed6fc39fc253a7cd36e5481b79c0?rik=Y2Po9N8cpCfjDg&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_12064_1.jpg&amp;ehk=14nQEbT9IJH%2frqdvkztI9ztPhTEGaionf87iHCQxaz8%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Java基础</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Song Baoru</div><div class="author-info__description">锲而不舍，金石可镂</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/SongBaoru"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E7%9A%84%E7%BB%84%E6%88%90%E5%8F%8A%E5%85%B6%E4%BD%9C%E7%94%A8"><span class="toc-number">1.</span> <span class="toc-text">JVM的组成及其作用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%90%E8%A1%8C%E6%97%B6%E6%95%B0%E6%8D%AE%E5%8C%BA"><span class="toc-number">1.1.</span> <span class="toc-text">运行时数据区</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8"><span class="toc-number">1.2.</span> <span class="toc-text">类加载器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%A7%E8%A1%8C%E5%BC%95%E6%93%8E"><span class="toc-number">1.3.</span> <span class="toc-text">执行引擎</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9C%AC%E5%9C%B0%E6%96%B9%E6%B3%95%E6%8E%A5%E5%8F%A3"><span class="toc-number">1.4.</span> <span class="toc-text">本地方法接口</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E6%9C%BA%E5%88%B6"><span class="toc-number">2.</span> <span class="toc-text">类加载机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%99%A8-1"><span class="toc-number">2.1.</span> <span class="toc-text">类加载器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%9F%E8%83%BD"><span class="toc-number">2.1.1.</span> <span class="toc-text">功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8A%A0%E8%BD%BD%E8%A7%84%E5%88%99"><span class="toc-number">2.1.2.</span> <span class="toc-text">加载规则</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B1%BB%E5%9E%8B"><span class="toc-number">2.1.3.</span> <span class="toc-text">类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E4%BA%B2%E5%A7%94%E6%B4%BE%E6%A8%A1%E5%9E%8B"><span class="toc-number">2.1.4.</span> <span class="toc-text">双亲委派模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%88%B6%E5%AD%90%E7%B1%BB%E5%8A%A0%E8%BD%BD%E5%92%8C%E5%88%9D%E5%A7%8B%E5%8C%96%E9%A1%BA%E5%BA%8F%E5%85%B3%E7%B3%BB"><span class="toc-number">2.1.5.</span> <span class="toc-text">父子类加载和初始化顺序关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B1%BB%E5%8A%A0%E8%BD%BD%E9%98%B6%E6%AE%B5"><span class="toc-number">2.2.</span> <span class="toc-text">类加载阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A3%80%E9%AA%8C%E9%98%B6%E6%AE%B5"><span class="toc-number">2.3.</span> <span class="toc-text">检验阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OSGI"><span class="toc-number">2.4.</span> <span class="toc-text">OSGI</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%90%86%E8%AE%BA"><span class="toc-number">3.</span> <span class="toc-text">垃圾回收理论</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E8%B1%A1%E6%98%AF%E5%90%A6%E5%AD%98%E6%B4%BB%E7%9A%84%E5%88%A4%E6%96%AD%E7%AE%97%E6%B3%95"><span class="toc-number">3.1.</span> <span class="toc-text">对象是否存活的判断算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java%E5%BC%95%E7%94%A8%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="toc-number">3.2.</span> <span class="toc-text">Java引用类型和垃圾回收的关系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E4%BB%A3%E5%9B%9E%E6%94%B6%E7%90%86%E8%AE%BA"><span class="toc-number">3.3.</span> <span class="toc-text">分代回收理论</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Apple%E5%BC%8F%E5%9B%9E%E6%94%B6"><span class="toc-number">3.4.</span> <span class="toc-text">Apple式回收</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%B1%BB%E5%9E%8B"><span class="toc-number">3.5.</span> <span class="toc-text">垃圾回收类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95"><span class="toc-number">3.6.</span> <span class="toc-text">垃圾回收算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">垃圾回收器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8%E4%B8%8B%E7%9A%84%E5%B9%B6%E8%A1%8C%E5%92%8C%E5%B9%B6%E5%8F%91"><span class="toc-number">4.1.</span> <span class="toc-text">垃圾收集器下的并行和并发</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.2.</span> <span class="toc-text">默认垃圾收集器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.3.</span> <span class="toc-text">经典垃圾回收器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B0%E7%94%9F%E4%BB%A3%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.3.1.</span> <span class="toc-text">新生代垃圾回收器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%81%E5%B9%B4%E4%BB%A3%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.3.2.</span> <span class="toc-text">老年代垃圾收集器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%A8%E5%8A%9F%E8%83%BD%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.3.3.</span> <span class="toc-text">全功能垃圾收集器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%8E%E5%BB%B6%E8%BF%9F%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8"><span class="toc-number">4.4.</span> <span class="toc-text">低延迟垃圾回收器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%8D%E8%BF%9B%E8%A1%8C%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%9A%84%E5%9E%83%E5%9C%BE%E6%94%B6%E9%9B%86%E5%99%A8"><span class="toc-number">4.5.</span> <span class="toc-text">不进行垃圾回收的垃圾收集器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E7%9A%84%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE"><span class="toc-number">5.</span> <span class="toc-text">JVM的参数配置</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A0%86%E5%86%85%E5%AD%98%E7%9B%B8%E5%85%B3%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">5.1.</span> <span class="toc-text">堆内存相关的参数（部分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E5%99%A8%E7%9B%B8%E5%85%B3%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">5.2.</span> <span class="toc-text">垃圾回收器相关的参数（部分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GC%E6%97%A5%E5%BF%97%E7%9B%B8%E5%85%B3%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">5.3.</span> <span class="toc-text">GC日志相关的参数（部分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OOM%E7%9B%B8%E5%85%B3%E7%9A%84%E5%8F%82%E6%95%B0%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">5.4.</span> <span class="toc-text">OOM相关的参数（部分）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E5%8F%82%E6%95%B0%E8%AE%BE%E7%BD%AE%E7%A4%BA%E4%BE%8B"><span class="toc-number">5.5.</span> <span class="toc-text">JVM参数设置示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Java%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7"><span class="toc-number">6.</span> <span class="toc-text">Java监控工具</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%91%E6%8E%A7%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">6.1.</span> <span class="toc-text">监控命令行工具（部分）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jps%EF%BC%9A%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89-Java-%E8%BF%9B%E7%A8%8B"><span class="toc-number">6.1.1.</span> <span class="toc-text">jps：查看所有 Java 进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jstat%EF%BC%9A%E7%9B%91%E8%A7%86%E8%99%9A%E6%8B%9F%E6%9C%BA%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81%E4%BF%A1%E6%81%AF"><span class="toc-number">6.1.2.</span> <span class="toc-text">jstat：监视虚拟机运行状态信息</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%85%E9%9A%9C%E6%8E%92%E9%99%A4%E5%91%BD%E4%BB%A4%E8%A1%8C%E5%B7%A5%E5%85%B7%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">6.2.</span> <span class="toc-text">故障排除命令行工具（部分）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#jinfo-%E6%9F%A5%E7%9C%8B%E5%92%8C%E8%B0%83%E6%95%B4%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%8F%82%E6%95%B0"><span class="toc-number">6.2.1.</span> <span class="toc-text">jinfo: 查看和调整虚拟机参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jmap%EF%BC%9A%E7%94%9F%E6%88%90%E5%A0%86%E8%BD%AC%E5%82%A8%E5%BF%AB%E7%85%A7"><span class="toc-number">6.2.2.</span> <span class="toc-text">jmap：生成堆转储快照</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jstack%EF%BC%9A%E7%94%9F%E6%88%90%E7%BA%BF%E7%A8%8B%E5%BF%AB%E7%85%A7"><span class="toc-number">6.2.3.</span> <span class="toc-text">jstack：生成线程快照</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7%EF%BC%88%E9%83%A8%E5%88%86%EF%BC%89"><span class="toc-number">6.3.</span> <span class="toc-text">可视化分析工具（部分）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#JConsole%EF%BC%9AJava-%E7%9B%91%E8%A7%86%E4%B8%8E%E7%AE%A1%E7%90%86%E6%8E%A7%E5%88%B6%E5%8F%B0"><span class="toc-number">6.3.1.</span> <span class="toc-text">JConsole：Java 监视与管理控制台</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Visual-VM-%E5%A4%9A%E5%90%88%E4%B8%80%E6%95%85%E9%9A%9C%E5%A4%84%E7%90%86%E5%B7%A5%E5%85%B7"><span class="toc-number">6.3.2.</span> <span class="toc-text">Visual VM:多合一故障处理工具</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98"><span class="toc-number">7.</span> <span class="toc-text">JVM性能调优</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%81%E7%9A%84JVM%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98"><span class="toc-number">7.1.</span> <span class="toc-text">常见的JVM性能问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D"><span class="toc-number">7.2.</span> <span class="toc-text">JVM性能问题定位</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JVM%E6%80%A7%E8%83%BD%E8%B0%83%E4%BC%98-1"><span class="toc-number">7.3.</span> <span class="toc-text">JVM性能调优</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#References"><span class="toc-number">8.</span> <span class="toc-text">References</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" title="数据结构和算法二刷（更新中）"><img src="https://th.bing.com/th/id/R.ee995d98e687b0896c006b16980e126b?rik=ZPHZfBPZDznIiw&amp;riu=http%3a%2f%2fimg.sj33.cn%2fuploads%2fallimg%2f200912%2f20091223150352964.jpg&amp;ehk=ETvV5eN%2fU0LZJE9ZbDxQN%2btQkl3ZWmIGnhIp8GzKzZs%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构和算法二刷（更新中）"/></a><div class="content"><a class="title" href="/2023/07/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" title="数据结构和算法二刷（更新中）">数据结构和算法二刷（更新中）</a><time datetime="2023-07-10T00:32:48.000Z" title="Created 2023-07-10 08:32:48">2023-07-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/RocketMQ/" title="RocketMQ"><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/04/ChMkJlbKx9CIKZ-qABs7mJV2aP0AALH5ALBgd0AGzuw770.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RocketMQ"/></a><div class="content"><a class="title" href="/2023/05/24/RocketMQ/" title="RocketMQ">RocketMQ</a><time datetime="2023-05-24T08:13:44.000Z" title="Created 2023-05-24 16:13:44">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud"><img src="https://th.bing.com/th/id/OIP.fekfR1FWtn_EXSMaueufagHaEK?pid=ImgDet&amp;rs=1" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud"/></a><div class="content"><a class="title" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud">Spring Cloud</a><time datetime="2023-05-24T08:08:42.000Z" title="Created 2023-05-24 16:08:42">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程"><img src="https://th.bing.com/th/id/R.9316fccce50d6257f0ffb94c5ae6461a?rik=EDdsz%2f4EuNN2ig&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_23966_2.jpg&amp;ehk=ww8MI8P3WC8UIvjNAsOE50t9oRfkNst8LVUnJmhIK8A%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java并发编程"/></a><div class="content"><a class="title" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程">Java并发编程</a><time datetime="2023-05-07T13:39:13.000Z" title="Created 2023-05-07 21:39:13">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络"><img src="https://th.bing.com/th/id/R.826fae185d03cd7935cc5haf1cd1844c3?rik=9ONAxF3s06zoPg&amp;riu=http%3a%2f%2fpic5.bbzhi.com%2ffengjingbizhi%2fgaoqingziranfengjingbizhi%2fgaoqingziranfengjingbizhi_415690_15.jpg&amp;ehk=BbD3V6XWzCc5AJ7yXlMt4j5AU09Nk56syRdeDXFSvYY%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络"/></a><div class="content"><a class="title" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">计算机网络</a><time datetime="2023-05-07T13:37:05.000Z" title="Created 2023-05-07 21:37:05">2023-05-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By Song Baoru</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
