@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机网络 | SBR Blog</title><meta name="author" content="Song Baoru"><meta name="copyright" content="Song Baoru"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="TCP&#x2F;IP五层网络模型 应用层：负责处理应用程序的特定通信细节。常见的应用层协议有HTTP（用于Web浏览器和服务器之间的通信）、SMTP（用于发送和接收电子邮件）和FTP（用于文件传输）等。 传输层：负责在网络中传输数据。主要有两种传输协议：TCP（传输控制协议）和UDP（用户数据报协议）。TCP提供可靠的、面向连接的数据传输，确保数据完整性和顺序；UDP提供不可靠的、无连接的数据传">
+<!DOCTYPE html><html lang="zh" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>计算机网络 | SBR Blog</title><meta name="author" content="Song Baoru"><meta name="copyright" content="Song Baoru"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="TCP&#x2F;IP五层网络模型 应用层：负责处理应用程序的特定通信细节。常见的应用层协议有：  HTTP（Hypertext Transfer Protocol，超文本传输协议）：基于 TCP 协议，是一种用于传输超文本和多媒体内容的协议，主要是为 Web 浏览器与 Web 服务器之间的通信而设计的。当我们使用浏览器浏览网页的时候，我们网页就是通过 HTTP 请求进行加载的。  SMTP（Si">
 <meta property="og:type" content="article">
 <meta property="og:title" content="计算机网络">
 <meta property="og:url" content="https://songbaoru.github.io/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/index.html">
 <meta property="og:site_name" content="SBR Blog">
-<meta property="og:description" content="TCP&#x2F;IP五层网络模型 应用层：负责处理应用程序的特定通信细节。常见的应用层协议有HTTP（用于Web浏览器和服务器之间的通信）、SMTP（用于发送和接收电子邮件）和FTP（用于文件传输）等。 传输层：负责在网络中传输数据。主要有两种传输协议：TCP（传输控制协议）和UDP（用户数据报协议）。TCP提供可靠的、面向连接的数据传输，确保数据完整性和顺序；UDP提供不可靠的、无连接的数据传">
+<meta property="og:description" content="TCP&#x2F;IP五层网络模型 应用层：负责处理应用程序的特定通信细节。常见的应用层协议有：  HTTP（Hypertext Transfer Protocol，超文本传输协议）：基于 TCP 协议，是一种用于传输超文本和多媒体内容的协议，主要是为 Web 浏览器与 Web 服务器之间的通信而设计的。当我们使用浏览器浏览网页的时候，我们网页就是通过 HTTP 请求进行加载的。  SMTP（Si">
 <meta property="og:locale">
 <meta property="og:image" content="https://th.bing.com/th/id/R.826fae185d03cd7935cc5haf1cd1844c3?rik=9ONAxF3s06zoPg&riu=http%3a%2f%2fpic5.bbzhi.com%2ffengjingbizhi%2fgaoqingziranfengjingbizhi%2fgaoqingziranfengjingbizhi_415690_15.jpg&ehk=BbD3V6XWzCc5AJ7yXlMt4j5AU09Nk56syRdeDXFSvYY%3d&risl=&pid=ImgRaw&r=0">
 <meta property="article:published_time" content="2023-05-07T13:37:05.000Z">
-<meta property="article:modified_time" content="2023-07-03T01:19:22.858Z">
+<meta property="article:modified_time" content="2023-07-21T14:24:35.338Z">
 <meta property="article:author" content="Song Baoru">
 <meta property="article:tag" content="计算机网络">
 <meta name="twitter:card" content="summary">
@@ -58,7 +58,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-07-03 09:19:22'
+  postUpdate: '2023-07-21 22:24:35'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -162,12 +162,41 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="SBR Blog"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">SBR Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">计算机网络</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-07T13:37:05.000Z" title="Created 2023-05-07 21:37:05">2023-05-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-03T01:19:22.858Z" title="Updated 2023-07-03 09:19:22">2023-07-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT/">IT</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">18k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>55min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机网络"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="TCP-x2F-IP五层网络模型"><a href="#TCP-x2F-IP五层网络模型" class="headerlink" title="TCP&#x2F;IP五层网络模型"></a>TCP&#x2F;IP五层网络模型</h1><ol>
-<li><strong>应用层</strong>：负责处理应用程序的特定通信细节。常见的应用层协议有HTTP（用于Web浏览器和服务器之间的通信）、SMTP（用于发送和接收电子邮件）和FTP（用于文件传输）等。</li>
-<li><strong>传输层</strong>：负责在网络中传输数据。主要有两种传输协议：TCP（传输控制协议）和UDP（用户数据报协议）。TCP提供可靠的、面向连接的数据传输，确保数据完整性和顺序；UDP提供不可靠的、无连接的数据传输，速度快但可能丢失数据。</li>
-<li><strong>网络层</strong>：负责将数据包在网络中进行路由和寻址。互联网协议（IP）是网络层的核心协议，负责将数据包传输到目标设备。此外，还有一些辅助协议，如ICMP（用于诊断网络问题）和IGMP（用于多播通信）等。</li>
-<li><strong>数据链路层</strong>：负责在同一网络中传输数据帧。数据链路层协议负责将网络层的IP数据包封装为数据帧，并通过物理介质进行传输。常见的数据链路层协议有以太网、Wi-Fi和PPP等。</li>
-<li><strong>物理层</strong>：负责在物理介质上进行数据传输。物理层定义了网络设备之间的电气、机械和时序规范，以及数据在物理介质上的编码方式。常见的物理介质有双绞线、光纤和无线电波等。</li>
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="SBR Blog"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">SBR Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">计算机网络</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-07T13:37:05.000Z" title="Created 2023-05-07 21:37:05">2023-05-07</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-07-21T14:24:35.338Z" title="Updated 2023-07-21 22:24:35">2023-07-21</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT/">IT</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">18.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>57min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="计算机网络"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="TCP-x2F-IP五层网络模型"><a href="#TCP-x2F-IP五层网络模型" class="headerlink" title="TCP&#x2F;IP五层网络模型"></a>TCP&#x2F;IP五层网络模型</h1><ol>
+<li><p><strong>应用层</strong>：负责处理应用程序的特定通信细节。常见的应用层协议有：</p>
+<ul>
+<li><p><strong>HTTP（Hypertext Transfer Protocol，超文本传输协议）</strong>：基于 TCP 协议，是一种用于传输超文本和多媒体内容的协议，主要是为 Web 浏览器与 Web 服务器之间的通信而设计的。当我们使用浏览器浏览网页的时候，我们网页就是通过 HTTP 请求进行加载的。</p>
+</li>
+<li><p><strong>SMTP（Simple Mail Transfer Protocol，简单邮件发送协议）</strong>：基于 TCP 协议，是一种用于发送电子邮件的协议。注意 ：SMTP 协议只负责邮件的发送，而不是接收。要从邮件服务器接收邮件，需要使用 POP3 或 IMAP 协议。</p>
+</li>
+<li><p><strong>POP3&#x2F;IMAP（邮件接收协议）</strong>：基于 TCP 协议，两者都是负责邮件接收的协议。IMAP 协议是比 POP3 更新的协议，它在功能和性能上都更加强大。IMAP 支持邮件搜索、标记、分类、归档等高级功能，而且可以在多个设备之间同步邮件状态。几乎所有现代电子邮件客户端和服务器都支持 IMAP。</p>
+</li>
+<li><p><strong>FTP（File Transfer Protocol，文件传输协议）</strong> : 基于 TCP 协议，是一种用于在计算机之间传输文件的协议，可以屏蔽操作系统和文件存储方式。注意 ：FTP 是一种不安全的协议，因为它在传输过程中不会对数据进行加密。建议在传输敏感数据时使用更安全的协议，如 SFTP。</p>
+</li>
+<li><p><strong>Telnet（远程登陆协议）</strong>：基于 TCP 协议，用于通过一个终端登陆到其他服务器。Telnet 协议的最大缺点之一是所有数据（包括用户名和密码）均以明文形式发送，这有潜在的安全风险。这就是为什么如今很少使用 Telnet，而是使用一种称为 SSH 的非常安全的网络传输协议的主要原因。</p>
+</li>
+<li><p><strong>SSH（Secure Shell Protocol，安全的网络传输协议）</strong>：基于 TCP 协议，通过加密和认证机制实现安全的访问和文件传输等业务</p>
+</li>
+</ul>
+</li>
+<li><p><strong>传输层</strong>：负责在网络中传输数据。主要有两种传输协议：TCP（传输控制协议）和UDP（用户数据报协议）。TCP提供可靠的、面向连接的数据传输，确保数据完整性和顺序；UDP提供不可靠的、无连接的数据传输，速度快但可能丢失数据。</p>
+</li>
+<li><p><strong>网络层</strong>：负责将数据包在网络中进行路由和寻址。常见的网络层协议有：</p>
+<ul>
+<li><p><strong>IP（Internet Protocol，网际协议）</strong>：TCP&#x2F;IP 协议中最重要的协议之一，属于网络层的协议，主要作用是定义数据包的格式、对数据包进行路由和寻址，以便它们可以跨网络传播并到达正确的目的地。目前 IP 协议主要分为两种，一种是过去的 IPv4，另一种是较新的 IPv6，目前这两种协议都在使用，但后者已经被提议来取代前者。</p>
+</li>
+<li><p><strong>ARP（Address Resolution Protocol，地址解析协议）</strong>：ARP 协议解决的是网络层地址和链路层地址之间的转换问题。因为一个 IP 数据报在物理上传输的过程中，总是需要知道下一跳（物理上的下一个目的地）该去往何处，但 IP 地址属于逻辑地址，而 MAC 地址才是物理地址，ARP 协议解决了 IP 地址转 MAC 地址的一些问题。</p>
+</li>
+<li><p><strong>ICMP（Internet Control Message Protocol，互联网控制报文协议）</strong>：一种用于传输网络状态和错误消息的协议，常用于网络诊断和故障排除。例如，Ping 工具就使用了 ICMP 协议来测试网络连通性。</p>
+</li>
+<li><p><strong>NAT（Network Address Translation，网络地址转换协议）</strong>：NAT 协议的应用场景如同它的名称——网络地址转换，应用于内部网到外部网的地址转换过程中。具体地说，在一个小的子网（局域网，LAN）内，各主机使用的是同一个 LAN 下的 IP 地址，但在该 LAN 以外，在广域网（WAN）中，需要一个统一的 IP 地址来标识该 LAN 在整个 Internet 上的位置。</p>
+</li>
+</ul>
+</li>
+<li><p><strong>数据链路层</strong>：负责在同一网络中传输数据帧。数据链路层协议负责将网络层的IP数据包封装为数据帧，并通过物理介质进行传输。常见的数据链路层协议有以太网、Wi-Fi和PPP等。</p>
+</li>
+<li><p><strong>物理层</strong>：负责在物理介质上进行数据传输。物理层定义了网络设备之间的电气、机械和时序规范，以及数据在物理介质上的编码方式。常见的物理介质有双绞线、光纤和无线电波等。</p>
+</li>
 </ol>
 <h1 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h1><p>TCP（Transmission Control Protocol，传输控制协议）是一种面向连接的、可靠的传输协议。</p>
 <h2 id="报文格式"><a href="#报文格式" class="headerlink" title="报文格式"></a>报文格式</h2><p>TCP报文（也称为TCP段或TCP数据包）是TCP协议中用于在网络中传输数据的基本单位。TCP报文包含了一个TCP首部和可选的数据部分。</p>
@@ -197,7 +226,6 @@
 <li><strong>FIN_WAIT_1</strong>：当客户端完成数据传输并发送FIN报文后，进入FIN_WAIT_1状态。这表示客户端请求关闭连接，等待服务器的确认。</li>
 <li><strong>FIN_WAIT_2</strong>：客户端收到服务器对FIN报文的确认ACK报文后，进入FIN_WAIT_2状态。此时，客户端等待服务器发送自己的FIN报文，表示服务器已完成数据传输。</li>
 <li><strong>CLOSE_WAIT</strong>：服务器收到客户端的FIN报文后，进入CLOSE_WAIT状态。这表示服务器已确认客户端的关闭请求，但仍需等待服务器完成数据传输。</li>
-<li><strong>CLOSING</strong>：当双方同时发送FIN报文时，客户端会在收到服务器的FIN报文前进入CLOSING状态。这表示双方都请求关闭连接，但客户端尚未收到服务器对其FIN报文的确认。</li>
 <li><strong>LAST_ACK</strong>：服务器在发送FIN报文后，进入LAST_ACK状态。这表示服务器等待客户端对其FIN报文的确认。</li>
 <li><strong>TIME_WAIT</strong>：客户端收到服务器的FIN报文并确认后，进入TIME_WAIT状态。客户端会在这个状态持续一段时间（通常为2倍的最大分段生存时间，MSL），以确保服务器收到对其FIN报文的确认。之后，客户端进入CLOSED状态，关闭连接。</li>
 <li><strong>CLOSED</strong>：连接已完全关闭，可以释放所有相关资源。</li>
@@ -228,7 +256,22 @@
 </li>
 </ol>
 <p>如果只进行两次握手，客户端和服务器之间的连接可能不可靠。例如，客户端发送SYN报文后，服务器回复SYN-ACK报文，但无法确认客户端是否具备接收能力。这可能导致服务器发送的数据无法被客户端正确接收，从而影响通信质量。因此，为了实现可靠的连接建立，TCP协议采用了三次握手的机制。</p>
-<h3 id="SYN攻击"><a href="#SYN攻击" class="headerlink" title="SYN攻击"></a>SYN攻击</h3><p>SYN攻击（也称为TCP SYN泛洪攻击）是一种利用TCP协议三次握手机制进行的拒绝服务（DoS）攻击。攻击者向目标服务器发送大量伪造源IP地址的SYN报文，目的是消耗服务器的资源，使正常用户无法访问该服务器。以下是SYN攻击的详细过程：</p>
+<h2 id="对TCP三次握手的DoS攻击"><a href="#对TCP三次握手的DoS攻击" class="headerlink" title="对TCP三次握手的DoS攻击"></a>对TCP三次握手的DoS攻击</h2><h3 id="Connection-Flood攻击"><a href="#Connection-Flood攻击" class="headerlink" title="Connection Flood攻击"></a>Connection Flood攻击</h3><p>Connection Flood攻击是一种DoS（Denial of Service ，拒绝服务）攻击，其主要目标是消耗目标服务器的连接资源，使其无法处理新的合法连接请求。这种攻击方法通常通过发送大量的连接请求或半打开的连接来实现。</p>
+<p>在Connection Flood攻击中，攻击者通常采取以下步骤：</p>
+<ol>
+<li>攻击者向目标服务器发送大量的连接请求，可能使用合法或伪造的IP地址。</li>
+<li>目标服务器在收到连接请求后，尝试为每个请求分配资源，以处理并维护这些连接。</li>
+<li>随着连接数量的增加，目标服务器的资源逐渐耗尽，导致无法处理新的合法连接请求。</li>
+</ol>
+<p>Connection Flood攻击可能针对不同的协议和服务，例如HTTP连接泛洪、TCP连接泛洪或TLS&#x2F;SSL连接泛洪。</p>
+<p>为了防御Connection Flood攻击，可以采取以下措施：</p>
+<ol>
+<li><strong>限制连接速率</strong>：为单个IP地址或子网设置连接速率限制，以防止攻击者短时间内发送大量连接请求。</li>
+<li><strong>连接队列管理</strong>：优化连接队列策略，例如缩短超时时间、增加队列大小等，以提高服务器处理连接请求的能力。</li>
+<li><strong>负载均衡</strong>：通过负载均衡技术将连接请求分发到多个服务器，以减轻单个服务器的压力，并提高整体服务的抗攻击能力。</li>
+<li><strong>IP地址过滤</strong>：使用防火墙或其他安全设备过滤来自可疑或恶意IP地址的连接请求。</li>
+</ol>
+<h3 id="SYN攻击"><a href="#SYN攻击" class="headerlink" title="SYN攻击"></a>SYN攻击</h3><p>SYN攻击（也称为TCP SYN泛洪攻击）是一种利用TCP协议三次握手机制进行的DoS攻击。攻击者向目标服务器发送大量伪造源IP地址的SYN报文，目的是消耗服务器的资源，使正常用户无法访问该服务器。以下是SYN攻击的详细过程：</p>
 <ol>
 <li>攻击者向目标服务器发送大量SYN报文，这些报文的源IP地址是伪造的。每个SYN报文都表示一个连接请求。</li>
 <li>目标服务器收到SYN报文后，会为每个报文分配一个半连接（half-open connection），并回复SYN-ACK报文。由于源IP地址是伪造的，这些SYN-ACK报文无法到达真正的发送方。</li>
@@ -238,12 +281,12 @@
 <p>SYN攻击的危害在于它可以通过较少的资源（例如，较低的带宽和较少的报文）消耗大量服务器资源，从而实现拒绝服务的目的。防御SYN攻击的方法包括：</p>
 <ol>
 <li><strong>缩短超时时间</strong>：减少服务器等待ACK报文的时间，以便更快地释放半连接资源。</li>
+<li><strong>过滤伪造的IP地址</strong>：部署网络设备（例如防火墙和入侵检测系统）来识别并阻止伪造的IP地址，以减少SYN攻击的影响。</li>
 <li><strong>增加半连接队列大小</strong>：增加服务器可以处理的半连接数量，以应对大量的SYN报文。</li>
 <li><strong>SYN cookies</strong>：服务器在回复SYN-ACK报文时，使用一种称为SYN cookies的技术生成确认号，而不是分配半连接。当收到有效的ACK报文时，服务器可以通过确认号重新构建连接状态，从而避免为伪造的SYN报文分配资源。</li>
-<li><strong>过滤伪造的IP地址</strong>：部署网络设备（例如防火墙和入侵检测系统）来识别并阻止伪造的IP地址，以减少SYN攻击的影响。</li>
 </ol>
 <p>尽管SYN攻击是一种比较古老的攻击方式，但它仍然具有一定的威胁。通过采用合适的防御措施，可以降低SYN攻击对服务器的影响。</p>
-<h3 id="Land攻击"><a href="#Land攻击" class="headerlink" title="Land攻击"></a>Land攻击</h3><p>Land攻击是一种DoS（拒绝服务）攻击类型，这种攻击利用TCP&#x2F;IP协议的漏洞，通过发送伪造的数据包来使目标系统无法正常工作。Land攻击的特点是发送的数据包的源IP地址和目标IP地址相同，同时源端口和目标端口也相同。</p>
+<h3 id="Land攻击"><a href="#Land攻击" class="headerlink" title="Land攻击"></a>Land攻击</h3><p>Land攻击是一种DoS攻击类型，这种攻击利用TCP&#x2F;IP协议的漏洞，通过发送伪造的数据包来使目标系统无法正常工作。Land攻击的特点是发送的数据包的源IP地址和目标IP地址相同，同时源端口和目标端口也相同。</p>
 <p>Land攻击的过程如下：</p>
 <ol>
 <li>攻击者构造一个伪造的TCP数据包，将源IP地址和目标IP地址设置为目标系统的IP地址，同时将源端口和目标端口设置为相同的端口号。</li>
@@ -256,23 +299,6 @@
 <li>配置防火墙和入侵检测系统（IDS）来识别并过滤伪造的数据包。</li>
 <li>监控网络流量，以检测异常数据包和潜在的攻击行为。</li>
 </ol>
-<h3 id="Connection-Flood攻击"><a href="#Connection-Flood攻击" class="headerlink" title="Connection Flood攻击"></a>Connection Flood攻击</h3><p>Connection Flood攻击是一种拒绝服务（DoS）攻击类型，其主要目标是消耗目标服务器的连接资源，使其无法处理新的合法连接请求。这种攻击方法通常通过发送大量的连接请求或半打开的连接来实现。</p>
-<p>在Connection Flood攻击中，攻击者通常采取以下步骤：</p>
-<ol>
-<li>攻击者向目标服务器发送大量的连接请求，可能使用合法或伪造的IP地址。</li>
-<li>目标服务器在收到连接请求后，尝试为每个请求分配资源，以处理并维护这些连接。</li>
-<li>随着连接数量的增加，目标服务器的资源逐渐耗尽，导致无法处理新的合法连接请求。</li>
-</ol>
-<p>Connection Flood攻击可能针对不同的协议和服务，例如HTTP连接泛洪、TCP连接泛洪或TLS&#x2F;SSL连接泛洪。</p>
-<p>为了防御Connection Flood攻击，可以采取以下措施：</p>
-<ol>
-<li><strong>限制连接速率</strong>：为单个IP地址或子网设置连接速率限制，以防止攻击者短时间内发送大量连接请求。</li>
-<li><strong>连接队列管理</strong>：优化连接队列策略，例如缩短超时时间、增加队列大小等，以提高服务器处理连接请求的能力。</li>
-<li><strong>入侵检测和防御系统</strong>：部署入侵检测和防御系统（IDPS），以实时监测并阻止Connection Flood攻击。</li>
-<li><strong>负载均衡</strong>：通过负载均衡技术将连接请求分发到多个服务器，以减轻单个服务器的压力，并提高整体服务的抗攻击能力。</li>
-<li><strong>IP地址过滤</strong>：使用防火墙或其他安全设备过滤来自可疑或恶意IP地址的连接请求。</li>
-<li><strong>应用层防御</strong>：针对特定服务或协议的攻击，例如HTTP或TLS&#x2F;SSL连接泛洪，可以使用Web应用防火墙（WAF）或其他应用层防御技术进行防护。</li>
-</ol>
 <h2 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h2><h3 id="四次挥手的过程"><a href="#四次挥手的过程" class="headerlink" title="四次挥手的过程"></a>四次挥手的过程</h3><p>TCP四次挥手是TCP连接在传输完成后进行断开的过程。TCP（传输控制协议）是一种面向连接的协议，因此在数据传输完成后，需要通过一个四步过程来正常关闭连接。以下是TCP四次挥手的详细步骤：</p>
 <ol>
 <li><p><strong>第一次挥手</strong>：客户端向服务器发送一个FIN报文，表示客户端已经完成数据传输，请求关闭连接。此时，客户端进入FIN_WAIT_1状态。</p>
@@ -281,7 +307,7 @@
 </li>
 <li><p><strong>第三次挥手</strong>：当服务器完成数据传输后，也会向客户端发送一个FIN报文，表示服务器同意关闭连接。此时，服务器进入LAST_ACK状态。</p>
 </li>
-<li><p><strong>第四次挥手</strong>：客户端在收到服务器的 FIN 报文后，发送 ACK 报文确认并进入 TIME_WAIT 状态。服务器收到 ACK 报文后，立即关闭连接。2 倍 MSL（约 2 分钟）后，客户端关闭连接。</p>
+<li><p><strong>第四次挥手</strong>：客户端在收到服务器的 FIN 报文后，发送 ACK 报文确认并进入 TIME_WAIT 状态。服务器收到 ACK 报文后，立即关闭连接。2 倍 MSL（Maximum Segment Lifetime，最大分段生存时间），约 2 分钟后，客户端关闭连接。</p>
 </li>
 </ol>
 <h3 id="要有TIME-WAIT状态的原因"><a href="#要有TIME-WAIT状态的原因" class="headerlink" title="要有TIME_WAIT状态的原因"></a>要有TIME_WAIT状态的原因</h3><p> TIME_WAIT状态存在于TCP连接关闭过程中，具有几个重要的原因：</p>
@@ -290,13 +316,13 @@
 </li>
 <li><p><strong>处理延迟的数据包</strong>：在TIME_WAIT状态期间，客户端可以处理可能延迟到达的数据包。这有助于确保连接关闭前的所有数据包都被正确处理，防止数据丢失或错误。</p>
 </li>
-<li><p><strong>防止旧连接数据包干扰新连接</strong>：TCP连接由源IP、目标IP、源端口和目标端口四元组唯一确定。在某些情况下，相同的四元组可能在短时间内被重新用于新的连接。TIME_WAIT状态可以防止旧连接中仍在网络中传输的数据包干扰新连接。客户端在TIME_WAIT状态持续一段时间（通常为2倍的最大分段生存时间，MSL），以确保旧连接的数据包从网络中消失。</p>
+<li><p><strong>防止旧连接数据包干扰新连接</strong>：TCP连接由源IP、目标IP、源端口和目标端口四元组唯一确定。在某些情况下，相同的四元组可能在短时间内被重新用于新的连接。TIME_WAIT状态可以防止旧连接中仍在网络中传输的数据包干扰新连接。客户端在TIME_WAIT状态持续一段时间（通常为2MSL），以确保旧连接的数据包从网络中消失。</p>
 </li>
 </ol>
 <p>总之，TIME_WAIT状态在TCP连接关闭过程中发挥了重要作用，它确保了最后一个ACK报文被接收、处理延迟数据包和防止旧连接数据包干扰新连接。这有助于维护TCP连接的可靠性和数据传输的完整性。</p>
 <h3 id="关闭连接的需要四次挥手，而建立连接只要三次握手的原因"><a href="#关闭连接的需要四次挥手，而建立连接只要三次握手的原因" class="headerlink" title="关闭连接的需要四次挥手，而建立连接只要三次握手的原因"></a>关闭连接的需要四次挥手，而建立连接只要三次握手的原因</h3><p>三次握手的过程可以确保双方都具备收发数据的能力，并能同步双方的初始序列号。确认过程中间有一个合并的SYN和ACK，所以是三步。</p>
 <p>关闭连接需要四次挥手，因为 TCP 是全双工的，双方需要独立地确认对方已经完成数据发送，服务端收到SYN时可能还不能关闭连接，不能合并ACK和FIN，所以是四步。</p>
-<h2 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h2><h3 id="滑动窗口机制"><a href="#滑动窗口机制" class="headerlink" title="滑动窗口机制"></a>滑动窗口机制</h3><p>TCP协议使用以字节为单位的滑动窗口协议来控制字节流的发送</p>
+<h2 id="TCP流量控制"><a href="#TCP流量控制" class="headerlink" title="TCP流量控制"></a>TCP流量控制</h2><h3 id="滑动窗口机制"><a href="#滑动窗口机制" class="headerlink" title="滑动窗口机制"></a>滑动窗口机制</h3><p>TCP协议使用以字节为单位的滑动窗口协议来控制字节流的发送</p>
 <p> 窗口是缓存的一部分，用来暂时存放字节流。发送方和接收方各有一个窗口，接收方通过 TCP 报文段中的窗口字段告诉发送方自己的窗口大小，发送方根据这个值和其它信息设置自己的窗口大小。发送窗口内的字节都允许被发送，接收窗口内的字节都允许被接收。如果发送窗口前部的字节已经发送并且收到了确认，那么就将发送窗口向后滑动一定距离，直到第一个字节不是已发送并且已确认的状态；接收窗口的滑动类似，接收窗口前部字节为已经接收到的字节，收到数据并发送确认后，就向后滑动接收窗口，直到接收窗口为0。  </p>
 <h3 id="确认重传机制"><a href="#确认重传机制" class="headerlink" title="确认重传机制"></a>确认重传机制</h3><p>在TCP中，选择性重传的实现原理主要依赖于选择性确认（Selective Acknowledgment, SACK）机制。SACK是一种TCP扩展，其目的是改进TCP在数据包丢失的情况下的性能。它允许接收方在确认报文中指定已成功接收的不连续数据段，从而使发送方可以更精确地了解哪些报文段需要重传。</p>
 <p>SACK是通过在TCP报文头部添加选项字段来实现的。以下是SACK实现的主要步骤：</p>
@@ -305,33 +331,28 @@
 <li>接收数据并生成SACK块：接收方在接收数据时，记录每个已成功接收的数据段的左边界和右边界，并按照顺序排列。接收方在发送确认报文（ACK）时，会在TCP头部选项字段中加入SACK选项。SACK选项包含一个或多个SACK块，每个SACK块表示一个已成功接收的不连续数据段范围（左边界和右边界）。</li>
 <li>处理SACK报文并重传数据：发送方在收到包含SACK选项的确认报文后，会根据其中的信息判断哪些报文段需要重传。发送方只需要重传那些未被确认的报文段，而已成功接收的数据段不会被重传。</li>
 </ol>
-<h2 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h2><h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>TCP维护了一个拥塞窗口（cwnd，congestion window），窗口大小是发送端可以往网络发送的不会产生网络阻塞的字节数</p>
-<h3 id="拥塞控制方法"><a href="#拥塞控制方法" class="headerlink" title="拥塞控制方法"></a>拥塞控制方法</h3><h4 id="慢启动算法"><a href="#慢启动算法" class="headerlink" title="慢启动算法"></a><strong>慢启动算法</strong></h4><p>慢启动用于在TCP连接开始时cwnd从初始值1逐渐（指数级）增加数据发送速率和传输窗口大小。发送端为连接维护了一个慢启动阈值（ssthread，slow start thread），一旦慢启动超过了慢启动阈值，TCP就从慢启动切换到拥塞避免算法（线性增加）</p>
+<h3 id="TCP拥塞控制算法"><a href="#TCP拥塞控制算法" class="headerlink" title="TCP拥塞控制算法"></a>TCP拥塞控制算法</h3><p>TCP维护了一个拥塞窗口（cwnd，congestion window），窗口大小是发送端可以往网络发送的不会产生网络阻塞的字节数</p>
+<h4 id="慢启动算法"><a href="#慢启动算法" class="headerlink" title="慢启动算法"></a>慢启动算法</h4><p>慢启动用于在TCP连接开始时cwnd从初始值1逐渐（指数级）增加数据发送速率和传输窗口大小。发送端为连接维护了一个慢启动阈值（ssthread，slow start thread），一旦慢启动超过了慢启动阈值，TCP就从慢启动切换到拥塞避免算法（线性增加）</p>
 <ul>
 <li>当cwnd &lt; ssthread，使用慢启动算法</li>
 <li>当cwnd &gt; ssthread，使用拥塞避免算法</li>
 <li>当cwnd &#x3D; ssthread，既可以使用慢启动算法，也可以使用拥塞避免算法</li>
 </ul>
-<h4 id="拥塞避免算法"><a href="#拥塞避免算法" class="headerlink" title="拥塞避免算法"></a>拥塞避免算法</h4><p>拥塞避免算法的思路是让cwnd缓慢增大，即每经过一个往返时间RTT就把发送方的cwnd加1</p>
-<h4 id="快速恢复算法"><a href="#快速恢复算法" class="headerlink" title="快速恢复算法"></a><strong>快速恢复算法</strong></h4><p>如果发送方接收到3个或3个以上的重复确认时，就认为网络出现了拥塞，此时将启用快速恢复算法</p>
+<h4 id="拥塞避免算法"><a href="#拥塞避免算法" class="headerlink" title="拥塞避免算法"></a>拥塞避免算法</h4><p>拥塞避免算法的思路是让cwnd缓慢增大，即每经过一个往返时间（RTT，Round-Trip Time）就把发送方的cwnd加1</p>
+<h4 id="快速恢复算法"><a href="#快速恢复算法" class="headerlink" title="快速恢复算法"></a>快速恢复算法</h4><p>如果发送方接收到3个或3个以上的重复确认时，就认为网络出现了拥塞，此时将启用快速恢复算法</p>
 <p>当发生超时，不是进行慢启动，而是进行快速恢复，先将ssthread设为cwnd&#x2F;2，再将cwnd设为ssthread，然后执行拥塞避免算法</p>
-<h4 id="快速重传算法"><a href="#快速重传算法" class="headerlink" title="快速重传算法"></a><strong>快速重传算法</strong></h4><p>如果发送方接收到3个或3个以上的重复确认（duplicate ACK）时，就认为前面发送的数据包已经丢失，立即重传这些数据包而不是等待超时重传，但是在重传之前会先执行快速恢复算法，以减轻网络拥塞</p>
+<h4 id="快速重传算法"><a href="#快速重传算法" class="headerlink" title="快速重传算法"></a>快速重传算法</h4><p>如果发送方接收到3个或3个以上的重复确认（duplicate ACK）时，就认为前面发送的数据包已经丢失，立即重传这些数据包而不是等待超时重传，但是在重传之前会先执行快速恢复算法，以减轻网络拥塞</p>
 <h2 id="粘包、拆包"><a href="#粘包、拆包" class="headerlink" title="粘包、拆包"></a>粘包、拆包</h2><p>TCP粘包和拆包是指在TCP传输过程中，发送方发送的多个小数据包被接收方合并成一个大数据包（粘包），或者一个大数据包被接收方拆分成多个小数据包（拆包）的现象。</p>
 <p>造成TCP粘包和拆包的主要原因是TCP协议是面向流的，发送方和接收方之间没有明显的分界点，数据以字节流的形式进行传输。这就导致了发送方发送的多个小数据包可能会在接收方端被合并成一个大数据包，或者一个大数据包在传输过程中被拆分成多个小数据包。</p>
 <p>为了避免TCP粘包和拆包现象，通常需要进行数据分包和数据拆包处理。数据分包是将待发送的数据按照固定大小的数据块进行分割，以便接收方能够正确接收数据。数据拆包则是将接收到的大数据包拆分成多个小数据包，以便上层应用程序能够正确处理数据。</p>
 <p>常用的TCP粘包和拆包处理方式包括：</p>
 <ol>
-<li><p>固定长度分包：将数据按照固定长度进行分包，接收方按照相同的长度进行接收和处理。</p>
-</li>
-<li><p>在数据包头部增加数据长度信息：将数据长度信息添加到数据包头部，接收方根据长度信息进行接收和处理。</p>
-</li>
-<li><p>使用分隔符分包：将不同数据块之间加上特定的分隔符进行分包。</p>
-</li>
-<li><p>消息头+消息体：在消息头中增加消息体长度字段，接收方先接收消息头中的消息体长度字段，然后根据长度信息接收和处理数据</p>
-</li>
+<li>固定长度分包：将数据按照固定长度进行分包，接收方按照相同的长度进行接收和处理。</li>
+<li>在数据包头部增加数据长度信息：将数据长度信息添加到数据包头部，接收方根据长度信息进行接收和处理。</li>
+<li>使用分隔符分包：将不同数据块之间加上特定的分隔符进行分包。</li>
 </ol>
 <p>通过这些处理方式，可以有效避免TCP粘包和拆包现象，保证数据传输的正确性和完整性。</p>
-<h1 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h1><p>UDP（User Datagram Protocol）是一种无连接、不可靠的传输层协议，它以尽可能少的开销提供了一种面向事务的简单传输服务。相比于TCP协议，UDP协议不具备可靠性和流量控制机制，但是它具有传输速度快、数据包大小灵活等优势，在实时应用场景中得到广泛应用。</p>
+<h1 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h1><p>UDP（User Datagram Protocol）是一种无连接、不可靠的传输层协议，它以尽可能少的开销提供了一种面向事务的简单传输服务。相比于TCP协议，UDP协议<strong>不具备可靠性和流量控制机制</strong>，但是它具有传输速度快、数据包大小灵活等优势，在实时应用场景中得到广泛应用。</p>
 <p>UDP协议的主要特点如下：</p>
 <ol>
 <li>无连接：UDP协议不需要进行连接建立和释放操作，直接向目标主机发送数据包即可，因此传输效率较高。</li>
@@ -344,7 +365,7 @@
 <h1 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h1><h2 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h2><p>HTTP是明文传输的、无状态的（关闭后客户端和服务端都不会保留任何上一次连接的信息）</p>
 <h2 id="短连接"><a href="#短连接" class="headerlink" title="短连接"></a>短连接</h2><p>短连接的特点：</p>
 <ul>
-<li>是HTTP&#x2F;1.0的默认方式，每次请求都需要重新建立连接，可能导致较高的开销。</li>
+<li>是HTTP&#x2F;1.0的默认方式，每次请求都需要重新建立连接，可能导致较高的开销。HTTP&#x2F;1.0 也提供了长连接选项，使用方法是在请求头中加入<code>Connection: Keep-alive</code>选项。</li>
 <li>由于连接频繁建立和关闭，服务器可能需要处理大量的连接请求。</li>
 </ul>
 <p>短连接的适用场景：</p>
@@ -363,11 +384,9 @@
 <li>需要长时间维持连接的场景，如实时应用和高频通信。</li>
 <li>高频率请求</li>
 </ul>
-<h2 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h2><p>在HTTP&#x2F;1.1中，每个请求和响应都需要单独的TCP连接。虽然HTTP&#x2F;1.1引入了长连接来减少连接开销，但在每个连接上仍然只能同时处理一个请求。这可能导致队头阻塞问题，即较慢的请求阻塞后续请求的处理。HTTP&#x2F;2通过多路复用解决了这个问题。</p>
-<p>多路复用的特点：</p>
-<ul>
-<li>允许在单个TCP连接上同时发送和接收多个请求和响应</li>
-</ul>
+<h2 id="多路复用"><a href="#多路复用" class="headerlink" title="多路复用"></a>多路复用</h2><p>在HTTP&#x2F;1.1中，每个请求和响应都需要单独的TCP连接。虽然HTTP&#x2F;1.1引入了长连接来减少连接开销，但在每个连接上仍然只能同时处理一个请求，如果一个请求占用了连接，其他请求必须等待，就会导致<strong>队头阻塞</strong>问题。</p>
+<p>HTTP&#x2F;2的<strong>多路复用</strong>允许在单个TCP连接上同时发送和接收多个请求和响应，避免了队头阻塞</p>
+<h2 id="QUIC"><a href="#QUIC" class="headerlink" title="QUIC"></a>QUIC</h2><p>HTTP&#x2F;2.0 是基于 TCP 协议实现的，HTTP&#x2F;3.0 新增了 QUIC（Quick UDP Internet Connections） 协议来实现可靠的传输，提供与 TLS&#x2F;SSL 相当的安全性，具有更低的连接和传输延迟。</p>
 <h2 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h2><p>HTTP 状态码（HTTP Status Codes）是服务器用于表示客户端请求结果的三位数字。状态码分为五类，各类状态码的含义如下：</p>
 <p>1xx（信息响应）：请求已接收，继续处理。</p>
 <p>2xx（成功）：请求已成功接收、理解和接受。</p>
@@ -386,8 +405,8 @@
 <td>Continue: 请求已接收，继续处理。</td>
 </tr>
 <tr>
-<td>200</td>
-<td>OK: 请求成功，服务器已经处理了请求并返回了所需数据。</td>
+<td><strong>200</strong></td>
+<td><strong>OK: 请求成功，服务器已经处理了请求并返回了所需数据。</strong></td>
 </tr>
 <tr>
 <td>201</td>
@@ -410,16 +429,16 @@
 <td>Moved Permanently: 请求的资源已被永久移动到新的 URL。</td>
 </tr>
 <tr>
-<td>302</td>
-<td>Found: 请求的资源临时移动到新的 URL。</td>
+<td><strong>302</strong></td>
+<td><strong>Found: 请求的资源临时移动到新的 URL。</strong></td>
 </tr>
 <tr>
 <td>303</td>
 <td>See Other: 对于 POST 请求，资源的响应可以在另一个 URL 上找到。</td>
 </tr>
 <tr>
-<td>304</td>
-<td>Not Modified: 资源自上次请求以来未发生更改。</td>
+<td><strong>304</strong></td>
+<td><strong>Not Modified: 资源自上次请求以来未发生更改。</strong></td>
 </tr>
 <tr>
 <td>307</td>
@@ -442,16 +461,16 @@
 <td>Forbidden: 客户端没有权限访问所请求的资源。</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found: 服务器找不到请求的资源。</td>
+<td><strong>404</strong></td>
+<td><strong>Not Found: 服务器找不到请求的资源。</strong></td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed: 请求方法（GET、POST 等）对于所请求的资源不允许。</td>
+<td><strong>405</strong></td>
+<td><strong>Method Not Allowed: 请求方法（GET、POST 等）对于所请求的资源不允许。</strong></td>
 </tr>
 <tr>
-<td>500</td>
-<td>Internal Server Error: 服务器在处理请求时遇到内部错误。</td>
+<td><strong>500</strong></td>
+<td><strong>Internal Server Error: 服务器在处理请求时遇到内部错误。</strong></td>
 </tr>
 <tr>
 <td>501</td>
@@ -466,31 +485,38 @@
 <td>Service Unavailable: 服务器暂时无法处理请求（由于过载或维护）。</td>
 </tr>
 <tr>
-<td>504</td>
-<td>Gateway Timeout: 作为网关或代理角色的服务器未及时从上游服务器收到请求。</td>
+<td><strong>504</strong></td>
+<td><strong>Gateway Timeout: 作为网关或代理角色的服务器未及时从上游服务器收到请求。</strong></td>
 </tr>
 </tbody></table>
-<h1 id="WebSockets"><a href="#WebSockets" class="headerlink" title="WebSockets"></a>WebSockets</h1><p>WebSocket是一种通信协议，它在单个TCP连接上提供了全双工通信，允许客户端和服务器同时发送和接收消息。。WebSocket协议旨在解决HTTP协议在实时通信场景中的局限性，如低延迟和服务器主动推送消息等。</p>
-<p>WebSocket协议的主要特点如下：</p>
+<h2 id="请求转发和重定向的区别"><a href="#请求转发和重定向的区别" class="headerlink" title="请求转发和重定向的区别"></a>请求转发和重定向的区别</h2><p>请求转发（Forward）和重定向（Redirect）是Web应用程序中处理客户端的请求的两种不同的处理方式。它们的区别在于处理请求的方式和客户端的感知。</p>
 <ol>
-<li><p>全双工通信：WebSocket允许客户端和服务器在同一时间通过一个连接进行双向通信，而不是像HTTP那样的请求-响应模式。这使得数据传输更加高效，延迟更低。</p>
-</li>
-<li><p>低延迟：由于WebSocket建立在一个持久的TCP连接上，并减少了传输数据所需的开销，因此在实时应用中具有更低的延迟。</p>
-</li>
-<li><p>服务器推送：WebSocket允许服务器主动向客户端推送消息，而无需客户端明确请求。这对于实时通知、聊天应用、在线游戏等场景非常有用。</p>
-</li>
-<li><p>兼容性：WebSocket协议在设计时考虑了与HTTP协议的兼容性，使用HTTP升级请求将普通的HTTP连接升级为WebSocket连接。这意味着WebSocket可以利用现有的HTTP基础设施，如代理服务器和负载均衡器。</p>
-</li>
+<li>请求转发（Forward）： 请求转发是指在服务器内部将请求从一个资源传递到另一个资源，在这个过程中，客户端的<strong>URL地址不会改变，也不会不会涉及到HTTP状态码的变化</strong>，客户端对此过程是不可见的。请求转发速度较快，因为服务器直接将请求转发给另一个资源，减少了额外的网络往返。</li>
+<li>重定向（Redirect）： 重定向是指服务器接收到客户端的请求后，向客户端返回一个特殊的响应（通常是HTTP状态码 3xx），告诉客户端要访问一个新的URL地址。客户端在接收到这个响应后，会主动<strong>发起一个新的请求</strong>，跳转到指定的URL地址。因此，客户端会感知到<strong>URL地址的改变</strong>。</li>
 </ol>
-<p>WebSocket的一些常见应用场景包括：</p>
-<ul>
-<li>实时消息传递和聊天应用</li>
-<li>在线游戏</li>
-<li>实时数据推送和更新，如股票行情、体育比分等</li>
-<li>即时协作工具，如在线文档编辑、共享白板等</li>
-<li>物联网（IoT）设备间的通信</li>
-</ul>
-<h1 id="密码学"><a href="#密码学" class="headerlink" title="密码学"></a>密码学</h1><h2 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h2><p>哈希算法（Hash algorithm）是密码学领域中的一种重要技术，它将任意长度的输入数据（通常称为消息）映射到固定长度的输出（通常称为哈希值、摘要或指纹）。哈希算法具有许多实际应用，如数据完整性验证、消息认证、数字签名以及密码存储等。</p>
+<h1 id="WebSockets"><a href="#WebSockets" class="headerlink" title="WebSockets"></a>WebSockets</h1><h2 id="WebSockets解决的问题"><a href="#WebSockets解决的问题" class="headerlink" title="WebSockets解决的问题"></a><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2017/05/websocket.html">WebSockets解决的问题</a></h2><p>HTTP通信协议有一个缺陷：<strong>通信只能由客户端发起，做不到服务器主动向客户端推送信息</strong>。这种单向请求的特点，注定了如果服务器有连续的状态变化，客户端要获知就非常麻烦。就只能使用轮询，每隔一段时候，就发出一个请求，轮询的效率低，且非常浪费资源。</p>
+<p>WebSocket通信协议，最大特点就是，<strong>服务器可以主动向客户端推送信息，客户端也可以主动向服务器发送信息</strong>，是真正的双向平等对话，属于<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Push_technology">服务器推送技术</a>的一种。</p>
+<p>其他特点包括：</p>
+<ol>
+<li><p>建立在 TCP 协议之上，服务器端的实现比较容易。</p>
+</li>
+<li><p>与 HTTP 协议有着良好的兼容性。默认端口也是80和443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器。</p>
+</li>
+<li><p>数据格式比较轻量，性能开销小，通信高效。</p>
+</li>
+<li><p>可以发送文本，也可以发送二进制数据。</p>
+</li>
+<li><p>没有同源限制，客户端可以与任意服务器通信。</p>
+</li>
+<li><p>协议标识符是<code>ws</code>（如果加密，则为<code>wss</code>），服务器网址就是 URL。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs url">ws://example.com:80/some/path<br></code></pre></td></tr></table></figure></li>
+</ol>
+<h2 id="用法示例"><a href="#用法示例" class="headerlink" title="用法示例"></a><a target="_blank" rel="noopener" href="https://javaguide.cn/system-design/web-real-time-message-push.html#websocket">用法示例</a></h2><ol>
+<li>导入WebSocket依赖包<code>spring-boot-starter-websocket</code>。</li>
+<li>在服务端代码中使用<code>@ServerEndpoint</code>注解将类标注为 WebSocket 服务器。<code>&quot;/websocket/&#123;userId&#125;&quot;</code>是请求的路径。</li>
+<li>在前端代码中打开WebSocket连接。</li>
+</ol>
+<h1 id="哈希算法"><a href="#哈希算法" class="headerlink" title="哈希算法"></a>哈希算法</h1><p>哈希算法（Hash algorithm）是密码学领域中的一种重要技术，它将任意长度的输入数据（通常称为消息）映射到固定长度的输出（通常称为哈希值、摘要或指纹）。哈希算法具有许多实际应用，如数据完整性验证、消息认证、数字签名以及密码存储等。</p>
 <p>一个优秀的哈希算法应具有以下特性：</p>
 <ol>
 <li>确定性：对于相同的输入，哈希算法总是产生相同的输出。</li>
@@ -502,12 +528,19 @@
 </ol>
 <p>在密码学中，常用的哈希算法有：</p>
 <ol>
-<li>MD5（Message Digest Algorithm 5）：MD5是一种广泛使用的哈希算法，产生128位（16字节）的哈希值。然而，由于已知的安全漏洞，如碰撞攻击，MD5不再被认为是安全的哈希算法。</li>
-<li>SHA-1（Secure Hash Algorithm 1）：SHA-1是一种哈希算法，产生160位（20字节）的哈希值。与MD5类似，由于已知的安全漏洞，如碰撞攻击，SHA-1也不再被认为是安全的哈希算法。</li>
-<li>SHA-2（Secure Hash Algorithm 2）：SHA-2是一种哈希算法族，包括SHA-256、SHA-512等，分别产生不同长度的哈希值（256bit、512bit等），比SHA-1和MD5更安全，是目前安全的、推荐使用的Hash算法。</li>
-<li>SHA-3（Secure Hash Algorithm 3）：SHA-3是一种新的哈希算法族，包括SHA3-256、SHA3-512等。是安全的。</li>
+<li><p>MD5（Message Digest Algorithm 5）：MD5是一种广泛使用的哈希算法，产生128位（16字节）的哈希值。然而，由于已知的安全漏洞，如碰撞攻击，MD5不再被认为是安全的哈希算法。</p>
+</li>
+<li><p>SHA-1（Secure Hash Algorithm 1）：SHA-1是一种哈希算法，产生160位（20字节）的哈希值。与MD5类似，由于已知的安全漏洞，如碰撞攻击，SHA-1也不再被认为是安全的哈希算法。</p>
+</li>
+<li><p>SHA-2（Secure Hash Algorithm 2）：SHA-2是一种哈希算法族，包括SHA-256、SHA-512等，分别产生不同长度的哈希值（256bit、512bit等），比SHA-1和MD5更安全，是目前安全的、推荐使用的Hash算法。</p>
+<p>在Java中，SHA-2（Secure Hash Algorithm 2）是通过Java标准库中的<code>MessageDigest</code>类来实现的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> String <span class="hljs-title function_">encode</span><span class="hljs-params">(String str)</span> <span class="hljs-keyword">throws</span> NoSuchAlgorithmException &#123;<br>	<span class="hljs-comment">//确定加密方法</span><br>	<span class="hljs-type">MessageDigest</span> <span class="hljs-variable">messageDigest</span> <span class="hljs-operator">=</span> MessageDigest.getInstance(<span class="hljs-string">&quot;SHA-256&quot;</span>);<br>	<span class="hljs-comment">//加密字符串</span><br>	<span class="hljs-keyword">return</span> Arrays.toString(messageDigest.digest(str.getBytes(StandardCharsets.UTF_8)));<br>&#125;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>SHA-3（Secure Hash Algorithm 3）：SHA-3是一种新的哈希算法族，包括SHA3-256、SHA3-512等。是安全的。</p>
+</li>
 </ol>
-<h2 id="碰撞攻击"><a href="#碰撞攻击" class="headerlink" title="碰撞攻击"></a>碰撞攻击</h2><p>碰撞攻击（Collision attack）是一种针对哈希算法的攻击方法，其目标是找到两个不同的输入数据，它们具有相同的哈希值。理论上，一个理想的哈希函数应具有较高的抗碰撞性，即使计算能力非常强大，也应该很难找到具有相同哈希值的两个不同输入。</p>
+<p><strong>碰撞攻击：</strong></p>
+<p>碰撞攻击（Collision attack）是一种针对哈希算法的攻击方法，其目标是找到两个不同的输入数据，它们具有相同的哈希值。理论上，一个理想的哈希函数应具有较高的抗碰撞性，即使计算能力非常强大，也应该很难找到具有相同哈希值的两个不同输入。</p>
 <p>然而，在实际中，许多哈希算法（如MD5和SHA-1）已经被证明存在碰撞攻击的漏洞。这些漏洞使攻击者能够在相对较短的时间内找到具有相同哈希值的不同输入，从而破坏哈希算法的安全性。</p>
 <p>碰撞攻击的成功可能导致以下安全问题：</p>
 <ol>
@@ -516,16 +549,17 @@
 <li>数据完整性损害：哈希函数通常用于检查数据的完整性，如下载文件的校验。如果攻击者能够创建具有相同哈希值的恶意文件，用户可能会在不知情的情况下下载和使用这些文件。</li>
 </ol>
 <p>为了防范碰撞攻击，密码学家和研究人员持续开发新的、更安全的哈希算法。例如，SHA-2和SHA-3系列哈希算法被认为比MD5和SHA-1更抗碰撞攻击。通过使用更安全的哈希算法，可以提高数据完整性、消息认证和数字签名等应用的安全性。</p>
-<h2 id="对称加密算法"><a href="#对称加密算法" class="headerlink" title="对称加密算法"></a>对称加密算法</h2><p>对称加密算法是密码学中的一种加密方法，它使用相同的密钥（称为秘密密钥）对数据进行加密和解密。由于加密和解密过程共享相同的密钥，这种算法被称为对称加密。对称加密算法通常比非对称加密算法更快，因为它们在计算上相对简单。然而，密钥管理和安全密钥分发可能是对称加密算法面临的挑战。</p>
-<p>以下是一些著名的对称加密算法：</p>
+<h1 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h1><h2 id="对称加密算法"><a href="#对称加密算法" class="headerlink" title="对称加密算法"></a>对称加密算法</h2><p>对称加密算法是密码学中的一种加密方法，使用相同的密钥对数据进行加密和解密，所以这种加密算法被称为对称加密算法。对称加密算法通常比非对称加密算法更快，因为它们在计算上相对简单。然而，密钥管理和安全密钥分发是对称加密算法面临的挑战。</p>
+<p>以下是一些常见的对称加密算法：</p>
 <ol>
 <li>DES（Data Encryption Standard）：DES是一种曾广泛使用的对称加密算法，它使用56位密钥对数据进行加密。安全性低（曾被破解），不建议使用DES进行加密。</li>
 <li>3DES（Triple DES ）：3DES是DES的改进版本，通过对数据应用三次DES加密操作来增加安全性。尽管3DES比DES更安全，但它的加密速度较慢，并且已经有更安全、更高效的替代方案。</li>
 <li>AES（Advanced Encryption Standard）：AES是现代对称加密算法的事实标准，支持128、192和256位密钥长度，安全性高且加密速度快。AES被广泛应用于各种安全场景，如文件加密、安全通信和网络安全等。</li>
 <li>Twofish：Twofish是Blowfish算法的继任者，也是AES算法竞争过程中的一个候选算法。Twofish使用128位的块大小和可变长度的密钥（128、192或256位）。尽管它在安全性和效率方面表现良好，但它没有像AES那样被广泛采用。</li>
 </ol>
-<p>对称加密算法在许多密码学应用中都有广泛应用，如保护数据的机密性、安全通信和身份认证等。然而，它们的一个主要局限性是密钥管理和分发。在许多场景中，对称加密算法与非对称加密算法结合使用。在这种混合方法中，非对称加密算法用于安全地交换对称密钥，而对称加密算法则用于实际的数据加密和解密。这种组合利用了非对称加密算法在密钥管理和分发方面安全性高的优势，同时保留了对称加密算法在数据加密和解密方面的高效性。</p>
-<h2 id="非对称密钥算法"><a href="#非对称密钥算法" class="headerlink" title="非对称密钥算法"></a>非对称密钥算法</h2><p>非对称密钥算法，又称公钥加密算法，是一种加密和解密过程中使用不同密钥的加密方法。在非对称加密算法中，通常有一对密钥，一个是公钥，另一个是私钥。公钥用于加密数据，而私钥用于解密数据。以下是实际中常用的非对称密钥算法：</p>
+<p>对称加密算法在许多密码学应用中都有广泛应用，如保护数据的机密性、安全通信和身份认证等。然而，它们的一个主要局限性是密钥管理和分发。在许多场景中，对称加密算法与非对称加密算法结合使用。在这种混合方法中，<strong>非对称加密算法用于安全地交换对称密钥，而对称加密算法则用于实际的数据加密和解密</strong>。这种组合利用了非对称加密算法在密钥管理和分发方面安全性高的优势，同时保留了对称加密算法在数据加密和解密方面的高效性。</p>
+<h2 id="非对称密钥算法"><a href="#非对称密钥算法" class="headerlink" title="非对称密钥算法"></a>非对称密钥算法</h2><p>非对称密钥算法，又称数字签名算法，是一种加密和解密过程中使用不同密钥的加密方法。在非对称加密算法中，通常有一对密钥，一个是公钥，另一个是私钥。<strong>公钥、私钥都可以用来加密和解密，并且一方加密的内容只能由对方进行解密</strong>。</p>
+<p>以下是常见的非对称密钥算法：</p>
 <ol>
 <li><p>RSA（Rivest-Shamir-Adleman）算法：RSA 是一种广泛应用的非对称加密算法，由 Ron Rivest、Adi Shamir 和 Leonard Adleman 于 1978 年发明。RSA 算法基于大数因子分解问题，它的安全性依赖于大数分解的困难性。RSA 用于加密、解密和数字签名，应用领域包括网页浏览器、电子邮件、VPN 等。</p>
 </li>
@@ -538,54 +572,57 @@
 <li><p>Lattice-based cryptography（格基密码学）：格基密码学是一种基于格数学的非对称加密算法，它具有抵抗量子计算机攻击的潜力。NTRU 和 Learning With Errors（LWE）是目前最知名的格基密码学算法。随着量子计算机的发展，格基密码学可能在未来成为一种重要的密码学工具。</p>
 </li>
 </ol>
-<h2 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h2><p>数字签名是一种用于验证数据的完整性和来源的真实性的密码学技术。数字签名的基本原理是将数据（如文件、消息或电子文档）通过某种算法处理，生成一个唯一的签名。这个签名可以证明数据的完整性和发送方的身份。数字签名在许多场景中非常有用，如电子邮件、软件分发、电子合同、在线支付等。数字签名的实现通常依赖于非对称加密技术。</p>
-<p>以下是数字签名的基本过程：</p>
-<ol>
-<li><p>数据散列（Hashing）：首先，将要签名的数据通过哈希算法即散列函数（如 SHA-256）处理，生成一个固定长度的散列值。</p>
-</li>
-<li><p>签名生成：使用发送方的私钥对散列值进行加密，生成数字签名。这一过程确保了只有发送方才能生成有效的签名，因为私钥是唯一的且不能被推导出来。</p>
-</li>
-<li><p>附加签名：将数字签名附加到原始数据上，然后将数据和签名一起发送给接收方。</p>
-</li>
-<li><p>签名验证：接收方首先使用相同的散列函数对收到的数据进行散列处理，得到一个散列值。然后，使用发送方的公钥对附加的数字签名进行解密，得到另一个散列值。接收方比较这两个散列值，如果它们完全相同，则说明数据未被篡改，且发送方的身份得到验证。</p>
-</li>
-</ol>
-<p>数字签名的安全性取决于所使用的哈希算法（散列函数）和非对称加密算法的安全性。</p>
-<h2 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h2><p>数字证书通常由一个受信任的第三方证书颁发机构（CA，Certificate Authority）颁发，CA会对证书持有人进行身份验证，并为其颁发数字证书。数字证书中包含了证书持有人的公钥，而私钥通常由证书持有人自己保存，用于进行数字签名和加密通信。</p>
-<p>在数字证书的使用中，客户端和服务器之间的通信过程如下：</p>
-<ol>
-<li><p>服务器将自己的数字证书发送给客户端。</p>
-</li>
-<li><p>客户端验证证书的真实性和有效性，如果证书是由一个受信任的CA签发的，并且证书中的信息与服务器身份相符，则客户端会信任该证书。</p>
-</li>
-<li><p>客户端使用证书中包含的公钥对通信数据进行加密，以确保数据的保密性。</p>
-</li>
-<li><p>服务器使用自己的私钥对加密数据进行解密，并使用自己的私钥对数字签名进行验证，以确保通信数据的完整性和真实性。</p>
-</li>
-</ol>
-<p>数字证书在互联网安全中发挥了重要的作用，可以用于保护网站的安全，防止中间人攻击、数据篡改等恶意行为。同时，数字证书也可以用于身份认证、数字签名等场景，确保数字数据的安全性和可信性。</p>
-<h2 id="SSL-x2F-TLS"><a href="#SSL-x2F-TLS" class="headerlink" title="SSL&#x2F;TLS"></a>SSL&#x2F;TLS</h2><p>SSL（安全套接层）和TLS（传输层安全）的关系是发展演进关系。TLS是SSL的更新和改进版本。虽然二者经常一起提及，但目前主要使用的是TLS协议，因为它比SSL更安全、更先进。</p>
+<h1 id="SSL-x2F-TLS"><a href="#SSL-x2F-TLS" class="headerlink" title="SSL&#x2F;TLS"></a>SSL&#x2F;TLS</h1><p>SSL（安全套接层）和TLS（传输层安全）的关系是发展演进关系。TLS是SSL的更新和改进版本。虽然二者经常一起提及，但目前主要使用的是TLS协议，因为它比SSL更安全、更先进。</p>
 <p>TLS的工作原理：</p>
 <ol>
-<li>客户端使用非对称加密与服务器进行通信，实现身份验证并协商对称加密使用的密钥</li>
-<li>采用对称加密算法对信息摘要进行加密</li>
+<li>首先使用<strong>非对称加密算法</strong>实现验证服务端身份以及协商对称加密使用的密钥</li>
+<li>后续采用<strong>对称加密算法</strong>对数据进行加密</li>
 </ol>
 <p>这样，SSL&#x2F;TLS协议在服务器和客户端之间的通信使用了混合加密方案，既能确保密钥的安全分发，又能保证数据加密的高效性</p>
-<h3 id="TLS-握手有哪些步骤？"><a href="#TLS-握手有哪些步骤？" class="headerlink" title="TLS 握手有哪些步骤？"></a>TLS 握手有哪些步骤？</h3><p><img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/5aYOr5erfyNBq20X5djTco/3c859532c91f25d961b2884bf521c1eb/tls-ssl-handshake.png" alt="TLS 握手"></p>
+<h2 id="TLS-握手有哪些步骤？"><a href="#TLS-握手有哪些步骤？" class="headerlink" title="TLS 握手有哪些步骤？"></a>TLS 握手有哪些步骤？</h2><p><img src="https://cf-assets.www.cloudflare.com/slt3lc6tev37/5aYOr5erfyNBq20X5djTco/3c859532c91f25d961b2884bf521c1eb/tls-ssl-handshake.png" alt="TLS 握手"></p>
 <p>TLS 握手是由客户端和服务器交换的一系列数据报或消息。TLS 握手涉及多个步骤，因为客户端和服务器要交换完成握手和进行进一步对话所需的信息。</p>
 <p>TLS 握手中的确切步骤将根据所使用的密钥交换算法的种类和双方支持的密码套件而有所不同。大致如下：</p>
 <ol>
-<li><strong>“客户端问候（client hello）” 消息：</strong> 客户端通过向服务器发送“问候”消息来开始握手。该消息将包含客户端支持的 TLS 版本，支持的密码套件（密码套件是一组用于建立安全通信连接的算法），以及称为一串称为“客户端随机数（client random）”的随机字节。</li>
-<li><strong>“服务器问候（server hello）”消息：</strong> 作为对 client hello 消息的回复，服务器发送一条消息，内含服务器的 <a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/ssl/what-is-an-ssl-certificate/">SSL 证书</a>（SSL证书是一种数字证书，是由数字证书颁发机构（CA）签发的数字证书的一种 ）、服务器选择的密码套件，以及“服务器随机数（server random）”，即由服务器生成的另一串随机字节。</li>
-<li><strong>身份验证：</strong> 客户端使用颁发该证书的证书颁发机构验证服务器的 SSL 证书。此举确认服务器是其声称的身份，且客户端正在与该域的实际所有者进行交互。</li>
-<li><strong>预主密钥（是在SSL&#x2F;TLS握手期间由客户端生成的随机密钥，用于协商会话密钥）：</strong> 客户端再发送一串随机字节，即“预主密钥（premaster secret）”。预主密钥是使用公钥<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/ssl/how-does-public-key-encryption-work/">公钥</a>（客户端从服务器的 SSL 证书中获得公钥）加密的，只能使用服务器的私钥解密。</li>
-<li><strong>私钥被使用：</strong>服务器对预主密钥进行解密。</li>
-<li><strong>生成会话密钥：</strong>客户端和服务器均使用客户端随机数、服务器随机数和预主密钥生成会话密钥。双方应得到相同的结果。</li>
-<li><strong>客户端就绪：</strong>客户端发送一条“已完成”消息，该消息用会话密钥加密。</li>
-<li><strong>服务器就绪：</strong>服务器发送一条“已完成”消息，该消息用会话密钥加密。</li>
-<li><strong>实现安全对称加密：</strong>已完成握手，并使用会话密钥继续进行通信。</li>
+<li><p><strong>“客户端发送问候（client hello）” 消息</strong>： 客户端通过向服务器发送“问候”消息来开始握手。该消息将包含客户端支持的 TLS 版本，支持的密码套件（密码套件是一组用于建立安全通信连接的算法），以及称为一串称为“客户端随机数（client random）”的随机字节。</p>
+</li>
+<li><p><strong>“服务器发送问候（server hello）”消息</strong>：作为对 client hello 消息的回复，服务器发送一条消息，内含服务器的 <a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/ssl/what-is-an-ssl-certificate/">SSL 证书</a>（SSL证书是一种数字证书，是由数字证书颁发机构（CA，Certificate Authority）签发的数字证书的一种 ）、服务器选择的密码套件，以及“服务器随机数（server random）”，即由服务器生成的另一串随机字节。此外还有使用服务器对原始数据的数字签名（数字签名的生成方式见下文）。</p>
+</li>
+<li><p><strong>客户端对服务端进行身份验证</strong>： 客户端使用颁发该证书的证书颁发机构的公钥验证服务器的身份。此举确认服务器是其声称的身份，且客户端正在与该域的实际所有者进行交互。</p>
+</li>
+<li><p><strong>客户端发送预主密钥</strong>： 客户端再发送一串使用服务端<a target="_blank" rel="noopener" href="https://www.cloudflare.com/learning/ssl/how-does-public-key-encryption-work/">公钥</a>加密后的随机字节，即“预主密钥（premaster secret）”，用于协商会话密钥。对预主密钥加密用的服务端公钥从服务器的 SSL 证书中获得的。</p>
+<p>整个建立连接的过程中，客户端发送的包含预主密钥的消息，是使用非对称加密算法进行加密的消息，是安全的，所以根据预主密钥生成的会话密钥也是安全的。</p>
+</li>
+<li><p><strong>服务端解密得到预主密钥</strong>：服务器使用私钥对消息解密得到预主密钥。</p>
+</li>
+<li><p><strong>客户端和服务器分别生成会话密钥</strong>：客户端和服务器均使用客户端随机数、服务器随机数和预主密钥生成会话密钥。双方应得到相同的结果。</p>
+</li>
+<li><p><strong>客户端发送就绪</strong>：客户端发送一条“已完成”消息，该消息用会话密钥加密。</p>
+</li>
+<li><p><strong>服务器发送就绪：</strong>服务器发送一条“已完成”消息，该消息用会话密钥加密。</p>
+</li>
+<li><p><strong>实现安全对称加密：</strong>已完成握手，并使用会话密钥继续进行通信。</p>
+</li>
 </ol>
-<h3 id="TLS-握手期间会发生什么？"><a href="#TLS-握手期间会发生什么？" class="headerlink" title="TLS 握手期间会发生什么？"></a>TLS 握手期间会发生什么？</h3><p>在 TLS 握手过程中，客户端和服务器一同执行以下操作：</p>
+<h3 id="数字签名"><a href="#数字签名" class="headerlink" title="数字签名"></a>数字签名</h3><p>数字签名的作用：验证数据的完整性和来源的真实性。</p>
+<p>数字签名的生成方式：</p>
+<ol>
+<li><p>将要签名的<strong>数据通过哈希算法即散列函数（如 SHA-256）处理，生成一个固定长度的散列值</strong>。</p>
+</li>
+<li><p>使用私钥<strong>对散列值使用私钥进行加密，生成数字签名</strong>。</p>
+</li>
+</ol>
+<p>使用数字签名验证服务端身份是否真实、数据是否完整的应用方式：</p>
+<ul>
+<li>客户端首先使用相同的散列函数对收到的原始数据进行散列处理，得到一个散列值。</li>
+<li>然后使用数字证书中的公钥对附加的数字签名进行解密，得到另一个散列值。</li>
+<li>最后比较这两个散列值，如果它们完全相同，则说明私钥有效，服务端的身份是真实的，并且也说明数据未被篡改。</li>
+</ul>
+<h3 id="数字证书"><a href="#数字证书" class="headerlink" title="数字证书"></a>数字证书</h3><p>使用数字证书验证服务端身份的方式：</p>
+<ol>
+<li>服务端要证实自己的身份，除了需要发送数字证书外，还需要对原始数据生成数字签名，并将数字签名附加到原始数据上，一起发送给客户端。</li>
+<li>客户端收到后，首先判断是否信任颁发该数字证书的CA机构。如果信任，就使用数字签名验证服务端的身份是否真实。</li>
+</ol>
+<h2 id="总结：TLS-握手期间会发生什么？"><a href="#总结：TLS-握手期间会发生什么？" class="headerlink" title="总结：TLS 握手期间会发生什么？"></a>总结：TLS 握手期间会发生什么？</h2><p>在 TLS 握手过程中，客户端和服务器一同执行以下操作：</p>
 <ul>
 <li>指定将要使用的 TLS 版本（如TLS 1.0、1.2、1.3 等）</li>
 <li>决定将要使用哪些密码套件</li>
@@ -593,18 +630,14 @@
 <li>生成会话密钥，以在握手完成后使用对称加密</li>
 </ul>
 <h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><p>HTTPS（超文本传输安全协议）是一种用于保护网络通信安全和数据传输完整性的协议。它在HTTP（超文本传输协议）的基础上添加了SSL&#x2F;TLS加密层，为数据传输提供加密、身份验证和完整性保护。</p>
-<h2 id="主要作用"><a href="#主要作用" class="headerlink" title="主要作用"></a>主要作用</h2><ol>
-<li>加密通信：HTTPS通过SSL&#x2F;TLS协议加密数据，确保数据在传输过程中不被未经授权的第三方窃取或篡改。</li>
-<li>身份验证：HTTPS使用数字证书对服务器进行身份验证，防止用户连接到伪造的服务器，降低中间人攻击的风险。</li>
-<li>数据完整性：HTTPS确保数据在传输过程中不会被篡改，从而保证了数据的完整性。</li>
-</ol>
 <h2 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h2><ol>
-<li>用户在浏览器中输入HTTPS网址并发送请求。</li>
-<li>服务器收到请求后返回其数字证书，包括公钥和证书颁发机构（CA）的签名等信息。</li>
-<li>浏览器验证服务器证书的有效性，包括证书的颁发者、有效期等。</li>
-<li>若验证通过，浏览器使用服务器的公钥加密一个随机生成的会话密钥，并将其发送给服务器。</li>
-<li>服务器使用自己的私钥解密会话密钥，然后使用会话密钥对数据进行加密传输。</li>
-<li>浏览器使用会话密钥对接收到的加密数据进行解密，展示网页内容。</li>
+<li>首先建立TCP连接</li>
+<li>然后建立通过SSL&#x2F;TLS协议建立安全连接</li>
+</ol>
+<h2 id="主要作用"><a href="#主要作用" class="headerlink" title="主要作用"></a>主要作用</h2><ol>
+<li>身份验证（解决了冒充风险）：在建立连接的过程中，会使用使用数字证书+数字签名的方式，对服务器进行身份验证，防止用户连接到伪造的服务器。</li>
+<li>加密通信（解决了窃听风险）：在建立连接的过程中，使用非对称加密算法对数据进行加密；建立安全连接之后，使用对称加密进行数据加密。</li>
+<li>数据完整性（解决了篡改风险）：在建立连接的过程中，对于使用数字签名的数据，能够确保数据数据的完整性；在HTTPS建立了安全连接之后，数据的完整性是通过使用消息认证码（MAC）来保证的。</li>
 </ol>
 <h1 id="Session、Cookie、Token"><a href="#Session、Cookie、Token" class="headerlink" title="Session、Cookie、Token"></a>Session、Cookie、Token</h1><h2 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h2><p>Session 是服务器端用来跟踪和维护用户状态的技术。服务器为每个用户创建一个唯一的 Session ID，并将其与用户的会话数据关联。Session ID 通常通过 Cookie、URL 参数或隐藏表单字段的方式传递给客户端。Session 主要用于识别用户身份、存储用户信息等场景。</p>
 <p><code>HttpSession</code> 对象并不是 <code>HttpServletRequest</code> 自带的，但可以通过 <code>HttpServletRequest</code> 对象的 <code>getSession</code> 方法轻松获取。当调用 <code>request.getSession()</code> 时，如果当前请求没有关联的会话，它会自动为您创建一个新的会话。如果只想在已经存在的会话中获取，而不创建新的会话，可以调用 <code>request.getSession(false)</code>。这样，如果没有关联的会话，它将返回 <code>null</code>。</p>
@@ -617,7 +650,7 @@
 <h2 id="Token"><a href="#Token" class="headerlink" title="Token"></a>Token</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>Token又称“令牌”，Token是服务端生成的一串字符串，用于身份验证，当第一次登录后，服务器生成一个Token并将此Token返回给客户端，以后客户端只需带上这个Token前来请求数据，服务器就可以根据Token信息验证客户端的身份并确定其访问权限。</p>
 <h3 id="引入目的"><a href="#引入目的" class="headerlink" title="引入目的"></a>引入目的</h3><p>Token（令牌）的引入是为了解决一些基于传统 Session 和 Cookie 机制的安全性和可扩展性问题。Token 的设计思路是为了在客户端和服务器之间建立一种无状态、可靠的身份验证机制。引入 Token 的原因主要包括以下几点：</p>
 <ol>
-<li><p>分布式系统和微服务：在分布式系统和微服务架构中，多个不同的服务器可能需要处理同一个客户端的请求。这种情况下，使用基于服务器的会话管理（如 Session + Cookie）可能导致不一致的状态。Token 提供了一种无状态的解决方案，可以在不同的服务器间共享和验证，从而更适合分布式和微服务环境。</p>
+<li><p>分布式系统和微服务：在分布式系统和微服务架构中，多个不同的服务器可能需要处理同一个客户端的请求。这种情况下，使用基于服务器的会话管理（Session）可能导致不一致的状态。Token 提供了一种无状态的解决方案，可以在不同的服务器间共享和验证，从而更适合分布式和微服务环境。</p>
 </li>
 <li><p>安全性：Token 可以提供更好的安全性。相对于传统的 Cookie 机制，Token 可以降低 CSRF（跨站请求伪造）攻击的风险。此外，Token 可以包含签名或加密，以确保数据的完整性和安全性。例如，JWT（JSON Web Token）就是一种常见的 Token 实现方式，它支持签名和加密。</p>
 </li>
@@ -782,4 +815,4 @@
 <li>吴翰清. 白帽子讲Web安全:纪念版. 北京: 电子工业出版社, 2014.6.</li>
 <li>尼恩,等. Java高并发核心编程:加强版. 卷1, NIO、Netty、Redis、Zookeeper. 北京: 清华大学出版社, 2022.11.</li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://songbaoru.github.io">Song Baoru</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://songbaoru.github.io/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">https://songbaoru.github.io/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://th.bing.com/th/id/R.826fae185d03cd7935cc5haf1cd1844c3?rik=9ONAxF3s06zoPg&amp;riu=http%3a%2f%2fpic5.bbzhi.com%2ffengjingbizhi%2fgaoqingziranfengjingbizhi%2fgaoqingziranfengjingbizhi_415690_15.jpg&amp;ehk=BbD3V6XWzCc5AJ7yXlMt4j5AU09Nk56syRdeDXFSvYY%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程"><img class="cover" src="https://th.bing.com/th/id/R.9316fccce50d6257f0ffb94c5ae6461a?rik=EDdsz%2f4EuNN2ig&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_23966_2.jpg&amp;ehk=ww8MI8P3WC8UIvjNAsOE50t9oRfkNst8LVUnJmhIK8A%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Java并发编程</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/06/Kafka/" title="Kafka"><img class="cover" src="https://th.bing.com/th/id/R.1558dba9f9181fbad6098a4e5d4d161d?rik=Fznzl57FcUoALA&amp;riu=http%3a%2f%2fpic4.nipic.com%2f20090803%2f3139674_170434025_2.jpg&amp;ehk=V2HHRSsszzKlfPrGelIZYMqLy0w1Zf6Xc5qeGx2NVxA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Kafka</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Song Baoru</div><div class="author-info__description">锲而不舍，金石可镂</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/SongBaoru"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP-x2F-IP%E4%BA%94%E5%B1%82%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">TCP&#x2F;IP五层网络模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP"><span class="toc-number">2.</span> <span class="toc-text">TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text">报文格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-number">2.2.</span> <span class="toc-text">TCP连接的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">2.3.</span> <span class="toc-text">三次握手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">2.3.1.</span> <span class="toc-text">三次握手的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.3.2.</span> <span class="toc-text">三次而不是两次握手的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SYN%E6%94%BB%E5%87%BB"><span class="toc-number">2.3.3.</span> <span class="toc-text">SYN攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Land%E6%94%BB%E5%87%BB"><span class="toc-number">2.3.4.</span> <span class="toc-text">Land攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Connection-Flood%E6%94%BB%E5%87%BB"><span class="toc-number">2.3.5.</span> <span class="toc-text">Connection Flood攻击</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">2.4.</span> <span class="toc-text">四次挥手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">2.4.1.</span> <span class="toc-text">四次挥手的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A6%81%E6%9C%89TIME-WAIT%E7%8A%B6%E6%80%81%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.4.2.</span> <span class="toc-text">要有TIME_WAIT状态的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%9C%80%E8%A6%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%8C%E8%80%8C%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%8F%AA%E8%A6%81%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.4.3.</span> <span class="toc-text">关闭连接的需要四次挥手，而建立连接只要三次握手的原因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-number">2.5.</span> <span class="toc-text">流量控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%BA%E5%88%B6"><span class="toc-number">2.5.1.</span> <span class="toc-text">滑动窗口机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E8%AE%A4%E9%87%8D%E4%BC%A0%E6%9C%BA%E5%88%B6"><span class="toc-number">2.5.2.</span> <span class="toc-text">确认重传机制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="toc-number">2.6.</span> <span class="toc-text">拥塞控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-number">2.6.1.</span> <span class="toc-text">原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E6%96%B9%E6%B3%95"><span class="toc-number">2.6.2.</span> <span class="toc-text">拥塞控制方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%85%A2%E5%90%AF%E5%8A%A8%E7%AE%97%E6%B3%95"><span class="toc-number">2.6.2.1.</span> <span class="toc-text">慢启动算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D%E7%AE%97%E6%B3%95"><span class="toc-number">2.6.2.2.</span> <span class="toc-text">拥塞避免算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%81%A2%E5%A4%8D%E7%AE%97%E6%B3%95"><span class="toc-number">2.6.2.3.</span> <span class="toc-text">快速恢复算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0%E7%AE%97%E6%B3%95"><span class="toc-number">2.6.2.4.</span> <span class="toc-text">快速重传算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%98%E5%8C%85%E3%80%81%E6%8B%86%E5%8C%85"><span class="toc-number">2.7.</span> <span class="toc-text">粘包、拆包</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UDP"><span class="toc-number">3.</span> <span class="toc-text">UDP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP"><span class="toc-number">4.</span> <span class="toc-text">HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">4.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%AD%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.2.</span> <span class="toc-text">短连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%95%BF%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.3.</span> <span class="toc-text">长连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">4.4.</span> <span class="toc-text">多路复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">4.5.</span> <span class="toc-text">状态码</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WebSockets"><span class="toc-number">5.</span> <span class="toc-text">WebSockets</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AF%86%E7%A0%81%E5%AD%A6"><span class="toc-number">6.</span> <span class="toc-text">密码学</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="toc-number">6.1.</span> <span class="toc-text">哈希算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A2%B0%E6%92%9E%E6%94%BB%E5%87%BB"><span class="toc-number">6.2.</span> <span class="toc-text">碰撞攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="toc-number">6.3.</span> <span class="toc-text">对称加密算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E7%AE%97%E6%B3%95"><span class="toc-number">6.4.</span> <span class="toc-text">非对称密钥算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="toc-number">6.5.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6"><span class="toc-number">6.6.</span> <span class="toc-text">数字证书</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL-x2F-TLS"><span class="toc-number">6.7.</span> <span class="toc-text">SSL&#x2F;TLS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#TLS-%E6%8F%A1%E6%89%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E6%AD%A5%E9%AA%A4%EF%BC%9F"><span class="toc-number">6.7.1.</span> <span class="toc-text">TLS 握手有哪些步骤？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TLS-%E6%8F%A1%E6%89%8B%E6%9C%9F%E9%97%B4%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">6.7.2.</span> <span class="toc-text">TLS 握手期间会发生什么？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTPS"><span class="toc-number">7.</span> <span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E4%BD%9C%E7%94%A8"><span class="toc-number">7.1.</span> <span class="toc-text">主要作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">7.2.</span> <span class="toc-text">工作原理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Session%E3%80%81Cookie%E3%80%81Token"><span class="toc-number">8.</span> <span class="toc-text">Session、Cookie、Token</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Session"><span class="toc-number">8.1.</span> <span class="toc-text">Session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-number">8.2.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session%E5%92%8CCookie%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">8.3.</span> <span class="toc-text">Session和Cookie的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Token"><span class="toc-number">8.4.</span> <span class="toc-text">Token</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">8.4.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E7%9B%AE%E7%9A%84"><span class="toc-number">8.4.2.</span> <span class="toc-text">引入目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Token-%E5%8F%AF%E4%BB%A5%E9%99%8D%E4%BD%8E-CSRF%EF%BC%88%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%89%E6%94%BB%E5%87%BB%E7%9A%84%E9%A3%8E%E9%99%A9%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">8.4.3.</span> <span class="toc-text">Token 可以降低 CSRF（跨站请求伪造）攻击的风险的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT"><span class="toc-number">8.4.4.</span> <span class="toc-text">JWT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web%E5%AE%89%E5%85%A8"><span class="toc-number">9.</span> <span class="toc-text">Web安全</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">9.1.</span> <span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%E6%94%BB%E5%87%BB%EF%BC%89"><span class="toc-number">9.2.</span> <span class="toc-text">跨站脚本攻击（XSS攻击）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%E6%94%BB%E5%87%BB%EF%BC%88CSRF%E6%94%BB%E5%87%BB%EF%BC%89"><span class="toc-number">9.3.</span> <span class="toc-text">跨站请求伪造攻击（CSRF攻击）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81%E6%94%BB%E5%87%BB"><span class="toc-number">9.4.</span> <span class="toc-text">点击劫持攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB%EF%BC%88DDoS-%E6%94%BB%E5%87%BB%EF%BC%89"><span class="toc-number">9.5.</span> <span class="toc-text">拒绝服务攻击（DDoS 攻击）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E5%92%8C%E5%85%A5%E4%BE%B5%E9%98%B2%E5%BE%A1%E7%B3%BB%E7%BB%9F"><span class="toc-number">9.6.</span> <span class="toc-text">防火墙和入侵防御系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#References"><span class="toc-number">10.</span> <span class="toc-text">References</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" title="数据结构和算法二刷（更新中）"><img src="https://th.bing.com/th/id/R.ee995d98e687b0896c006b16980e126b?rik=ZPHZfBPZDznIiw&amp;riu=http%3a%2f%2fimg.sj33.cn%2fuploads%2fallimg%2f200912%2f20091223150352964.jpg&amp;ehk=ETvV5eN%2fU0LZJE9ZbDxQN%2btQkl3ZWmIGnhIp8GzKzZs%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构和算法二刷（更新中）"/></a><div class="content"><a class="title" href="/2023/07/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" title="数据结构和算法二刷（更新中）">数据结构和算法二刷（更新中）</a><time datetime="2023-07-10T00:32:48.000Z" title="Created 2023-07-10 08:32:48">2023-07-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/RocketMQ/" title="RocketMQ"><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/04/ChMkJlbKx9CIKZ-qABs7mJV2aP0AALH5ALBgd0AGzuw770.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RocketMQ"/></a><div class="content"><a class="title" href="/2023/05/24/RocketMQ/" title="RocketMQ">RocketMQ</a><time datetime="2023-05-24T08:13:44.000Z" title="Created 2023-05-24 16:13:44">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud"><img src="https://th.bing.com/th/id/OIP.fekfR1FWtn_EXSMaueufagHaEK?pid=ImgDet&amp;rs=1" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud"/></a><div class="content"><a class="title" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud">Spring Cloud</a><time datetime="2023-05-24T08:08:42.000Z" title="Created 2023-05-24 16:08:42">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程"><img src="https://th.bing.com/th/id/R.9316fccce50d6257f0ffb94c5ae6461a?rik=EDdsz%2f4EuNN2ig&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_23966_2.jpg&amp;ehk=ww8MI8P3WC8UIvjNAsOE50t9oRfkNst8LVUnJmhIK8A%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java并发编程"/></a><div class="content"><a class="title" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程">Java并发编程</a><time datetime="2023-05-07T13:39:13.000Z" title="Created 2023-05-07 21:39:13">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络"><img src="https://th.bing.com/th/id/R.826fae185d03cd7935cc5haf1cd1844c3?rik=9ONAxF3s06zoPg&amp;riu=http%3a%2f%2fpic5.bbzhi.com%2ffengjingbizhi%2fgaoqingziranfengjingbizhi%2fgaoqingziranfengjingbizhi_415690_15.jpg&amp;ehk=BbD3V6XWzCc5AJ7yXlMt4j5AU09Nk56syRdeDXFSvYY%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络"/></a><div class="content"><a class="title" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">计算机网络</a><time datetime="2023-05-07T13:37:05.000Z" title="Created 2023-05-07 21:37:05">2023-05-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By Song Baoru</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="https://songbaoru.github.io">Song Baoru</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://songbaoru.github.io/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">https://songbaoru.github.io/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></div><div class="post_share"><div class="social-share" data-image="https://th.bing.com/th/id/R.826fae185d03cd7935cc5haf1cd1844c3?rik=9ONAxF3s06zoPg&amp;riu=http%3a%2f%2fpic5.bbzhi.com%2ffengjingbizhi%2fgaoqingziranfengjingbizhi%2fgaoqingziranfengjingbizhi_415690_15.jpg&amp;ehk=BbD3V6XWzCc5AJ7yXlMt4j5AU09Nk56syRdeDXFSvYY%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程"><img class="cover" src="https://th.bing.com/th/id/R.9316fccce50d6257f0ffb94c5ae6461a?rik=EDdsz%2f4EuNN2ig&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_23966_2.jpg&amp;ehk=ww8MI8P3WC8UIvjNAsOE50t9oRfkNst8LVUnJmhIK8A%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Java并发编程</div></div></a></div><div class="next-post pull-right"><a href="/2023/05/06/Kafka/" title="Kafka"><img class="cover" src="https://th.bing.com/th/id/R.1558dba9f9181fbad6098a4e5d4d161d?rik=Fznzl57FcUoALA&amp;riu=http%3a%2f%2fpic4.nipic.com%2f20090803%2f3139674_170434025_2.jpg&amp;ehk=V2HHRSsszzKlfPrGelIZYMqLy0w1Zf6Xc5qeGx2NVxA%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Kafka</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Song Baoru</div><div class="author-info__description">锲而不舍，金石可镂</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">11</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/SongBaoru"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content is-expand"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP-x2F-IP%E4%BA%94%E5%B1%82%E7%BD%91%E7%BB%9C%E6%A8%A1%E5%9E%8B"><span class="toc-number">1.</span> <span class="toc-text">TCP&#x2F;IP五层网络模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP"><span class="toc-number">2.</span> <span class="toc-text">TCP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8A%A5%E6%96%87%E6%A0%BC%E5%BC%8F"><span class="toc-number">2.1.</span> <span class="toc-text">报文格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E8%BF%9E%E6%8E%A5%E7%9A%84%E7%8A%B6%E6%80%81"><span class="toc-number">2.2.</span> <span class="toc-text">TCP连接的状态</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B"><span class="toc-number">2.3.</span> <span class="toc-text">三次握手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">2.3.1.</span> <span class="toc-text">三次握手的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E8%80%8C%E4%B8%8D%E6%98%AF%E4%B8%A4%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.3.2.</span> <span class="toc-text">三次而不是两次握手的原因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9TCP%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84DoS%E6%94%BB%E5%87%BB"><span class="toc-number">2.4.</span> <span class="toc-text">对TCP三次握手的DoS攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Connection-Flood%E6%94%BB%E5%87%BB"><span class="toc-number">2.4.1.</span> <span class="toc-text">Connection Flood攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SYN%E6%94%BB%E5%87%BB"><span class="toc-number">2.4.2.</span> <span class="toc-text">SYN攻击</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Land%E6%94%BB%E5%87%BB"><span class="toc-number">2.4.3.</span> <span class="toc-text">Land攻击</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B"><span class="toc-number">2.5.</span> <span class="toc-text">四次挥手</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%E7%9A%84%E8%BF%87%E7%A8%8B"><span class="toc-number">2.5.1.</span> <span class="toc-text">四次挥手的过程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%A6%81%E6%9C%89TIME-WAIT%E7%8A%B6%E6%80%81%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.5.2.</span> <span class="toc-text">要有TIME_WAIT状态的原因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%97%AD%E8%BF%9E%E6%8E%A5%E7%9A%84%E9%9C%80%E8%A6%81%E5%9B%9B%E6%AC%A1%E6%8C%A5%E6%89%8B%EF%BC%8C%E8%80%8C%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5%E5%8F%AA%E8%A6%81%E4%B8%89%E6%AC%A1%E6%8F%A1%E6%89%8B%E7%9A%84%E5%8E%9F%E5%9B%A0"><span class="toc-number">2.5.3.</span> <span class="toc-text">关闭连接的需要四次挥手，而建立连接只要三次握手的原因</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-number">2.6.</span> <span class="toc-text">TCP流量控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%BA%E5%88%B6"><span class="toc-number">2.6.1.</span> <span class="toc-text">滑动窗口机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A1%AE%E8%AE%A4%E9%87%8D%E4%BC%A0%E6%9C%BA%E5%88%B6"><span class="toc-number">2.6.2.</span> <span class="toc-text">确认重传机制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%AE%97%E6%B3%95"><span class="toc-number">2.6.3.</span> <span class="toc-text">TCP拥塞控制算法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%85%A2%E5%90%AF%E5%8A%A8%E7%AE%97%E6%B3%95"><span class="toc-number">2.6.3.1.</span> <span class="toc-text">慢启动算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E9%81%BF%E5%85%8D%E7%AE%97%E6%B3%95"><span class="toc-number">2.6.3.2.</span> <span class="toc-text">拥塞避免算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E6%81%A2%E5%A4%8D%E7%AE%97%E6%B3%95"><span class="toc-number">2.6.3.3.</span> <span class="toc-text">快速恢复算法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E9%87%8D%E4%BC%A0%E7%AE%97%E6%B3%95"><span class="toc-number">2.6.3.4.</span> <span class="toc-text">快速重传算法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%B2%98%E5%8C%85%E3%80%81%E6%8B%86%E5%8C%85"><span class="toc-number">2.7.</span> <span class="toc-text">粘包、拆包</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#UDP"><span class="toc-number">3.</span> <span class="toc-text">UDP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP"><span class="toc-number">4.</span> <span class="toc-text">HTTP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%89%B9%E7%82%B9"><span class="toc-number">4.1.</span> <span class="toc-text">特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9F%AD%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.2.</span> <span class="toc-text">短连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%95%BF%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.3.</span> <span class="toc-text">长连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">4.4.</span> <span class="toc-text">多路复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QUIC"><span class="toc-number">4.5.</span> <span class="toc-text">QUIC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%A0%81"><span class="toc-number">4.6.</span> <span class="toc-text">状态码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%B7%E6%B1%82%E8%BD%AC%E5%8F%91%E5%92%8C%E9%87%8D%E5%AE%9A%E5%90%91%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">4.7.</span> <span class="toc-text">请求转发和重定向的区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#WebSockets"><span class="toc-number">5.</span> <span class="toc-text">WebSockets</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WebSockets%E8%A7%A3%E5%86%B3%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">5.1.</span> <span class="toc-text">WebSockets解决的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8%E6%B3%95%E7%A4%BA%E4%BE%8B"><span class="toc-number">5.2.</span> <span class="toc-text">用法示例</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">哈希算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="toc-number">7.</span> <span class="toc-text">加密算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E7%AE%97%E6%B3%95"><span class="toc-number">7.1.</span> <span class="toc-text">对称加密算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%AF%86%E9%92%A5%E7%AE%97%E6%B3%95"><span class="toc-number">7.2.</span> <span class="toc-text">非对称密钥算法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SSL-x2F-TLS"><span class="toc-number">8.</span> <span class="toc-text">SSL&#x2F;TLS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TLS-%E6%8F%A1%E6%89%8B%E6%9C%89%E5%93%AA%E4%BA%9B%E6%AD%A5%E9%AA%A4%EF%BC%9F"><span class="toc-number">8.1.</span> <span class="toc-text">TLS 握手有哪些步骤？</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%AD%BE%E5%90%8D"><span class="toc-number">8.1.1.</span> <span class="toc-text">数字签名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6"><span class="toc-number">8.1.2.</span> <span class="toc-text">数字证书</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93%EF%BC%9ATLS-%E6%8F%A1%E6%89%8B%E6%9C%9F%E9%97%B4%E4%BC%9A%E5%8F%91%E7%94%9F%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-number">8.2.</span> <span class="toc-text">总结：TLS 握手期间会发生什么？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTPS"><span class="toc-number">9.</span> <span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="toc-number">9.1.</span> <span class="toc-text">工作原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E4%BD%9C%E7%94%A8"><span class="toc-number">9.2.</span> <span class="toc-text">主要作用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Session%E3%80%81Cookie%E3%80%81Token"><span class="toc-number">10.</span> <span class="toc-text">Session、Cookie、Token</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Session"><span class="toc-number">10.1.</span> <span class="toc-text">Session</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Cookie"><span class="toc-number">10.2.</span> <span class="toc-text">Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Session%E5%92%8CCookie%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">10.3.</span> <span class="toc-text">Session和Cookie的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Token"><span class="toc-number">10.4.</span> <span class="toc-text">Token</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89"><span class="toc-number">10.4.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%95%E5%85%A5%E7%9B%AE%E7%9A%84"><span class="toc-number">10.4.2.</span> <span class="toc-text">引入目的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Token-%E5%8F%AF%E4%BB%A5%E9%99%8D%E4%BD%8E-CSRF%EF%BC%88%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%EF%BC%89%E6%94%BB%E5%87%BB%E7%9A%84%E9%A3%8E%E9%99%A9%E7%9A%84%E5%8E%9F%E7%90%86"><span class="toc-number">10.4.3.</span> <span class="toc-text">Token 可以降低 CSRF（跨站请求伪造）攻击的风险的原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#JWT"><span class="toc-number">10.4.4.</span> <span class="toc-text">JWT</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web%E5%AE%89%E5%85%A8"><span class="toc-number">11.</span> <span class="toc-text">Web安全</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#SQL%E6%B3%A8%E5%85%A5"><span class="toc-number">11.1.</span> <span class="toc-text">SQL注入</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%84%9A%E6%9C%AC%E6%94%BB%E5%87%BB%EF%BC%88XSS%E6%94%BB%E5%87%BB%EF%BC%89"><span class="toc-number">11.2.</span> <span class="toc-text">跨站脚本攻击（XSS攻击）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B7%A8%E7%AB%99%E8%AF%B7%E6%B1%82%E4%BC%AA%E9%80%A0%E6%94%BB%E5%87%BB%EF%BC%88CSRF%E6%94%BB%E5%87%BB%EF%BC%89"><span class="toc-number">11.3.</span> <span class="toc-text">跨站请求伪造攻击（CSRF攻击）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%82%B9%E5%87%BB%E5%8A%AB%E6%8C%81%E6%94%BB%E5%87%BB"><span class="toc-number">11.4.</span> <span class="toc-text">点击劫持攻击</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%92%E7%BB%9D%E6%9C%8D%E5%8A%A1%E6%94%BB%E5%87%BB%EF%BC%88DDoS-%E6%94%BB%E5%87%BB%EF%BC%89"><span class="toc-number">11.5.</span> <span class="toc-text">拒绝服务攻击（DDoS 攻击）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E5%92%8C%E5%85%A5%E4%BE%B5%E9%98%B2%E5%BE%A1%E7%B3%BB%E7%BB%9F"><span class="toc-number">11.6.</span> <span class="toc-text">防火墙和入侵防御系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#References"><span class="toc-number">12.</span> <span class="toc-text">References</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/07/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" title="数据结构和算法二刷（更新中）"><img src="https://th.bing.com/th/id/R.ee995d98e687b0896c006b16980e126b?rik=ZPHZfBPZDznIiw&amp;riu=http%3a%2f%2fimg.sj33.cn%2fuploads%2fallimg%2f200912%2f20091223150352964.jpg&amp;ehk=ETvV5eN%2fU0LZJE9ZbDxQN%2btQkl3ZWmIGnhIp8GzKzZs%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="数据结构和算法二刷（更新中）"/></a><div class="content"><a class="title" href="/2023/07/10/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%92%8C%E7%AE%97%E6%B3%95/" title="数据结构和算法二刷（更新中）">数据结构和算法二刷（更新中）</a><time datetime="2023-07-10T00:32:48.000Z" title="Created 2023-07-10 08:32:48">2023-07-10</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/RocketMQ/" title="RocketMQ"><img src="https://desk-fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/04/ChMkJlbKx9CIKZ-qABs7mJV2aP0AALH5ALBgd0AGzuw770.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="RocketMQ"/></a><div class="content"><a class="title" href="/2023/05/24/RocketMQ/" title="RocketMQ">RocketMQ</a><time datetime="2023-05-24T08:13:44.000Z" title="Created 2023-05-24 16:13:44">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud"><img src="https://th.bing.com/th/id/OIP.fekfR1FWtn_EXSMaueufagHaEK?pid=ImgDet&amp;rs=1" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Spring Cloud"/></a><div class="content"><a class="title" href="/2023/05/24/Spring-Cloud/" title="Spring Cloud">Spring Cloud</a><time datetime="2023-05-24T08:08:42.000Z" title="Created 2023-05-24 16:08:42">2023-05-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程"><img src="https://th.bing.com/th/id/R.9316fccce50d6257f0ffb94c5ae6461a?rik=EDdsz%2f4EuNN2ig&amp;riu=http%3a%2f%2fpic1.bbzhi.com%2ffengjingbizhi%2fsijimeijingxiatian%2fnature_season_summer_23966_2.jpg&amp;ehk=ww8MI8P3WC8UIvjNAsOE50t9oRfkNst8LVUnJmhIK8A%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Java并发编程"/></a><div class="content"><a class="title" href="/2023/05/07/Java%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="Java并发编程">Java并发编程</a><time datetime="2023-05-07T13:39:13.000Z" title="Created 2023-05-07 21:39:13">2023-05-07</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络"><img src="https://th.bing.com/th/id/R.826fae185d03cd7935cc5haf1cd1844c3?rik=9ONAxF3s06zoPg&amp;riu=http%3a%2f%2fpic5.bbzhi.com%2ffengjingbizhi%2fgaoqingziranfengjingbizhi%2fgaoqingziranfengjingbizhi_415690_15.jpg&amp;ehk=BbD3V6XWzCc5AJ7yXlMt4j5AU09Nk56syRdeDXFSvYY%3d&amp;risl=&amp;pid=ImgRaw&amp;r=0" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="计算机网络"/></a><div class="content"><a class="title" href="/2023/05/07/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" title="计算机网络">计算机网络</a><time datetime="2023-05-07T13:37:05.000Z" title="Created 2023-05-07 21:37:05">2023-05-07</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2021 - 2023 By Song Baoru</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Toggle Between Light And Dark Mode"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  Loading the Database</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="Search for Posts" type="text"/></div></div><hr/><div class="no-result" id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
