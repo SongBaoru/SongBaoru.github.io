@@ -7,7 +7,7 @@
 <meta property="og:locale">
 <meta property="og:image" content="https://th.bing.com/th/id/OIP.wCDX4W_Glr7-BSlavnG2uAHaFj?pid=ImgDet&rs=1">
 <meta property="article:published_time" content="2023-05-06T03:03:01.000Z">
-<meta property="article:modified_time" content="2023-08-15T12:49:50.468Z">
+<meta property="article:modified_time" content="2023-08-24T03:10:39.188Z">
 <meta property="article:author" content="Song Baoru">
 <meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
@@ -58,7 +58,7 @@
   isHome: false,
   isHighlightShrink: false,
   isToc: true,
-  postUpdate: '2023-08-15 20:49:50'
+  postUpdate: '2023-08-24 11:10:39'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -162,7 +162,7 @@
       }
     }
     detectApple()
-    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="SBR Blog"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">SBR Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Redis</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-06T03:03:01.000Z" title="Created 2023-05-06 11:03:01">2023-05-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-15T12:49:50.468Z" title="Updated 2023-08-15 20:49:50">2023-08-15</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT/">IT</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">12.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>40min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Redis"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="5种基础数据类型"><a href="#5种基础数据类型" class="headerlink" title="5种基础数据类型"></a>5种基础数据类型</h2><h3 id="string（字符串）"><a href="#string（字符串）" class="headerlink" title="string（字符串）"></a>string（字符串）</h3><p>Redis的string类似于Java的<code>ArrayList</code>，是动态字符串，可以被修改，采用预分配冗余空间的方式来减少内存的频繁分配。</p>
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">Articles</div><div class="length-num">11</div></a><a href="/tags/"><div class="headline">Tags</div><div class="length-num">12</div></a><a href="/categories/"><div class="headline">Categories</div><div class="length-num">1</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="SBR Blog"><img class="site-icon" src="/img/favicon.png"/><span class="site-name">SBR Blog</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> Search</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">Redis</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-05-06T03:03:01.000Z" title="Created 2023-05-06 11:03:01">2023-05-06</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-24T03:10:39.188Z" title="Updated 2023-08-24 11:10:39">2023-08-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/IT/">IT</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">Word count:</span><span class="word-count">12.9k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">Reading time:</span><span>41min</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="Redis"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div><article class="post-content" id="article-container"><h1 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h1><h2 id="5种基础数据类型"><a href="#5种基础数据类型" class="headerlink" title="5种基础数据类型"></a>5种基础数据类型</h2><h3 id="string（字符串）"><a href="#string（字符串）" class="headerlink" title="string（字符串）"></a>string（字符串）</h3><p>Redis的string类似于Java的<code>ArrayList</code>，是动态字符串，可以被修改，采用预分配冗余空间的方式来减少内存的频繁分配。</p>
 <p>空间分配规则：如果字符串长度小于1MB，扩容方式是加倍现有的空间，如果字符串长度超过1MB，扩容方式是只多扩1MB的空间。</p>
 <p><a target="_blank" rel="noopener" href="https://redis.io/commands/?group=string">支持的命令</a>。</p>
 <ul>
@@ -388,7 +388,7 @@
 <p>内存快照要求Redis必须进行文件IO操作，而Redis是单线程程序，如果一边处理业务请求，一边进行文件IO操作，会降低处理业务请求的性能，还有个问题是，这种操作下，内存数据一边被持久化一边被修改，快照就不是对一个时间点的记录，而是成了多个时间点交错的记录，无法使用。</p>
 <p>Redis使用操作系统多进程COW（Copy On Write）机制来实现快照持久化。</p>
 <p>Copy-On-Write（COW）是一种操作系统中常用的技术，其基本思想是：当多个进程需要访问同一块内存地址时，操作系统会将这块内存标识为只读，并且在任何进程试图写入该内存前，都会复制一份副本供该进程使用。这样就能够保证每个进程都拥有自己的独立内存空间，而不会互相干扰。</p>
-<h3 id="AOF日志"><a href="#AOF日志" class="headerlink" title="AOF日志"></a>AOF日志</h3><p>AOF（Append Only File）日志是内存数据修改的指令记录文本，是<strong>增量备份</strong>。</p>
+<h3 id="AOF日志"><a href="#AOF日志" class="headerlink" title="AOF日志"></a>AOF日志</h3><p>AOF（Append Only File）日志是内存数据修改的指令记录文本，存储的内容是 RESP 格式的写命令，是<strong>增量备份</strong>。</p>
 <p>Redis收到客户端的修改命令后，进行参数校验、逻辑处理，如果没问题，就执行该指令，然后将该指令文本存储到AOF日志中，即先执行指令再将指令存储到AOF日志。</p>
 <p>AOF日志在长期的运行过程中会变得十分庞大，数据库重启时需要加载AOF日志进行指令重放，这个过程就会很漫长，所以需要定期进行<strong>AOF重写</strong>，给AOF日志进行瘦身。Redis提供了bgrewriteaof命令用于对AOF日志进行瘦身，其原理是开辟一个子进程对内存进行遍历，转换成一系列Redis的操作命令，序列化到一个新的AOF日志文件中，序列化完成后再将操作期间发生的增量AOF日志追加到这个新的AOF日志文件中，追加完毕后就可以替代旧的AOF日志文件了。</p>
 <p>当程序对AOF日志文件进行写操作时，实际上是将内容写到了以内核为文件描述符分配的一个内存缓存中，然后内核会异步地将脏数据刷回到磁盘。这就意味着，如果突然宕机，AOF日志还没有完全刷新到磁盘中，就会出现日志丢失。Linux的glibc提供的fsync(int fd)函数可以将指定文件的内容<strong>强制从内核缓存刷新到磁盘</strong>，只要Redis进行实时调用fsync函数就可以保证AOF日志不丢失。但是fsync是一个磁盘IO操作，很慢，如果Redis执行一条指令就要fsync一次，那么会严重降低Redis的性能。所以在生产环境的服务器中，Redis通常是每隔1s左右执行一次fsync操作，这个1s的周期是可以配置的，是在<strong>安全性和性能间做的折中</strong>。</p>
@@ -512,6 +512,7 @@
 <p> 一种简单的多路复用API是select，多个的进程的IO注册到一个复用器（select）上，然后用一个进程调用该select，select会监听所有注册进来的IO。</p>
 <p> 如果select没有监听的IO在内核缓冲区都没有可读数据，select调用进程会被阻塞；而当任一IO在内核缓冲区中有可数据时，select调用就会返回；</p>
 <p> 典型应用：epoll（linux系统的性能最好的多路复用API）。</p>
+<p> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/272891398">select和epoll的对比</a>。</p>
 </li>
 <li><p><strong>信号驱动IO模型</strong></p>
 <p> 当进程发起一个IO操作，会向内核注册一个信号处理函数，然后进程返回不阻塞；当内核数据就绪时会发送一个信号给进程，<strong>进程便在信号处理函数中调用IO读取数据</strong>。</p>
@@ -602,13 +603,22 @@
 <li><strong>高效的网络 IO 模型（ I&#x2F;O 多路复用）</strong>：Redis 使用了高效的网络 IO 模型， I&#x2F;O 多路复用的最大优势是系统开销小，系统不必创建进程&#x2F;线程，也不必维护这些进程&#x2F;线程，从而大大减小了系统的开销。</li>
 <li><strong>高效的数据结构</strong>：Redis 支持多种数据结构，如字符串、哈希表、列表、集合、有序集合等，这些数据结构经过优化和精简，能够快速地进行插入、删除、查询等操作，从而提高了性能。比如rehash就是优化的一个例子。</li>
 </ol>
-<h1 id="Redis常见的阻塞原因"><a href="#Redis常见的阻塞原因" class="headerlink" title="Redis常见的阻塞原因"></a>Redis常见的阻塞原因</h1><ol>
+<h1 id="Redis常见的阻塞原因"><a href="#Redis常见的阻塞原因" class="headerlink" title="Redis常见的阻塞原因"></a><a target="_blank" rel="noopener" href="https://javaguide.cn/database/redis/redis-common-blocking-problems-summary.html">Redis常见的阻塞原因</a></h1><ul>
 <li>O(n)命令</li>
-<li>使用了save而不是bgsave创建RDB</li>
-<li>使用了appendfsync always而不是appendfsync everysec或appendfsync no创建AOF</li>
+<li>使用了save而不是bgsave创建RDB<ul>
+<li><code>save</code> : 同步保存操作，会阻塞 Redis 主线程；</li>
+<li><code>bgsave</code> : fork 出一个子进程，子进程执行，不会阻塞 Redis 主线程，默认选项。</li>
+</ul>
+</li>
+<li>使用了appendfsync always而不是appendfsync everysec或appendfsync no创建AOF<ul>
+<li><code>appendfsync always</code>：主线程调用 <code>write</code> 执行写操作后，后台线程（ <code>aof_fsync</code> 线程）立即会调用 <code>fsync</code> 函数同步 AOF 文件（刷盘），<code>fsync</code> 完成后线程返回，这样会严重降低 Redis 的性能（<code>write</code> + <code>fsync</code>）。</li>
+<li><code>appendfsync everysec</code>：主线程调用 <code>write</code> 执行写操作后立即返回，由后台线程（ <code>aof_fsync</code> 线程）每秒钟调用 <code>fsync</code> 函数（系统调用）同步一次 AOF 文件（<code>write</code>+<code>fsync</code>，<code>fsync</code>间隔为 1 秒）</li>
+<li><code>appendfsync no</code>：主线程调用 <code>write</code> 执行写操作后立即返回，让操作系统决定何时进行同步，Linux 下一般为 30 秒一次（<code>write</code>但不<code>fsync</code>，<code>fsync</code> 的时机由操作系统决定）。</li>
+</ul>
+</li>
 <li>存在对大key的删除（引发线程阻塞）或存在对大key的网络传输（引发网络阻塞）</li>
 <li>和其它进程竞争CPU资源。</li>
-</ol>
+</ul>
 <h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
 <li>钱文品. Redis深度历险:核心原理与应用实践. 北京: 电子工业出版社, 2019.1.</li>
 <li><a target="_blank" rel="noopener" href="https://javaguide.cn/database/redis/redis-questions-01.html#redis-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">https://javaguide.cn/database/redis/redis-questions-01.html#redis-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84</a></li>
